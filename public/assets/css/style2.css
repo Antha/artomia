@@ -1,0 +1,20 @@
+@font-face {
+	font-family: 'sf-pro';
+	src: url('../fonts/PlusJakartaSans-Regular.otf')
+		format('opentype');
+}
+
+body {
+	background: rgb(252,252,252);
+	background: linear-gradient(360deg, rgba(252,252,252,1) 0%, rgba(230,230,230,1) 100%);
+	background-repeat: repeat;
+	font-family: "sf-pro","Roboto", "sans-serif";
+	color: #5b626b;
+	font-size: 13.5px;
+}
+
+html {
+	overflow-x: hidden;
+	position: relative;
+	min-height: 100%;
+}
