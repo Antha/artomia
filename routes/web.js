@@ -9,4 +9,9 @@ router.get("/", (req, res) => {
     res.render("index.hbs");
 });
 
+router.get("/login", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("login.hbs");
+});
+
 module.exports = router;
