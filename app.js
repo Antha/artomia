@@ -4,6 +4,10 @@ var cors = require("cors");
 const path = require("path");
 const app = express();
 const web = require("./routes/web.js");
+const hbs = require("hbs");
+
+//Set
+hbs.registerPartials("./views/partials");
 
 app.use(cors());
 app.use(express.json());

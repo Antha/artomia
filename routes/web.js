@@ -14,4 +14,24 @@ router.get("/login", (req, res) => {
     res.render("login.hbs");
 });
 
+router.get("/pos", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos.hbs");
+});
+
+router.get("/kaos", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos_kaos.hbs");
+});
+
+router.get("/keranjang", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("keranjang.hbs");
+});
+
+router.get("/checkout", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos_checkout.hbs");
+});
+
 module.exports = router;
