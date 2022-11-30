@@ -17,6 +17,46 @@ router.get("/login", (req, res) => {
     res.render("login.hbs");
 });
 
+router.get("/keranjang", (req, res) => {
+    console.log("req.session.cart");
+    //console.log(req.session.cart);
+
+    res.render("keranjang.hbs", {
+        cart: req.session.cart,
+    });
+});
+
+router.get("/keranjang_add", (req, res) => {
+    var cart = req.session.cart || [];
+
+    cart.push({
+        product_name: req.query.product_name,
+        product_color: req.query.product_color,
+        product_size: req.query.product_size,
+        product_pic_logo: req.query.product_pic_logo,
+    });
+
+    req.session.cart = cart;
+
+    res.json(req.session.cart);
+});
+
+router.get("/pos", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos.hbs");
+});
+
+router.get("/kaos", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos_kaos.hbs");
+});
+
+router.get("/checkout", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos_checkout.hbs");
+});
+
+//Api
 router.post("/product", product.insert_product);
 router.get("/products", product.select_product);
 router.get("/product_size", product.select_all_product_size);

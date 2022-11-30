@@ -1,0 +1,727 @@
+{{> head}}
+    <body>
+        <div class="container2" style="max-width: none;padding: 0px">
+            <div class="sidebar bgcolor-white" id="sidebar">
+                <div class="header" style="margin: 24px;">
+                    <div class="list-item">
+                        <img src="assets/images/logo2.png" style="width: 13vw; height:10vh">
+                        <!--<img src="assets/images/nav/Logo.png" alt="" class="icon" style="width: 48px;height: 80px;">-->
+                    </div>
+                </div>
+                
+                <div class="main ">
+                        <div class="list-item">
+                            <a href="/">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Home.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Home2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Dashboard</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/pos">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link activebuttonon">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Sales.png" alt="" class="icon" style="float: left;display: none;">
+                                    <img src="assets/images/nav/Sales2.png" alt="" class="icon activebuttonimage" style="float: left;">
+                                    <span style="margin-top:4px;" class="description activebutton2">Point of Sale</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Transaction.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Transaction2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Transaksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Accounting.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Accounting2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Akunting</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Production.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Production2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Produksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Stock.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Stock2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Stok</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/User.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/User2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Pengguna</span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                </div>
+                <div class="main2" style="margin-bottom: 16px;">
+                    <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description color-red">Keluar</span>
+                                </div>
+                            </a>
+                        </div>
+                </div>
+            </div>
+            <div id="buttonminimize" style="position: absolute;top:240;left:244;transition: all ease-in .2s;cursor: pointer;">
+                <img src="assets/images/nav/Button.png" alt="" class="icon" style="width: 40px;height: 40px;">
+            </div>
+            <div class="main-content" style="flex: 1;">
+                <div id="headnav" class="">
+                    <nav class="navbar-custom bgcolor-white" style="min-height: 44px;">
+                        <ul class="navbar-right d-flex list-inline float-right mb-0">
+                            <li class="dropdown notification-list">
+                                <div class="dropdown notification-list nav-pro-img">
+                                    <a class="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" style="line-height: 48px !important;">
+                                        <i class="mdi mdi-18px mdi-chevron-down" style="float: right;text-align: center;width: 40px; margin-right: 8px;"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                        <!-- item-->
+                                        <a class="dropdown-item" href="/user/edit"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="/logout_process"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                    </div>                                                                    
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 0px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:0px">
+                                <img src="assets/images/nav/Profile.png" style="height: 30px;">
+                            </div>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 10px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:6px" id="username" class="color-grey">
+                                Fulan bin Fulan
+                            </div>
+                        </ul>
+                    </nav>
+                    <!-- Top Bar Start -->
+                </div>
+                <div class="main-pages" style="padding:24px 40px;">
+                    <!-- Modal Diskon -->
+                    <div class="modal fade" id="modaldiskon" tabindex="-1" role="dialog" aria-labelledby="modaldiskon" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document" style="margin:1.25rem auto">
+                            <div class="modal-content" style="background-color: #FAFAFA;">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <img src="assets/images/logo2.png" style="width: 9vw; height:7.1vh">
+                                                <span class="ht6" style="margin-left: 8px;vertical-align: middle;font-weight: 600">| Diskon</span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: 0.5px solid #6b6865;transition-duration: 0.2s;border-radius: 16px;padding: 0px 8px 8px 8px;margin-top:8px;">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <span id="" class="ht6" style="vertical-align: middle;font-weight: 600">Diskon</span>
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <div class="form-group" style="margin-bottom: 0.5rem;">
+                                                    <img src="assets/images/pos/icon_discount.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                    <input style="height:2.7rem !important;padding-left: 48px;font-size: 14px;" type="text" name="inputdiskon" class="form-control" id="inputdiskon" placeholder="Masukan diskon(%)">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <button id="simpandiskon" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Simpan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Modal Struk-->
+                    <div class="modal fade" id="modalstruk" tabindex="-1" role="dialog" aria-labelledby="modalstruk" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="margin:1.25rem auto;max-width: 365px;">
+                            <div class="modal-content" style="background-color: #FAFAFA;">
+                                <div class="modal-body">
+                                    <img src="assets/images/pos/recipt.png" style="width: 100%;height: 90%;position: absolute;margin-left: -16px">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-12 mt-4" style="text-align: center;">
+                                                <img src="assets/images/pos/icon_check.png" style="width: 62px; height:62px;">
+                                            </div>
+                                            <div class="col-md-12 mt-2" style="text-align: center;">
+                                                <span id="" class="ht6" style="vertical-align: middle;font-weight: 600">Transaksi Berhasil</span>
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <div class="row" style="padding: 0px 30px">
+                                                    <div class="col-md-6">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Kasir</span>
+                                                    </div>
+                                                    <div class="col-md-6" style="text-align: right;">
+                                                        <span id="namakasir" class="ht9" style="">Fulan Bin Fulan</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-1" style="padding: 0px 30px">
+                                                    <div class="col-md-6">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Pelanggan</span>
+                                                    </div>
+                                                    <div class="col-md-6" style="text-align: right;">
+                                                        <span id="namapelanggan" class="ht9" style="">Fulan Suterejo</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-1" style="padding: 0px 30px">
+                                                    <div class="col-md-6">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Tanggal Struke</span>
+                                                    </div>
+                                                    <div class="col-md-6" style="text-align: right;">
+                                                        <span id="namapelanggan" class="ht9" style="">2022-09-06 18:00:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-1" style="padding: 0px 30px">
+                                                    <div class="col-md-6">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">ID Transaksi</span>
+                                                    </div>
+                                                    <div class="col-md-6" style="text-align: right;">
+                                                        <span id="namapelanggan" class="ht9" style="">20221129001</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12"><div class="col-md-12" style="padding: 25px;"><div class="col-md-12 line"></div></div></div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-12" style="padding: 0px 25px;">
+                                                <table class="table" style="font-size: 12px;">
+                                                    <thead>
+                                                        <tr>
+                                                        <th scope="col" style="width: 50%">Item</th>
+                                                        <th scope="col" style="width: 7%">Ukuran</th>
+                                                        <th scope="col" style="width: 8%">Jumlah</th>
+                                                        <th scope="col" style="width: 35%">Harga</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">T-Shirt Cotton</th>
+                                                            <td class="finalukuran">M</td>
+                                                            <td class="pcs">1pcs</td>
+                                                            <td class="pricekanan">Rp45.000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">T-Shirt Cotton</th>
+                                                            <td class="finalukuran">M</td>
+                                                            <td class="pcs">1pcs</td>
+                                                            <td class="pricekanan">Rp45.000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Kertas</th>
+                                                            <td class="finalukuran">A4</td>
+                                                            <td class="pcs">1pcs</td>
+                                                            <td class="pricekanan">Rp7.000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Kertas</th>
+                                                            <td class="finalukuran">A4</td>
+                                                            <td class="pcs">1pcs</td>
+                                                            <td class="pricekanan">Rp7.000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Jasa Press</th>
+                                                            <td class="finalukuran">-</td>
+                                                            <td class="pcs">-</td>
+                                                            <td class="pricekanan">Rp3.000</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <div class="row" style="padding: 0px 30px">
+                                                    <div class="col-md-6">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Sub Total</span>
+                                                    </div>
+                                                    <div class="col-md-6" style="text-align: right;">
+                                                        <span id="hargasub" class="ht9" style="">Rp105.000</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-1" style="padding: 0px 30px">
+                                                    <div class="col-md-6">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Diskon</span>
+                                                    </div>
+                                                    <div class="col-md-6" style="text-align: right;">
+                                                        <span id="hargadiskon" class="ht9" style="">-Rp10.200</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-1" style="padding: 0px 30px">
+                                                    <div class="col-md-6">
+                                                        <span id="" class="ht9 color-red" style="vertical-align: middle;font-weight: 600">Total</span>
+                                                    </div>
+                                                    <div class="col-md-6" style="text-align: right;">
+                                                        <span id="hargatotal" class="ht6 color-red" style="font-weight: 600;">Rp94.500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-5">
+                                                <button id="simpanstruk" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Print Struk</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-7 col-md-12 color-black ht23">
+                            <div class="col-xl-12">
+                                Point Of Sale
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-xl-12 col-md-12">
+                                    <div class="card mini-stat position-relative" style="">
+                                        <div class="card-body" style="background-color: #fafafa;">
+                                            <div class="">
+                                                <div class="col-md-12 row" style="">
+                                                        <div class="col-md-6 ht4 color-black" id="title" style="font-weight:bold;">
+                                                            <i class="fa-regular fa-file-lines" style="font-size: 13pt;margin-right: 8px;"></i>
+                                                            <i class="mdi mdi-file-plus-outline m-r-5" style="font-size: 13pt;margin-right: 4px;"></i> Data Diri Pelanggan
+                                                        </div>
+                                                        <div class="col-md-6" id="inputsearch" class="ht6 color-black" style="font-weight:bold;padding-top:2px;text-align:right;padding-left: 15em;">
+                                                            
+                                                        </div>
+                                                </div>
+                                                <div class="col-md-12 pilihan mt-2" id="datanotavailable" style="display: none;">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="">
+                                                            <div class="form-group" style="margin-bottom: 0.5rem;">
+                                                                <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                                <input style="height:2.7rem !important;padding-left: 48px;font-size: 14px;" type="text" name="inputnama" class="form-control" id="inputnama" placeholder="Nama">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12" style="">
+                                                            <div class="form-group" style="margin-bottom: 0.5rem;">
+                                                                <img src="assets/images/pos/icon_location.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                                <input style="height:2.7rem !important;padding-left: 48px;font-size: 14px;" type="text" name="inputalamat" class="form-control" id="inputalamat" placeholder="Alamat">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12" style="">
+                                                            <div class="form-group" style="margin-bottom: 0.5rem;">
+                                                                <img src="assets/images/pos/icon_call.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                                <input style="height:2.7rem !important;padding-left: 48px;font-size: 14px;" type="text" name="inputatelepon" class="form-control" id="inputatelepon" placeholder="Telepon">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12" style="">
+                                                            <div class="form-group" style="margin-bottom: 0.5rem;">
+                                                                <img src="assets/images/pos/icon_message.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                                <input style="height:2.7rem !important;padding-left: 48px;font-size: 14px;" type="text" name="inputemail" class="form-control" id="inputemail" placeholder="Email">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 pilihan mt-2" id="dataavailable" style="">
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <div class="form-group">
+                                                                <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                                <input style="height:2.7rem !important;padding-left: 48px;font-size: 14px;" type="text" name="nama" class="form-control data1" id="nama" placeholder="Nama" value="Fulan Suterejo">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button id="addnewdata" type="button" class="ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 16px;border-radius: 8px;"><i class="fa-regular fa-regular fa-square-plus" style="font-size: 13px;"></i></button>
+                                                        </div>
+                                                        <div class="col-md-12" style="">
+                                                            <div class="form-group">
+                                                                <img src="assets/images/pos/icon_location.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                                <input style="height:2.7rem !important;padding-left: 48px;font-size: 14px;" type="text" name="alamat" class="form-control data1" id="alamat" placeholder="Alamat" value="Jl. Sutorejo Utara XI No. 10">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6" style="">
+                                                            <div class="form-group">
+                                                                <img src="assets/images/pos/icon_call.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                                <input style="height:2.7rem !important;padding-left: 48px;font-size: 14px;" type="text" name="notlp" class="form-control data1" id="notlp" placeholder="Telepon" value="081234567891">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6" style="">
+                                                            <div class="form-group">
+                                                                <img src="assets/images/pos/icon_message.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                                <input style="height:2.7rem !important;padding-left: 48px;font-size: 14px;" type="text" name="email" class="form-control data1" id="email" placeholder="Email" value="hi@fulan">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12" style="padding-right: 24px;">
+                                                            <div class="row">
+                                                                <div class="col-md-10" style="padding-right: 0;text-align: right;"></div>
+                                                                <div class="col-md-2" style="padding-right: 0;text-align: right;">
+                                                                    <button id="buttonsavedata1" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;height: 36px;font-weight: 600;">Saved</button>
+                                                                    <button id="buttoneditdata1" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;height: 36px;font-weight: 600;display: none;">Edit</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 row" style="">
+                                                    <div class="col-md-6 ht4 color-black" id="title" style="font-weight:bold;">
+                                                        <i class="mdi mdi-account-multiple-outline m-r-5" style="font-size: 14pt;margin-right: 4px;"></i> Prioritas Pelanggan
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 pilihan mt-2" id="">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <button type="button" class="ht8 btn buttonprioritasall" style="width: 100%;"><img src="assets/images/pos/icon_regular.png" style="width: 16px;margin-right: 13px;">Regular</button>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="button" class="ht8 btn buttonprioritasall buttonprioritasactive" style="width: 100%;"><img src="assets/images/pos/icon_vip.png" style="width: 16px;margin-right: 13px;">VIP</button>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="button" class="ht8 btn buttonprioritasall" style="width: 100%;"><img src="assets/images/pos/icon_supavip.png" style="width: 16px;margin-right: 13px;">Supa VIP</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 row mt-3" style="">
+                                                    <div class="col-md-6 ht4 color-black" id="title" style="font-weight:bold;">
+                                                        <i class="fa-regular fa-paper-plane m-r-5" style="font-size: 11pt;margin-right: 4px;"></i> Metode Pembayaran
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 pilihan mt-2" id="">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <button type="button" class="ht8 btn buttonprioritasall2" style="width: 100%;"><img src="assets/images/pos/icon_ticket.png" style="width: 16px;margin-right: 13px;">Tunai</button>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="button" class="ht8 btn buttonprioritasall2 buttonprioritasactive2" style="width: 100%;"><img src="assets/images/pos/icon_transfer.png" style="width: 16px;margin-right: 13px;">Transfer</button>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="button" class="ht8 btn buttonprioritasall2" style="width: 100%;"><img src="assets/images/pos/icon_wallet.png" style="width: 16px;margin-right: 13px;">E-Wallet</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 pilihan mt-4" id="" style="padding:0;">
+                                                    <div class="ht82" style="">
+                                                        <div class="dropdown" style="font-weight: 600;">
+                                                            <a style="color: black;background-color: #fff;width: 100%;text-align: left;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihanbankbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
+                                                                <span class="ht82">Bank Central Asia</span>
+                                                                <span style="padding: 0px 8px;">|</span>
+                                                                <span class="color-grey">Otomatis dicek</span>
+                                                                <span class="caret" style="padding-right: 46%;"></span>
+                                                            </a>
+
+                                                            <ul class="dropdown-menu isibank" aria-labelledby="pilihanbankbutton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);width: 100%;">
+                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
+                                                                        <span class="ht82">Bank Central Asia2</span>
+                                                                        <span style="padding: 0px 8px;">|</span>
+                                                                        <span class="color-grey">Otomatis dicek</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
+                                                                        <span class="ht82">BNI</span>
+                                                                        <span style="padding: 0px 8px;">|</span>
+                                                                        <span class="color-grey">Otomatis dicek</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
+                                                                        <span class="ht82">BRI</span>
+                                                                        <span style="padding: 0px 8px;">|</span>
+                                                                        <span class="color-grey">Otomatis dicek</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-md-5" id="detailpesanan" style="display: none;padding-left: 40px;">
+                            <div class="card mini-stat position-relative" style="">
+                                <div class="card-body" style="background-color: #fafafa;">
+                                    <div class="">
+                                        <div class="col-md-12" style="">
+                                                <div class="col-md-12 ht4 color-black" id="title" style="font-weight:bold;">
+                                                    Customer Order
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="card-body bgcolor-white" style="padding: 1rem;">
+                                                        <div class="row">
+                                                            <div class="col-md-6 listnamabarang">
+                                                                <div id="namabarang" class="col-md-12 ht82">T-shirt Cotton</div>
+                                                                <div class="col-md-12 ht9">Warna &nbsp;&nbsp; : &nbsp;<span id="">Red Been</span></div>
+                                                                <div class="col-md-12 ht9">Ukuran &nbsp;: &nbsp;<span id="">M</span></div>
+                                                                <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.45.000</span></div>
+                                                            </div>
+                                                            <div class="col-md-6 nilaikanan mt-3" style="text-align: right;padding-right: 24px;">
+                                                                <div class="ht9 color-grey">
+                                                                    Jumlah &nbsp;&nbsp; : &nbsp;
+                                                                    <span id="nilaibarang" class="cnilaibarang">1</span>
+                                                                </div>
+                                                                <div id="hargabarang" class="chargabarang ht62 color-red">Rp. 45.000</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
+                                                        <div class="row">
+                                                            <div class="col-md-6 listnamabarang">
+                                                                <div id="namabarang" class="col-md-12 ht82">T-shirt Cotton</div>
+                                                                <div class="col-md-12 ht9">Warna &nbsp;&nbsp; : &nbsp;<span id="">Red Been</span></div>
+                                                                <div class="col-md-12 ht9">Ukuran &nbsp;: &nbsp;<span id="">M</span></div>
+                                                                <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.45.000</span></div>
+                                                            </div>
+                                                            <div class="col-md-6 nilaikanan mt-3" style="text-align: right;padding-right: 24px;">
+                                                                <div class="ht9 color-grey">
+                                                                    Jumlah &nbsp;&nbsp; : &nbsp;
+                                                                    <span id="nilaibarang" class="cnilaibarang">1</span>
+                                                                </div>
+                                                                <div id="hargabarang" class="chargabarang ht62 color-red">Rp. 45.000</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
+                                                        <div class="row">
+                                                            <div class="col-md-6 listnamabarang">
+                                                                <div id="namabarang" class="col-md-12 ht82">PET Film A4</div>
+                                                                <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.7.000</span></div>
+                                                            </div>
+                                                            <div class="col-md-6 nilaikanan" style="text-align: right;padding-right: 24px;">
+                                                                <div class="ht9 color-grey">
+                                                                    Jumlah &nbsp;&nbsp; : &nbsp;
+                                                                    <span id="nilaibarang" class="cnilaibarang">1</span>
+                                                                </div>
+                                                                <div id="hargabarang" class="chargabarang ht62 color-red">Rp. 7.000</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
+                                                        <div class="row">
+                                                            <div class="col-md-6 listnamabarang">
+                                                                <div id="namabarang" class="col-md-12 ht82">PET Film A4</div>
+                                                                <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.7.000</span></div>
+                                                            </div>
+                                                            <div class="col-md-6 nilaikanan" style="text-align: right;padding-right: 24px;">
+                                                                <div class="ht9 color-grey">
+                                                                    Jumlah &nbsp;&nbsp; : &nbsp;
+                                                                    <span id="nilaibarang" class="cnilaibarang">1</span>
+                                                                </div>
+                                                                <div id="hargabarang" class="chargabarang ht62 color-red">Rp. 7.000</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
+                                                        <div class="row">
+                                                            <div class="col-md-6 listnamabarang">
+                                                                <div id="namabarang" class="col-md-12 ht82">Total</div>
+                                                                <div id="totalhargabarang" class="col-md-12 chargabarang ht62 color-red">Rp.104.000</div>
+                                                            </div>
+                                                            <div class="col-md-6 nilaikanan mt-2" style="text-align: right;padding-right: 24px;">
+                                                                <div id="totalhargabarangdiskon" class="chargabarang ht62 color-red" style="display: none;">Rp.93.600</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mt-2">
+                                                    <div class="row" style="padding: 8px 8px;">
+                                                        <div class="col-md-10">
+                                                            <button data-toggle="modal" data-target="#modalstruk" id="bbayar" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;"><i class="mdi mdi-cart-outline" style="margin-right: 8px;"></i>Bayar</button>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button  data-toggle="modal" data-target="#modaldiskon" type="button" class="ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 8px;border-radius: 8px;"><img src="assets/images/pos/icon_discountwhite.png" style="width: 14px; height:14px;"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>          
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/waves.min.js"></script>
+        <script src="assets/js/jquery-ui.js"></script>
+        <link rel="stylesheet" href="assets/css/jquery-ui/jquery-ui.css">
+        <script src="plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+        <!-- Peity JS -->
+        <script src="plugins/peity/jquery.peity.min.js"></script>
+        <!--<script src="plugins/morris/morris.min.js"></script>-->
+        <script src="plugins/raphael/raphael-min.js"></script>
+        <!--<script src="assets/pages/dashboard.js"></script>-->
+        <!-- Required datatable js -->
+        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="plugins/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="plugins/datatables/jszip.min.js"></script>
+        <script src="plugins/datatables/pdfmake.min.js"></script>
+        <script src="plugins/datatables/vfs_fonts.js"></script>
+        <script src="plugins/datatables/buttons.html5.min.js"></script>
+        <script src="plugins/datatables/buttons.print.min.js"></script>
+        <script src="plugins/datatables/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+    </body>
+</html>
+{{> scripts}}
+<script>
+    $('#simpandiskon').click(function(){
+        var getdiskon = $("#inputdiskon").val();
+        var diskonint = parseInt(getdiskon);
+        var rawnilaiharga = $("#totalhargabarang").text()
+        var rawnilaihargareplace = rawnilaiharga.replace("Rp", "");
+        var nilaiharga =  parseInt(rawnilaihargareplace.replace(/\./g,''));
+        var finalprice = 0;
+
+        if(isNaN(nilaiharga) || isNaN(diskonint)){
+            finalprice=0;
+            $('#totalhargabarangdiskon').html(rawnilaiharga);
+            $('#totalhargabarangdiskon').hide('fast');
+            $('#totalhargabarang').removeClass('coretdiskon');
+        }else{
+            finalprice = nilaiharga * (100 - diskonint) / 100;
+            showlastprice = finalprice.toLocaleString().replace(/\,/g,'.');
+            $('#totalhargabarangdiskon').html('Rp.'+showlastprice);
+            $('#totalhargabarangdiskon').show('fast');
+            $('#totalhargabarang').addClass('coretdiskon');
+        }
+    });
+    $("#buttonsavedata1").click(function(){
+        $(this).hide("slow");
+        $("#buttoneditdata1").show("slow");
+        $(".data1").prop('disabled', true);
+        $("#detailpesanan").show("slow");
+        $("#addnewdata").hide("slow");
+    });
+
+    $("#buttoneditdata1").click(function(){
+        $(this).hide("slow");
+        $("#buttonsavedata1").show("slow");
+        $(".data1").prop('disabled', false);
+        $("#detailpesanan").hide("slow");
+        $("#addnewdata").show("slow");
+    });
+
+
+    $("#addnewdata").click(function(){
+        $("#dataavailable").hide("slow");
+        $("#datanotavailable").show("slow");
+        $("#detailpesanan").show("slow");
+        $("#buttonsavedata1").hide("slow");
+    });
+
+    $(".buttonprioritasall").click(function(){
+        $(".buttonprioritasall").removeClass("buttonprioritasactive");
+        $(this).addClass("buttonprioritasactive");
+    });
+
+    $(".buttonprioritasall2").click(function(){
+        $(".buttonprioritasall2").removeClass("buttonprioritasactive2");
+        $(this).addClass("buttonprioritasactive2");
+    });
+
+    $(".isibank li").click(function(){
+        var getlogo = $(this).data('value');
+        $("#pilihanbankbutton").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;'>"+$(this).text()+"<span class='caret' style='padding-right: 46%;'></span>");
+    });
+
+    $("div.list-item").hover(function(){
+            $(this).children( "a" ).css("color", "#5BC9E1");
+            $(this).children( "a" ).children(".link").addClass("activebutton");
+            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+
+            $(".list-item").click(function(){
+                console.log("tidur");
+                $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
+                $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
+                $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
+                $(".link").removeClass("activebuttonon");
+                $(this).children( "a" ).children(".link").addClass("activebuttonon");
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            });
+            $("#foo").attr("src", "bar2.jpg");
+
+        }, function(){
+            $(this).children( "a" ).css("color", "#595552");
+            $(this).children( "a" ).children(".link").removeClass("activebutton");
+            if ($(this).children( "a" ).children("div").children("img:nth-child(2)").hasClass("activebuttonimage")){
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            } else {
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+            }
+            
+    });
+
+    
+
+    $("#buttonminimize").click(function() {
+        document.getElementById('sidebar').classList.toggle("hidesidebar");
+        document.getElementById('buttonminimize').classList.toggle("movebutton");
+        has = $("#buttonminimize").hasClass("movebutton");
+        if (has){
+            $(".sidebar .header .list-item").html("<img src='assets/images/nav/logo.png' style='width: 3.1vw; height:10vh;margin-left:8px;'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button2.png' class='icon' style='width: 40px;height: 40px;'>");
+        }else{
+            $(".sidebar .header .list-item").html("<img src='assets/images/logo2.png' style='width: 13vw; height:10vh'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button.png' class='icon' style='width: 40px;height: 40px;'>");
+        }
+    });
+
+</script>
