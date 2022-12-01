@@ -688,6 +688,10 @@
         $("#titlebutton").html("<i style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
     });
 
+    setTimeout(function(){
+        $(".isiwarna li").trigger("click");
+    },500);
+
     $(".isikain li").click(function(){
         var colorval=$(this).data('value');
         $("#jeniskertasdropdown").html($(this).text());
@@ -777,12 +781,14 @@
                 type: 'post',
                 data: {image: base64URL},
                 success: function(data){
+                    var jsonParsed = JSON.parse(data);
                     console.log('Upload successfully');
+                    console.log(jsonParsed["product_pic_logo"]);
 
                     var product_name = $("#data-product-name").text();
-                    var product_color = "Red Bean";
+                    var product_color = $("#titlebutton").text();
                     var product_size = $(".bukuran.activebukuran").text();
-                    var product_pic_logo = data.product_pic_logo;
+                    var product_pic_logo = jsonParsed["product_pic_logo"];
 
                     $.ajax({
                         url: '/keranjang_add',
@@ -791,7 +797,10 @@
                             product_name: product_name,
                             product_color: product_color,
                             product_size: product_size,
-                            product_pic_logo: product_pic_logo
+                            product_pic_logo: product_pic_logo,
+                            item_net_cost:45000,
+                            item_amount:1,
+                            item_total_cost:45000
                         },
                         success: function(data){
                             console.log('Upload successfully');

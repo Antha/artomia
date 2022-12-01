@@ -14,16 +14,14 @@ router.get("/", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
+    req.session.cart = [];
     res.render("login.hbs");
 });
 
 router.get("/keranjang", (req, res) => {
     console.log("req.session.cart");
     //console.log(req.session.cart);
-
-    res.render("keranjang.hbs", {
-        cart: req.session.cart,
-    });
+    res.render("keranjang.hbs");
 });
 
 router.get("/keranjang_add", (req, res) => {
@@ -34,10 +32,26 @@ router.get("/keranjang_add", (req, res) => {
         product_color: req.query.product_color,
         product_size: req.query.product_size,
         product_pic_logo: req.query.product_pic_logo,
+        item_net_cost: req.query.item_net_cost,
+        item_amount: req.query.item_amount,
+        item_total_cost: parseInt(req.query.item_total_cost),
     });
 
     req.session.cart = cart;
+    res.json(req.session.cart);
+});
 
+router.get("/keranjang_edit", (req, res) => {
+    var cart = req.session.cart;
+
+    cart[req.query.key]["item_amount"] = req.query.item_amount;
+    cart[req.query.key]["item_total_cost"] = parseInt(req.query.item_total_cost);
+
+    req.session.cart = cart;
+    res.json(req.session.cart);
+});
+
+router.get("/keranjang_list", (req, res) => {
     res.json(req.session.cart);
 });
 
