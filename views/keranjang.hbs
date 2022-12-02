@@ -238,58 +238,6 @@
 
     getList();
 
-    function getList(){
-        $.ajax({
-            url: '/keranjang_list',
-            type: 'get',
-            data: {},
-            success: function(data){
-                $("#buckets").html("");
-                $.each(data,function(key,value){
-                    $("#buckets").append(`
-                        <div class="col-md-6 mt-2">
-                            <div class="card" style="padding: 8px 16px;">
-                                <div class="row mb-2">
-                                    <div class="col-md-1" style="padding-left: 20px;">
-                                        <div class="form-check mt-4">
-                                            <input class="form-check-input" type="checkbox" value="" id="checkkeranjang" style="margin-top: 12px;border: 0.5px solid #595552;border-radius: 4px;" checked>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2" style="">
-                                        <img class="mt-2" src="http://localhost:81/api/artomia/uploads/${value.product_pic_logo}" style="width: 70px; height:70px" />
-                                    </div>
-                                    <div class="col-md-6 listnamabarang">
-                                        <div id="namabarang" class="col-md-12 ht82 mt-2">${value.product_name}</div>
-                                        <div class="col-md-12 ht9">Warna &nbsp;&nbsp; : &nbsp;<span id="">${value.product_color}</span></div>
-                                        <div class="col-md-12 ht9">Ukuran &nbsp;: &nbsp;<span id="">${value.product_size}</span></div>
-                                        <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp. ${value.item_net_cost}</span></div>
-                                    </div>
-                                    <div class="col-md-3 nilaikanan" style="text-align: right;padding-top: 8px;padding-right: 24px;">
-                                        <i id="minbarang" data-key="${key}" class="cminbarang fa-regular fa-square-minus" style="cursor: pointer;"></i>
-                                        <b id="nilaibarang" class="cnilaibarang" style="margin:0px 8px;">${value.item_amount}</b>
-                                        <i id="plusbarang" data-key="${key}" class="cplusbarang fa-regular fa-square-plus" style="cursor: pointer;"></i>
-                                        <div id="hargabarang" class="chargabarang ht62 color-red">Rp. ${value.item_total_cost}</div>
-                                        <button type="button" class=" mt-2 ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 2px 4px;"><i class="fa fa-trash">&nbsp;&nbsp;&nbsp;</i>Hapus</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`);
-                });
-            }
-        });
-    }
-
-    function editList(key,item_amount,item_total_cost){
-        $.ajax({
-            url: '/keranjang_edit',
-            type: 'get',
-            data: { key,item_amount,item_total_cost },
-            success: function(data){
-                getList();
-            }
-        });
-    }
-
     $("#buckets").on('click','.cplusbarang',function(){
         var rawnilaiharga = $(this).parent('.nilaikanan').siblings('.listnamabarang').children('div').children('.hargabarangnet').text();
         var rawnilaihargareplace = rawnilaiharga.replace("Rp", "");
@@ -374,4 +322,56 @@
         window.location.href='/checkout';
         return false;
     })
+    
+    function getList(){
+        $.ajax({
+            url: '/keranjang_list',
+            type: 'get',
+            data: {},
+            success: function(data){
+                $("#buckets").html("");
+                $.each(data,function(key,value){
+                    $("#buckets").append(`
+                        <div class="col-md-6 mt-2">
+                            <div class="card" style="padding: 8px 16px;">
+                                <div class="row mb-2">
+                                    <div class="col-md-1" style="padding-left: 20px;">
+                                        <div class="form-check mt-4">
+                                            <input class="form-check-input" type="checkbox" value="" id="checkkeranjang" style="margin-top: 12px;border: 0.5px solid #595552;border-radius: 4px;" checked>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2" style="">
+                                        <img class="mt-2" src="http://localhost:81/api/artomia/uploads/${value.product_pic_logo}" style="width: 70px; height:70px" />
+                                    </div>
+                                    <div class="col-md-6 listnamabarang">
+                                        <div id="namabarang" class="col-md-12 ht82 mt-2">${value.product_name}</div>
+                                        <div class="col-md-12 ht9">Warna &nbsp;&nbsp; : &nbsp;<span id="">${value.product_color}</span></div>
+                                        <div class="col-md-12 ht9">Ukuran &nbsp;: &nbsp;<span id="">${value.product_size}</span></div>
+                                        <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp. ${value.item_net_cost}</span></div>
+                                    </div>
+                                    <div class="col-md-3 nilaikanan" style="text-align: right;padding-top: 8px;padding-right: 24px;">
+                                        <i id="minbarang" data-key="${key}" class="cminbarang fa-regular fa-square-minus" style="cursor: pointer;"></i>
+                                        <b id="nilaibarang" class="cnilaibarang" style="margin:0px 8px;">${value.item_amount}</b>
+                                        <i id="plusbarang" data-key="${key}" class="cplusbarang fa-regular fa-square-plus" style="cursor: pointer;"></i>
+                                        <div id="hargabarang" class="chargabarang ht62 color-red">Rp. ${value.item_total_cost}</div>
+                                        <button type="button" class=" mt-2 ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 2px 4px;"><i class="fa fa-trash">&nbsp;&nbsp;&nbsp;</i>Hapus</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`);
+                });
+            }
+        });
+    }
+
+    function editList(key,item_amount,item_total_cost){
+        $.ajax({
+            url: '/keranjang_edit',
+            type: 'get',
+            data: { key,item_amount,item_total_cost },
+            success: function(data){
+                getList();
+            }
+        });
+    }
 </script>

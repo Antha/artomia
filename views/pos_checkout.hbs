@@ -223,7 +223,7 @@
                                             <div class="col-md-12"><div class="col-md-12" style="padding: 25px;"><div class="col-md-12 line"></div></div></div>
                                             <div class="col-md-12">
                                                 <div class="col-md-12" style="padding: 0px 25px;">
-                                                <table class="table" style="font-size: 12px;">
+                                                <table class="table" id="transaction_history"style="font-size: 12px;">
                                                     <thead>
                                                         <tr>
                                                         <th scope="col" style="width: 50%">Item</th>
@@ -233,36 +233,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">T-Shirt Cotton</th>
-                                                            <td class="finalukuran">M</td>
-                                                            <td class="pcs">1pcs</td>
-                                                            <td class="pricekanan">Rp45.000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">T-Shirt Cotton</th>
-                                                            <td class="finalukuran">M</td>
-                                                            <td class="pcs">1pcs</td>
-                                                            <td class="pricekanan">Rp45.000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Kertas</th>
-                                                            <td class="finalukuran">A4</td>
-                                                            <td class="pcs">1pcs</td>
-                                                            <td class="pricekanan">Rp7.000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Kertas</th>
-                                                            <td class="finalukuran">A4</td>
-                                                            <td class="pcs">1pcs</td>
-                                                            <td class="pricekanan">Rp7.000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Jasa Press</th>
-                                                            <td class="finalukuran">-</td>
-                                                            <td class="pcs">-</td>
-                                                            <td class="pricekanan">Rp3.000</td>
-                                                        </tr>
+                        
                                                     </tbody>
                                                 </table>
                                                 </div>
@@ -273,7 +244,7 @@
                                                         <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Sub Total</span>
                                                     </div>
                                                     <div class="col-md-6" style="text-align: right;">
-                                                        <span id="hargasub" class="ht9" style="">Rp105.000</span>
+                                                        <span id="hargasub" class="ht9" style=""></span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-1" style="padding: 0px 30px">
@@ -281,7 +252,7 @@
                                                         <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Diskon</span>
                                                     </div>
                                                     <div class="col-md-6" style="text-align: right;">
-                                                        <span id="hargadiskon" class="ht9" style="">-Rp10.200</span>
+                                                        <span id="hargadiskon" class="ht9" style="">0</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-1" style="padding: 0px 30px">
@@ -289,7 +260,7 @@
                                                         <span id="" class="ht9 color-red" style="vertical-align: middle;font-weight: 600">Total</span>
                                                     </div>
                                                     <div class="col-md-6" style="text-align: right;">
-                                                        <span id="hargatotal" class="ht6 color-red" style="font-weight: 600;">Rp94.500</span>
+                                                        <span id="hargatotal" class="ht6 color-red" style="font-weight: 600;"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -313,13 +284,12 @@
                                         <div class="card-body" style="background-color: #fafafa;">
                                             <div class="">
                                                 <div class="col-md-12 row" style="">
-                                                        <div class="col-md-6 ht4 color-black" id="title" style="font-weight:bold;">
-                                                            <i class="fa-regular fa-file-lines" style="font-size: 13pt;margin-right: 8px;"></i>
-                                                            <i class="mdi mdi-file-plus-outline m-r-5" style="font-size: 13pt;margin-right: 4px;"></i> Data Diri Pelanggan
-                                                        </div>
-                                                        <div class="col-md-6" id="inputsearch" class="ht6 color-black" style="font-weight:bold;padding-top:2px;text-align:right;padding-left: 15em;">
-                                                            
-                                                        </div>
+                                                    <div class="col-md-6 ht4 color-black" id="title" style="font-weight:bold;">
+                                                        <i class="fa-regular fa-file-lines" style="font-size: 13pt;margin-right: 8px;"></i>
+                                                        <i class="mdi mdi-file-plus-outline m-r-5" style="font-size: 13pt;margin-right: 4px;"></i> Data Diri Pelanggan
+                                                    </div>
+                                                    <div class="col-md-6" id="inputsearch" class="ht6 color-black" style="font-weight:bold;padding-top:2px;text-align:right;padding-left: 15em;">
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-12 pilihan mt-2" id="datanotavailable" style="display: none;">
                                                     <div class="row">
@@ -403,7 +373,7 @@
                                                             <button type="button" class="ht8 btn buttonprioritasall buttonprioritasactive" style="width: 100%;"><img src="assets/images/pos/icon_vip.png" style="width: 16px;margin-right: 13px;">VIP</button>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <button type="button" class="ht8 btn buttonprioritasall" style="width: 100%;"><img src="assets/images/pos/icon_supavip.png" style="width: 16px;margin-right: 13px;">Supa VIP</button>
+                                                            <button type="button" class="ht8 btn buttonprioritasall" style="width: 100%;"><img src="assets/images/pos/icon_supavip.png" style="width: 16px;margin-right: 13px;">Super VIP</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -476,104 +446,40 @@
                                 <div class="card-body" style="background-color: #fafafa;">
                                     <div class="">
                                         <div class="col-md-12" style="">
-                                                <div class="col-md-12 ht4 color-black" id="title" style="font-weight:bold;">
-                                                    Customer Order
+                                            <div class="col-md-12 ht4 color-black" id="title" style="font-weight:bold;">
+                                                Customer Order
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div id="customer_order">
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <div class="card-body bgcolor-white" style="padding: 1rem;">
-                                                        <div class="row">
-                                                            <div class="col-md-6 listnamabarang">
-                                                                <div id="namabarang" class="col-md-12 ht82">T-shirt Cotton</div>
-                                                                <div class="col-md-12 ht9">Warna &nbsp;&nbsp; : &nbsp;<span id="">Red Been</span></div>
-                                                                <div class="col-md-12 ht9">Ukuran &nbsp;: &nbsp;<span id="">M</span></div>
-                                                                <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.45.000</span></div>
-                                                            </div>
-                                                            <div class="col-md-6 nilaikanan mt-3" style="text-align: right;padding-right: 24px;">
-                                                                <div class="ht9 color-grey">
-                                                                    Jumlah &nbsp;&nbsp; : &nbsp;
-                                                                    <span id="nilaibarang" class="cnilaibarang">1</span>
-                                                                </div>
-                                                                <div id="hargabarang" class="chargabarang ht62 color-red">Rp. 45.000</div>
-                                                            </div>
+                                                <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
+                                                    <div class="row">
+                                                        <div class="col-md-6 listnamabarang">
+                                                            <div id="namabarang" class="col-md-12 ht82">Total</div>
+                                                            <div id="totalhargabarang" class="col-md-12 chargabarang ht62 color-red">Rp.104.000</div>
                                                         </div>
-                                                    </div>
-                                                    <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
-                                                        <div class="row">
-                                                            <div class="col-md-6 listnamabarang">
-                                                                <div id="namabarang" class="col-md-12 ht82">T-shirt Cotton</div>
-                                                                <div class="col-md-12 ht9">Warna &nbsp;&nbsp; : &nbsp;<span id="">Red Been</span></div>
-                                                                <div class="col-md-12 ht9">Ukuran &nbsp;: &nbsp;<span id="">M</span></div>
-                                                                <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.45.000</span></div>
-                                                            </div>
-                                                            <div class="col-md-6 nilaikanan mt-3" style="text-align: right;padding-right: 24px;">
-                                                                <div class="ht9 color-grey">
-                                                                    Jumlah &nbsp;&nbsp; : &nbsp;
-                                                                    <span id="nilaibarang" class="cnilaibarang">1</span>
-                                                                </div>
-                                                                <div id="hargabarang" class="chargabarang ht62 color-red">Rp. 45.000</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
-                                                        <div class="row">
-                                                            <div class="col-md-6 listnamabarang">
-                                                                <div id="namabarang" class="col-md-12 ht82">PET Film A4</div>
-                                                                <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.7.000</span></div>
-                                                            </div>
-                                                            <div class="col-md-6 nilaikanan" style="text-align: right;padding-right: 24px;">
-                                                                <div class="ht9 color-grey">
-                                                                    Jumlah &nbsp;&nbsp; : &nbsp;
-                                                                    <span id="nilaibarang" class="cnilaibarang">1</span>
-                                                                </div>
-                                                                <div id="hargabarang" class="chargabarang ht62 color-red">Rp. 7.000</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
-                                                        <div class="row">
-                                                            <div class="col-md-6 listnamabarang">
-                                                                <div id="namabarang" class="col-md-12 ht82">PET Film A4</div>
-                                                                <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.7.000</span></div>
-                                                            </div>
-                                                            <div class="col-md-6 nilaikanan" style="text-align: right;padding-right: 24px;">
-                                                                <div class="ht9 color-grey">
-                                                                    Jumlah &nbsp;&nbsp; : &nbsp;
-                                                                    <span id="nilaibarang" class="cnilaibarang">1</span>
-                                                                </div>
-                                                                <div id="hargabarang" class="chargabarang ht62 color-red">Rp. 7.000</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
-                                                        <div class="row">
-                                                            <div class="col-md-6 listnamabarang">
-                                                                <div id="namabarang" class="col-md-12 ht82">Total</div>
-                                                                <div id="totalhargabarang" class="col-md-12 chargabarang ht62 color-red">Rp.104.000</div>
-                                                            </div>
-                                                            <div class="col-md-6 nilaikanan mt-2" style="text-align: right;padding-right: 24px;">
-                                                                <div id="totalhargabarangdiskon" class="chargabarang ht62 color-red" style="display: none;">Rp.93.600</div>
-                                                            </div>
+                                                        <div class="col-md-6 nilaikanan mt-2" style="text-align: right;padding-right: 24px;">
+                                                            <div id="totalhargabarangdiskon" class="chargabarang ht62 color-red" style="display: none;">Rp.93.600</div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12 mt-2">
-                                                    <div class="row" style="padding: 8px 8px;">
-                                                        <div class="col-md-10">
-                                                            <button data-toggle="modal" data-target="#modalstruk" id="bbayar" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;"><i class="mdi mdi-cart-outline" style="margin-right: 8px;"></i>Bayar</button>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <button  data-toggle="modal" data-target="#modaldiskon" type="button" class="ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 8px;border-radius: 8px;"><img src="assets/images/pos/icon_discountwhite.png" style="width: 14px; height:14px;"></button>
-                                                        </div>
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <div class="row" style="padding: 8px 8px;">
+                                                    <div class="col-md-10">
+                                                        <button data-toggle="modal" data-target="#modalstruk" id="bbayar" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;"><i class="mdi mdi-cart-outline" style="margin-right: 8px;"></i>Bayar</button>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button  data-toggle="modal" data-target="#modaldiskon" type="button" class="ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 8px;border-radius: 8px;"><img src="assets/images/pos/icon_discountwhite.png" style="width: 14px; height:14px;"></button>
                                                     </div>
                                                 </div>
+                                            </div>
                                         </div>
                                     </div>          
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
         </div>
@@ -615,6 +521,36 @@
 </html>
 {{> scripts}}
 <script>
+    $.ajax({
+        url: '/keranjang_list',
+        type: 'get',
+        data: {},
+        success: function(data){
+            $("#customer_order").html("");
+            $.each(data,function(key,value){
+                $("#customer_order").append(`
+                <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
+                    <div class="row">
+                        <div class="col-md-6 listnamabarang">
+                            <div id="namabarang" class="col-md-12 ht82">${value.product_name}</div>
+                            <div class="col-md-12 ht9">Warna &nbsp;&nbsp; : &nbsp;<span id="">${value.product_color}</span></div>
+                            <div class="col-md-12 ht9">Ukuran &nbsp;: &nbsp;<span id="">${value.product_size}</span></div>
+                            <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.${value.item_net_cost}</span></div>
+                        </div>
+                        <div class="col-md-6 nilaikanan mt-3" style="text-align: right;padding-right: 24px;">
+                            <div class="ht9 color-grey">
+                                Jumlah &nbsp;&nbsp; : &nbsp;
+                                <span id="nilaibarang" class="cnilaibarang">${value.item_amount}</span>
+                            </div>
+                            <div id="hargabarang" class="chargabarang ht62 color-red">Rp. ${value.item_total_cost}</div>
+                        </div>
+                    </div>
+                </div>`);
+            });
+        }
+    });
+
+    
     $('#simpandiskon').click(function(){
         var getdiskon = $("#inputdiskon").val();
         var diskonint = parseInt(getdiskon);
@@ -636,6 +572,7 @@
             $('#totalhargabarang').addClass('coretdiskon');
         }
     });
+
     $("#buttonsavedata1").click(function(){
         $(this).hide("slow");
         $("#buttoneditdata1").show("slow");
@@ -651,7 +588,6 @@
         $("#detailpesanan").hide("slow");
         $("#addnewdata").show("slow");
     });
-
 
     $("#addnewdata").click(function(){
         $("#dataavailable").hide("slow");
@@ -676,25 +612,25 @@
     });
 
     $("div.list-item").hover(function(){
-            $(this).children( "a" ).css("color", "#5BC9E1");
-            $(this).children( "a" ).children(".link").addClass("activebutton");
-            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
-            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+        $(this).children( "a" ).css("color", "#5BC9E1");
+        $(this).children( "a" ).children(".link").addClass("activebutton");
+        $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+        $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
 
-            $(".list-item").click(function(){
-                console.log("tidur");
-                $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
-                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
-                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
-                $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
-                $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
-                $(".link").removeClass("activebuttonon");
-                $(this).children( "a" ).children(".link").addClass("activebuttonon");
-                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
-                $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
-                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
-            });
-            $("#foo").attr("src", "bar2.jpg");
+        $(".list-item").click(function(){
+            console.log("tidur");
+            $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
+            $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+            $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
+            $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
+            $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
+            $(".link").removeClass("activebuttonon");
+            $(this).children( "a" ).children(".link").addClass("activebuttonon");
+            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+        });
+        $("#foo").attr("src", "bar2.jpg");
 
         }, function(){
             $(this).children( "a" ).css("color", "#595552");
@@ -709,8 +645,6 @@
             
     });
 
-    
-
     $("#buttonminimize").click(function() {
         document.getElementById('sidebar').classList.toggle("hidesidebar");
         document.getElementById('buttonminimize').classList.toggle("movebutton");
@@ -724,4 +658,124 @@
         }
     });
 
+    $("#bbayar").click(function(){
+        var cust_prio = $(".buttonprioritasactive").text();
+        var id_prio;
+        var payment = $("#pilihanbankbutton").text();
+        
+        switch(cust_prio){
+            case 'Regular':
+            id_prio = 1;
+            break;
+
+            case 'VIP':
+            id_prio = 2;
+            break;
+
+            case 'Super VIP':
+            id_prio = 3;
+            break;
+        }
+
+        $.ajax({
+            url: '/transaction',
+            type: 'POST',
+            data: {
+                customers_id : 1,
+                chasier_id : 1,
+                customer_priority_id : id_prio,
+                payment_id : 1
+            },
+            success: function(data){
+                var transaction_id = data.data.insertId ;
+
+                $.ajax({
+                    url: '/keranjang_list',
+                    type: 'get',
+                    data: {},
+                    success: function(data2){
+                        var totalPrice = 0;
+                        $.each(data2,function(key,value){
+                            var color_id;
+                            var size_id;
+
+                            switch(value.product_color){
+                                case 'Red Been':
+                                color_id = 1;
+                                break;
+
+                                case 'Green':
+                                color_id = 2;
+                                break;
+
+                                case 'Yellow':
+                                color_id = 3;
+                                break;
+
+                                case 'Pink':
+                                color_id = 4;
+                                break;
+
+                                case 'Blue':
+                                color_id = 5;
+                                break;
+                            }
+
+                            switch(value.product_size){
+                                case 'S':
+                                size_id = 1;
+                                break;
+
+                                case 'M':
+                                size_id = 2;
+                                break;
+
+                                case 'L':
+                                size_id = 3;
+                                break;
+
+                                case 'XL':
+                                size_id = 4;
+                                break;
+
+                                case 'XXL':
+                                color_id = 5;
+                                break;
+                            }
+
+                            $.ajax({
+                                url: '/transaction_item',
+                                type: 'post',
+                                data: {
+                                    product_id:1,
+                                    product_color_id:color_id,
+                                    product_size_id:size_id,
+                                    transaction_id:transaction_id,
+                                    amount: value.item_amount
+                                },
+                                success: function(data3){
+                 
+                                }
+                            });
+
+                            $("#transaction_history tbody").append(`
+                                <tr>
+                                    <th scope="row">${value.product_name}</th>
+                                    <td class="finalukuran">${value.product_size}</td>
+                                    <td class="pcs">${value.item_amount}</td>
+                                    <td class="pricekanan">Rp ${value.item_total_cost}</td>
+                                </tr>
+                            `);
+
+                            totalPrice = totalPrice + value.item_total_cost;
+                        });
+
+                        $("#hargasub").html(totalPrice);
+                        $("#hargatotal").html(totalPrice);
+                    }
+                });
+            }
+        });
+
+    });
 </script>

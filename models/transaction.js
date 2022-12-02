@@ -18,7 +18,7 @@ function insert_transaction(callback, req) {
                 '${req.body.chasier_id}',
                 '${req.body.customer_priority_id}',
                 '${req.body.payment_id}',
-                '${req.body.datetime}'
+                NOW()
             ) 
             `,
             function (error, rows, fields) {
