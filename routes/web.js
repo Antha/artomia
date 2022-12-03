@@ -70,7 +70,6 @@ router.get("/checkout", (req, res) => {
     res.render("pos_checkout.hbs");
 });
 
-<<<<<<< HEAD
 router.get("/transaksi", (req, res) => {
     //console.log(">>>"+req.session);
     res.render("transaksi.hbs");
@@ -80,7 +79,6 @@ router.get("/akunting", (req, res) => {
     //console.log(">>>"+req.session);
     res.render("akunting.hbs");
 });
-=======
 //Api
 router.post("/product", product.insert_product);
 router.get("/products", product.select_product);
@@ -102,6 +100,5 @@ router.get("/transactions", transaction.select_transaction);
 router.post("/transaction_item", transaction.insert_transaction_item);
 router.get("/transaction_item", transaction.select_transaction_item);
 router.get("/transaction_item/:idTransaction", transaction.select_transaction_item);
->>>>>>> e70c031507a08a738ba4ec702d63574ce63e0c53
 
 module.exports = router;
