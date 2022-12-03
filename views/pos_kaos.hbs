@@ -456,7 +456,7 @@
                                     <div class="">
                                         <div class="col-md-12 row" style="">
                                                 <div class="col-md-6 ht4 color-black" id="titlekaos" style="font-weight:bold;">
-                                                    <i class="mdi mdi-tag-outline m-r-5" style="font-size: 13pt;margin-right: 8px;"></i> Kaos Red Been
+                                                    <i class="mdi mdi-tag-outline m-r-5" style="font-size: 13pt;margin-right: 8px;"></i> <div id="data-product-name">Kaos Red Been</div>
                                                 </div>
                                                 <div class="col-md-6 ht6 color-black" id="" style="text-align:right;">
                                                     <label>
@@ -473,7 +473,7 @@
                                                 </div>
                                         </div>
                                         
-                                        <div class="col-md-12 mt-4" id="" style="">
+                                        <div class="col-md-12 mt-4" id="clothes_with_logo" style="">
                                             <div class="imagelogo" style="display: none;">
                                                 <div id="penampung">
                                                     <img src="" style="">
@@ -604,7 +604,7 @@
                                                     <button type="button" class="ht8 btn btn-outline-dark" style="width: 100%;"><i class="mdi mdi-cart-outline" style="margin-right: 8px;"></i> Masukkan Keranjang</button>
                                                 </div>
                                                 <div class="col-md-6" style="">
-                                                    <button type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;"><i class="fa-regular fa-paper-plane" style="margin-right: 8px;"></i>Lanjut</button>
+                                                    <button id="btn_next" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;"><i class="fa-regular fa-paper-plane" style="margin-right: 8px;"></i>Lanjut</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -651,6 +651,7 @@
         <script src="assets/pages/datatables.init.js"></script>
         <!-- App js -->
         <script src="assets/js/app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </body>
 </html>
 {{> scripts}}
@@ -686,6 +687,10 @@
         var colorval=$(this).data('value');
         $("#titlebutton").html("<i style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
     });
+
+    setTimeout(function(){
+        $(".isiwarna li").trigger("click");
+    },500);
 
     $(".isikain li").click(function(){
         var colorval=$(this).data('value');
@@ -739,8 +744,6 @@
             
     });
 
-    
-
     $("#buttonminimize").click(function() {
         document.getElementById('sidebar').classList.toggle("hidesidebar");
         document.getElementById('buttonminimize').classList.toggle("movebutton");
@@ -758,5 +761,59 @@
         window.location.href='/pos';
         return false;
     })
+
+    $('#btn_next').click(function(){
+        screenshot();
+        return false;
+    })
+
+    function screenshot(){
+        //var pic_id = $("#clothes_with_logo");
+        html2canvas(document.getElementById("clothes_with_logo"),{background: '#fff'}).then(function(canvas) {
+            document.getElementById("clothes_with_logo").appendChild(canvas);
+
+            // Get base64URL
+            var base64URL = canvas.toDataURL('image/jpeg').replace('image/jpeg', 'image/octet-stream');
+
+            // AJAX request
+            $.ajax({
+                url: 'http://localhost:81/api/artomia/artomia_cap.php',
+                type: 'post',
+                data: {image: base64URL},
+                success: function(data){
+                    var jsonParsed = JSON.parse(data);
+                    console.log('Upload successfully');
+                    console.log(jsonParsed["product_pic_logo"]);
+
+                    var product_name = $("#data-product-name").text();
+                    var product_color = $("#titlebutton").text();
+                    var product_size = $(".bukuran.activebukuran").text();
+                    var product_pic_logo = jsonParsed["product_pic_logo"];
+
+                    $.ajax({
+                        url: '/keranjang_add',
+                        type: 'get',
+                        data: {
+                            product_name: product_name,
+                            product_color: product_color,
+                            product_size: product_size,
+                            product_pic_logo: product_pic_logo,
+                            item_net_cost:45000,
+                            item_amount:1,
+                            item_total_cost:45000
+                        },
+                        success: function(data){
+                            console.log('Upload successfully');
+                            window.location.href='/keranjang';
+                        }
+                     });
+                    /*console.log("Product Name : "+$("#data-product-name").text());
+                    console.log("Color :"+$("#titlebutton").text());
+                    console.log("Size :"+$(".bukuran.activebukuran").text());*/
+                    //window.location.href='/keranjang';
+                }
+            });
+        });  
+    }
 
 </script>

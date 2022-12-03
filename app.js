@@ -5,9 +5,19 @@ const path = require("path");
 const app = express();
 const web = require("./routes/web.js");
 const hbs = require("hbs");
+const session = require("express-session");
 
 //Set
 hbs.registerPartials("./views/partials");
+
+app.use(
+    session({
+        secret: "secret",
+        resave: true,
+        saveUninitialized: false,
+        cookie: {maxAge: 60000000000},
+    })
+);
 
 app.use(cors());
 app.use(express.json());
