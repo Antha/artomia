@@ -1,0 +1,606 @@
+{{> head}}
+<style>
+    .pagination{
+        padding-left: 130;
+    }
+    .table tbody td:first-child{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .table td, .table th{
+        border: none;
+        vertical-align: middle;
+    }
+    .table tbody tr{
+        box-shadow: 0px 8px 64px 16px rgba(96, 91, 87, 0.04);
+        border-radius: 12px;
+        height: 60px;
+        font-size: 12px;
+    }
+    .table{
+        border-collapse: separate;
+        border-spacing: 0px 0.7em !important;
+    }
+    .tdactivehover{
+        border: 1px solid #8deaff !important;
+        border-width: 0 0 0px 8px !important;
+        border-radius: 10px;
+    }
+    .warna{
+        text-align: center;
+    }
+</style>
+    <body>
+        <div class="container2" style="max-width: none;padding: 0px">
+            <div class="sidebar bgcolor-white" id="sidebar">
+                <div class="header" style="margin: 24px;">
+                    <div class="list-item">
+                        <img src="assets/images/logo2.png" style="width: 13vw; height:10vh">
+                        <!--<img src="assets/images/nav/Logo.png" alt="" class="icon" style="width: 48px;height: 80px;">-->
+                    </div>
+                </div>
+                
+                <div class="main ">
+                        <div class="list-item">
+                            <a href="/">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Home.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Home2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Dashboard</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/pos">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Sales.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Sales2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Point of Sale</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/transaksi">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link activebuttonon">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Transaction.png" alt="" class="icon" style="float: left;display: none;">
+                                    <img src="assets/images/nav/Transaction2.png" alt="" class="icon activebuttonimage" style="float: left;">
+                                    <span style="margin-top:4px;" class="description activebutton2">Transaksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Accounting.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Accounting2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Akunting</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Production.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Production2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Produksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Stock.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Stock2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Stok</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/User.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/User2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Pengguna</span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                </div>
+                <div class="main2" style="margin-bottom: 16px;">
+                    <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description color-red">Keluar</span>
+                                </div>
+                            </a>
+                        </div>
+                </div>
+            </div>
+            <div id="buttonminimize" style="position: absolute;top:240;left:244;transition: all ease-in .2s;cursor: pointer;">
+                <img src="assets/images/nav/Button.png" alt="" class="icon" style="width: 40px;height: 40px;">
+            </div>
+            <div class="main-content" style="flex: 1;">
+                <div id="headnav" class="">
+                    <nav class="navbar-custom bgcolor-white" style="min-height: 44px;">
+                        <ul class="navbar-right d-flex list-inline float-right mb-0">
+                            <li class="dropdown notification-list">
+                                <div class="dropdown notification-list nav-pro-img">
+                                    <a class="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" style="line-height: 48px !important;">
+                                        <i class="mdi mdi-18px mdi-chevron-down" style="float: right;text-align: center;width: 40px; margin-right: 8px;"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                        <!-- item-->
+                                        <a class="dropdown-item" href="/user/edit"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="/logout_process"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                    </div>                                                                    
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 0px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:0px">
+                                <img src="assets/images/nav/Profile.png" style="height: 30px;">
+                            </div>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 10px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:6px" id="username" class="color-grey">
+                                Fulan bin Fulan
+                            </div>
+                        </ul>
+                    </nav>
+                    <!-- Top Bar Start -->
+                </div>
+                <div class="main-pages" style="padding:24px 40px;">
+                    <div class="modal fade" id="modaldetailtransaksi" tabindex="-1" role="dialog" aria-labelledby="modaldetailtransaksi" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="margin:3.25rem auto;max-width: 365px;">
+                            <div class="modal-content" style="background-color: #FFFFFF;">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: center;">
+                                                <img src="assets/images/logo2.png" style="width: 9vw; height:7.1vh">
+                                                <span class="ht6" style="margin-left: 8px;vertical-align: middle;font-weight: 600">| Detail Data</span>
+                                            </div>
+                                            <div class="col-md-12 mt-5 mb-2">
+                                                <div class="col-md-12" style="padding: 0px 15px">
+                                                    <div class="col-md-12">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">ID Transaksi</span>
+                                                    </div>
+                                                    <div class="col-md-12" style="">
+                                                        <span id="idtransaksi" class="ht9" style="">81234567890</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mt-3" style="padding: 0px 15px">
+                                                    <div class="col-md-12">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Tanggal</span>
+                                                    </div>
+                                                    <div class="col-md-12" style="">
+                                                        <span id="tanggaltransaksi" class="ht9" style="">2022-09-16 18:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mt-3" style="padding: 0px 15px">
+                                                    <div class="col-md-12">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Total</span>
+                                                    </div>
+                                                    <div class="col-md-12" style="">
+                                                        <span id="totaltransaksi" class="ht9" style="">Rp.50.000</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mt-3" style="padding: 0px 15px">
+                                                    <div class="col-md-12">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Kasir</span>
+                                                    </div>
+                                                    <div class="col-md-12" style="">
+                                                        <span id="kasirtransaksi" class="ht9" style="">Fulan bin Fulan</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12"><div class="col-md-12" style="padding: 12px 40px;"><div class="col-md-12 line"></div></div></div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12" style="padding: 0px 25px;">
+                                                        <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Pesanan</span>
+                                                    </div>
+                                                    <div class="col-md-12" style="padding: 0px 25px;">
+                                                    <table class="table2" style="font-size: 10px;">
+                                                        <thead>
+                                                            <tr>
+                                                            <th scope="col" style="width: 45%;">ITEM</th>
+                                                            <th scope="col" style="width: 15%;text-align: center;">UKURAN</th>
+                                                            <th scope="col" style="width: 25%;text-align: center;">WARNA</th>
+                                                            <th scope="col" style="width: 15%;text-align: center;">JUMLAH</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td scope="row">T-Shirt Cotton</td>
+                                                                <td class="finalukuran">M</td>
+                                                                <td class="warna">Red Been</td>
+                                                                <td class="pcs">1pcs</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td scope="row">T-Shirt Cotton</td>
+                                                                <td class="finalukuran">M</td>
+                                                                <td class="warna">Red Been</td>
+                                                                <td class="pcs">1pcs</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td scope="row">Kertas</td>
+                                                                <td class="finalukuran">A4</td>
+                                                                <td class="warna">-</td>
+                                                                <td class="pcs">1pcs</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td scope="row">Kertas</td>
+                                                                <td class="finalukuran">A4</td>
+                                                                <td class="warna">-</td>
+                                                                <td class="pcs">1pcs</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-5">
+                                                <div class="col-md-12">
+                                                    <button id="simpanstruk" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Tutup</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-xl-5 col-md-12 color-black ht23">
+                            Transaksi
+                        </div>
+                        <div class="col-xl-1 color-black ht23">
+                            
+                        </div>
+                        <div class="col-xl-6 col-md-12 color-grey ht6 mt-1" style="text-align: right;">
+                            <a href="/pos"><button type="button" style="padding:4px 12px;" class="ht6 btn btn-labeled bgcolor-primary-linear-gradient"><span class="btn-label" style="margin-right: 4px;"><i class="fa-regular fa-square-plus"></i></span>Tambah Transaksi</button></a>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-xl-12 col-md-12">
+                            <div class="card mini-stat position-relative" style="">
+                                <div class="card-body" style="background-color: #fff;">
+                                    <div class="">
+                                        <div class="col-md-12" style="">
+                                            <table id="dtBasicExample" class="table borderless table-sm" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                <th class="th-sm">ID
+
+                                                </th>
+                                                <th class="th-sm">Tanggal
+
+                                                </th>
+                                                <th class="th-sm">Total
+
+                                                </th>
+                                                <th class="th-sm">Kasir
+
+                                                </th>
+                                                <th class="th-sm">Metode
+
+                                                </th>
+                                                <th class="th-sm">Aksi
+
+                                                </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <td class="tdactivehover">81234567890</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567891</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567892</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567893</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567894</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567895</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567896</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567897</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567898</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567899</td>
+                                                <td>2022-11-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567900</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567901</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp60.000</td>
+                                                <td>Fulan bin Fulan</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td>81234567902</td>
+                                                <td>2022-09-16 18:00</td>
+                                                <td>Rp50.000</td>
+                                                <td>Ahmad Rifai</td>
+                                                <td><span class="trfmethod">Transfer<span></td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                </td>
+                                                </tr>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                        <!--              PILIHAN            -->
+                                        <div class="col-md-12 pilihan mt-2" id="">
+                                        </div>
+                                        <div class="col-md-12 pilihan mt-4" id="" style="padding:0;">
+                                            
+                                        </div>
+                                    </div>          
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/waves.min.js"></script>
+        <script src="assets/js/jquery-ui.js"></script>
+        <link rel="stylesheet" href="assets/css/jquery-ui/jquery-ui.css">
+        <script src="plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+        <!-- Peity JS -->
+        <script src="plugins/peity/jquery.peity.min.js"></script>
+        <!--<script src="plugins/morris/morris.min.js"></script>-->
+        <script src="plugins/raphael/raphael-min.js"></script>
+        <!--<script src="assets/pages/dashboard.js"></script>-->
+        <!-- Required datatable js -->
+        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="plugins/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="plugins/datatables/jszip.min.js"></script>
+        <script src="plugins/datatables/pdfmake.min.js"></script>
+        <script src="plugins/datatables/vfs_fonts.js"></script>
+        <script src="plugins/datatables/buttons.html5.min.js"></script>
+        <script src="plugins/datatables/buttons.print.min.js"></script>
+        <script src="plugins/datatables/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+    </body>
+</html>
+{{> scripts}}
+<script>
+
+    $(".delete").click(function(){
+        console.log("delete");
+        $deletingRowSelector = $(this).parent("td").parent("tr");
+        var $datatable = $('#dtBasicExample').DataTable();
+        $datatable.row($deletingRowSelector).remove().draw();
+    });
+
+    $(".table tbody tr").hover(function(){
+        $(".table tbody tr").children("td").removeClass("tdactivehover");
+        $(this).children("td:first-child").addClass("tdactivehover");
+    });
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+            dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+            pagingType: "simple",
+            lengthMenu: [
+                [5, 10, 25, -1],
+                [5, 10, 25, 'All'],
+            ],
+        });
+        $('.dataTables_length').addClass('bs-select');
+
+        /*function gogo(){
+            var all = $("#dtBasicExample_length");
+            var all3 = $('.dataTables_length label').children('select');
+            all3.css({"width": "10%", "border": "none"});
+            console.log(all3);
+            var allset = "<li>Row per page<li>"
+            $('.pagination li:first-child').after(allset);
+            $('.pagination li:last-child').before(all3);
+            $('.dataTables_length label').hide();
+        };
+        //gogo();
+
+        $(".page-link").click(function(){
+            gogo();
+        });
+        $(".table tbody").children("tr:first-child").children("td:first-child").addClass("tdactivehover");*/
+        
+        
+    });
+    $("div.list-item").hover(function(){
+            $(this).children( "a" ).css("color", "#5BC9E1");
+            $(this).children( "a" ).children(".link").addClass("activebutton");
+            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+
+            $(".list-item").click(function(){
+                console.log("tidur");
+                $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
+                $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
+                $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
+                $(".link").removeClass("activebuttonon");
+                $(this).children( "a" ).children(".link").addClass("activebuttonon");
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            });
+            $("#foo").attr("src", "bar2.jpg");
+
+        }, function(){
+            $(this).children( "a" ).css("color", "#595552");
+            $(this).children( "a" ).children(".link").removeClass("activebutton");
+            if ($(this).children( "a" ).children("div").children("img:nth-child(2)").hasClass("activebuttonimage")){
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            } else {
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+            }
+            
+    });
+
+    
+
+    $("#buttonminimize").click(function() {
+        document.getElementById('sidebar').classList.toggle("hidesidebar");
+        document.getElementById('buttonminimize').classList.toggle("movebutton");
+        has = $("#buttonminimize").hasClass("movebutton");
+        if (has){
+            $(".sidebar .header .list-item").html("<img src='assets/images/nav/logo.png' style='width: 3.1vw; height:10vh;margin-left:8px;'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button2.png' class='icon' style='width: 40px;height: 40px;'>");
+        }else{
+            $(".sidebar .header .list-item").html("<img src='assets/images/logo2.png' style='width: 13vw; height:10vh'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button.png' class='icon' style='width: 40px;height: 40px;'>");
+        }
+    });
+
+    $('#kaos').click(function(){
+        window.location.href='/kaos';
+        return false;
+    })
+
+</script>

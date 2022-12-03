@@ -34,4 +34,14 @@ router.get("/checkout", (req, res) => {
     res.render("pos_checkout.hbs");
 });
 
+router.get("/transaksi", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("transaksi.hbs");
+});
+
+router.get("/akunting", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("akunting.hbs");
+});
+
 module.exports = router;

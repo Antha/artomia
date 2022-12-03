@@ -537,3 +537,27 @@ a{
     text-align: center;
 }
 
+.trfmethod{
+    background-color: #F46B69;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.trfmethoddebit{
+    background-color: #97D7D9;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.showdetail , .delete, .showedit{
+    cursor: pointer;
+}
+
+table.dataTable thead .sorting { background: url('/assets/images/icon_swap.png') no-repeat center right;background-size: 12px;}
+table.dataTable thead .sorting_asc { background: url('/assets/images/icon_asc.png') no-repeat center right;background-size: 12px;}
+table.dataTable thead .sorting_desc { background: url('/assets/images/icon_desc.png') no-repeat center right;background-size: 12px;}
+
+table.dataTable thead .sorting_asc_disabled { background: url('/assets/images/sort_both.png') no-repeat center right; }
+table.dataTable thead .sorting_desc_disabled { background: url('/assets/images/sort_both.png') no-repeat center right; }
