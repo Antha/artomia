@@ -48,6 +48,7 @@ function select_transaction(callback, req) {
             `SELECT
             \`idtransaction\`,
             c.\`fullname\`,
+            t.datetime,
             c.address,
             c.phone,
             ch.name chasier_name,
