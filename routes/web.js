@@ -25,6 +25,32 @@ router.get("/keranjang", (req, res) => {
     res.render("keranjang.hbs");
 });
 
+router.get("/pos", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos.hbs");
+});
+
+router.get("/kaos", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos_kaos.hbs");
+});
+
+router.get("/checkout", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos_checkout.hbs");
+});
+
+router.get("/transaksi", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("transaksi.hbs");
+});
+
+router.get("/akunting", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("akunting.hbs");
+});
+
+//Session
 router.get("/keranjang_add", (req, res) => {
     var cart = req.session.cart || [];
 
@@ -56,30 +82,6 @@ router.get("/keranjang_list", (req, res) => {
     res.json(req.session.cart);
 });
 
-router.get("/pos", (req, res) => {
-    //console.log(">>>"+req.session);
-    res.render("pos.hbs");
-});
-
-router.get("/kaos", (req, res) => {
-    //console.log(">>>"+req.session);
-    res.render("pos_kaos.hbs");
-});
-
-router.get("/checkout", (req, res) => {
-    //console.log(">>>"+req.session);
-    res.render("pos_checkout.hbs");
-});
-
-router.get("/transaksi", (req, res) => {
-    //console.log(">>>"+req.session);
-    res.render("transaksi.hbs");
-});
-
-router.get("/akunting", (req, res) => {
-    //console.log(">>>"+req.session);
-    res.render("akunting.hbs");
-});
 //Api
 router.post("/product", product.insert_product);
 router.get("/products", product.select_product);

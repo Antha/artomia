@@ -542,6 +542,7 @@
         type: 'get',
         data: {},
         success: function(data){
+            var item_total_cost = 0;
             $("#customer_order").html("");
             $.each(data,function(key,value){
                 $("#customer_order").append(`
@@ -562,7 +563,11 @@
                         </div>
                     </div>
                 </div>`);
+
+                item_total_cost = item_total_cost + value.item_total_cost;
             });
+
+            $("#totalhargabarang").html("Rp. "+item_total_cost);
         }
     });
 
