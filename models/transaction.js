@@ -43,16 +43,24 @@ function select_transaction(callback, req) {
         port: connect.port,
     });
 
+    var option = ``;
+    if (req.params.idTransaction) {
+        option += ` and t.idtransaction = '${req.params.idTransaction}' `;
+    }
+
     con.getConnection(function (err, connection) {
         con.query(
-            `SELECT
+            ` 
+            SELECT
             \`idtransaction\`,
             c.\`fullname\`,
+            DATE_FORMAT(t.datetime,'%Y-%m-%d %H:%i:%s') datetime,
             c.address,
             c.phone,
             ch.name chasier_name,
             cp.name priority,
-            p.name payment
+            p.group payment,
+            tc.total_cost
             FROM 
             \`transactions\` t
             JOIN \`customers\` c
@@ -67,7 +75,16 @@ function select_transaction(callback, req) {
             JOIN
             \`payments\` p
             ON
-            t.\`payment_id\` = p.\`idpayment\` `,
+            t.\`payment_id\` = p.\`idpayment\`
+            JOIN
+            (
+                SELECT transaction_id, SUM(amount * p.price ) total_cost FROM \`transaction_item\` t join \`products\` p on t.\`product_color_id\` = p.\`idproducts\`
+                GROUP BY \`transaction_id\`
+            ) tc
+            on
+            t.\`idtransaction\` = tc.\`transaction_id\`
+            where 1 ${option}
+            `,
             function (error, rows, fields) {
                 if (error) {
                     callback(error, {rows: rows, fields: fields});

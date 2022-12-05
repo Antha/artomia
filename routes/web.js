@@ -25,6 +25,32 @@ router.get("/keranjang", (req, res) => {
     res.render("keranjang.hbs");
 });
 
+router.get("/pos", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos.hbs");
+});
+
+router.get("/kaos", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos_kaos.hbs");
+});
+
+router.get("/checkout", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("pos_checkout.hbs");
+});
+
+router.get("/transaksi", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("transaksi.hbs");
+});
+
+router.get("/akunting", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("akunting.hbs");
+});
+
+//Session
 router.get("/keranjang_add", (req, res) => {
     var cart = req.session.cart || [];
 
@@ -56,6 +82,7 @@ router.get("/keranjang_list", (req, res) => {
     res.json(req.session.cart);
 });
 
+<<<<<<< HEAD
 router.get("/pos", (req, res) => {
     //console.log(">>>"+req.session);
     res.render("pos.hbs");
@@ -96,6 +123,8 @@ router.get("/stok", (req, res) => {
     res.render("stok.hbs");
 });
 
+=======
+>>>>>>> 30476a1c0be2480c9a412c17fc103007a9ce1a28
 //Api
 router.post("/product", product.insert_product);
 router.get("/products", product.select_product);
@@ -114,6 +143,7 @@ router.get("/payments", payment.select_payment);
 
 router.post("/transaction", transaction.insert_transaction);
 router.get("/transactions", transaction.select_transaction);
+router.get("/transaction/:idTransaction", transaction.select_transaction);
 router.post("/transaction_item", transaction.insert_transaction_item);
 router.get("/transaction_item", transaction.select_transaction_item);
 router.get("/transaction_item/:idTransaction", transaction.select_transaction_item);
