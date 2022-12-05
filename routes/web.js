@@ -82,7 +82,6 @@ router.get("/keranjang_list", (req, res) => {
     res.json(req.session.cart);
 });
 
-<<<<<<< HEAD
 router.get("/pos", (req, res) => {
     //console.log(">>>"+req.session);
     res.render("pos.hbs");
@@ -123,8 +122,6 @@ router.get("/stok", (req, res) => {
     res.render("stok.hbs");
 });
 
-=======
->>>>>>> 30476a1c0be2480c9a412c17fc103007a9ce1a28
 //Api
 router.post("/product", product.insert_product);
 router.get("/products", product.select_product);
