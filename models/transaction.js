@@ -43,6 +43,11 @@ function select_transaction(callback, req) {
         port: connect.port,
     });
 
+    var option = ``;
+    if (req.params.idTransaction) {
+        option += ` and t.idtransaction = '${req.params.idTransaction}' `;
+    }
+
     con.getConnection(function (err, connection) {
         con.query(
             ` 
@@ -78,6 +83,7 @@ function select_transaction(callback, req) {
             ) tc
             on
             t.\`idtransaction\` = tc.\`transaction_id\`
+            where 1 ${option}
             `,
             function (error, rows, fields) {
                 if (error) {

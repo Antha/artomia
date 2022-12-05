@@ -208,7 +208,7 @@
                                                         <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Tanggal Struke</span>
                                                     </div>
                                                     <div class="col-md-6" style="text-align: right;">
-                                                        <span id="namapelanggan" class="ht9" style="">2022-09-06 18:00:00</span>
+                                                        <span id="tanggalstruke" class="ht9" style="">2022-09-06 18:00:00</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-1" style="padding: 0px 30px">
@@ -216,7 +216,7 @@
                                                         <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">ID Transaksi</span>
                                                     </div>
                                                     <div class="col-md-6" style="text-align: right;">
-                                                        <span id="namapelanggan" class="ht9" style="">20221129001</span>
+                                                        <span id="idTransaksi" class="ht9" style="">20221129001</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -793,6 +793,19 @@
 
                         $("#hargasub").html(totalPrice);
                         $("#hargatotal").html(totalPrice);
+
+                        //GET Transaction After
+                        $.ajax({
+                            url: '/transaction/'+transaction_id,
+                            type: 'get',
+                            data: {},
+                            success: function(data){
+                                $("#namakasir").html(data.data[0].chasier_name);
+                                $("#namapelanggan").html(data.data[0].fullname);
+                                $("#tanggalstruke").html(data.data[0].datetime);
+                                $("#idTransaksi").html(data.data[0].idtransaction);
+                            }
+                        });
                     }
                 });
             }
