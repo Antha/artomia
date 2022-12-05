@@ -377,6 +377,7 @@
 
             },
             success: function(data){
+                $("#tbl_order_items").html("");
                 $.each(data.data,function(key,value){
                     $("#tbl_order_items").append(`  
                         <tr>
