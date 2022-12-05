@@ -1,0 +1,692 @@
+{{> head}}
+<style>
+    .pagination{
+        padding-left: 130;
+    }
+    .table tbody td:first-child{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .table td, .table th{
+        border: none;
+        vertical-align: middle;
+    }
+    .table tbody tr{
+        box-shadow: 0px 8px 64px 16px rgba(96, 91, 87, 0.04);
+        border-radius: 12px;
+        height: 60px;
+        font-size: 12px;
+    }
+    .table{
+        border-collapse: separate;
+        border-spacing: 0px 0.7em !important;
+    }
+    .tdactivehover{
+        border: 1px solid #8deaff !important;
+        border-width: 0 0 0px 8px !important;
+        border-radius: 10px;
+    }
+    .warna{
+        text-align: center;
+    }
+</style>
+    <body>
+        <div class="container2" style="max-width: none;padding: 0px">
+            <div class="sidebar bgcolor-white" id="sidebar">
+                <div class="header" style="margin: 24px;">
+                    <div class="list-item">
+                        <img src="assets/images/logo2.png" style="width: 13vw; height:10vh">
+                        <!--<img src="assets/images/nav/Logo.png" alt="" class="icon" style="width: 48px;height: 80px;">-->
+                    </div>
+                </div>
+                
+                <div class="main ">
+                        <div class="list-item">
+                            <a href="/">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Home.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Home2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Dashboard</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/pos">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Sales.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Sales2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Point of Sale</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/transaksi">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Transaction.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Transaction2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Transaksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/akunting">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Accounting.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Accounting2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Akunting</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/produksi">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link activebuttonon">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Production.png" alt="" class="icon" style="float: left;display: none;">
+                                    <img src="assets/images/nav/Production2.png" alt="" class="icon activebuttonimage" style="float: left;">
+                                    <span style="margin-top:4px;" class="description activebutton2">Produksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/stok">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Stock.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Stock2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Stok</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/datauser">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/User.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/User2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Pengguna</span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                </div>
+                <div class="main2" style="margin-bottom: 16px;">
+                    <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description color-red">Keluar</span>
+                                </div>
+                            </a>
+                        </div>
+                </div>
+            </div>
+            <div id="buttonminimize" style="position: absolute;top:240;left:244;transition: all ease-in .2s;cursor: pointer;">
+                <img src="assets/images/nav/Button.png" alt="" class="icon" style="width: 40px;height: 40px;">
+            </div>
+            <div class="main-content" style="flex: 1;">
+                <div id="headnav" class="">
+                    <nav class="navbar-custom bgcolor-white" style="min-height: 44px;">
+                        <ul class="navbar-right d-flex list-inline float-right mb-0">
+                            <li class="dropdown notification-list">
+                                <div class="dropdown notification-list nav-pro-img">
+                                    <a class="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" style="line-height: 48px !important;">
+                                        <i class="mdi mdi-18px mdi-chevron-down" style="float: right;text-align: center;width: 40px; margin-right: 8px;"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                        <!-- item-->
+                                        <a class="dropdown-item" href="/user/edit"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="/logout_process"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                    </div>                                                                    
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 0px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:0px">
+                                <img src="assets/images/nav/Profile.png" style="height: 30px;">
+                            </div>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 10px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:6px" id="username" class="color-grey">
+                                Fulan bin Fulan
+                            </div>
+                        </ul>
+                    </nav>
+                    <!-- Top Bar Start -->
+                </div>
+                <div class="main-pages" style="padding:24px 40px;">
+                     <!-- Modal Upload -->
+                    <div class="modal fade" id="modalupload" tabindex="-1" role="dialog" aria-labelledby="modalupload" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="margin:2.75rem auto">
+                            <div class="modal-content" style="background-color: #FAFAFA;">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <img src="assets/images/logo2.png" style="width: 10vw; height:7.8vh">
+                                                <span class="ht6" style="margin-left: 8px;vertical-align: middle;font-weight: 600">| Detail</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: 0.5px solid #6b6865;transition-duration: 0.2s;border-radius: 16px;padding: 0px 8px 8px 8px;margin-top:8px;">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <span id="titlemodalletakdesain" class="ht6" style="vertical-align: middle;font-weight: 600">Depan Tengah</span>
+                                            </div>
+                                            <div class="col-md-12 mt-3">
+                                                <div class="containerupload">
+                                                    <label for="upload_costum"  class="upload_label">
+                                                        <div class="image">
+                                                            <img src="assets/images/gambar_logo.png" alt="" style="">
+                                                        </div>
+                                                        <p id="infoupload" class="" style="text-align: right;padding-right: 8px;">
+                                                            <img src="assets/images/pos/icon_upload.png" alt="" style="width: 16px;height: 16px;margin: 0px 6px 6px 0px">
+                                                            Unduh Design
+                                                        </p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal Upload-->
+                    <div id="produksi" style="">
+                        <div class="row">
+                            <div class="col-xl-5 col-md-12 color-black ht23">
+                                Produksi
+                            </div>
+                            <div class="col-xl-1 color-black ht23">
+                                
+                            </div>
+                            <div class="col-xl-6 col-md-12 color-grey ht6 mt-1" style="text-align: right;">
+                                Menampilakn Data : 
+                                <label>
+                                    <select class="myselect2 ht8 mdi bgcolor-primary-linear-gradient" style="font-weight: 600;min-width: 100px;">
+                                        <option disabled="" selected="" value=""> Semua </option>
+                                        <option style="color: #181717;" value="0">Semua</option>
+                                        <option style="color: #181717;" value="0">Semua</option>
+                                    </select>
+                                </label>
+                                <!--<button type="button" style="padding:4px 12px;" class="ht6 btn btn-labeled bgcolor-primary-linear-gradient"><span class="btn-label" style="margin-right: 4px;"><i class="fa-regular fa-square-plus"></i></span>Tambah Transaksi</button>-->
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card mini-stat position-relative" style="">
+                                    <div class="card-body" style="background-color: #fff;">
+                                        <div class="">
+                                            <div class="col-md-12" style="">
+                                                <table id="dtproduksi" class="table borderless table-sm" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                    <th class="th-sm">ID
+
+                                                    </th>
+                                                    <th class="th-sm">Pelanggan
+
+                                                    </th>
+                                                    <th class="th-sm">Kasir
+
+                                                    </th>
+                                                    <th class="th-sm">Tanggal
+
+                                                    </th>
+                                                    <th class="th-sm">Aksi
+
+                                                    </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <td>2801</td>
+                                                    <td>James Vetrovs</td>
+                                                    <td>Jakob Herwitz</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">2022-09-16 18:00</div>
+                                                        <div class="ht9">Jum'at</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-4" style="text-align: right;padding-left: 0px;"><span class="statusind bgcolor-blue" style="margin-right: 8px;">Selesai</span></div>
+                                                            <div class="col-md-2"><span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                                            <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2802</td>
+                                                    <td>lames Vetrovs</td>
+                                                    <td>Jakob Herwitz</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">2022-09-16 18:00</div>
+                                                        <div class="ht9">Jum'at</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-4" style="text-align: right;padding-left: 0px;"><span class="statusind bgcolor-red" style="margin-right: 8px;">Pending</span></div>
+                                                            <div class="col-md-2"><span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                                            <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2803</td>
+                                                    <td>James Vetrovs</td>
+                                                    <td>Jakob Herwitz</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">2022-09-16 18:00</div>
+                                                        <div class="ht9">Jum'at</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-4" style="text-align: right;padding-left: 0px;"><span class="statusind bgcolor-yellow" style="margin-right: 8px;">Progress</span></div>
+                                                            <div class="col-md-2"><span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                                            <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2804</td>
+                                                    <td>James Vetrovs</td>
+                                                    <td>Jakob Herwitz</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">2022-09-16 18:00</div>
+                                                        <div class="ht9">Jum'at</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-4" style="text-align: right;padding-left: 0px;"><span class="statusind bgcolor-red" style="margin-right: 8px;">Pending</span></div>
+                                                            <div class="col-md-2"><span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                                            <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2805</td>
+                                                    <td>lames Vetrovs</td>
+                                                    <td>Jakob Herwitz</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">2022-09-16 18:00</div>
+                                                        <div class="ht9">Jum'at</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-4" style="text-align: right;padding-left: 0px;"><span class="statusind bgcolor-yellow" style="margin-right: 8px;">Progress</span></div>
+                                                            <div class="col-md-2"><span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                                            <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2806</td>
+                                                    <td>James Vetrovs</td>
+                                                    <td>Jakob Herwitz</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">2022-09-16 18:00</div>
+                                                        <div class="ht9">Jum'at</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-4" style="text-align: right;padding-left: 0px;"><span class="statusind bgcolor-blue" style="margin-right: 8px;">Selesai</span></div>
+                                                            <div class="col-md-2"><span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                                            <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                            <!--              PILIHAN            -->
+                                            <div class="col-md-12 pilihan mt-2" id="">
+                                            </div>
+                                            <div class="col-md-12 pilihan mt-4" id="" style="padding:0;">
+                                                
+                                            </div>
+                                        </div>          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Detail Produk -->
+                    <div id="produksi2" style="display: none;">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 color-black ht23">
+                                Detail Produksi
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card mini-stat position-relative" style="">
+                                    <div class="card-body" style="background-color: #fff;">
+                                        <div style="position: absolute;right: 24;right: 24;top: 16;z-index:99;">
+                                            <button id="closedetail" type="button" class="close" style="border: 0.5px solid #6b6865;transition-duration: 0.2s;border-radius: 16px;padding: 0px 8px 8px 8px;margin-top:8px;">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="card-body" style="border: solid 1px #c9c9c9;">
+                                                    <div class="">
+                                                        <div class="col-md-12 mt-4" id="clothes_with_logo" style="">
+                                                            <div class="imagelogo" style="display: none;">
+                                                                <div id="penampung">
+                                                                    <img src="" style="">
+                                                                </div>
+                                                            </div>
+                                                            <div style="text-align: center;">
+                                                                <img src="assets/images/pos/Kaos1.png" style="height: 226px;width:226px;resize: both;">
+                                                            </div>
+                                                            <div data-toggle="modal" data-target="#modalupload" id="gambaruploadlogo" class="mt-5 mb-4" style="text-align: center;">
+                                                                <img src="assets/images/gambar_logo.png" style="max-height: 100px;;resize: both;">
+                                                            </div>
+                                                        </div>
+                                                    </div>          
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="card-body" style="padding-top: 4px;">
+                                                    <div class="col-md-12" id="detail" style="">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">ID Transaksi</span>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">:</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <span id="" class="ht8" style="vertical-align: middle;">2802</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">Pelanggan</span>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">:</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <span id="" class="ht8" style="vertical-align: middle;">Justin Dokidis</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">Kasir</span>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">:</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <span id="" class="ht8" style="vertical-align: middle;">Abram Kosgard</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">Tanggal Pesan</span>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">:</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <span id="" class="ht8" style="vertical-align: middle;">16 September 2022</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">Ukuran</span>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">:</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <span id="" class="ht8" style="vertical-align: middle;">M</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">Letak Desain</span>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">:</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <span id="" class="ht8" style="vertical-align: middle;">Depan Tengah</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">Kertas</span>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">:</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <span id="" class="ht8" style="vertical-align: middle;">PET Film A6</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">Ukuran Gambar</span>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">:</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <span id="" class="ht8" style="vertical-align: middle;">15cm x 15cm</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">Status</span>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">:</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <!--<span class="statusdetailproduksi bgcolor-red" style="margin-right: 8px;">Pending</span>
+                                                                <span class="statusdetailproduksi2" style="margin-right: 8px;">Progress</span>
+                                                                <span class="statusdetailproduksi2" style="margin-right: 8px;">Selesai</span>-->
+                                                                <button id="pending" class="bstatus bstatusactive">Pending</button>
+                                                                <button id="progress" class="bstatus">Progress</button>
+                                                                <button id="selesai" class="bstatus">Selesai</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-4">
+                                                            <div class="col-md-12">
+                                                                <span id="" class="ht8" style="vertical-align: middle;font-weight: 600">Alasan Pengerjaan Pending</span>
+                                                            </div>
+                                                            <div class="col-md-12 mt-2">
+                                                                <div class="form-group">
+                                                                    <textarea style="font-size: 8pt;" class="form-control" id="deskripsiedit" rows="3" placeholder="Deskripsi"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 mt-1">
+                                                                <div class="row">
+                                                                    <div class="col-md-4"></div>
+                                                                    <div class="col-md-4"></div>
+                                                                    <div class="col-md-4" style="text-align: right;">
+                                                                        <button id="btn_update" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;"><i class="fa-regular fa-paper-plane" style="margin-right: 8px;"></i>Update Perubahan</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>        
+                                                </div>
+                                            </div>
+                                        </div>         
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Detail Produk-->
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/waves.min.js"></script>
+        <script src="assets/js/jquery-ui.js"></script>
+        <link rel="stylesheet" href="assets/css/jquery-ui/jquery-ui.css">
+        <script src="plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+        <!-- Peity JS -->
+        <script src="plugins/peity/jquery.peity.min.js"></script>
+        <!--<script src="plugins/morris/morris.min.js"></script>-->
+        <script src="plugins/raphael/raphael-min.js"></script>
+        <!--<script src="assets/pages/dashboard.js"></script>-->
+        <!-- Required datatable js -->
+        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="plugins/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="plugins/datatables/jszip.min.js"></script>
+        <script src="plugins/datatables/pdfmake.min.js"></script>
+        <script src="plugins/datatables/vfs_fonts.js"></script>
+        <script src="plugins/datatables/buttons.html5.min.js"></script>
+        <script src="plugins/datatables/buttons.print.min.js"></script>
+        <script src="plugins/datatables/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+    </body>
+</html>
+{{> scripts}}
+<script>
+    $(".bstatus").click(function(){
+        $(".bstatus").removeClass("bstatusactive");
+        $(this).addClass("bstatusactive");
+    });
+
+    $(".showdetail").click(function(){
+        $("#produksi").hide('slow');
+        $("#produksi2").show('slow');
+    });
+
+    $("#closedetail").click(function(){
+        $("#produksi").show('');
+        $("#produksi2").hide('slow');
+    });
+
+    $(".delete").click(function(){
+        console.log("delete");
+        $deletingRowSelector = $(this).parent("div").parent(".row").parent("td").parent("tr");
+        var $datatable = $('#dtproduksi').DataTable();
+        $datatable.row($deletingRowSelector).remove().draw();
+    });
+
+    $(".table tbody tr").hover(function(){
+        $(".table tbody tr").children("td").removeClass("tdactivehover");
+        $(this).children("td:first-child").addClass("tdactivehover");
+    });
+    $(document).ready(function () {
+        $('#dtproduksi').DataTable({
+            dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+            pagingType: "simple",
+            lengthMenu: [
+                [5, 10, 25, -1],
+                [5, 10, 25, 'All'],
+            ],
+        });
+        $('.dataTables_length').addClass('bs-select');
+
+        /*function gogo(){
+            var all = $("#dtBasicExample_length");
+            var all3 = $('.dataTables_length label').children('select');
+            all3.css({"width": "10%", "border": "none"});
+            console.log(all3);
+            var allset = "<li>Row per page<li>"
+            $('.pagination li:first-child').after(allset);
+            $('.pagination li:last-child').before(all3);
+            $('.dataTables_length label').hide();
+        };
+        //gogo();
+
+        $(".page-link").click(function(){
+            gogo();
+        });
+        $(".table tbody").children("tr:first-child").children("td:first-child").addClass("tdactivehover");*/
+        
+        
+    });
+    $("div.list-item").hover(function(){
+            $(this).children( "a" ).css("color", "#5BC9E1");
+            $(this).children( "a" ).children(".link").addClass("activebutton");
+            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+
+            $(".list-item").click(function(){
+                console.log("tidur");
+                $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
+                $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
+                $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
+                $(".link").removeClass("activebuttonon");
+                $(this).children( "a" ).children(".link").addClass("activebuttonon");
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            });
+            $("#foo").attr("src", "bar2.jpg");
+
+        }, function(){
+            $(this).children( "a" ).css("color", "#595552");
+            $(this).children( "a" ).children(".link").removeClass("activebutton");
+            if ($(this).children( "a" ).children("div").children("img:nth-child(2)").hasClass("activebuttonimage")){
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            } else {
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+            }
+            
+    });
+
+    
+
+    $("#buttonminimize").click(function() {
+        document.getElementById('sidebar').classList.toggle("hidesidebar");
+        document.getElementById('buttonminimize').classList.toggle("movebutton");
+        has = $("#buttonminimize").hasClass("movebutton");
+        if (has){
+            $(".sidebar .header .list-item").html("<img src='assets/images/nav/logo.png' style='width: 3.1vw; height:10vh;margin-left:8px;'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button2.png' class='icon' style='width: 40px;height: 40px;'>");
+        }else{
+            $(".sidebar .header .list-item").html("<img src='assets/images/logo2.png' style='width: 13vw; height:10vh'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button.png' class='icon' style='width: 40px;height: 40px;'>");
+        }
+    });
+
+    $('#kaos').click(function(){
+        window.location.href='/kaos';
+        return false;
+    })
+
+</script>

@@ -1,0 +1,675 @@
+{{> head}}
+<style>
+    .pagination{
+        padding-left: 130;
+    }
+    .table tbody td:first-child{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .table td, .table th{
+        border: none;
+        vertical-align: middle;
+    }
+    .table tbody tr{
+        box-shadow: 0px 8px 64px 16px rgba(96, 91, 87, 0.04);
+        border-radius: 12px;
+        height: 60px;
+        font-size: 12px;
+    }
+    .table{
+        border-collapse: separate;
+        border-spacing: 0px 0.7em !important;
+    }
+    .tdactivehover{
+        border: 1px solid #8deaff !important;
+        border-width: 0 0 0px 8px !important;
+        border-radius: 10px;
+    }
+    .warna{
+        text-align: center;
+    }
+</style>
+    <body>
+        <div class="container2" style="max-width: none;padding: 0px">
+            <div class="sidebar bgcolor-white" id="sidebar">
+                <div class="header" style="margin: 24px;">
+                    <div class="list-item">
+                        <img src="assets/images/logo2.png" style="width: 13vw; height:10vh">
+                        <!--<img src="assets/images/nav/Logo.png" alt="" class="icon" style="width: 48px;height: 80px;">-->
+                    </div>
+                </div>
+                
+                <div class="main ">
+                        <div class="list-item">
+                            <a href="/">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Home.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Home2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Dashboard</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/pos">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Sales.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Sales2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Point of Sale</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/transaksi">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Transaction.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Transaction2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Transaksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/akunting">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Accounting.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Accounting2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Akunting</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/produksi">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Production.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Production2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Produksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/stok">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Stock.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Stock2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Stok</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/datauser">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link activebuttonon">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/User.png" alt="" class="icon" style="float: left;display: none;">
+                                    <img src="assets/images/nav/User2.png" alt="" class="icon activebuttonimage" style="float: left;">
+                                    <span style="margin-top:4px;" class="description activebutton2">Pengguna</span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                </div>
+                <div class="main2" style="margin-bottom: 16px;">
+                    <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description color-red">Keluar</span>
+                                </div>
+                            </a>
+                        </div>
+                </div>
+            </div>
+            <div id="buttonminimize" style="position: absolute;top:240;left:244;transition: all ease-in .2s;cursor: pointer;">
+                <img src="assets/images/nav/Button.png" alt="" class="icon" style="width: 40px;height: 40px;">
+            </div>
+            <div class="main-content" style="flex: 1;">
+                <div id="headnav" class="">
+                    <nav class="navbar-custom bgcolor-white" style="min-height: 44px;">
+                        <ul class="navbar-right d-flex list-inline float-right mb-0">
+                            <li class="dropdown notification-list">
+                                <div class="dropdown notification-list nav-pro-img">
+                                    <a class="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" style="line-height: 48px !important;">
+                                        <i class="mdi mdi-18px mdi-chevron-down" style="float: right;text-align: center;width: 40px; margin-right: 8px;"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                        <!-- item-->
+                                        <a class="dropdown-item" href="/user/edit"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="/logout_process"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                    </div>                                                                    
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 0px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:0px">
+                                <img src="assets/images/nav/Profile.png" style="height: 30px;">
+                            </div>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 10px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:6px" id="username" class="color-grey">
+                                Fulan bin Fulan
+                            </div>
+                        </ul>
+                    </nav>
+                    <!-- Top Bar Start -->
+                </div>
+                <div class="main-pages" style="padding:24px 40px;">
+                    <!--modal Detail Data-->
+                    <div class="modal fade" id="modalshowdata" tabindex="-1" role="dialog" aria-labelledby="modalshowdata" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="margin:7.25rem auto;max-width: 425px;">
+                            <div class="modal-content" style="background-color: #FFFFFF;">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <img src="assets/images/logo2.png" style="width: 10vw; height:7.8vh">
+                                                <span class="ht6" style="    margin-left: 8px;vertical-align: middle;font-weight: 600">| Detail Data</span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: 0.5px solid #6b6865;transition-duration: 0.2s;border-radius: 16px;padding: 0px 8px 8px 8px;margin-top:8px;">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;font-weight: 600;" type="text" name="namauser" class="form-control data1" id="namauser" placeholder="" value="Abram Korsgrad">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="taguser" class="form-control data1" id="taguser" placeholder="" value="Abram Korsgrad">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_location.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="alamatuser" class="form-control data1" id="alamatuser" placeholder="" value="Jl. Sutorejo Utara XI No. 4">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_user3.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="productionuser" class="form-control data1" id="productionuser" placeholder="" value="Production">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_message.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="emailuser" class="form-control data1" id="emailuser" placeholder="" value="hi@abramkorsgaard.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--modal Detail Data-->
+                    <!--modal Edit Data-->
+                    <div class="modal fade" id="modaleditdata" tabindex="-1" role="dialog" aria-labelledby="modaleditdata" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="margin:7.25rem auto;max-width: 425px;">
+                            <div class="modal-content" style="background-color: #FFFFFF;">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <img src="assets/images/logo2.png" style="width: 10vw; height:7.8vh">
+                                                <span class="ht6" style="    margin-left: 8px;vertical-align: middle;font-weight: 600">| Edit Data</span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: 0.5px solid #6b6865;transition-duration: 0.2s;border-radius: 16px;padding: 0px 8px 8px 8px;margin-top:8px;">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;font-weight: 600;" type="text" name="namauseredit" class="form-control data1" id="namauseredit" placeholder="Nama" value="Abram Korsgrad">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_message.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="emailuseredit" class="form-control data1" id="emailuseredit" placeholder="Email" value="Abram Korsgrad@adsa">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_location.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="alamatuseredit" class="form-control data1" id="alamatuseredit" placeholder="Alamat" value="Jl. Sutorejo Utara XI No. 4">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="dropdown" style="font-weight: 600;">
+                                                <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihancategoryshow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                    <span class="ht9">Category</span>
+                                                    <span class="caret" style="padding-right: 56%;"></span>
+                                                </a>
+
+                                                <ul class="dropdown-menu isicategory" aria-labelledby="pilihancategoryshow" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+                                                    <li data-value="assets/images/pos/icon_user3.png">
+                                                        <a class="dropdown-item" href="#">
+                                                            <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                            <span class="ht9">Production</span>
+                                                        </a>
+                                                    </li>
+                                                    <li data-value="assets/images/pos/icon_user3.png">
+                                                        <a class="dropdown-item" href="#">
+                                                            <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                            <span class="ht9">Admin</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2">
+                                            <button id="bupdatedata" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Edit Data</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--modal Edit Data-->
+                    <!--modal Tambah Data-->
+                    <div class="modal fade" id="modaltambahdata" tabindex="-1" role="dialog" aria-labelledby="modaltambahdata" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="margin:2.75rem auto;max-width: 425px;">
+                            <div class="modal-content" style="background-color: #FFFFFF;">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <img src="assets/images/logo2.png" style="width: 10vw; height:7.8vh">
+                                                <span class="ht6" style="    margin-left: 8px;vertical-align: middle;font-weight: 600">| Tambah Data</span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: 0.5px solid #6b6865;transition-duration: 0.2s;border-radius: 16px;padding: 0px 8px 8px 8px;margin-top:8px;">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;font-weight: 600;" type="text" name="namauseradd" class="form-control data1" id="namauseradd" placeholder="Nama Lengkap" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;font-weight: 600;" type="text" name="usernameadd" class="form-control data1" id="usernameadd" placeholder="Username" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_location.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="alamatuseradd" class="form-control data1" id="alamatuseradd" placeholder="Alamat" value="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="dropdown" style="font-weight: 600;">
+                                                <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihancategoryshow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                    <span class="ht9">User Level</span>
+                                                    <span class="caret" style="padding-right: 56%;"></span>
+                                                </a>
+
+                                                <ul class="dropdown-menu isicategory" aria-labelledby="pilihancategoryshow" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+                                                    <li data-value="assets/images/pos/icon_user3.png">
+                                                        <a class="dropdown-item" href="#">
+                                                            <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                            <span class="ht9">Production</span>
+                                                        </a>
+                                                    </li>
+                                                    <li data-value="assets/images/pos/icon_user3.png">
+                                                        <a class="dropdown-item" href="#">
+                                                            <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                            <span class="ht9">Admin</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_message.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="emailuseradd" class="form-control data1" id="emailuseradd" placeholder="Email" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/Lock.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="password" name="passworduseradd" class="form-control data1" id="passworduseradd" placeholder="Password" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/Lock.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="password" name="confirmpassworduseradd" class="form-control data1" id="confirmpassworduseradd" placeholder="Konfirmasi Password" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2">
+                                            <button id="badddata" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Edit Data</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--modal Tambah Data-->
+                    <div id="datauser" style="">
+                        <div class="row">
+                            <div class="col-xl-5 col-md-12 color-black ht23">
+                                Data User
+                            </div>
+                            <div class="col-xl-1 color-black ht23">
+                                
+                            </div>
+                            <div class="col-xl-6 col-md-12 color-grey ht6 mt-1" style="text-align: right;">
+                                Menampilakn Data : 
+                                <label>
+                                    <select class="myselect2 ht8 mdi bgcolor-primary-linear-gradient" style="font-weight: 600;min-width: 100px;">
+                                        <option disabled="" selected="" value=""> Semua </option>
+                                        <option style="color: #181717;" value="0">Semua</option>
+                                        <option style="color: #181717;" value="0">Semua</option>
+                                    </select>
+                                </label>
+                                <button data-toggle="modal" data-target="#modaltambahdata" type="button" style="padding:4px 12px;margin-left: 20px;" class="ht6 btn btn-labeled bgcolor-primary-linear-gradient"><span class="btn-label" style="margin-right: 4px;"><i class="fa-regular fa-square-plus"></i></span>Tambah Data</button>
+                                <!--<button type="button" style="padding:4px 12px;" class="ht6 btn btn-labeled bgcolor-primary-linear-gradient"><span class="btn-label" style="margin-right: 4px;"><i class="fa-regular fa-square-plus"></i></span>Tambah Transaksi</button>-->
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card mini-stat position-relative" style="">
+                                    <div class="card-body" style="background-color: #fff;">
+                                        <div class="">
+                                            <div class="col-md-12" style="">
+                                                <table id="dtuser" class="table borderless table-sm" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                    <th class="th-sm">ID
+
+                                                    </th>
+                                                    <th class="th-sm">Nama
+
+                                                    </th>
+                                                    <th class="th-sm">Role
+
+                                                    </th>
+                                                    <th class="th-sm">Alamat
+
+                                                    </th>
+                                                    <th class="th-sm">Email
+
+                                                    </th>
+                                                    <th class="th-sm">Aksi
+
+                                                    </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <td>2801</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">Jakob Herwitz</div>
+                                                        <div class="ht9">@jakobherwitz</div>
+                                                    </td>
+                                                    <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#97D7D9;font-size:9px;"></i>Admin</td>
+                                                    <td>Jl. Sutorejo Utara XI No. 3</td>
+                                                    <td>hi@jakobherwitz.com</td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#modaleditdata" class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
+                                                        <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                        <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2802</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">Jakob Herwitz</div>
+                                                        <div class="ht9">@jakobherwitz</div>
+                                                    </td>
+                                                    <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#F46B69;font-size:9px;"></i>Production</td>
+                                                    <td>Jl. Sutorejo Utara XI No. 3</td>
+                                                    <td>hi@jakobherwitz.com</td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#modaleditdata" class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
+                                                        <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                        <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2803</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">Jakob Herwitz</div>
+                                                        <div class="ht9">@jakobherwitz</div>
+                                                    </td>
+                                                    <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#97D7D9;font-size:9px;"></i>Admin</td>
+                                                    <td>Jl. Sutorejo Utara XI No. 3</td>
+                                                    <td>hi@jakobherwitz.com</td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#modaleditdata" class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
+                                                        <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                        <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2804</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">Jakob Herwitz</div>
+                                                        <div class="ht9">@jakobherwitz</div>
+                                                    </td>
+                                                    <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#F46B69;font-size:9px;"></i>Production</td>
+                                                    <td>Jl. Sutorejo Utara XI No. 3</td>
+                                                    <td>hi@jakobherwitz.com</td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#modaleditdata" class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
+                                                        <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                        <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2805</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">Jakob Herwitz</div>
+                                                        <div class="ht9">@jakobherwitz</div>
+                                                    </td>
+                                                    <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#F46B69;font-size:9px;"></i>Production</td>
+                                                    <td>Jl. Sutorejo Utara XI No. 3</td>
+                                                    <td>hi@jakobherwitz.com</td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#modaleditdata" class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
+                                                        <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                        <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>2806</td>
+                                                    <td>
+                                                        <div style="font-weight: 600;">Jakob Herwitz</div>
+                                                        <div class="ht9">@jakobherwitz</div>
+                                                    </td>
+                                                    <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#F46B69;font-size:9px;"></i>Production</td>
+                                                    <td>Jl. Sutorejo Utara XI No. 3</td>
+                                                    <td>hi@jakobherwitz.com</td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#modaleditdata" class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
+                                                        <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                                                        <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                                                    </td>
+                                                    </tr>
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                            <!--              PILIHAN            -->
+                                            <div class="col-md-12 pilihan mt-2" id="">
+                                            </div>
+                                        </div>          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/waves.min.js"></script>
+        <script src="assets/js/jquery-ui.js"></script>
+        <link rel="stylesheet" href="assets/css/jquery-ui/jquery-ui.css">
+        <script src="plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+        <!-- Peity JS -->
+        <script src="plugins/peity/jquery.peity.min.js"></script>
+        <!--<script src="plugins/morris/morris.min.js"></script>-->
+        <script src="plugins/raphael/raphael-min.js"></script>
+        <!--<script src="assets/pages/dashboard.js"></script>-->
+        <!-- Required datatable js -->
+        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="plugins/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="plugins/datatables/jszip.min.js"></script>
+        <script src="plugins/datatables/pdfmake.min.js"></script>
+        <script src="plugins/datatables/vfs_fonts.js"></script>
+        <script src="plugins/datatables/buttons.html5.min.js"></script>
+        <script src="plugins/datatables/buttons.print.min.js"></script>
+        <script src="plugins/datatables/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+    </body>
+</html>
+{{> scripts}}
+<script>
+    $(".bstatus").click(function(){
+        $(".bstatus").removeClass("bstatusactive");
+        $(this).addClass("bstatusactive");
+    });
+
+    $(".delete").click(function(){
+        console.log("delete");
+        $deletingRowSelector = $(this).parent("td").parent("tr");
+        var $datatable = $('#dtuser').DataTable();
+        $datatable.row($deletingRowSelector).remove().draw();
+    });
+
+    $(".table tbody tr").hover(function(){
+        $(".table tbody tr").children("td").removeClass("tdactivehover");
+        $(this).children("td:first-child").addClass("tdactivehover");
+    });
+    $(document).ready(function () {
+        $('#dtuser').DataTable({
+            dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+            pagingType: "simple",
+            lengthMenu: [
+                [4, 10, 25, -1],
+                [4, 10, 25, 'All'],
+            ],
+        });
+        $('.dataTables_length').addClass('bs-select');
+
+        /*function gogo(){
+            var all = $("#dtBasicExample_length");
+            var all3 = $('.dataTables_length label').children('select');
+            all3.css({"width": "10%", "border": "none"});
+            console.log(all3);
+            var allset = "<li>Row per page<li>"
+            $('.pagination li:first-child').after(allset);
+            $('.pagination li:last-child').before(all3);
+            $('.dataTables_length label').hide();
+        };
+        //gogo();
+
+        $(".page-link").click(function(){
+            gogo();
+        });
+        $(".table tbody").children("tr:first-child").children("td:first-child").addClass("tdactivehover");*/
+        
+        
+    });
+    $("div.list-item").hover(function(){
+            $(this).children( "a" ).css("color", "#5BC9E1");
+            $(this).children( "a" ).children(".link").addClass("activebutton");
+            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+
+            $(".list-item").click(function(){
+                console.log("tidur");
+                $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
+                $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
+                $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
+                $(".link").removeClass("activebuttonon");
+                $(this).children( "a" ).children(".link").addClass("activebuttonon");
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            });
+            $("#foo").attr("src", "bar2.jpg");
+
+        }, function(){
+            $(this).children( "a" ).css("color", "#595552");
+            $(this).children( "a" ).children(".link").removeClass("activebutton");
+            if ($(this).children( "a" ).children("div").children("img:nth-child(2)").hasClass("activebuttonimage")){
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            } else {
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+            }
+            
+    });
+
+    
+
+    $("#buttonminimize").click(function() {
+        document.getElementById('sidebar').classList.toggle("hidesidebar");
+        document.getElementById('buttonminimize').classList.toggle("movebutton");
+        has = $("#buttonminimize").hasClass("movebutton");
+        if (has){
+            $(".sidebar .header .list-item").html("<img src='assets/images/nav/logo.png' style='width: 3.1vw; height:10vh;margin-left:8px;'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button2.png' class='icon' style='width: 40px;height: 40px;'>");
+        }else{
+            $(".sidebar .header .list-item").html("<img src='assets/images/logo2.png' style='width: 13vw; height:10vh'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button.png' class='icon' style='width: 40px;height: 40px;'>");
+        }
+    });
+
+    $('#kaos').click(function(){
+        window.location.href='/kaos';
+        return false;
+    })
+
+</script>

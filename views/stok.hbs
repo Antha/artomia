@@ -1,0 +1,736 @@
+{{> head}}
+<style>
+    .pagination{
+        padding-left: 130;
+    }
+    .table tbody td:first-child{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .table td, .table th{
+        border: none;
+        vertical-align: middle;
+    }
+    .table tbody tr{
+        box-shadow: 0px 8px 64px 16px rgba(96, 91, 87, 0.04);
+        border-radius: 12px;
+        height: 60px;
+        font-size: 12px;
+    }
+    .table{
+        border-collapse: separate;
+        border-spacing: 0px 0.7em !important;
+    }
+    .tdactivehover{
+        border: 1px solid #8deaff !important;
+        border-width: 0 0 0px 8px !important;
+        border-radius: 10px;
+    }
+    .warna{
+        text-align: center;
+    }
+</style>
+    <body>
+        <div class="container2" style="max-width: none;padding: 0px">
+            <div class="sidebar bgcolor-white" id="sidebar">
+                <div class="header" style="margin: 24px;">
+                    <div class="list-item">
+                        <img src="assets/images/logo2.png" style="width: 13vw; height:10vh">
+                        <!--<img src="assets/images/nav/Logo.png" alt="" class="icon" style="width: 48px;height: 80px;">-->
+                    </div>
+                </div>
+                
+                <div class="main ">
+                        <div class="list-item">
+                            <a href="/">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Home.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Home2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Dashboard</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/pos">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Sales.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Sales2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Point of Sale</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/transaksi">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Transaction.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Transaction2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Transaksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/akunting">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Accounting.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Accounting2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Akunting</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/produksi">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Production.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Production2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Produksi</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/stok">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link activebuttonon">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Stock.png" alt="" class="icon" style="float: left;display: none;">
+                                    <img src="assets/images/nav/Stock2.png" alt="" class="icon activebuttonimage" style="float: left;">
+                                    <span style="margin-top:4px;" class="description activebutton2">Stok</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <a href="/datauser">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/User.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/User2.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description">Pengguna</span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                </div>
+                <div class="main2" style="margin-bottom: 16px;">
+                    <div class="list-item">
+                            <a href="#">
+                                <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
+                                </div>
+                                <div style="padding: 4px;float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;">
+                                    <img src="assets/images/nav/Logout.png" alt="" class="icon" style="float: left;display: none;">
+                                    <span style="margin-top:4px;" class="description color-red">Keluar</span>
+                                </div>
+                            </a>
+                        </div>
+                </div>
+            </div>
+            <div id="buttonminimize" style="position: absolute;top:240;left:244;transition: all ease-in .2s;cursor: pointer;">
+                <img src="assets/images/nav/Button.png" alt="" class="icon" style="width: 40px;height: 40px;">
+            </div>
+            <div class="main-content" style="flex: 1;">
+                <div id="headnav" class="">
+                    <nav class="navbar-custom bgcolor-white" style="min-height: 44px;">
+                        <ul class="navbar-right d-flex list-inline float-right mb-0">
+                            <li class="dropdown notification-list">
+                                <div class="dropdown notification-list nav-pro-img">
+                                    <a class="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" style="line-height: 48px !important;">
+                                        <i class="mdi mdi-18px mdi-chevron-down" style="float: right;text-align: center;width: 40px; margin-right: 8px;"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                        <!-- item-->
+                                        <a class="dropdown-item" href="/user/edit"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="/logout_process"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                    </div>                                                                    
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 0px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:0px">
+                                <img src="assets/images/nav/Profile.png" style="height: 30px;">
+                            </div>
+                        </ul>
+                        <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 10px 10px 10px;border-right: 2px solid white;">
+                            <div style="margin-top:6px" id="username" class="color-grey">
+                                Fulan bin Fulan
+                            </div>
+                        </ul>
+                    </nav>
+                    <!-- Top Bar Start -->
+                </div>
+                <div class="main-pages" style="padding:24px 40px;">
+                    <div class="row">
+                    <div id="stokbarang" class="col-md-8" style="">
+                        <div class="row">
+                            <div class="col-xl-5 col-md-12 color-black ht23">
+                                Stok Barang
+                            </div>
+                            <div class="col-xl-1 color-black ht23">
+                                
+                            </div>
+                            <div class="col-xl-6 col-md-12 color-grey ht6 mt-1" style="text-align: right;">
+                                Menampilakn Data : 
+                                <label>
+                                    <select class="myselect2 ht8 mdi bgcolor-primary-linear-gradient" style="font-weight: 600;min-width: 100px;">
+                                        <option style="color: #181717;" value="Kaos">Kaos</option>
+                                        <option style="color: #181717;" value="Kertas">Kertas Pet</option>
+                                    </select>
+                                </label>
+                                <!--<button type="button" style="padding:4px 12px;" class="ht6 btn btn-labeled bgcolor-primary-linear-gradient"><span class="btn-label" style="margin-right: 4px;"><i class="fa-regular fa-square-plus"></i></span>Tambah Transaksi</button>-->
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card mini-stat position-relative" style="">
+                                    <div class="card-body" style="background-color: #fff;">
+                                        <div class="">
+                                            <div class="col-md-12" style="">
+                                                <table id="dtstokbarang" class="table borderless table-sm" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                    <th class="th-sm">Kode
+
+                                                    </th>
+                                                    <th class="th-sm">Barang
+
+                                                    </th>
+                                                    <th class="th-sm">Harga
+
+                                                    </th>
+                                                    <th class="th-sm">Stok
+
+                                                    </th>
+                                                    <th class="th-sm">Aksi
+
+                                                    </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <td id="tkode">TS00100S</td>
+                                                    <td>
+                                                        <div class="kotak" style="">
+                                                            <img id="timage" src="assets/images/pos/baju.png" style="height: 48px;">
+                                                        </div>
+                                                        <div style="float: left;margin-top:11px">
+                                                            <div id="tnamabarang" style="font-size: 16px;font-weight: 500;">Kaos Putih</div>
+                                                            <div id="tsizebarang" class="ht9 color-grey">Ukuran S</div>
+                                                        </div>
+                                                    </td>
+                                                    <td id="tharga" class="color-red">Rp45.000</td>
+                                                    <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">50</span></td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span class="statusind bgcolor-yellow" style="margin-right: 8px;">Print</span></div>
+                                                            <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                                            <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                        </div>          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--kaos side-->
+                    <div class="col-xl-4 col-md-4" id="detailstok" style="padding-left: 16px;">
+                        <div class="card mini-stat position-relative" style="">
+                            <div class="card-body" style="background-color: #fafafa;">
+                                <div id="" class="">
+                                    <div class="col-md-12" style="">
+                                        <div class="row">
+                                            <div class="col-md-6 ht4 color-black" id="titleside" style="font-weight:bold;">
+                                                Tambah
+                                            </div>
+                                            <div id="gantitambah" class="col-md-6" style="text-align: right;">
+                                                <button id="beditstok" type="button" class="ht9 btn btn-outline-secondary" style="height: 24px;border-radius: 8px;padding: 0px 16px;font-weight: 600;">Edit Stok</button>
+                                                <button id="btambahstok" type="button" class="ht9 btn btn-outline-secondary" style="height: 24px;border-radius: 8px;padding: 0px 16px;font-weight: 600;display:none;">Tambah Stok</button>
+                                            </div>
+                                            <div id="inputjeniskaos" class="col-md-12 mt-3" style="">
+                                                <div id="namakaos" class="dropdown" style="font-weight: 600;">
+                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihannamakaos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                        <span class="ht9">Kaos</span>
+                                                        <span class="caret" style="padding-right: 56%;"></span>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu isikaos" aria-labelledby="pilihannamakaos" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+                                                        <li data-value="assets/images/pos/tag.png">
+                                                            <a class="dropdown-item" href="#">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">Kaos1</span>
+                                                            </a>
+                                                        </li>
+                                                        <li data-value="assets/images/pos/tag.png">
+                                                            <a class="dropdown-item" href="#">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">Kaos2</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div id="inputkatunkaos" class="col-md-12 mt-3" style="">
+                                                <div class="dropdown" style="font-weight: 600;">
+                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihankatun" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                        <span class="ht9">Katun</span>
+                                                        <span class="caret" style="padding-right: 56%;"></span>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu isikatun" aria-labelledby="pilihankatun" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+                                                        <li data-value="assets/images/pos/tag.png">
+                                                            <a class="dropdown-item" href="#">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">Katun1</span>
+                                                            </a>
+                                                        </li>
+                                                        <li data-value="assets/images/pos/tag.png">
+                                                            <a class="dropdown-item" href="#">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">Katun2</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div id="inputnamabarangkaos" class="col-md-12 mt-3" style="">
+                                                    <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Nama Barang" value="">
+                                                
+                                            </div>
+                                            <div id="inputhargabelikaos" class="col-md-12 mt-3" style="">
+                                                    <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Harga Beli" value="">
+                                                
+                                            </div>
+                                            <div id="inputhargajualkaos" class="col-md-12 mt-3" style="">
+                                                    <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Harga Jual" value="">
+                                                
+                                            </div>
+                                            <div id="inputwarnakaos" class="col-md-12 mt-3" style="">
+                                                <div class="row" style="padding: 0px 24px;">
+                                                    <div class="col-md-8">
+                                                        <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                        <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Warna" value="">
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button id="addnewdata" type="button" class="ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 10px;border-radius: 8px;"><i class="fa-regular fa-regular fa-square-plus" style="font-size: 13px;"></i></button>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button id="addnewdata" type="button" class="ht9 btn bgcolor-yellow color-white" style="padding: 10px;border-radius: 8px;"><i class="fa fa-trash" style="font-size: 13px;"></i></button>
+                                                    </div>
+                                                </div>      
+                                            </div>
+                                            <div id="inputukurankaos" class="col-md-12 mt-3" style="">
+                                                <div class="row" style="padding: 0px 24px;">
+                                                    <div class="col-md-8">
+                                                        <div class="dropdown" style="font-weight: 600;">
+                                                            <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihanukuran" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">XL</span>
+                                                                <span class="caret" style="padding-right: 30%;"></span>
+                                                            </a>
+
+                                                            <ul class="dropdown-menu isiukuran" aria-labelledby="pilihanukuran" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+                                                                <li data-value="assets/images/pos/tag.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                        <span class="ht9">XL</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li data-value="assets/images/pos/tag.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                        <span class="ht9">L</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li data-value="assets/images/pos/tag.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                        <span class="ht9">M</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li data-value="assets/images/pos/tag.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                        <span class="ht9">S</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button id="addnewdata" type="button" class="ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 10px;border-radius: 8px;"><i class="fa-regular fa-regular fa-square-plus" style="font-size: 13px;"></i></button>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button id="addnewdata" type="button" class="ht9 btn bgcolor-yellow color-white" style="padding: 10px;border-radius: 8px;"><i class="fa fa-trash" style="font-size: 13px;"></i></button>
+                                                    </div>
+                                                </div>      
+                                            </div>
+                                            <div id="inputjumlahkaos" class="col-md-12 ht82 mt-2" style="padding: 0px 20px;display:none;">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <button class="bjumlahstok" id="minkaos"><i class="fa-regular fa-square-minus"></i></button>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="jumlahstokkaos" class="form-control data1" id="jumlahstokkaos" placeholder="Jumlah Stok" value="">
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button class="bjumlahstok" id="pluskaos"><i class="fa-regular fa-square-plus"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-3">
+                                                <button data-toggle="modal" data-target="#modalstruk" id="bbayar" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Lanjut</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>          
+                            </div>
+                        </div>
+                    </div>
+                    <!--kaos side-->
+                    <!--kertas side-->
+                    <div class="col-xl-4 col-md-4" id="detailkertas" style="padding-left: 16px;display: none;">
+                        <div class="card mini-stat position-relative" style="">
+                            <div class="card-body" style="background-color: #fafafa;">
+                                <div class="">
+                                    <div class="col-md-12" style="">
+                                        <div class="row">
+                                            <div class="col-md-7 ht4 color-black" id="titlekertas" style="font-weight:bold;font-size: 16px;">
+                                                Tambah Stok Kertas
+                                            </div>
+                                            <div class="col-md-5" style="text-align: right;">
+                                                <div id="gantitambah" class="col-md-6" style="text-align: right;">
+                                                    <button id="beditstokkertas" type="button" class="ht9 btn btn-outline-secondary" style="height: 24px;border-radius: 8px;padding: 0px 16px;font-weight: 600;">Edit Stok</button>
+                                                    <button id="btambahstokkertas" type="button" class="ht9 btn btn-outline-secondary" style="height: 24px;border-radius: 8px;padding: 0px 16px;font-weight: 600;display:none;">Tambah Stok</button>
+                                                </div>
+                                            </div>
+                                            <div id="inputkertas" class="col-md-12 mt-3" style="">
+                                                <div class="dropdown" style="font-weight: 600;">
+                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihancategorykertas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                        <span class="ht9">Kertas PET</span>
+                                                        <span class="caret" style="padding-right: 56%;"></span>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu isikertas" aria-labelledby="pilihancategorykertas" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+                                                        <li data-value="assets/images/pos/tag.png">
+                                                            <a class="dropdown-item" href="#">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">Kertas PET1</span>
+                                                            </a>
+                                                        </li>
+                                                        <li data-value="assets/images/pos/tag.png">
+                                                            <a class="dropdown-item" href="#">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">Kertas PET2</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="inputnamakertas" class="col-md-12 mt-3" style="">
+                                                    <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarangkertas" class="form-control data1" id="namabarangkertas" placeholder="Nama Barang" value="">
+                                                
+                                            </div>
+                                            <div id="inputukurankertas" class="col-md-12 mt-3" style="">
+                                                    <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="ukurankertas" class="form-control data1" id="ukurankertas" placeholder="Ukuran" value="">
+                                                
+                                            </div>
+                                            <div id="inputhargajualkertas" class="col-md-12 mt-3" style="">
+                                                    <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="hargajualkertas" class="form-control data1" id="hargajualkertas" placeholder="Harga Jual" value="">
+                                            </div>
+                                            <div id="inputupload" class="col-md-12 mt-3">
+                                                <div class="containerupload">
+                                                    <input type="file" class="upload_hide" id="upload_design" multiple="">
+                                                    <label for="upload_design" class="upload_label">
+                                                        <div class="image">
+                                                            <img src="" alt="" style="display:none;padding: 10px;width: 40%;">
+                                                        </div>
+                                                        <p class="drag_text drag_text2" style="font-size: 12px;font-weight: 600;">Masukan Gambar Design</p>
+                                                        <p class="drag_text2 mt-2" style="font-size: 10px;">Seret File atau Pilih Gambar</p>
+                                                        <i class="drag_text2 fa-regular fa-square-plus"></i>
+                                                        <p id="infoupload" class="" style="text-align: right;padding-right: 8px;display: none;">
+                                                            <img src="assets/images/pos/icon_upload.png" alt="" style="width: 16px;height: 16px;margin: 0px 6px 6px 0px">
+                                                            Ganti Design
+                                                        </p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div id="inputjumlah" class="col-md-12 ht82 mt-2" style="padding: 0px 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <button class="bjumlahstok" id="min"><i class="fa-regular fa-square-minus"></i></button>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="jumlahstokkertas" class="form-control data1" id="jumlahstokkertas" placeholder="Jumlah Stok" value="">
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button class="bjumlahstok" id="plus"><i class="fa-regular fa-square-plus"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-3">
+                                                <button data-toggle="modal" data-target="#modalstruk" id="bbayar" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Lanjut</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>          
+                            </div>
+                        </div>
+                    </div>
+                    <!--kertas-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/waves.min.js"></script>
+        <script src="assets/js/jquery-ui.js"></script>
+        <link rel="stylesheet" href="assets/css/jquery-ui/jquery-ui.css">
+        <script src="plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+        <!-- Peity JS -->
+        <script src="plugins/peity/jquery.peity.min.js"></script>
+        <!--<script src="plugins/morris/morris.min.js"></script>-->
+        <script src="plugins/raphael/raphael-min.js"></script>
+        <!--<script src="assets/pages/dashboard.js"></script>-->
+        <!-- Required datatable js -->
+        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="plugins/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="plugins/datatables/jszip.min.js"></script>
+        <script src="plugins/datatables/pdfmake.min.js"></script>
+        <script src="plugins/datatables/vfs_fonts.js"></script>
+        <script src="plugins/datatables/buttons.html5.min.js"></script>
+        <script src="plugins/datatables/buttons.print.min.js"></script>
+        <script src="plugins/datatables/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script>
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+    </body>
+</html>
+{{> scripts}}
+<script>
+    
+    $(".isikertas li").click(function(){
+        var getlogo = $(this).data('value');
+        $("#pilihancategorykertas").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+    });
+
+    $(".isiukuran li").click(function(){
+        var getlogo = $(this).data('value');
+        $("#pilihanukuran").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+    });
+
+    $(".isikaos li").click(function(){
+        var getlogo = $(this).data('value');
+        $("#pilihannamakaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+    });
+
+    $(".isikatun li").click(function(){
+        var getlogo = $(this).data('value');
+        $("#pilihankatun").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+    });
+    
+    $('#beditstok').click(function(){
+        $(this).hide();
+        $('#btambahstok').show("slow");
+        $('#titleside').hide().html("Edit Stok").fadeIn(1000);
+        $('#inputjumlahkaos').show("slow");
+        $('#inputkatunkaos, #inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').hide("slow");
+        $('#inputjumlahkaos').show("slow");
+    });
+
+    $('#btambahstok').click(function(){
+        $(this).hide();
+        $('#beditstok').show("slow");
+        $('#titleside').hide().html("Tambah").fadeIn(1000);
+        $('#inputjumlahkaos').hide("slow");
+        $('#inputkatunkaos, #inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').show("slow");
+        $('#inputjumlahkaos').hide("slow");
+    });
+
+    $('#beditstokkertas').click(function(){
+        $(this).hide();
+        $('#btambahstokkertas').show("slow");
+        $('#titlekertas').hide().html("Edit Stok").fadeIn(1000);
+        $('#inputupload, #inputhargajualkertas, #inputukurankertas, #inputnamakertas').hide("slow");
+    });
+    $('#btambahstokkertas').click(function(){
+        $(this).hide();
+        $('#beditstokkertas').show("slow");
+        $('#titlekertas').hide().html("Tambah Stok Kertas").fadeIn(1000);
+        $('#inputupload, #inputhargajualkertas, #inputukurankertas, #inputnamakertas').show("slow");
+    });
+
+    $('.myselect2').on('change', function (e) {
+        var optionSelected = $("option:selected", this);
+        var valueSelected = this.value;
+        console.log(valueSelected);
+        if(valueSelected == "Kertas"){
+            $('#tkode').html('PET 001');
+            $('#timage').attr('src','assets/images/pos/PETFilmA6.png');
+            $('#tnamabarang').html('PET Film');
+            $('#tisizebarang').html('A5');
+            $('#tharga').html('Rp.5.000');
+            $('#tstok').html('50');
+            $('#detailstok').hide();
+            $('#detailkertas').show("slow");
+        }else{
+            $('#tkode').html('TS00100S');
+            $('#timage').attr('src','assets/images/pos/baju.png');
+            $('#tnamabarang').html('PET Film');
+            $('#tisizebarang').html('A5');
+            $('#tharga').html('Rp.5.000');
+            $('#tstok').html('50');
+            $('#detailkertas').hide();
+            $('#detailstok').show("slow");
+            
+        }
+    });
+    $(".bstatus").click(function(){
+        $(".bstatus").removeClass("bstatusactive");
+        $(this).addClass("bstatusactive");
+    });
+
+    $('#upload_design').change(function(event) {
+        let tmppath = URL.createObjectURL(event.target.files[0])
+        $('.image > img').fadeIn('fast').attr('src',tmppath);
+        $('.image > img').css('display','');
+        $('#infoupload').css('display','');
+        $('.drag_text2').css('display','none');
+
+        $('#buploadgambar').click(function() {
+            $('.imagelogo').show();
+            $('.imagelogo div > img').fadeIn('fast').attr('src',tmppath);
+        });
+    });
+
+    $(".delete").click(function(){
+        console.log("delete");
+        $deletingRowSelector = $(this).parent("div").parent(".row").parent("td").parent("tr");
+        var $datatable = $('#dtstokbarang').DataTable();
+        $datatable.row($deletingRowSelector).remove().draw();
+    });
+
+    $(".table tbody tr").hover(function(){
+        $(".table tbody tr").children("td").removeClass("tdactivehover");
+        $(this).children("td:first-child").addClass("tdactivehover");
+    });
+    $(document).ready(function () {
+        $('#dtstokbarang').DataTable({
+            dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+            pagingType: "simple",
+            lengthMenu: [
+                [4, 10, 25, -1],
+                [4, 10, 25, 'All'],
+            ],
+        });
+        $('.dataTables_length').addClass('bs-select');
+
+        /*function gogo(){
+            var all = $("#dtBasicExample_length");
+            var all3 = $('.dataTables_length label').children('select');
+            all3.css({"width": "10%", "border": "none"});
+            console.log(all3);
+            var allset = "<li>Row per page<li>"
+            $('.pagination li:first-child').after(allset);
+            $('.pagination li:last-child').before(all3);
+            $('.dataTables_length label').hide();
+        };
+        //gogo();
+
+        $(".page-link").click(function(){
+            gogo();
+        });
+        $(".table tbody").children("tr:first-child").children("td:first-child").addClass("tdactivehover");*/
+        
+        
+    });
+    $("div.list-item").hover(function(){
+            $(this).children( "a" ).css("color", "#5BC9E1");
+            $(this).children( "a" ).children(".link").addClass("activebutton");
+            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+
+            $(".list-item").click(function(){
+                console.log("tidur");
+                $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
+                $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
+                $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
+                $(".link").removeClass("activebuttonon");
+                $(this).children( "a" ).children(".link").addClass("activebuttonon");
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            });
+            $("#foo").attr("src", "bar2.jpg");
+
+        }, function(){
+            $(this).children( "a" ).css("color", "#595552");
+            $(this).children( "a" ).children(".link").removeClass("activebutton");
+            if ($(this).children( "a" ).children("div").children("img:nth-child(2)").hasClass("activebuttonimage")){
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+            } else {
+                $(this).children( "a" ).children("div").children("img:first-child").css("display","");
+                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+            }
+            
+    });
+
+    
+
+    $("#buttonminimize").click(function() {
+        document.getElementById('sidebar').classList.toggle("hidesidebar");
+        document.getElementById('buttonminimize').classList.toggle("movebutton");
+        has = $("#buttonminimize").hasClass("movebutton");
+        if (has){
+            $(".sidebar .header .list-item").html("<img src='assets/images/nav/logo.png' style='width: 3.1vw; height:10vh;margin-left:8px;'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button2.png' class='icon' style='width: 40px;height: 40px;'>");
+        }else{
+            $(".sidebar .header .list-item").html("<img src='assets/images/logo2.png' style='width: 13vw; height:10vh'>");
+            $("#buttonminimize").html("<img src='assets/images/nav/Button.png' class='icon' style='width: 40px;height: 40px;'>");
+        }
+    });
+
+    $('#kaos').click(function(){
+        window.location.href='/kaos';
+        return false;
+    })
+
+</script>

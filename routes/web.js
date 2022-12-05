@@ -80,6 +80,22 @@ router.get("/akunting", (req, res) => {
     //console.log(">>>"+req.session);
     res.render("akunting.hbs");
 });
+
+router.get("/produksi", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("produksi.hbs");
+});
+
+router.get("/datauser", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("datauser.hbs");
+});
+
+router.get("/stok", (req, res) => {
+    //console.log(">>>"+req.session);
+    res.render("stok.hbs");
+});
+
 //Api
 router.post("/product", product.insert_product);
 router.get("/products", product.select_product);
