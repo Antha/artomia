@@ -84,6 +84,7 @@ function select_transaction(callback, req) {
             on
             t.\`idtransaction\` = tc.\`transaction_id\`
             where 1 ${option}
+            order by \`idtransaction\` desc
             `,
             function (error, rows, fields) {
                 if (error) {

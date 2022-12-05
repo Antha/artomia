@@ -219,7 +219,7 @@
                                                         <span id="" class="ht9" style="vertical-align: middle;font-weight: 600">Pesanan</span>
                                                     </div>
                                                     <div class="col-md-12" style="padding: 0px 25px;">
-                                                    <table id="tbl_order_items" class="table2" style="font-size: 10px;">
+                                                    <table id="tbl_order_items" class="table2 table table-stripped" style="font-size: 10px;">
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col" style="width: 45%;">ITEM</th>
@@ -343,9 +343,15 @@
 
         },
         success: function(data){
+            var classActiveRow;
             $.each(data.data,function(key,value){
-                $("#dtBasicExample").append(` <tr>
-                    <td class="tdactivehover">${value.idtransaction}</td>
+                classActiveRow = "";
+                if(key == 0){
+                    classActiveRow = "tdactivehover";
+                }
+
+                $("#dtBasicExample tbody").append(` <tr>
+                    <td class="${classActiveRow}">${value.idtransaction}</td>
                     <td>${value.datetime}</td>
                     <td>Rp. ${value.total_cost}</td>
                     <td>${value.chasier_name}</td>
@@ -361,6 +367,19 @@
                     </td>
                 </tr>`)
             });
+        },complete:function(){
+            //$('#dtBasicExample').DataTable();
+            $('#dtBasicExample').DataTable({
+                dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                pagingType: "simple",
+                lengthMenu: [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, 'All'],
+                ],
+                retrieve:true,
+                order:false
+            });
+            $('.dataTables_length').addClass('bs-select');
         }
     });
 
@@ -403,17 +422,8 @@
         $(".table tbody tr").children("td").removeClass("tdactivehover");
         $(this).children("td:first-child").addClass("tdactivehover");
     });
-    $(document).ready(function () {
-        $('#dtBasicExample').DataTable({
-            dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
-            pagingType: "simple",
-            lengthMenu: [
-                [5, 10, 25, -1],
-                [5, 10, 25, 'All'],
-            ],
-        });
-        $('.dataTables_length').addClass('bs-select');
 
+    $(document).ready(function () {
         /*function gogo(){
             var all = $("#dtBasicExample_length");
             var all3 = $('.dataTables_length label').children('select');
