@@ -372,7 +372,20 @@ a{
     cursor: pointer;
 }
 
-.bukuran:hover , .bletakdesign:hover{
+.bukurandesign{
+    background-color: white;
+    color: #181717;
+    border: 0.5px solid #6b6865;
+    transition-duration: 0.2s;
+    border-radius: 4px;
+    width: 166px;
+    height: 24px;
+    margin-right: 8px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.bukuran:hover , .bletakdesign:hover, .bukurandesign:hover{
     background: linear-gradient(268.85deg, #5BC9E1 28.65%, #97D7D9 100%);
     color: white;
     font-weight: 600;
@@ -507,11 +520,11 @@ a{
 .imagelogo{
     text-align: center;
     position: absolute;
-    top: 28%;
+    top: 18%;
     right: 30%;
     border: 2px dashed #d5d4d4;
     width: 150px;
-    height: 190px;
+    height: 220px;
     padding: 21px;
 }
 
