@@ -401,17 +401,17 @@
                                                 <div class="col-md-12 pilihan mt-2" id="">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <button type="button" class="ht8 btn buttonprioritasall2" style="width: 100%;"><img src="assets/images/pos/icon_ticket.png" style="width: 16px;margin-right: 13px;">Tunai</button>
+                                                            <button id="tunai" type="button" class="ht8 btn buttonprioritasall2" style="width: 100%;"><img src="assets/images/pos/icon_ticket.png" style="width: 16px;margin-right: 13px;">Tunai</button>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <button type="button" class="ht8 btn buttonprioritasall2 buttonprioritasactive2" style="width: 100%;"><img src="assets/images/pos/icon_transfer.png" style="width: 16px;margin-right: 13px;">Transfer</button>
+                                                            <button id="trf" type="button" class="ht8 btn buttonprioritasall2 buttonprioritasactive2" style="width: 100%;"><img src="assets/images/pos/icon_transfer.png" style="width: 16px;margin-right: 13px;">Transfer</button>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <button type="button" class="ht8 btn buttonprioritasall2" style="width: 100%;"><img src="assets/images/pos/icon_wallet.png" style="width: 16px;margin-right: 13px;">E-Wallet</button>
+                                                            <button id="ewallet" type="button" class="ht8 btn buttonprioritasall2" style="width: 100%;"><img src="assets/images/pos/icon_wallet.png" style="width: 16px;margin-right: 13px;">E-Wallet</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12 pilihan mt-4" id="" style="padding:0;">
+                                                <div class="col-md-12 pilihan mt-4" id="bankchoice" style="padding:0;">
                                                     <div class="ht82" style="">
                                                         <div class="dropdown" style="font-weight: 600;">
                                                             <a style="color: black;background-color: #fff;width: 100%;text-align: left;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihanbankbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -443,6 +443,38 @@
                                                                     <a class="dropdown-item" href="#">
                                                                         <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
                                                                         <span class="ht82">BRI</span>
+                                                                        <span style="padding: 0px 8px;">|</span>
+                                                                        <span class="color-grey">Otomatis dicek</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 pilihan mt-4" id="ewalletchoice" style="padding:0;display:none;">
+                                                    <div class="ht82" style="">
+                                                        <div class="dropdown" style="font-weight: 600;">
+                                                            <a style="color: black;background-color: #fff;width: 100%;text-align: left;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihanewalletbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
+                                                                <span class="ht82">Ovo</span>
+                                                                <span style="padding: 0px 8px;">|</span>
+                                                                <span class="color-grey">Otomatis dicek</span>
+                                                                <span class="caret" style="padding-right: 46%;"></span>
+                                                            </a>
+
+                                                            <ul class="dropdown-menu isiewallet" aria-labelledby="pilihanewalletbutton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);width: 100%;">
+                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
+                                                                        <span class="ht82">Link Aja</span>
+                                                                        <span style="padding: 0px 8px;">|</span>
+                                                                        <span class="color-grey">Otomatis dicek</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
+                                                                        <span class="ht82">Go Pay</span>
                                                                         <span style="padding: 0px 8px;">|</span>
                                                                         <span class="color-grey">Otomatis dicek</span>
                                                                     </a>
@@ -625,11 +657,28 @@
     $(".buttonprioritasall2").click(function(){
         $(".buttonprioritasall2").removeClass("buttonprioritasactive2");
         $(this).addClass("buttonprioritasactive2");
+        var getid = $(this).attr('id');
+        console.log(getid);
+        if(getid=="tunai"){
+            $("#bankchoice").hide("slow");
+            $("#ewalletchoice").hide("slow");
+        }else if(getid=="trf"){
+            $("#ewalletchoice").hide("slow");
+            $("#bankchoice").show("slow");
+        }else{
+            $("#bankchoice").hide("slow");
+            $("#ewalletchoice").show("slow");
+        }
     });
 
     $(".isibank li").click(function(){
         var getlogo = $(this).data('value');
         $("#pilihanbankbutton").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;'>"+$(this).text()+"<span class='caret' style='padding-right: 46%;'></span>");
+    });
+
+    $(".isiewallet li").click(function(){
+        var getlogo = $(this).data('value');
+        $("#pilihanewalletbutton").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;'>"+$(this).text()+"<span class='caret' style='padding-right: 46%;'></span>");
     });
 
     $("div.list-item").hover(function(){

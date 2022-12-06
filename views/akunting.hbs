@@ -393,7 +393,7 @@
                                                                     <span class="caret" style="padding-right: 56%;"></span>
                                                                 </a>
 
-                                                                <ul class="dropdown-menu isicategory" aria-labelledby="pilihancategoryshow" x-placement="top-start" style="overflow: hidden;position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);">
+                                                                <ul class="dropdown-menu isicategorydetail" aria-labelledby="pilihancategoryshow" x-placement="top-start" style="overflow: hidden;position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);">
                                                                     <li data-value="assets/images/icon_category.png">
                                                                         <a class="dropdown-item" href="#">
                                                                             <img src="assets/images/icon_category.png" style="width: 32px;margin-right: 13px;padding: 8px;">
@@ -637,6 +637,11 @@
     $(".isicategory li").click(function(){
         var getlogo = $(this).data('value');
         $("#pilihancategory").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'>"+$(this).text()+"<span class='caret' style='padding-right: 46%;'></span>");
+    });
+
+    $(".isicategorydetail li").click(function(){
+        var getlogo = $(this).data('value');
+        $("#pilihancategoryshow").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'>"+$(this).text()+"<span class='caret' style='padding-right: 30%;'></span>");
     });
 
     $(".delete").click(function(){

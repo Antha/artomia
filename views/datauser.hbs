@@ -259,13 +259,13 @@
                                         </div>
                                         <div class="col-md-12 mt-2" style="">
                                             <div class="dropdown" style="font-weight: 600;">
-                                                <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihancategoryshow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihancategoryedit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
                                                     <span class="ht9">Category</span>
                                                     <span class="caret" style="padding-right: 56%;"></span>
                                                 </a>
 
-                                                <ul class="dropdown-menu isicategory" aria-labelledby="pilihancategoryshow" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+                                                <ul class="dropdown-menu isicategoryedit" aria-labelledby="pilihancategoryedit" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
                                                     <li data-value="assets/images/pos/icon_user3.png">
                                                         <a class="dropdown-item" href="#">
                                                             <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
@@ -572,6 +572,12 @@
 </html>
 {{> scripts}}
 <script>
+
+     $(".isicategoryedit li").click(function(){
+        var getlogo = $(this).data('value');
+        $("#pilihancategorykertas").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+    });
+
     $(".bstatus").click(function(){
         $(".bstatus").removeClass("bstatusactive");
         $(this).addClass("bstatusactive");
