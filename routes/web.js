@@ -132,6 +132,8 @@ router.get("/product_color", product.select_all_product_color);
 router.get("/product_variant", product.select_all_product_variant);
 router.get("/product_arm_length", product.select_all_product_arm_length);
 
+router.get("/papers", product.select_paper);
+
 router.post("/customer", customer.insert_customer);
 router.get("/customers", customer.select_customer);
 router.get("/customer_priority", customer.select_customer_priority);

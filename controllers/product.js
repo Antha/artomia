@@ -96,3 +96,19 @@ exports.select_all_product_arm_length = function (req, res) {
         res.end();
     });
 };
+
+exports.select_paper = function (req, res) {
+    product.select_paper(function (status, data) {
+        var mydata = [];
+        var myjson;
+        var status;
+
+        myjson = {
+            status: status,
+            data: data.rows,
+        };
+        //console.log(myjson);
+        res.json(myjson);
+        res.end();
+    });
+};

@@ -155,9 +155,33 @@ function select_all_product_arm_length(callback) {
     });
 }
 
+// table product arm length
+function select_paper(callback) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    con.getConnection(function (err, connection) {
+        con.query(`SELECT * FROM paper`, function (error, rows, fields) {
+            if (error) {
+                callback(error, {rows: rows, fields: fields});
+            } else {
+                callback("success", {rows: rows, fields: fields});
+            }
+            con.end();
+        });
+    });
+}
+
 module.exports.insert_product = insert_product;
 module.exports.select_product = select_product;
 module.exports.select_all_product_size = select_all_product_size;
 module.exports.select_all_product_color = select_all_product_color;
 module.exports.select_all_product_variant = select_all_product_variant;
 module.exports.select_all_product_arm_length = select_all_product_arm_length;
+module.exports.select_paper = select_paper;
