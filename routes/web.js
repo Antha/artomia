@@ -55,6 +55,7 @@ router.get("/keranjang_add", (req, res) => {
     var cart = req.session.cart || [];
 
     cart.push({
+        product_id: req.query.product_id,
         product_name: req.query.product_name,
         product_color: req.query.product_color,
         product_size: req.query.product_size,
@@ -125,6 +126,7 @@ router.get("/stok", (req, res) => {
 //Api
 router.post("/product", product.insert_product);
 router.get("/products", product.select_product);
+router.get("/products/:id", product.select_product);
 router.get("/product_size", product.select_all_product_size);
 router.get("/product_color", product.select_all_product_color);
 router.get("/product_variant", product.select_all_product_variant);

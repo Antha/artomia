@@ -768,11 +768,12 @@
                                 url: '/transaction_item',
                                 type: 'post',
                                 data: {
-                                    product_id:1,
+                                    product_id:value.product_id,
                                     product_color_id:color_id,
                                     product_size_id:size_id,
                                     transaction_id:transaction_id,
-                                    amount: value.item_amount
+                                    amount: value.item_amount,
+                                    pic:value.product_pic_logo
                                 },
                                 success: function(data3){
                  

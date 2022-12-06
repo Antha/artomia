@@ -110,12 +110,13 @@ function insert_transaction_item(callback, req) {
 
     con.getConnection(function (err, connection) {
         con.query(
-            `INSERT INTO transaction_item(product_id,product_color_id,product_size_id,transaction_id,amount) VALUES (
+            `INSERT INTO transaction_item(product_id,product_color_id,product_size_id,transaction_id,amount,pic) VALUES (
                 '${req.body.product_id}',
                 '${req.body.product_color_id}',
                 '${req.body.product_size_id}',
                 '${req.body.transaction_id}',
-                '${req.body.amount}'
+                '${req.body.amount}',
+                '${req.body.pic}'
             ) 
             `,
             function (error, rows, fields) {

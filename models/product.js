@@ -45,8 +45,14 @@ function select_product(callback, req) {
         port: connect.port,
     });
 
+    var option = "";
+
+    if (req.params.id) {
+        option = " AND idproducts = '" + req.params.id + "' ";
+    }
+
     con.getConnection(function (err, connection) {
-        con.query(`SELECT * FROM products`, function (error, rows, fields) {
+        con.query(`SELECT * FROM products WHERE 1 ${option} `, function (error, rows, fields) {
             if (error) {
                 callback(error, {rows: rows, fields: fields});
             } else {

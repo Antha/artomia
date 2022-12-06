@@ -479,8 +479,7 @@
                                                     <img src="" style="">
                                                 </div>
                                             </div>
-                                            <div style="text-align: center;">
-                                                <img src="assets/images/pos/Kaos1.png" style="height: 326px;width:326px;resize: both;">
+                                            <div id="img_product" style="text-align: center;">
                                             </div>
                                         </div>
                                         <div class="col-md-12 row mt-4" id="" style="text-align: center;">
@@ -661,6 +660,7 @@
         jumalahpesan+=1;
         $('#nilai').html(jumalahpesan);
     });
+
     $("#min").click(function(){
         if(jumalahpesan!=0){
             jumalahpesan-=1;
@@ -711,25 +711,25 @@
     });
     
     $("div.list-item").hover(function(){
-            $(this).children( "a" ).css("color", "#5BC9E1");
-            $(this).children( "a" ).children(".link").addClass("activebutton");
-            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
-            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+        $(this).children( "a" ).css("color", "#5BC9E1");
+        $(this).children( "a" ).children(".link").addClass("activebutton");
+        $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+        $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
 
-            $(".list-item").click(function(){
-                console.log("tidur");
-                $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
-                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
-                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
-                $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
-                $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
-                $(".link").removeClass("activebuttonon");
-                $(this).children( "a" ).children(".link").addClass("activebuttonon");
-                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
-                $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
-                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
-            });
-            $("#foo").attr("src", "bar2.jpg");
+        $(".list-item").click(function(){
+            console.log("tidur");
+            $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
+            $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+            $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
+            $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
+            $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
+            $(".link").removeClass("activebuttonon");
+            $(this).children( "a" ).children(".link").addClass("activebuttonon");
+            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+        });
+        $("#foo").attr("src", "bar2.jpg");
 
         }, function(){
             $(this).children( "a" ).css("color", "#595552");
@@ -740,8 +740,7 @@
             } else {
                 $(this).children( "a" ).children("div").children("img:first-child").css("display","");
                 $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
-            }
-            
+            }   
     });
 
     $("#buttonminimize").click(function() {
@@ -767,6 +766,22 @@
         return false;
     })
 
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const idProducts = urlParams.get('product_id');
+
+    $.ajax({
+        url: '/products/'+idProducts,
+        type: 'get',
+        data: {  },
+        success: function(data){
+            $.each(data.data,function(key,value){
+                $("#img_product").html(`<img class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;">`)
+                $("#data-product-name").html(value.name);
+            });
+        }
+    });
+
     function screenshot(){
         //var pic_id = $("#clothes_with_logo");
         html2canvas(document.getElementById("clothes_with_logo"),{background: '#fff'}).then(function(canvas) {
@@ -777,7 +792,7 @@
 
             // AJAX request
             $.ajax({
-                url: 'http://localhost:80/artomia/artomia_cap.php',
+                url: 'http://localhost:81/api/artomia/artomia_cap.php',
                 type: 'post',
                 data: {image: base64URL},
                 success: function(data){
@@ -794,6 +809,7 @@
                         url: '/keranjang_add',
                         type: 'get',
                         data: {
+                            product_id: idProducts,
                             product_name: product_name,
                             product_color: product_color,
                             product_size: product_size,
