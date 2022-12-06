@@ -389,7 +389,7 @@
                                                         <button class="bjumlahstok" id="minkaos"><i class="fa-regular fa-square-minus"></i></button>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="jumlahstokkaos" class="form-control data1" id="jumlahstokkaos" placeholder="Jumlah Stok" value="">
+                                                        <input style="text-align: center;font-size: 14px;font-size: 8pt;" type="text" name="jumlahstokkaos" class="form-control data1" id="jumlahstokkaos" placeholder="Jumlah Stok" value="">
                                                     </div>
                                                     <div class="col-md-2">
                                                         <button class="bjumlahstok" id="pluskaos"><i class="fa-regular fa-square-plus"></i></button>
@@ -484,7 +484,7 @@
                                                         <button class="bjumlahstok" id="min"><i class="fa-regular fa-square-minus"></i></button>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="jumlahstokkertas" class="form-control data1" id="jumlahstokkertas" placeholder="Jumlah Stok" value="">
+                                                        <input style="text-align: center;font-size: 14px;font-size: 8pt;" type="text" name="jumlahstokkertas" class="form-control data1" id="jumlahstokkertas" placeholder="Jumlah Stok" value="">
                                                     </div>
                                                     <div class="col-md-2">
                                                         <button class="bjumlahstok" id="plus"><i class="fa-regular fa-square-plus"></i></button>
@@ -732,5 +732,36 @@
         window.location.href='/kaos';
         return false;
     })
+
+    
+    var jumlahstok = 0;
+    $("#pluskaos").click(function(){
+        jumlahstok+=1;
+        $('#jumlahstokkaos').val(jumlahstok);
+    });
+    $("#minkaos").click(function(){
+        if(jumlahstok!=0){
+            jumlahstok-=1;
+            $('#jumlahstokkaos').val(jumlahstok);
+        }else{
+            
+        }
+        
+    });
+
+    var jumlahstokkertas = 0;
+    $("#plus").click(function(){
+        jumlahstokkertas+=1;
+        $('#jumlahstokkertas').val(jumlahstokkertas);
+    });
+    $("#min").click(function(){
+        if(jumlahstokkertas!=0){
+            jumlahstokkertas-=1;
+            $('#jumlahstokkertas').val(jumlahstokkertas);
+        }else{
+            
+        }
+        
+    });
 
 </script>
