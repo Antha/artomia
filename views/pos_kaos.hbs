@@ -366,7 +366,7 @@
                                     <div class="">
                                         <div class="col-md-12 row" style="">
                                                 <div class="col-md-6 ht4 color-black" id="titlekaos" style="font-weight:bold;">
-                                                    <i class="mdi mdi-tag-outline m-r-5" style="font-size: 13pt;margin-right: 8px;"></i> <div id="data-product-name">Kaos Red Been</div>
+                                                    <i class="mdi mdi-tag-outline m-r-5" style="font-size: 13pt;margin-right: 8px;"></i> <span id="data-product-name">Kaos Red Been</span>
                                                 </div>
                                                 <div class="col-md-6 ht6 color-black" id="" style="text-align:right;">
                                                     <label>
@@ -384,9 +384,9 @@
                                         </div>
                                         
                                         <div class="col-md-12 mt-4" id="clothes_with_logo" style="">
-                                            <div class="imagelogo" style="display: none;">
+                                            <div class="imagelogo" style="display: none;overflow: hidden;">
                                                 <div id="penampung">
-                                                    <img src="" style="">
+                                                    <img id="logoimage" src="" style="position: absolute;">
                                                 </div>
                                             </div>
                                             <div id="img_product"  style="text-align: center;">
@@ -434,15 +434,15 @@
                                                     <div class="col-md-12 ht82 mt-2" style="padding-left: 8px;">
                                                         <div class="dropdown show" style="font-weight: 600;">
                                                             <a style="color: black;background-color: #fff;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="titlebutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i style="color:#b94d43;margin-right:8px;" class="fa-solid fa-square"></i>Red Been
+                                                                <i data-value="White" style="color:#fff;margin-right:8px;" class="fa-solid fa-square"></i>White
                                                             </a>
 
                                                             <ul class="dropdown-menu isiwarna" aria-labelledby="titlebutton">
-                                                                <li data-value="#b94d43"><a class="dropdown-item" href="#"><i style="color:#b94d43;margin-right:8px;" class="fa-solid fa-square"></i>Red Been</a></li>
-                                                                <li data-value="#65e132"><a class="dropdown-item" href="#"><i style="color:#65e132;margin-right:8px;" class="fa-solid fa-square"></i>Green</a></li>
-                                                                <li data-value="#b9b543"><a class="dropdown-item" href="#"><i style="color:#b9b543;margin-right:8px;" class="fa-solid fa-square"></i>Yellow</a></li>
-                                                                <li data-value="#fb26e1"><a class="dropdown-item" href="#"><i style="color:#fb26e1;margin-right:8px;" class="fa-solid fa-square"></i>Pink</a></li>
-                                                                <li data-value="#43b9b9"><a class="dropdown-item" href="#"><i style="color:#43b9b9;margin-right:8px;" class="fa-solid fa-square"></i>Blue</a></li>
+                                                                <li data-value="Red Been"><a class="dropdown-item" href="#"><i data-value="#b94d43" style="color:#b94d43;margin-right:8px;" class="fa-solid fa-square"></i>Red Been</a></li>
+                                                                <li data-value="Green"><a class="dropdown-item" href="#"><i  data-value="#65e132" style="color:#65e132;margin-right:8px;" class="fa-solid fa-square"></i>Green</a></li>
+                                                                <li data-value="Yellow"><a class="dropdown-item" href="#"><i  data-value="#b9b543" style="color:#b9b543;margin-right:8px;" class="fa-solid fa-square"></i>Yellow</a></li>
+                                                                <li data-value="Pink"><a class="dropdown-item" href="#"><i  data-value="#fb26e1" style="color:#fb26e1;margin-right:8px;" class="fa-solid fa-square"></i>Pink</a></li>
+                                                                <li data-value="Blue"><a class="dropdown-item" href="#"><i  data-value="#43b9b9" style="color:#43b9b9;margin-right:8px;" class="fa-solid fa-square"></i>Blue</a></li>
                                                             </ul>
                                                         </div>
                                                         <!--<label>
@@ -486,12 +486,12 @@
                                             <div class="col-md-12 mt-3" id="" style="">
                                                 <div class="col-md-12 ht82" style="padding: 0px;">Letak Desain & Upload Gambar <span class="ht9" style="margin-left: 8px;opacity:0.7;"> (Maksimal 2 Letak)</span></div>
                                                 <div class="col-md-12 ht82 mt-2" style="padding: 0px;">
-                                                    <button class="bletakdesign" data-toggle="modal" data-target="#modalupload" value="Dada Kiri">Dada Kiri</button>
-                                                    <button class="bletakdesign activebukuran2" data-toggle="modal" data-target="#modalupload" value="Dada Tengah">Depan Tengah</button>
-                                                    <button class="bletakdesign" data-toggle="modal" data-target="#modalupload" value="Lengan Kiri">Lengan Kiri</button>
-                                                    <button class="bletakdesign" data-toggle="modal" data-target="#modalupload" value="Dada Kanan">Dada Kanan</button>
-                                                    <button class="bletakdesign" data-toggle="modal" data-target="#modalupload" value="Punggung">Punggung</button>
-                                                    <button class="bletakdesign" data-toggle="modal" data-target="#modalupload" value="Lengan Kanan">Lengan Kanan</button>
+                                                    <button class="bletakdesign activebukuran2" data-toggle="modal" data-target="#modalupload" value="Dada Tengah">Upload Image</button>
+                                                </div>
+                                                <div class="col-md-12 ht82 mt-2" style="padding: 0px;">
+                                                    <button class="bukurandesign" id="perkecil" value="Dada Kanan">Perkecil</button>
+                                                    <button class="bukurandesign" id="normal" value="Punggung">Normal</button>
+                                                    <button class="bukurandesign" id="perbesar" value="Lengan Kanan">Perbesar</button>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mt-4" id="" style="">
@@ -566,7 +566,7 @@
 </html>
 {{> scripts}}
 <script>
-     $("#bucketskertas").on('click','.cplusbarang',function(){
+    $("#bucketskertas").on('click','.cplusbarang',function(){
         var nilaipenampung = $(this).siblings('.cnilaibarang').text();
         var nilai = parseInt(nilaipenampung);
         nilai+=1;
@@ -619,13 +619,13 @@
     });
 
     $(".isiwarna li").click(function(){
-        var colorval=$(this).data('value');
+        var colorval=$(this).children("a").children("i").data('value');
         $("#titlebutton").html("<i style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
     });
 
-    setTimeout(function(){
+    /*setTimeout(function(){
         $(".isiwarna li").trigger("click");
-    },500);
+    },500);*/
 
     $(".isikain li").click(function(){
         var colorval=$(this).data('value');
@@ -716,7 +716,8 @@
             });
         }
     });
-
+    var product_color = $("#titlebutton").children("i").attr("data-value");
+    console.log(product_color);
     function screenshot(){
         //var pic_id = $("#clothes_with_logo");
         html2canvas(document.getElementById("clothes_with_logo"),{background: '#fff'}).then(function(canvas) {
@@ -727,7 +728,7 @@
 
             // AJAX request
             $.ajax({
-                url: 'http://localhost:81/api/artomia/artomia_cap.php',
+                url: 'http://localhost:80/artomia/artomia_cap.php',
                 type: 'post',
                 data: {image: base64URL},
                 success: function(data){
@@ -736,10 +737,10 @@
                     console.log(jsonParsed["product_pic_logo"]);
 
                     var product_name = $("#data-product-name").text();
-                    var product_color = $("#titlebutton").text();
+                    var product_color = $("#titlebutton").children("i").attr("data-value");
                     var product_size = $(".bukuran.activebukuran").text();
                     var product_pic_logo = jsonParsed["product_pic_logo"];
-
+                    console.log(product_color);
                     $.ajax({
                         url: '/keranjang_add',
                         type: 'get',
@@ -799,4 +800,74 @@
         },"Only digits allowed");
     });
     //Number value only
+    dragElement(document.getElementById("logoimage"));
+    function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id)) {
+            /* if present, the header is where you move the DIV from:*/
+            document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+        } else {
+            /* otherwise, move the DIV from anywhere inside the DIV:*/
+            elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            /* stop moving when mouse button is released:*/
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    };
+
+    $('#perbesar').click(function(){
+        enlargeImg();
+    });
+    $('#normal').click(function(){
+        resetImg();
+    });
+    $('#perkecil').click(function(){
+        minImg();
+    });
+    img = document.getElementById("logoimage");
+    // Function to increase image size
+    function enlargeImg() {
+    // Set image size to 1.5 times original
+        img.style.transform = "scale(1.5)";
+        // Animation effect
+        img.style.transition = "transform 0.25s ease";
+    }
+    // Function to reset image size
+    function resetImg() {
+    // Set image size to original
+        img.style.transform = "scale(1)";
+        img.style.transition = "transform 0.25s ease";
+    }
+    function minImg() {
+    // Set image size to original
+        img.style.transform = "scale(0.5)";
+        img.style.transition = "transform 0.25s ease";
+    }
 </script>
