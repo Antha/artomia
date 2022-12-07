@@ -349,11 +349,12 @@
                                                             </a>
 
                                                             <ul class="dropdown-menu isiwarna" aria-labelledby="titlebutton">
-                                                                <li data-value="Red Been"><a class="dropdown-item" href="#"><i data-value="#b94d43" style="color:#b94d43;margin-right:8px;" class="fa-solid fa-square"></i>Red Been</a></li>
-                                                                <li data-value="Green"><a class="dropdown-item" href="#"><i  data-value="#65e132" style="color:#65e132;margin-right:8px;" class="fa-solid fa-square"></i>Green</a></li>
-                                                                <li data-value="Yellow"><a class="dropdown-item" href="#"><i  data-value="#b9b543" style="color:#b9b543;margin-right:8px;" class="fa-solid fa-square"></i>Yellow</a></li>
-                                                                <li data-value="Pink"><a class="dropdown-item" href="#"><i  data-value="#fb26e1" style="color:#fb26e1;margin-right:8px;" class="fa-solid fa-square"></i>Pink</a></li>
-                                                                <li data-value="Blue"><a class="dropdown-item" href="#"><i  data-value="#43b9b9" style="color:#43b9b9;margin-right:8px;" class="fa-solid fa-square"></i>Blue</a></li>
+                                                                <li data-value="white"><a class="dropdown-item" href="#"><i data-value="#fff" style="color:#fff;margin-right:8px;" class="fa-solid fa-square"></i>White</a></li>
+                                                                <li data-value="merah"><a class="dropdown-item" href="#"><i data-value="#b94d43" style="color:#b94d43;margin-right:8px;" class="fa-solid fa-square"></i>Red Been</a></li>
+                                                                <li data-value="hijau"><a class="dropdown-item" href="#"><i  data-value="#65e132" style="color:#65e132;margin-right:8px;" class="fa-solid fa-square"></i>Green</a></li>
+                                                                <li data-value="kuning"><a class="dropdown-item" href="#"><i  data-value="#b9b543" style="color:#b9b543;margin-right:8px;" class="fa-solid fa-square"></i>Yellow</a></li>
+                                                                <li data-value="grey"><a class="dropdown-item" href="#"><i  data-value="#5f5f5f" style="color:#5f5f5f;margin-right:8px;" class="fa-solid fa-square"></i>Grey</a></li>
+                                                                <li data-value="biru"><a class="dropdown-item" href="#"><i  data-value="#43b9b9" style="color:#43b9b9;margin-right:8px;" class="fa-solid fa-square"></i>Blue</a></li>
                                                             </ul>
                                                         </div>
                                                         <!--<label>
@@ -557,14 +558,6 @@
         
     });
 
-    $("#tampakbelakang").click(function(){
-        $('#produkpos').attr('src','assets/images/pos/bajubelakang.jpeg')
-    });
-
-    $("#tampakdepan").click(function(){
-        $('#produkpos').attr('src','assets/images/pos/Kaos1.png')
-    });
-
     $(".bletakdesign").click(function(){
         var text = $( this ).text();
         $(".bletakdesign").removeClass("activebukuran2");
@@ -579,12 +572,67 @@
 
     $(".isiwarna li").click(function(){
         var colorval=$(this).children("a").children("i").data('value');
+        var colorval2=$(this).data('value');
+        //console.log(colorval);
+        //console.log(colorval2);
+        var jenisproduk=$('#produkpos').attr('class');
+        var tampungselect="";
+        var tampungselect2="";
+        switch(jenisproduk){
+            case 'kaos':
+            tampungselect = "assets/images/kaos/"+colorval2+"1.png";
+            $("#produkpos").attr('src',tampungselect);
+            //console.log(tampungselect);
+            break;
+
+            case 'sweater':
+            color_id = 2;
+            break;
+
+            case 'tank-top':
+            color_id = 3;
+            break;
+
+            case 'topi':
+            color_id = 4;
+            break;
+
+            case 'totebag':
+            color_id = 5;
+            break;
+
+            case 'polo-cap':
+            color_id = 6;
+            break;
+
+            case 'panel-cap':
+            color_id = 6;
+            break;
+
+            case 'trucker-cap':
+            color_id = 6;
+            break;
+        }
+        $("#tampakbelakang").click(function(){
+            tampungselect2 = "assets/images/kaos/"+colorval2+"2.png";
+            $('#produkpos').attr('src',tampungselect2);
+        });
+
+        $("#tampakdepan").click(function(){
+            $('#produkpos').attr('src',tampungselect);
+        });
+        
         $("#titlebutton").html("<i style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
     });
 
-    /*setTimeout(function(){
-        $(".isiwarna li").trigger("click");
-    },500);*/
+    
+    $("#tampakbelakang").click(function(){
+        $('#produkpos').attr('src','assets/images/kaos/white1.png')
+    });
+
+    $("#tampakdepan").click(function(){
+        $('#produkpos').attr('src','assets/images/kaos/white2.png')
+    });
 
     $(".isikain li").click(function(){
         var colorval=$(this).data('value');
@@ -670,11 +718,12 @@
         data: {  },
         success: function(data){
             $.each(data.data,function(key,value){
-                $("#img_product").html(`<img class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;">`)
+                $("#img_product").html(`<img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;">`)
                 $("#data-product-name").html(value.name);
             });
         }
     });
+
     var product_color = $("#titlebutton").children("i").attr("data-value");
     console.log(product_color);
     function screenshot(){

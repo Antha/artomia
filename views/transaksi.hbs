@@ -380,6 +380,11 @@
                 order:true,
             });
             $('.dataTables_length').addClass('bs-select');
+            
+            $("#dtBasicExample tbody tr").hover(function(){
+                $("#dtBasicExample tbody tr").children("td").removeClass("tdactivehover");
+                $(this).children("td:first-child").addClass("tdactivehover");
+            });
         }
     });
 
@@ -411,17 +416,14 @@
         });
     });
 
-    $(".delete").click(function(){
-        console.log("delete");
-        $deletingRowSelector = $(this).parent("td").parent("tr");
+    
+    $("#dtBasicExample").on('click','.delete',function(){
+        deletingRowSelector = $(this).parent("td").parent("tr");
+        console.log(deletingRowSelector);
         var $datatable = $('#dtBasicExample').DataTable();
-        $datatable.row($deletingRowSelector).remove().draw();
+        $datatable.row(deletingRowSelector).remove().draw();
     });
 
-    $(".table tbody tr").hover(function(){
-        $(".table tbody tr").children("td").removeClass("tdactivehover");
-        $(this).children("td:first-child").addClass("tdactivehover");
-    });
 
     $(document).ready(function () {
         /*function gogo(){
