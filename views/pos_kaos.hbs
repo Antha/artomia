@@ -478,6 +478,9 @@
 {{> scripts}}
 <script>
     var paper_bucket = [];
+    
+    var product_color = $("#titlebutton").children("i").attr("data-value");
+    //console.log(product_color);
 
     $.ajax({
         url: '/papers/',
@@ -497,9 +500,9 @@
                                     <div id="hargapet" class="ht62 color-red">Rp. ${value.price}</div>
                                 </div>
                                 <div class="col-md-3" style="text-align: right;padding-top: 8px;">
-                                    <i id="minmodal" data-name="${value.name}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
+                                    <i id="minmodal" data-name="${value.name}" data-index="${key}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
                                     <b id="nilaijeniskertas" class="cnilaibarang" style="font-size: 20px; margin:0px 8px;">0</b>
-                                    <i id="plusmodal" data-name="${value.name}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
+                                    <i id="plusmodal" data-name="${value.name}" data-index="${key}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
                                 </div>
                             </div>
                         </div>
@@ -513,7 +516,7 @@
         var nilai = parseInt(nilaipenampung);
         nilai+=1;
         $(this).siblings('.cnilaibarang').html(nilai);
-        paper_bucket[$(this).data("id")] = {nilai,name:$(this).data("name")};
+        paper_bucket[$(this).data("index")] = {id:$(this).data("id"),nilai:nilai,name:$(this).data("name")};
     });
 
     $("#bucketskertas").on('click','.cminbarang',function(){
@@ -525,7 +528,7 @@
             $(this).siblings('.cnilaibarang').html(nilai2);
         }
 
-        paper_bucket[$(this).data("id")] = {nilai:nilai2,name:$(this).data("name")};
+        paper_bucket[$(this).data("index")] = {id:$(this).data("id"),nilai:nilai2,name:$(this).data("name")};
     });
 
     $("#btn_add_paper").click(function(){
@@ -663,6 +666,7 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const idProducts = urlParams.get('product_id');
+    var item_net_cost = 0;
 
     $.ajax({
         url: '/products/'+idProducts,
@@ -672,11 +676,11 @@
             $.each(data.data,function(key,value){
                 $("#img_product").html(`<img class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;">`)
                 $("#data-product-name").html(value.name);
+                item_net_cost = value.price;
             });
         }
     });
-    var product_color = $("#titlebutton").children("i").attr("data-value");
-    console.log(product_color);
+ 
     function screenshot(){
         //var pic_id = $("#clothes_with_logo");
         html2canvas(document.getElementById("clothes_with_logo"),{background: '#fff'}).then(function(canvas) {
@@ -699,6 +703,7 @@
                     var product_color = $("#titlebutton").children("i").attr("data-value");
                     var product_size = $(".bukuran.activebukuran").text();
                     var product_pic_logo = jsonParsed["product_pic_logo"];
+
                     console.log(product_color);
                     $.ajax({
                         url: '/keranjang_add',
@@ -709,9 +714,10 @@
                             product_color: product_color,
                             product_size: product_size,
                             product_pic_logo: product_pic_logo,
-                            item_net_cost:45000,
+                            item_net_cost:item_net_cost,
                             item_amount:1,
-                            item_total_cost:45000
+                            item_total_cost:item_net_cost,
+                            paper_bucket:paper_bucket
                         },
                         success: function(data){
                             console.log('Upload successfully');

@@ -181,6 +181,36 @@ function select_transaction_item(callback, req) {
     });
 }
 
+function insert_transaction_item_paper(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    con.getConnection(function (err, connection) {
+        con.query(
+            `INSERT INTO transaction_item_paper(paper_id,transaction_item_id) VALUES (
+                '${req.body.paper_id}',
+                '${req.body.transaction_item_id}'
+                NOW()
+            ) 
+            `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}
+
 module.exports.insert_transaction = insert_transaction;
 module.exports.select_transaction = select_transaction;
 module.exports.insert_transaction_item = insert_transaction_item;

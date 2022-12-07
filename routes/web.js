@@ -63,6 +63,7 @@ router.get("/keranjang_add", (req, res) => {
         item_net_cost: req.query.item_net_cost,
         item_amount: req.query.item_amount,
         item_total_cost: parseInt(req.query.item_total_cost),
+        paper_bucket: paper_bucket,
     });
 
     req.session.cart = cart;
