@@ -63,7 +63,7 @@ router.get("/keranjang_add", (req, res) => {
         item_net_cost: req.query.item_net_cost,
         item_amount: req.query.item_amount,
         item_total_cost: parseInt(req.query.item_total_cost),
-        paper_bucket: paper_bucket,
+        paper_bucket: req.query.paper_bucket
     });
 
     req.session.cart = cart;
@@ -149,5 +149,6 @@ router.get("/transaction/:idTransaction", transaction.select_transaction);
 router.post("/transaction_item", transaction.insert_transaction_item);
 router.get("/transaction_item", transaction.select_transaction_item);
 router.get("/transaction_item/:idTransaction", transaction.select_transaction_item);
+router.post("/transaction_item_paper", transaction.insert_transaction_item_paper);
 
 module.exports = router;

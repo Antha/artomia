@@ -125,8 +125,6 @@
                                         </div>
                                     </div>
                                     <div class="row mt-2" id="bucketskertas">
-                                       
-                                       
                                         <!-- Card Pada modal Jenis Kertas -->
                                     </div>
                                     <div class="row mt-2">
@@ -478,10 +476,12 @@
 </html>
 {{> scripts}}
 <script>
-    var paper_bucket = [];
-    
+    var paper_bucket = {};
     var product_color = $("#titlebutton").children("i").attr("data-value");
     //console.log(product_color);
+
+    const obj = {name: "John", age: 30, city: "New York"};
+   
 
     $.ajax({
         url: '/papers/',
@@ -517,7 +517,7 @@
         var nilai = parseInt(nilaipenampung);
         nilai+=1;
         $(this).siblings('.cnilaibarang').html(nilai);
-        paper_bucket[$(this).data("index")] = {id:$(this).data("id"),nilai:nilai,name:$(this).data("name")};
+        paper_bucket["id_"+$(this).data("index")] = {id:$(this).data("id"),nilai:nilai,name:$(this).data("name")};
     });
 
     $("#bucketskertas").on('click','.cminbarang',function(){
@@ -529,23 +529,36 @@
             $(this).siblings('.cnilaibarang').html(nilai2);
         }
 
-        paper_bucket[$(this).data("index")] = {id:$(this).data("id"),nilai:nilai2,name:$(this).data("name")};
+        paper_bucket["id_"+$(this).data("index")] = {id:$(this).data("id"),nilai:nilai2,name:$(this).data("name")};
     });
 
     $("#btn_add_paper").click(function(){
+        console.log("paper_bucket");
         console.log(paper_bucket);
+
         $("#kertasdipilih").html("[Custom]");
-        $.each(paper_bucket,function(key,value){  
-            if(value){
-                $("#kertasdipilih").append(value.name+" x "+value.nilai+" & ");
-            }
-        });
+
+        for(var key in paper_bucket) {
+            var value = paper_bucket[key];
+            //record = objectVar[key];
+            //console.log("value");
+            $("#kertasdipilih").append(value.name+" x "+value.nilai+" & ");
+        }
+
+        /*$.each(paper_bucket,function(key,value){  
+            console.log("value");
+            //console.log(value);
+            //$("#kertasdipilih").append(value.name+" x "+value.nilai+" & ");
+        });*/
 
         var divtext = $("#kertasdipilih").text();
         $("#kertasdipilih").html(divtext.slice(0,-2));
+
+        $('#exampleModalCenter').modal('hide');
     });
 
     var jumalahpesan = 0;
+    
     $("#plus").click(function(){
         jumalahpesan+=1;
         $('#nilai').html(jumalahpesan);
@@ -730,7 +743,7 @@
     });
 
     var product_color = $("#titlebutton").children("i").attr("data-value");
-    console.log(product_color);
+    //console.log(product_color);
     function screenshot(){
         //var pic_id = $("#clothes_with_logo");
         html2canvas(document.getElementById("clothes_with_logo"),{background: '#fff'}).then(function(canvas) {
@@ -754,7 +767,11 @@
                     var product_size = $(".bukuran.activebukuran").text();
                     var product_pic_logo = jsonParsed["product_pic_logo"];
 
-                    console.log(product_color);
+                    console.log("paper_bucket me");
+                    var paper_bucket_string = JSON.stringify(paper_bucket);
+                    //console.log(paper_bucket);
+                    //console.log(paper_bucket_string);
+                    
                     $.ajax({
                         url: '/keranjang_add',
                         type: 'get',
@@ -765,7 +782,7 @@
                             product_size: product_size,
                             product_pic_logo: product_pic_logo,
                             item_net_cost:item_net_cost,
-                            item_amount:1,
+                            item_amount:jumalahpesan,
                             item_total_cost:item_net_cost,
                             paper_bucket:paper_bucket
                         },

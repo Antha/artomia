@@ -196,7 +196,6 @@ function insert_transaction_item_paper(callback, req) {
             `INSERT INTO transaction_item_paper(paper_id,transaction_item_id) VALUES (
                 '${req.body.paper_id}',
                 '${req.body.transaction_item_id}'
-                NOW()
             ) 
             `,
             function (error, rows, fields) {
@@ -215,3 +214,4 @@ module.exports.insert_transaction = insert_transaction;
 module.exports.select_transaction = select_transaction;
 module.exports.insert_transaction_item = insert_transaction_item;
 module.exports.select_transaction_item = select_transaction_item;
+module.exports.insert_transaction_item_paper = insert_transaction_item_paper;
