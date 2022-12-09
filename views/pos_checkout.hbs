@@ -577,26 +577,28 @@
             var item_total_cost = 0;
             $("#customer_order").html("");
             $.each(data,function(key,value){
+                if(value.checked == "true"){
                 $("#customer_order").append(`
-                <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
-                    <div class="row">
-                        <div class="col-md-6 listnamabarang">
-                            <div id="namabarang" class="col-md-12 ht82">${value.product_name}</div>
-                            <div class="col-md-12 ht9">Warna &nbsp;&nbsp; : &nbsp;<span id="">${value.product_color}</span></div>
-                            <div class="col-md-12 ht9">Ukuran &nbsp;: &nbsp;<span id="">${value.product_size}</span></div>
-                            <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.${value.item_net_cost}</span></div>
-                        </div>
-                        <div class="col-md-6 nilaikanan mt-3" style="text-align: right;padding-right: 24px;">
-                            <div class="ht9 color-grey">
-                                Jumlah &nbsp;&nbsp; : &nbsp;
-                                <span id="nilaibarang" class="cnilaibarang">${value.item_amount}</span>
+                    <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
+                        <div class="row">
+                            <div class="col-md-6 listnamabarang">
+                                <div id="namabarang" class="col-md-12 ht82">${value.product_name}</div>
+                                <div class="col-md-12 ht9">Warna &nbsp;&nbsp; : &nbsp;<span id="">${value.product_color}</span></div>
+                                <div class="col-md-12 ht9">Ukuran &nbsp;: &nbsp;<span id="">${value.product_size}</span></div>
+                                <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.${value.item_net_cost}</span></div>
                             </div>
-                            <div id="hargabarang" class="chargabarang ht62 color-red">Rp. ${value.item_total_cost}</div>
+                            <div class="col-md-6 nilaikanan mt-3" style="text-align: right;padding-right: 24px;">
+                                <div class="ht9 color-grey">
+                                    Jumlah &nbsp;&nbsp; : &nbsp;
+                                    <span id="nilaibarang" class="cnilaibarang">${value.item_amount}</span>
+                                </div>
+                                <div id="hargabarang" class="chargabarang ht62 color-red">Rp. ${value.item_total_cost}</div>
+                            </div>
                         </div>
-                    </div>
-                </div>`);
+                    </div>`);
 
-                item_total_cost = item_total_cost + value.item_total_cost;
+                    item_total_cost = item_total_cost + value.item_total_cost;
+                }
             });
 
             $("#totalhargabarang").html("Rp. "+item_total_cost);
@@ -766,99 +768,101 @@
                     success: function(data2){
                         var totalPrice = 0;
                         $.each(data2,function(key,value){
-                            var color_id;
-                            var size_id;
+                            if(value.checked == "true"){
+                                var color_id;
+                                var size_id;
 
-                            switch(value.product_color){
-                                case 'Red Been':
-                                color_id = 1;
-                                break;
+                                switch(value.product_color){
+                                    case 'Red Been':
+                                    color_id = 1;
+                                    break;
 
-                                case 'Green':
-                                color_id = 2;
-                                break;
+                                    case 'Green':
+                                    color_id = 2;
+                                    break;
 
-                                case 'Yellow':
-                                color_id = 3;
-                                break;
+                                    case 'Yellow':
+                                    color_id = 3;
+                                    break;
 
-                                case 'Pink':
-                                color_id = 4;
-                                break;
+                                    case 'Pink':
+                                    color_id = 4;
+                                    break;
 
-                                case 'Blue':
-                                color_id = 5;
-                                break;
+                                    case 'Blue':
+                                    color_id = 5;
+                                    break;
 
-                                case 'White':
-                                color_id = 6;
-                                break;
-                            }
-
-                            switch(value.product_size){
-                                case 'S':
-                                size_id = 1;
-                                break;
-
-                                case 'M':
-                                size_id = 2;
-                                break;
-
-                                case 'L':
-                                size_id = 3;
-                                break;
-
-                                case 'XL':
-                                size_id = 4;
-                                break;
-
-                                case 'XXL':
-                                size_id = 5;
-                                break;
-                            }
-
-                            $.ajax({
-                                url: '/transaction_item',
-                                type: 'post',
-                                data: {
-                                    product_id:value.product_id,
-                                    product_color_id:color_id,
-                                    product_size_id:size_id,
-                                    transaction_id:transaction_id,
-                                    amount: value.item_amount,
-                                    pic:value.product_pic_logo
-                                },
-                                success: function(data3){
-                                    var transaction_item_id = data3.data.insertId;
-
-                                    for(var key3 in value.paper_bucket) {
-                                        var value3 = value.paper_bucket[key3];
-                                         $.ajax({
-                                            url: '/transaction_item_paper',
-                                            type: 'post',
-                                            data: {
-                                                paper_id:value3.id,
-                                                transaction_item_id:transaction_item_id
-                                            },
-                                            success: function(data4){
-                                               
-                                            }
-                                        });
-                                    }
-
+                                    case 'White':
+                                    color_id = 6;
+                                    break;
                                 }
-                            });
 
-                            $("#transaction_history tbody").append(`
-                                <tr>
-                                    <th scope="row">${value.product_name}</th>
-                                    <td class="finalukuran">${value.product_size}</td>
-                                    <td class="pcs">${value.item_amount}</td>
-                                    <td class="pricekanan">Rp ${value.item_total_cost}</td>
-                                </tr>
-                            `);
+                                switch(value.product_size){
+                                    case 'S':
+                                    size_id = 1;
+                                    break;
 
-                            totalPrice = totalPrice + value.item_total_cost;
+                                    case 'M':
+                                    size_id = 2;
+                                    break;
+
+                                    case 'L':
+                                    size_id = 3;
+                                    break;
+
+                                    case 'XL':
+                                    size_id = 4;
+                                    break;
+
+                                    case 'XXL':
+                                    size_id = 5;
+                                    break;
+                                }
+
+                                $.ajax({
+                                    url: '/transaction_item',
+                                    type: 'post',
+                                    data: {
+                                        product_id:value.product_id,
+                                        product_color_id:color_id,
+                                        product_size_id:size_id,
+                                        transaction_id:transaction_id,
+                                        amount: value.item_amount,
+                                        pic:value.product_pic_logo
+                                    },
+                                    success: function(data3){
+                                        var transaction_item_id = data3.data.insertId;
+                                        if(value.paper_bucket){
+                                            for(var key3 in value.paper_bucket) {
+                                                var value3 = value.paper_bucket[key3];
+                                                $.ajax({
+                                                    url: '/transaction_item_paper',
+                                                    type: 'post',
+                                                    data: {
+                                                        paper_id:value3.id,
+                                                        transaction_item_id:transaction_item_id
+                                                    },
+                                                    success: function(data4){
+                                                    
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                });
+
+                                $("#transaction_history tbody").append(`
+                                    <tr>
+                                        <th scope="row">${value.product_name}</th>
+                                        <td class="finalukuran">${value.product_size}</td>
+                                        <td class="pcs">${value.item_amount}</td>
+                                        <td class="pricekanan">Rp ${value.item_total_cost}</td>
+                                    </tr>
+                                `);
+
+                                totalPrice = totalPrice + value.item_total_cost;
+                            }
                         });
 
                         $("#hargasub").html(totalPrice);
@@ -874,6 +878,14 @@
                                 $("#namapelanggan").html(data.data[0].fullname);
                                 $("#tanggalstruke").html(data.data[0].datetime);
                                 $("#idTransaksi").html(data.data[0].idtransaction);
+                            }
+                        });
+                    },complete:function(){
+                        $.ajax({
+                            url: '/keranjang_keep_checked',
+                            type: 'get',
+                            data: {},
+                            success: function(data){
                             }
                         });
                     }

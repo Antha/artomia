@@ -13,8 +13,9 @@ hbs.registerPartials("./views/partials");
 app.use(
     session({
         secret: "secret",
-        resave: true,
-        saveUninitialized: false,
+        resave: false,
+        secure: true,
+        saveUninitialized: true,
         cookie: {maxAge: 60000000000},
     })
 );

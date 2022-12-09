@@ -478,7 +478,7 @@
 <script>
     var paper_bucket = {};
     var product_color = $("#titlebutton").children("i").attr("data-value");
-    //console.log(product_color);
+    console.log("+++"+product_color);
 
     const obj = {name: "John", age: 30, city: "New York"};
    
@@ -638,7 +638,7 @@
             $('#produkpos').attr('src',tampungselect);
         });
         
-        $("#titlebutton").html("<i style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
+        $("#titlebutton").html("<i data-value='"+$(this).text()+"' style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
     });
 
     
@@ -767,7 +767,11 @@
                     var product_size = $(".bukuran.activebukuran").text();
                     var product_pic_logo = jsonParsed["product_pic_logo"];
 
-                    console.log("paper_bucket me");
+                    console.log("product_color");
+                    console.log(">>> "+product_color);
+                    
+                    //return false;
+
                     var paper_bucket_string = JSON.stringify(paper_bucket);
                     //console.log(paper_bucket);
                     //console.log(paper_bucket_string);
@@ -783,7 +787,7 @@
                             product_pic_logo: product_pic_logo,
                             item_net_cost:item_net_cost,
                             item_amount:jumalahpesan,
-                            item_total_cost:item_net_cost,
+                            item_total_cost:item_net_cost * jumalahpesan,
                             paper_bucket:paper_bucket
                         },
                         success: function(data){

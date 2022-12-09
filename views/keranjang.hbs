@@ -238,6 +238,19 @@
 
     getList();
 
+    $("#buckets").on('click','#checkkeranjang',function(){
+        console.log("key : "+$(this).data("key")+":"+$(this).prop('checked'));
+        var checked = $(this).prop('checked');
+        $.ajax({
+            url: '/keranjang_edit_checked',
+            type: 'get',
+            data: { key: +$(this).data("key"),checked},
+            success: function(data){
+                //getList();
+            }
+        });
+    });
+
     $("#buckets").on('click','.cplusbarang',function(){
         var rawnilaiharga = $(this).parent('.nilaikanan').siblings('.listnamabarang').children('div').children('.hargabarangnet').text();
         var rawnilaihargareplace = rawnilaiharga.replace("Rp", "");
@@ -331,13 +344,20 @@
             success: function(data){
                 $("#buckets").html("");
                 $.each(data,function(key,value){
+                    var stmtChecked;
+                    if(value.checked == "true"){
+                        stmtChecked = "checked";
+                    }else{
+                        stmtChecked = "";
+                    }
+
                     $("#buckets").append(`
                         <div class="col-md-6 mt-2">
                             <div class="card" style="padding: 8px 16px;">
                                 <div class="row mb-2">
                                     <div class="col-md-1" style="padding-left: 20px;">
                                         <div class="form-check mt-4">
-                                            <input class="form-check-input" type="checkbox" value="" id="checkkeranjang" style="margin-top: 12px;border: 0.5px solid #595552;border-radius: 4px;" checked>
+                                            <input data-key="${key}" class="form-check-input" type="checkbox" value="" id="checkkeranjang" style="margin-top: 12px;border: 0.5px solid #595552;border-radius: 4px;" ${stmtChecked}>
                                         </div>
                                     </div>
                                     <div class="col-md-2" style="">

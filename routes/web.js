@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-    req.session.cart = [];
+    req.session.destroy();
     res.render("login.hbs");
 });
 
@@ -63,7 +63,8 @@ router.get("/keranjang_add", (req, res) => {
         item_net_cost: req.query.item_net_cost,
         item_amount: req.query.item_amount,
         item_total_cost: parseInt(req.query.item_total_cost),
-        paper_bucket: req.query.paper_bucket
+        paper_bucket: req.query.paper_bucket,
+        checked: "true",
     });
 
     req.session.cart = cart;
@@ -77,6 +78,28 @@ router.get("/keranjang_edit", (req, res) => {
     cart[req.query.key]["item_total_cost"] = parseInt(req.query.item_total_cost);
 
     req.session.cart = cart;
+    res.json(req.session.cart);
+});
+
+router.get("/keranjang_edit_checked", (req, res) => {
+    var cart = req.session.cart;
+
+    cart[req.query.key]["checked"] = req.query.checked;
+
+    req.session.cart = cart;
+    res.json(req.session.cart);
+});
+
+router.get("/keranjang_keep_checked", (req, res) => {
+    var cart_new = [];
+
+    for (var i = 0; i < req.session.cart.length; i++) {
+        if (req.session.cart[i].checked != "true") {
+            cart_new.push(req.session.cart[i]);
+        }
+    }
+
+    req.session.cart = cart_new;
     res.json(req.session.cart);
 });
 
