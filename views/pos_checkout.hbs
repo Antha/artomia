@@ -500,6 +500,8 @@
                                             <div class="col-md-12">
                                                 <div id="customer_order">
                                                 </div>
+                                                <div id="customer_order_paper">
+                                                </div>
                                                 <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
                                                     <div class="row">
                                                         <div class="col-md-6 listnamabarang">
@@ -576,6 +578,7 @@
         success: function(data){
             var item_total_cost = 0;
             $("#customer_order").html("");
+            $("#customer_order_paper").html("");
             $.each(data,function(key,value){
                 if(value.checked == "true"){
                 $("#customer_order").append(`
@@ -597,6 +600,28 @@
                         </div>
                     </div>`);
 
+                    $.each(value.paper_bucket,function(key_p,value_p){
+                        $("#customer_order_paper").append(`
+                            <div class="card-body bgcolor-white mt-2" style="padding: 1rem;">
+                                <div class="row">
+                                    <div class="col-md-6 listnamabarang">
+                                        <div id="namabarang" class="col-md-12 ht82">${value_p.name}</div>
+                                        <div class="col-md-12 ht9">Harga &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="color-red hargabarangnet" id="">Rp.${value_p.price}</span></div>
+                                    </div>
+                                    <div class="col-md-6 nilaikanan mt-3" style="text-align: right;padding-right: 24px;">
+                                        <div class="ht9 color-grey">
+                                            Jumlah &nbsp;&nbsp; : &nbsp;
+                                            <span id="nilaibarang" class="cnilaibarang">${value_p.nilai}</span>
+                                        </div>
+                                        <div id="hargabarang" class="chargabarang ht62 color-red">Rp.${value_p.price * value_p.nilai}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                        item_total_cost = item_total_cost + (value_p.price * value_p.nilai);
+                    });
+                    
+
                     item_total_cost = item_total_cost + value.item_total_cost;
                 }
             });
@@ -604,7 +629,6 @@
             $("#totalhargabarang").html("Rp. "+item_total_cost);
         }
     });
-
     
     $('#simpandiskon').click(function(){
         var getdiskon = $("#inputdiskon").val();
@@ -715,7 +739,8 @@
                 $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
             }
             
-    });
+        }
+    );
 
     $("#buttonminimize").click(function() {
         document.getElementById('sidebar').classList.toggle("hidesidebar");
@@ -841,7 +866,8 @@
                                                     type: 'post',
                                                     data: {
                                                         paper_id:value3.id,
-                                                        transaction_item_id:transaction_item_id
+                                                        transaction_item_id:transaction_item_id,
+                                                        amount:value3.nilai
                                                     },
                                                     success: function(data4){
                                                     
@@ -882,7 +908,7 @@
                         });
                     },complete:function(){
                         $.ajax({
-                            url: '/keranjang_keep_checked',
+                            url: '/keranjang_keep_unchecked',
                             type: 'get',
                             data: {},
                             success: function(data){

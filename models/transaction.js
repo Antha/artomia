@@ -193,9 +193,10 @@ function insert_transaction_item_paper(callback, req) {
 
     con.getConnection(function (err, connection) {
         con.query(
-            `INSERT INTO transaction_item_paper(paper_id,transaction_item_id) VALUES (
+            `INSERT INTO transaction_item_paper(paper_id,transaction_item_id,amount) VALUES (
                 '${req.body.paper_id}',
-                '${req.body.transaction_item_id}'
+                '${req.body.transaction_item_id}',
+                '${req.body.amount}'
             ) 
             `,
             function (error, rows, fields) {

@@ -26,31 +26,25 @@ router.get("/keranjang", (req, res) => {
 });
 
 router.get("/pos", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("pos.hbs");
 });
 
 router.get("/kaos", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("pos_kaos.hbs");
 });
 
 router.get("/checkout", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("pos_checkout.hbs");
 });
 
 router.get("/transaksi", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("transaksi.hbs");
 });
 
 router.get("/akunting", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("akunting.hbs");
 });
 
-//Session
 router.get("/keranjang_add", (req, res) => {
     var cart = req.session.cart || [];
 
@@ -90,7 +84,7 @@ router.get("/keranjang_edit_checked", (req, res) => {
     res.json(req.session.cart);
 });
 
-router.get("/keranjang_keep_checked", (req, res) => {
+router.get("/keranjang_keep_unchecked", (req, res) => {
     var cart_new = [];
 
     for (var i = 0; i < req.session.cart.length; i++) {
@@ -108,42 +102,34 @@ router.get("/keranjang_list", (req, res) => {
 });
 
 router.get("/pos", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("pos.hbs");
 });
 
 router.get("/kaos", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("pos_kaos.hbs");
 });
 
 router.get("/checkout", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("pos_checkout.hbs");
 });
 
 router.get("/transaksi", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("transaksi.hbs");
 });
 
 router.get("/akunting", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("akunting.hbs");
 });
 
 router.get("/produksi", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("produksi.hbs");
 });
 
 router.get("/datauser", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("datauser.hbs");
 });
 
 router.get("/stok", (req, res) => {
-    //console.log(">>>"+req.session);
     res.render("stok.hbs");
 });
 

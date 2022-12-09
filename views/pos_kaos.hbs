@@ -478,10 +478,11 @@
 <script>
     var paper_bucket = {};
     var product_color = $("#titlebutton").children("i").attr("data-value");
-    console.log("+++"+product_color);
 
-    const obj = {name: "John", age: 30, city: "New York"};
-   
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const idProducts = urlParams.get('product_id');
+    var item_net_cost = 0;
 
     $.ajax({
         url: '/papers/',
@@ -490,7 +491,7 @@
         success: function(data){
             $.each(data.data,function(key,value){
                  $("#bucketskertas").append(
-                    ` <div class="col-md-6 mt-2">
+                    `<div class="col-md-6 mt-2">
                         <div class="card" style="padding: 8px 16px;">
                             <div class="row">
                                 <div class="col-md-2" style="margin-right: 8px;">
@@ -501,9 +502,9 @@
                                     <div id="hargapet" class="ht62 color-red">Rp. ${value.price}</div>
                                 </div>
                                 <div class="col-md-3" style="text-align: right;padding-top: 8px;">
-                                    <i id="minmodal" data-name="${value.name}" data-index="${key}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
+                                    <i id="minmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
                                     <b id="nilaijeniskertas" class="cnilaibarang" style="font-size: 20px; margin:0px 8px;">0</b>
-                                    <i id="plusmodal" data-name="${value.name}" data-index="${key}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
+                                    <i id="plusmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
                                 </div>
                             </div>
                         </div>
@@ -517,7 +518,7 @@
         var nilai = parseInt(nilaipenampung);
         nilai+=1;
         $(this).siblings('.cnilaibarang').html(nilai);
-        paper_bucket["id_"+$(this).data("index")] = {id:$(this).data("id"),nilai:nilai,name:$(this).data("name")};
+        paper_bucket["id_"+$(this).data("index")] = {id:$(this).data("id"),nilai:nilai,name:$(this).data("name"),price:$(this).data("price")};
     });
 
     $("#bucketskertas").on('click','.cminbarang',function(){
@@ -529,7 +530,7 @@
             $(this).siblings('.cnilaibarang').html(nilai2);
         }
 
-        paper_bucket["id_"+$(this).data("index")] = {id:$(this).data("id"),nilai:nilai2,name:$(this).data("name")};
+        paper_bucket["id_"+$(this).data("index")] = {id:$(this).data("id"),nilai:nilai2,name:$(this).data("name"),price:$(this).data("price")};
     });
 
     $("#btn_add_paper").click(function(){
@@ -723,11 +724,6 @@
         screenshot();
         return false;
     })
-
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const idProducts = urlParams.get('product_id');
-    var item_net_cost = 0;
 
     $.ajax({
         url: '/products/'+idProducts,
