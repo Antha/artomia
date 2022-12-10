@@ -242,13 +242,19 @@
                                         <div class="col-md-12 mt-2" style="">
                                             <div class="form-group">
                                                 <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;font-weight: 600;display:none;" type="text" name="iduseredit" class="form-control data1" id="iduseredit" placeholder="id" value="Abram Korsgrad" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="form-group">
+                                                <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
                                                 <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;font-weight: 600;" type="text" name="namauseredit" class="form-control data1" id="namauseredit" placeholder="Nama" value="Abram Korsgrad">
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-2" style="">
                                             <div class="form-group">
-                                                <img src="assets/images/pos/icon_message.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="emailuseredit" class="form-control data1" id="emailuseredit" placeholder="Email" value="Abram Korsgrad@adsa">
+                                                <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="usernameuseredit" class="form-control data1" id="usernameuseredit" placeholder="Username" value="Abram Korsgradadsa">
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-2" style="">
@@ -269,19 +275,19 @@
                                                     <li data-value="assets/images/pos/icon_user3.png">
                                                         <a class="dropdown-item" href="#">
                                                             <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
-                                                            <span class="ht9">Production</span>
+                                                            <span data-value="Production" class="ht9">Production</span>
                                                         </a>
                                                     </li>
                                                     <li data-value="assets/images/pos/icon_user3.png">
                                                         <a class="dropdown-item" href="#">
                                                             <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
-                                                            <span class="ht9">Admin</span>
+                                                            <span data-value="Admin" class="ht9">Admin</span>
                                                         </a>
                                                     </li>
                                                     <li data-value="assets/images/pos/icon_user3.png">
                                                         <a class="dropdown-item" href="#">
                                                             <img src="assets/images/pos/icon_user3.png" style="width: 32px;margin-right: 13px;padding: 8px;">
-                                                            <span class="ht9">Owner</span>
+                                                            <span data-value="Owner" class="ht9">Owner</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -316,7 +322,7 @@
                                         <div class="col-md-12 mt-2" style="">
                                             <div class="form-group">
                                                 <img src="assets/images/pos/icon_profile.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;font-weight: 600;" type="text" name="namauseradd" class="form-control data1" id="namauseradd" placeholder="Nama Lengkap" value="">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;font-weight: 600;" type="text" name="namauseradd" class="form-control data1" id="namauseradd" placeholder="Nama Lengkap" value="" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-2" style="">
@@ -378,10 +384,11 @@
                                             <div class="form-group">
                                                 <img src="assets/images/Lock.png" style="position: absolute;width: 16px;margin: 13px;">
                                                 <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="password" name="confirmpassworduseradd" class="form-control data1" id="confirmpassworduseradd" placeholder="Konfirmasi Password" value="">
+                                                <div id='message'></div>
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-2">
-                                            <button id="badddata" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Edit Data</button>
+                                            <button id="badddata" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Tambah Data</button>
                                         </div>
                                     </div>
                                 </div>
@@ -600,68 +607,215 @@
         $(this).addClass("bstatusactive");
     });
 
-    $(".delete").click(function(){
+    /*$(".delete").click(function(){
         console.log("delete");
         $deletingRowSelector = $(this).parent("td").parent("tr");
         var $datatable = $('#dtuser').DataTable();
         $datatable.row($deletingRowSelector).remove().draw();
-    });
+    });*/
 
     $(".table tbody tr").hover(function(){
         $(".table tbody tr").children("td").removeClass("tdactivehover");
         $(this).children("td:first-child").addClass("tdactivehover");
     });
+    function getfirst(){
+        $.ajax({
+            url: '/chasiers',
+            type: 'get',
+            data: {
 
-    $.ajax({
-        url: '/chasiers',
-        type: 'get',
-        data: {
+            },
+            success: function(data){
+                var classActiveRow;
+                $("#dtuser tbody").html('');
+                $.each(data.data,function(key,value){
+                    classActiveRow = "";
+                    if(key == 0){
+                        classActiveRow = "tdactivehover";
+                    }
+                    $("#dtuser tbody").append(`<tr>
+                        <td id="${value.idchasier}">${value.idchasier}</td>
+                        <td>
+                            <div id="${value.name}" style="font-weight: 600;">${value.name}</div>
+                            <div  id="${value.username}" class="ht9">${value.username}</div>
+                        </td>
+                        <td id="${value.category}"><i class="fa-solid fa-circle" style="margin-right: 4px;color:#97D7D9;font-size:9px;"></i>${value.category}</td>
+                        <td id="${value.alamat}">${value.alamat}</td>
+                        <td id="${value.email}">${value.email}</td>
+                        <td>
+                            <span data-toggle="modal" data-target="#modaleditdata" class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
+                            <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                            <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                        </td>
+                        </tr>`
+                    )
+                });
+            },complete:function(data){
+                //$('#dtBasicExample').DataTable();
+                $('#dtuser').dataTable().fnDestroy();
+                $('#dtuser').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [5, 10, 25, -1],
+                        [5, 10, 25, 'All'],
+                    ],
+                    retrieve:false,
+                    order:true,
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtuser tbody tr").hover(function(){
+                    $("#dtuser tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+    getfirst();
+    $("#dtuser").on('click','.delete',function(){
+        deletingRowSelector = $(this).parent("td").parent("tr");
+        selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+        console.log(selectedid);
+        
+        $.ajax({
+            url: '/chasiers_delete/'+selectedid,
+            type: 'get',
+            data: {
 
-        },
-        success: function(data){
-            var classActiveRow;
-            $.each(data.data,function(key,value){
-                classActiveRow = "";
-                if(key == 0){
-                    classActiveRow = "tdactivehover";
+            },
+            success: function(data){
+                status = data['status']['code'];
+                if (status=='undefined'){
+                    alert("Data Berhasil Dihapus");
+                    $.each(data.data,function(key,value){
+                        var $datatable = $('#dtuser').DataTable();
+                        $datatable.row(deletingRowSelector).remove().draw();
+                    });
+                }else{
+                    alert("Cashier Masih memiliki tanggung jawab transaksi, Hapus Data Transaksi yang terhubung dengan cashier Terlebih dahulu");
                 }
-                $("#dtuser tbody").append(`<tr>
-                    <td>${value.idchasier}</td>
-                    <td>
-                        <div style="font-weight: 600;">${value.name}</div>
-                        <div class="ht9">${value.username}</div>
-                    </td>
-                    <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#97D7D9;font-size:9px;"></i>${value.category}</td>
-                    <td>${value.alamat}</td>
-                    <td>${value.email}</td>
-                    <td>
-                        <span data-toggle="modal" data-target="#modaleditdata" class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
-                        <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
-                        <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
-                    </td>
-                    </tr>`
-                )
-            });
-        },complete:function(){
+                
+            },complete:function(){
             //$('#dtBasicExample').DataTable();
-            $('#dtuser').DataTable({
-                dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
-                pagingType: "simple",
-                lengthMenu: [
-                    [5, 10, 25, -1],
-                    [5, 10, 25, 'All'],
-                ],
-                retrieve:true,
-                order:true,
-            });
-            $('.dataTables_length').addClass('bs-select');
-            
-            $("#dtuser tbody tr").hover(function(){
-                $("#dtuser tbody tr").children("td").removeClass("tdactivehover");
-                $(this).children("td:first-child").addClass("tdactivehover");
-            });
-        }
+                $('#dtuser').dataTable().fnDestroy();
+                $('#dtuser').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [5, 10, 25, -1],
+                        [5, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtuser tbody tr").hover(function(){
+                    $("#dtuser tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+        
     });
+
+    $("#dtuser").on('click','.showdetail',function(){
+        RowSelector = $(this).parent("td").parent("tr");
+        selectedid = $(RowSelector).children('td:first-child').attr('id');
+        selectedname = $(RowSelector).children('td').eq(1).children('div:first-child').attr('id');
+        selectedusername = $(RowSelector).children('td').eq(1).children('div:last-child').attr('id');
+        selectedrole = $(RowSelector).children('td').eq(2).attr('id');
+        selectedalamat = $(RowSelector).children('td').eq(3).attr('id');
+        selectemail = $(RowSelector).children('td').eq(4).attr('id');
+
+        $("#namauser").val(selectedname);
+        $("#taguser").val(selectedusername);
+        $("#alamatuser").val(selectedalamat);
+        $("#productionuser").val(selectedrole);
+        $("#emailuser").val(selectemail);
+    });
+
+    $("#dtuser").on('click','.showedit',function(){
+        RowSelector = $(this).parent("td").parent("tr");
+        selectedid = $(RowSelector).children('td:first-child').attr('id');
+        selectedname = $(RowSelector).children('td').eq(1).children('div:first-child').attr('id');
+        selectedusername = $(RowSelector).children('td').eq(1).children('div:last-child').attr('id');
+        selectedrole = $(RowSelector).children('td').eq(2).attr('id');
+        selectedalamat = $(RowSelector).children('td').eq(3).attr('id');
+        selectemail = $(RowSelector).children('td').eq(4).attr('id');
+
+        $("#iduseredit").val(selectedid);
+        $("#namauseredit").val(selectedname);
+        $("#usernameuseredit").val(selectedusername);
+        $("#alamatuseredit").val(selectedalamat);
+        $("#pilihancategoryedit").html(" <img src='assets/images/pos/icon_user3.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+selectedrole+"</span><span class='caret' style='padding-right: 56%;'></span>");
+
+        $("#bupdatedata").click(function(){
+            updatename = $("#namauseredit").val();
+            updateusername = $("#usernameuseredit").val();
+            updatealamat = $("#alamatuseredit").val();
+            var categoryclass = $("#pilihancategoryedit").children("span").html();
+            strcategory = categoryclass.replace(/\s/g, '').toLowerCase();
+            $.ajax({
+                type:"POST",
+                data:{
+                    cashierid:selectedid,
+                    nameuser:updatename,
+                    usernameuser:updateusername,
+                    alamatuser:updatealamat,
+                    categoryuser:strcategory,
+                },
+                url:"/chasiers_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    location.reload();
+                    //getfirst();
+                }
+            });
+        });
+    });
+
+    $("#badddata").click(function(){
+        var finaladdcategory = "";
+        addname = $("#namauseradd").val();
+        addusername = $("#usernameadd").val();
+        addalamat = $("#alamatuseradd").val();
+        var addcategoryclass = $("#pilihancategoryshow").children("span").html();
+        addstrcategory = addcategoryclass.replace(/\s/g, '').toLowerCase();
+        if (addstrcategory=='userlevel'){
+            finaladdcategory = "admin";
+        }else{
+            finaladdcategory=addstrcategory;
+        }
+        addemail = $("#emailuseradd").val();
+        addpassword = $("#passworduseradd").val();
+        /*console.log(addname);
+        console.log(addusername);
+        console.log(addalamat);
+        console.log(finaladdcategory);
+        console.log(addemail);
+        console.log(addpassword);*/
+        $.ajax({
+            type:"POST",
+            data:{
+                nameuser:addname,
+                usernameuser:addusername,
+                passworduser:addpassword,
+                alamatuser:addalamat,
+                categoryuser:finaladdcategory,
+                emailuser:addemail,
+            },
+            url:"/chasiers_insert/",
+            success:function(data){  
+                alert('succes');
+            },complete:function(){
+                location.reload();
+            }
+        });
+    });
+
     /*
     $(document).ready(function () {
         $('#dtuser').DataTable({
