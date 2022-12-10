@@ -149,6 +149,9 @@ router.get("/customers", customer.select_customer);
 router.get("/customer_priority", customer.select_customer_priority);
 
 router.get("/chasiers", chasier.select_chasier);
+router.post("/chasiers_insert", chasier.insert_chasier);
+router.post("/chasiers_update", chasier.update_chasier);
+router.get("/chasiers_delete/:idchasier", chasier.delete_chasier);
 
 router.get("/payments", payment.select_payment);
 
