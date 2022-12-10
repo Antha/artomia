@@ -7,7 +7,7 @@ var con_arr = {
     user: "root",
     password: "",
     database: "artomia",
-    port: "3306",
+    port: "3307",
 };
 
 module.exports = con_arr;

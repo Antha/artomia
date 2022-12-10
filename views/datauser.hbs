@@ -618,6 +618,9 @@
         $(".table tbody tr").children("td").removeClass("tdactivehover");
         $(this).children("td:first-child").addClass("tdactivehover");
     });
+
+    getfirst();
+
     function getfirst(){
         $.ajax({
             url: '/chasiers',
@@ -652,7 +655,7 @@
                 });
             },complete:function(data){
                 //$('#dtBasicExample').DataTable();
-                $('#dtuser').dataTable().fnDestroy();
+                 //$('#dtuser').dataTable().fnDestroy();
                 $('#dtuser').DataTable({
                     dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
                     pagingType: "simple",
@@ -660,8 +663,9 @@
                         [5, 10, 25, -1],
                         [5, 10, 25, 'All'],
                     ],
-                    retrieve:false,
+                    retrieve:true,
                     order:true,
+                    "bDestroy": true
                 });
                 $('.dataTables_length').addClass('bs-select');
                 
@@ -669,10 +673,11 @@
                     $("#dtuser tbody tr").children("td").removeClass("tdactivehover");
                     $(this).children("td:first-child").addClass("tdactivehover");
                 });
+              
             }
         });
     }
-    getfirst();
+  
     $("#dtuser").on('click','.delete',function(){
         deletingRowSelector = $(this).parent("td").parent("tr");
         selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
@@ -697,7 +702,7 @@
                 }
                 
             },complete:function(){
-            //$('#dtBasicExample').DataTable();
+                //$('#dtBasicExample').DataTable();
                 $('#dtuser').dataTable().fnDestroy();
                 $('#dtuser').DataTable({
                     dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
@@ -768,10 +773,10 @@
                 },
                 url:"/chasiers_update/",
                 success:function(data){  
-                    alert('succes');
+                    //alert('succes');
                 },complete:function(){
-                    location.reload();
-                    //getfirst();
+                    //location.reload();
+                    getfirst();
                 }
             });
         });
