@@ -1,4 +1,5 @@
 {{> head}}
+    <script src="assets/js/sweetalert/sweetalert2@11.js"></script>
     <body>
         <div class="container2" style="max-width: none;padding: 0px">
             <div class="sidebar bgcolor-white" id="sidebar">
@@ -421,7 +422,7 @@
                                             </div>
                                             <div class="col-md-12 row mt-3" id="" style="text-align: center;">
                                                 <div class="col-md-6">
-                                                    <button type="button" class="ht8 btn btn-outline-dark" style="width: 100%;"><i class="mdi mdi-cart-outline" style="margin-right: 8px;"></i> Masukkan Keranjang</button>
+                                                    <button id="btn_in_bucket" type="button" class="ht8 btn btn-outline-dark" style="width: 100%;"><i class="mdi mdi-cart-outline" style="margin-right: 8px;"></i> Masukkan Keranjang</button>
                                                 </div>
                                                 <div class="col-md-6" style="">
                                                     <button id="btn_next" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;"><i class="fa-regular fa-paper-plane" style="margin-right: 8px;"></i>Lanjut</button>
@@ -720,6 +721,21 @@
         return false;
     })
 
+    $("#btn_in_bucket").click(function(){
+        screenshot(false);
+         Swal.fire({
+            title: 'Info',
+            text: "This item has been put into the bucket",
+            icon: 'info',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        })
+    });
+
     $('#btn_next').click(function(){
         screenshot();
         return false;
@@ -740,7 +756,7 @@
 
     var product_color = $("#titlebutton").children("i").attr("data-value");
     //console.log(product_color);
-    function screenshot(){
+    function screenshot(isRedirect = true){
         //var pic_id = $("#clothes_with_logo");
         html2canvas(document.getElementById("clothes_with_logo"),{background: '#fff'}).then(function(canvas) {
             document.getElementById("clothes_with_logo").appendChild(canvas);
@@ -788,7 +804,9 @@
                         },
                         success: function(data){
                             console.log('Upload successfully');
-                            window.location.href='/keranjang';
+                            if(isRedirect){
+                                window.location.href='/keranjang';
+                            }
                         }
                      });
                     /*console.log("Product Name : "+$("#data-product-name").text());

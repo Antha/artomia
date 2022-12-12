@@ -84,6 +84,19 @@ router.get("/keranjang_edit_checked", (req, res) => {
     res.json(req.session.cart);
 });
 
+router.get("/keranjang_delete", (req, res) => {
+    var cart_new = [];
+
+    for (var i = 0; i < req.session.cart.length; i++) {
+        if (i != req.query.id_del) {
+            cart_new.push(req.session.cart[i]);
+        }
+    }
+
+    req.session.cart = cart_new;
+    res.json(req.session.cart);
+});
+
 router.get("/keranjang_keep_unchecked", (req, res) => {
     var cart_new = [];
 

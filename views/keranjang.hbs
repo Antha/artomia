@@ -1,4 +1,5 @@
 {{> head}}
+    <script src="assets/js/sweetalert/sweetalert2@11.js"></script>
     <body>
         <div class="container2" style="max-width: none;padding: 0px">
             <div class="sidebar bgcolor-white" id="sidebar">
@@ -283,6 +284,30 @@
         }
     });
 
+    $("#buckets").on('click','#btn_del',function(){
+        var id_del = $(this).data("key");
+        Swal.fire({
+            title: 'Confirmation',
+            text: "Are You Sure To Delete This ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes !'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                 $.ajax({
+                    url: '/keranjang_delete',
+                    type: 'get',
+                    data: { id_del: id_del},
+                    success: function(data){
+                        getList();
+                    }
+                });
+            }
+        })
+    });
+
     $("div.list-item").hover(function(){
         $(this).children( "a" ).css("color", "#5BC9E1");
         $(this).children( "a" ).children(".link").addClass("activebutton");
@@ -374,7 +399,7 @@
                                         <b id="nilaibarang" class="cnilaibarang" style="margin:0px 8px;">${value.item_amount}</b>
                                         <i id="plusbarang" data-key="${key}" class="cplusbarang fa-regular fa-square-plus" style="cursor: pointer;"></i>
                                         <div id="hargabarang" class="chargabarang ht62 color-red">Rp. ${value.item_total_cost}</div>
-                                        <button type="button" class=" mt-2 ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 2px 4px;"><i class="fa fa-trash">&nbsp;&nbsp;&nbsp;</i>Hapus</button>
+                                        <button id="btn_del" data-key="${key}"  type="button" class=" mt-2 ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 2px 4px;"><i class="fa fa-trash">&nbsp;&nbsp;&nbsp;</i>Hapus</button>
                                     </div>
                                 </div>
                             </div>
