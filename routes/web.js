@@ -9,6 +9,8 @@ var customer = require("./../controllers/customer");
 var chasier = require("./../controllers/chasier");
 var payment = require("./../controllers/payment");
 var transaction = require("./../controllers/transaction");
+var produksi = require("./../controllers/produksi");
+var akunting = require("./../controllers/akunting");
 
 router.get("/", (req, res) => {
     res.render("index.hbs");
@@ -165,6 +167,17 @@ router.get("/chasiers", chasier.select_chasier);
 router.post("/chasiers_insert", chasier.insert_chasier);
 router.post("/chasiers_update", chasier.update_chasier);
 router.get("/chasiers_delete/:idchasier", chasier.delete_chasier);
+
+router.get("/produksi_select", produksi.select_produksi);
+router.get("/produksi_delete/:idproduksi", produksi.delete_produksi);
+router.post("/produksi_update", produksi.update_produksi);
+
+router.get("/akunting_select", akunting.select_akunting);
+router.get("/akunting_select_debit", akunting.select_akunting_debit);
+router.get("/akunting_select_credit", akunting.select_akunting_credit);
+router.get("/akunting_delete/:idakunting", akunting.delete_akunting);
+router.post("/akunting_update", akunting.update_akunting);
+router.post("/akunting_insert", akunting.insert_akunting);
 
 router.get("/payments", payment.select_payment);
 

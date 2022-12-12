@@ -1,8 +1,20 @@
 {{> head}}
 <style>
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        background: transparent;
+        bottom: 0;
+        color: transparent;
+        cursor: pointer;
+        height: auto;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+    }
     input[type="date"]::-webkit-inner-spin-button,
     input[type="date"]::-webkit-calendar-picker-indicator {
-        display: none;
+        opacity: 0;
         -webkit-appearance: none;
     }
     input[type=radio] {
@@ -199,11 +211,11 @@
                                                 <div class="col-md-12" style="padding: 0px 50px">
                                                     <div class="row">
                                                         <div class="col-md-6 form-check">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptionsadd" id="inlineRadio1" value="1">
                                                             <label class="form-check-label ht9" for="inlineRadio1">Debit / Pemasukan</label>
                                                         </div>
                                                         <div class="col-md-6 form-check">
-                                                            <input class="form-check-input ht9" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                            <input class="form-check-input ht9" type="radio" name="inlineRadioOptionsadd" id="inlineRadio2" value="2">
                                                             <label class="form-check-label ht9" for="inlineRadio2">Kredit / Pengeluaran</label>
                                                         </div>
                                                     </div>
@@ -245,6 +257,12 @@
                                                                             <span class="ht9">Treasury</span>
                                                                         </a>
                                                                     </li>
+                                                                    <li data-value="assets/images/icon_category.png">
+                                                                        <a class="dropdown-item" href="#">
+                                                                            <img src="assets/images/icon_category.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                            <span class="ht9">dll</span>
+                                                                        </a>
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -263,7 +281,7 @@
                                         <div class="col-md-12 mt-2" style="">
                                             <div class="form-group" style="margin-bottom: 0;">
                                                 <img src="assets/images/icon_calendar.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="date" name="date" class="form-control data1" id="date" placeholder="Date" value="">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="date" name="date" class="form-control data1" id="date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" value="">
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-2" style="">
@@ -320,6 +338,12 @@
                                                 <textarea style="font-size: 8pt;" class="form-control" id="deskripsiedit" rows="3" placeholder="Deskripsi"></textarea>
                                             </div>
                                         </div>
+                                        <div class="col-md-12 mt-2" style="display: none;">
+                                            <div class="form-group">
+                                                <img src="assets/images/icon_wallet.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="iduseredit" class="form-control data1" id="iduseredit" placeholder="id" value="" disabled>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12 mt-2" style="">
                                             <div class="form-group">
                                                 <img src="assets/images/icon_wallet.png" style="position: absolute;width: 16px;margin: 13px;">
@@ -372,12 +396,12 @@
                                                 <div class="col-md-12" style="padding: 0px 50px">
                                                     <div class="row">
                                                         <div class="col-md-6 form-check">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="debit" checked>
-                                                            <label class="form-check-label ht9" for="inlineRadio1">Debit / Pemasukan</label>
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="debit" checked>
+                                                            <label class="form-check-label ht9" for="inlineRadio4">Debit / Pemasukan</label>
                                                         </div>
                                                         <div class="col-md-6 form-check">
-                                                            <input class="form-check-input ht9" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="kredit">
-                                                            <label class="form-check-label ht9" for="inlineRadio2">Kredit / Pengeluaran</label>
+                                                            <input class="form-check-input ht9" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="kredit">
+                                                            <label class="form-check-label ht9" for="inlineRadio5">Kredit / Pengeluaran</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -393,7 +417,7 @@
                                                                     <span class="caret" style="padding-right: 56%;"></span>
                                                                 </a>
 
-                                                                <ul class="dropdown-menu isicategorydetail" aria-labelledby="pilihancategoryshow" x-placement="top-start" style="overflow: hidden;position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);">
+                                                                <!--<ul class="dropdown-menu isicategorydetail" aria-labelledby="pilihancategoryshow" x-placement="top-start" style="overflow: hidden;position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);">
                                                                     <li data-value="assets/images/icon_category.png">
                                                                         <a class="dropdown-item" href="#">
                                                                             <img src="assets/images/icon_category.png" style="width: 32px;margin-right: 13px;padding: 8px;">
@@ -418,7 +442,7 @@
                                                                             <span class="ht9">Treasury</span>
                                                                         </a>
                                                                     </li>
-                                                                </ul>
+                                                                </ul>-->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -433,7 +457,7 @@
                                         <div class="col-md-12 mt-2" style="">
                                             <div class="form-group" style="margin-bottom: 0;">
                                                 <img src="assets/images/icon_calendar.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="date" name="dateshow" class="form-control data1" id="dateshow" placeholder="Date" value="">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="dateshow" class="form-control data1" id="dateshow" placeholder="Date" value="">
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-2" style="">
@@ -475,7 +499,7 @@
                                 <div class="card-body" style="background-color: #fff;">
                                     <div class="">
                                         <div class="col-md-12" style="">
-                                            <table id="dtBasicExample" class="table borderless table-sm" cellspacing="0" width="100%">
+                                            <table id="dtakunting" class="table borderless table-sm" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                 <th class="th-sm">ID
@@ -499,66 +523,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                <td class="tdactivehover">12344</td>
-                                                <td>
-                                                    <div style="font-weight: 600;">2022-09-16 18:00</div>
-                                                    <div class="ht9">Jum'at</div>
-                                                </td>
-                                                <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#97D7D9;font-size:9px;"></i>Pemasukan Harian</td>
-                                                <td style="color: #00adff;">+Rp.6.000.000</td>
-                                                <td><span class="trfmethoddebit">Debit<span></td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#modaleditdata" class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
-                                                    <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
-                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                <td>12345</td>
-                                                <td>
-                                                    <div style="font-weight: 600;">2022-09-16 18:00</div>
-                                                    <div class="ht9">Jum'at</div>
-                                                </td>
-                                                <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#F46B69;font-size:9px;"></i>Employee Salary</td>
-                                                <td style="color: #F46B69;">-Rp.2.000.000</td>
-                                                <td><span class="trfmethod">Transfer<span></td>
-                                                <td>
-                                                    <span class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
-                                                    <span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
-                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                <td>12346</td>
-                                                <td>
-                                                    <div style="font-weight: 600;">2022-09-16 18:00</div>
-                                                    <div class="ht9">Jum'at</div>
-                                                </td>
-                                                <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#F46B69;font-size:9px;"></i>Employee Salary</td>
-                                                <td style="color: #F46B69;">-Rp.2.000.000</td>
-                                                <td><span class="trfmethod">Transfer<span></td>
-                                                <td>
-                                                    <span class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
-                                                    <span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
-                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                <td class="">12347</td>
-                                                <td>
-                                                    <div style="font-weight: 600;">2022-09-16 18:00</div>
-                                                    <div class="ht9">Jum'at</div>
-                                                </td>
-                                                <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:#97D7D9;font-size:9px;"></i>Pemasukan Harian</td>
-                                                <td style="color: #00adff;">+Rp.10.000.000</td>
-                                                <td><span class="trfmethoddebit">Debit<span></td>
-                                                <td>
-                                                    <span class="showedit"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
-                                                    <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
-                                                    <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
-                                                </td>
-                                                </tr>
+                                                
                                             </tbody>
                                             </table>
                                         </div>
@@ -570,15 +535,15 @@
                                                     <div class="bgcolor-primary-linear-gradient" style="padding: 20px;border-radius: 4px;">
                                                         <div class='ht9' style="font-weight: 600;"><i class="fa fa-wallet" style="margin-right: 8px;"></i> ArtomiaPay </div>
                                                         <div class="mt-2">Balance KAS</div>
-                                                        <div style="font-weight: 600;" class="mt-1">Rp7.500.000</div>
+                                                        <div id="balancekas" style="font-weight: 600;" class="mt-1">Rp7.500.000</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4" style="">
-                                                    <div class="" style="padding: 0px 0px 8px 0px;border: 2px solid #e7e7e7;border-radius: 4px;">
+                                                    <div id="detaildebitcredit" class="" style="padding: 0px 0px 8px 0px;border: 2px solid #e7e7e7;border-radius: 4px;">
                                                         <div class="mt-2 color-blue">Debit(+)</div>
-                                                        <div style="font-weight: 600;" class="color-blue">Rp10.500.000</div>
+                                                        <div id="sumdebit" style="font-weight: 600;" class="color-blue">Rp 0</div>
                                                         <div class="mt-2 color-red">Credit(-)</div>
-                                                        <div style="font-weight: 600;" class="color-red">Rp2.500.000</div>
+                                                        <div id="sumcredit" style="font-weight: 600;" class="color-red">Rp 0</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2"></div>
@@ -636,7 +601,7 @@
 
     $(".isicategory li").click(function(){
         var getlogo = $(this).data('value');
-        $("#pilihancategory").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'>"+$(this).text()+"<span class='caret' style='padding-right: 46%;'></span>");
+        $("#pilihancategory").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'>"+$(this).text()+"<span class='caret' style='padding-right: 26%;'></span>");
     });
 
     $(".isicategorydetail li").click(function(){
@@ -647,7 +612,7 @@
     $(".delete").click(function(){
         console.log("delete");
         $deletingRowSelector = $(this).parent("td").parent("tr");
-        var $datatable = $('#dtBasicExample').DataTable();
+        var $datatable = $('#dtakunting').DataTable();
         $datatable.row($deletingRowSelector).remove().draw();
     });
 
@@ -655,36 +620,286 @@
         $(".table tbody tr").children("td").removeClass("tdactivehover");
         $(this).children("td:first-child").addClass("tdactivehover");
     });
-    $(document).ready(function () {
-        $('#dtBasicExample').DataTable({
-            dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
-            pagingType: "simple",
-            lengthMenu: [
-                [3, 10, 25, -1],
-                [3, 10, 25, 'All'],
-            ],
-        });
-        $('.dataTables_length').addClass('bs-select');
 
-        /*function gogo(){
-            var all = $("#dtBasicExample_length");
-            var all3 = $('.dataTables_length label').children('select');
-            all3.css({"width": "10%", "border": "none"});
-            console.log(all3);
-            var allset = "<li>Row per page<li>"
-            $('.pagination li:first-child').after(allset);
-            $('.pagination li:last-child').before(all3);
-            $('.dataTables_length label').hide();
-        };
-        //gogo();
-
-        $(".page-link").click(function(){
-            gogo();
+    getfirstakunting();
+    function getfirstakunting(){
+        $.ajax({
+            type:"get",
+            data:{
+            },
+            url:"/akunting_select_debit",
+            success:function(data){ 
+                $.each(data.data,function(key,value){
+                    var nilairupiahdebit=value.debit;
+                    let finalrupiahdebit = nilairupiahdebit.toLocaleString("id-ID");
+                    $("#sumdebit").html("Rp."+finalrupiahdebit);
+                    $("#sumdebit").attr("data-debit",value.debit);
+                    $("#balancekas").attr("data-debit",value.debit);
+                });
+            },complete:function(){
+                
+            }
         });
-        $(".table tbody").children("tr:first-child").children("td:first-child").addClass("tdactivehover");*/
-        
+        $.ajax({
+            type:"get",
+            data:{
+            },
+            url:"/akunting_select_credit",
+            success:function(data){ 
+                $.each(data.data,function(key,value){
+                    var nilairupiahkredit=value.kredit;
+                    let finalrupiahkredit = nilairupiahkredit.toLocaleString("id-ID");
+                    $("#sumcredit").html("Rp."+finalrupiahkredit);
+                    $("#sumcredit").attr("data-credit",value.kredit);
+                    $("#balancekas").attr("data-credit",value.kredit);
+                });
+            },complete:function(){
+                var debitcount = $("#balancekas").attr("data-debit");
+                var creditcount = $("#balancekas").attr("data-credit");
+                var firstbalance = debitcount - creditcount;
+                var finalbalance = firstbalance.toLocaleString("id-ID");
+                $("#balancekas").html("Rp."+finalbalance);
+            }
+        });
+
+        $.ajax({
+            url: '/akunting_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var classActiveRow;
+                var classStatus;
+                var classStatus2;
+                var color;
+                var day;
+                var logoplusmin;
+                $("#dtakunting tbody").html('');
+                $.each(data.data,function(key,value){
+                    var d=value.date;
+                    var d1=d.split(" ");
+                    var date=d1[0].split("-");
+                    var yy=date[0];
+                    var mm=date[1]-1;
+                    var dd=date[2];
+                    var fromdt= new Date(yy,mm,dd);
+                    const day1 = fromdt.getDay();
+                    var hari;
+                    //console.log(day1);
+                    //console.log(fromdt);
+                    switch(day1) {
+                        case 0: hari = "Minggu"; break;
+                        case 1: hari = "Senin"; break;
+                        case 2: hari = "Selasa"; break;
+                        case 3: hari = "Rabu"; break;
+                        case 4: hari = "Kamis"; break;
+                        case 5: hari = "Jum'at"; break;
+                        case 6: hari = "Sabtu"; break;
+                    }
+                    classActiveRow = "";
+                    switch(value.accountingmethod){
+                        case 'debit':
+                        classStatus = 'bgcolor-blue';
+                        classStatus2 = 'trfmethoddebit';
+                        color ="#97D7D9";
+                        logoplusmin = "+Rp ";
+                        break;
+
+                        case 'credit':
+                        classStatus = 'bgcolor-red';
+                        classStatus2 = 'trfmethod';
+                        color ="#F46B69";
+                        logoplusmin = "-Rp ";
+                        break;
+
+                    }
+                    if(key == 0){
+                        classActiveRow = "tdactivehover";
+                    }
+                    var nilairupiah=value.nominal;
+                    let finalrupiah = nilairupiah.toLocaleString("id-ID");
+                    $("#dtakunting tbody").append(
+                        `
+                        <tr>
+                        <td id="${value.id}">${value.id}</td>
+                        <td>
+                            <div id="${value.date}" style="font-weight: 600;">${value.date}</div>
+                            <div class="ht9">${hari}</div>
+                        </td>
+                        <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:${color};font-size:9px;"></i>${value.accountingcategory}</td>
+                        <td id="${value.nominal}" style="color: ${color};font-weight:600;">${logoplusmin}${finalrupiah}</td>
+                        <td><span class="${classStatus2}">${value.accountingmethod}<span></td>
+                        <td>
+                            <span data-toggle="modal" data-target="#modaleditdata" class="showedit" data-desc="${value.description}"><img src="assets/images/icon_edit.png" style="width: 30px;margin: 0px 8px 0px 8px"></span>
+                            <span data-toggle="modal" data-target="#modalshowdata" class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 8px 0px 8px"></span>
+                            <span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;margin: 13px;"></span>
+                        </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtakunting').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtakunting tbody tr").hover(function(){
+                    $("#dtakunting tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
+    $("#dtakunting").on('click','.delete',function(){
+        deletingRowSelector = $(this).parent("td").parent("tr");
+        selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+        $.ajax({
+            url: '/akunting_delete/'+selectedid,
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                status = data['status']['code'];
+                if (status=='undefined'){
+                    alert("Data Berhasil Dihapus");
+                    $.each(data.data,function(key,value){
+                        var $datatable = $('#dtakunting').DataTable();
+                        $datatable.row(deletingRowSelector).remove().draw();
+                    });
+                }else{
+                    alert("Hapus terlebih dahulu data yang terhubung");
+                }
+            },complete:function(){
+                //$('#dtBasicExample').DataTable();
+                $('#dtakunting').dataTable().fnDestroy();
+                $('#dtakunting').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtakunting tbody tr").hover(function(){
+                    $("#dtakunting tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
         
     });
+
+    $("#dtakunting").on('click','.showedit',function(){
+        RowSelector = $(this).parent("td").parent("tr");
+        selectedid = $(RowSelector).children('td:first-child').attr('id');
+        selectednominal = $(RowSelector).children('td').eq(3).attr('id');
+        selecteddescription = $(RowSelector).children('td').eq(5).children('span:first-child').attr('data-desc');
+
+        $("#iduseredit").val(selectedid);
+        $("#deskripsiedit").val(selecteddescription);
+        $("#nominaledit").val(selectednominal);
+        
+        $("#editdata").click(function(){
+            updatedeskripsi = $("#deskripsiedit").val();
+            updatenominal = $("#nominaledit").val();
+            $.ajax({
+                type:"POST",
+                data:{
+                    idaccounting:selectedid,
+                    description:updatedeskripsi,
+                    nominal:updatenominal,
+                },
+                url:"/akunting_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    //location.reload();
+                    getfirstakunting();
+                }
+            });
+        })
+    });
+
+    $("#dtakunting").on('click','.showdetail',function(){
+        RowSelector = $(this).parent("td").parent("tr");
+        selectednominalshow = $(RowSelector).children('td').eq(3).attr('id');
+        selectedkategori = $(RowSelector).children('td').eq(2).text();
+        selecteddescriptionshow = $(RowSelector).children('td').eq(5).children('span:first-child').attr('data-desc');
+        selectedtanggalshow = $(RowSelector).children('td').eq(1).children("div:first-child").attr('id');
+        selectedmethod = $(RowSelector).children('td').eq(4).children("span:first-child").text();
+        const mySentence = selectedkategori;
+        const finalSentence = mySentence.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+        $("#deskripsishow").val(selecteddescriptionshow);
+        $("#nominalshow").val(selectednominalshow);
+        $("#dateshow").val(selectedtanggalshow);
+        $("#pilihancategoryshow").html(" <img src='assets/images/icon_category.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+finalSentence+"</span><span class='caret' style='padding-right: 30%;'></span>");
+
+        if(selectedmethod=="debit"){
+            //$("#inlineRadio1").prop("checked", true);
+            $("input:radio[value='debit']").prop('checked',true);
+        }else if (selectedmethod=="credit"){
+            $("input:radio[value='kredit']").prop('checked',true);
+            //$("#inlineRadio2").prop("checked", true);
+        }
+        
+    });
+
+    $("#adddata").click(function(){
+        getdebitcredit = $("input[type='radio'][name='inlineRadioOptionsadd']:checked").val();
+        var addcategoryclass = $("#pilihancategory").text();
+        addstrcategory = addcategoryclass.replace(/\s/g, '').toLowerCase();
+        deskripsi = $("#deskripsi").val();
+        dateget = $("#date").val();
+        nominalget = $("#nominal").val();
+        var nilaicategory;
+        if(addstrcategory=='pemasukanharian'){
+            nilaicategory = '1';
+        }else if(addstrcategory=='pengeluaranharian'){
+            nilaicategory = '2';
+        }else if(addstrcategory=='employeesalary'){
+            nilaicategory = '3';
+        }else if(addstrcategory=='treasury'){
+            nilaicategory = '4';
+        }else{
+            nilaicategory = '5';
+        }
+        //console.log(addstrcategory);
+        //console.log(nilaicategory);
+        $.ajax({
+            type:"POST",
+            data:{
+                date:dateget,
+                nominal:nominalget,
+                description:deskripsi,
+                method:getdebitcredit,
+                category:nilaicategory,
+            },
+            url:"/akunting_insert/",
+            success:function(data){  
+                alert('succes');
+            },complete:function(){
+                //location.reload();
+                getfirstakunting();
+            }
+        });
+    });
+    
     $("div.list-item").hover(function(){
             $(this).children( "a" ).css("color", "#5BC9E1");
             $(this).children( "a" ).children(".link").addClass("activebutton");

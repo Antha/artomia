@@ -607,13 +607,6 @@
         $(this).addClass("bstatusactive");
     });
 
-    /*$(".delete").click(function(){
-        console.log("delete");
-        $deletingRowSelector = $(this).parent("td").parent("tr");
-        var $datatable = $('#dtuser').DataTable();
-        $datatable.row($deletingRowSelector).remove().draw();
-    });*/
-
     $(".table tbody tr").hover(function(){
         $(".table tbody tr").children("td").removeClass("tdactivehover");
         $(this).children("td:first-child").addClass("tdactivehover");
@@ -637,7 +630,7 @@
                         classActiveRow = "tdactivehover";
                     }
                     $("#dtuser tbody").append(`<tr>
-                        <td id="${value.idchasier}">${value.idchasier}</td>
+                        <td class="${classActiveRow}"id="${value.idchasier}">${value.idchasier}</td>
                         <td>
                             <div id="${value.name}" style="font-weight: 600;">${value.name}</div>
                             <div  id="${value.username}" class="ht9">${value.username}</div>
@@ -673,7 +666,6 @@
                     $("#dtuser tbody tr").children("td").removeClass("tdactivehover");
                     $(this).children("td:first-child").addClass("tdactivehover");
                 });
-              
             }
         });
     }
@@ -816,7 +808,8 @@
             success:function(data){  
                 alert('succes');
             },complete:function(){
-                location.reload();
+                //location.reload();
+                getfirst();
             }
         });
     });
