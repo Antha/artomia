@@ -762,7 +762,7 @@
         }
     });
 
-    $("#bbayar").click(function(){
+    $("#bbayar").click(async function(){
         console.log("payment_id : "+payment_id);
         //return false;
 
@@ -784,11 +784,28 @@
             break;
         }
 
+        var customers_insertId;
+
+        await  $.ajax({
+            url: '/customer',
+            type: 'POST',
+            data: {
+                fullname : $("#nama").val(),
+                address : $("#alamat").val(),
+                phone :  $("#notlp").val(),
+                email : $("#email").val()
+            },
+            success: function(data){
+                customers_insertId =  data.data.insertId;
+            }
+        });
+        //console.log("customers_insertId : "+customers_insertId);
+        //return false;
         $.ajax({
             url: '/transaction',
             type: 'POST',
             data: {
-                customers_id : 1,
+                customers_id : customers_insertId,
                 chasier_id : {{chasier_id}},
                 customer_priority_id : id_prio,
                 payment_id : payment_id

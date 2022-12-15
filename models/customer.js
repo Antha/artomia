@@ -14,10 +14,11 @@ function insert_customer(callback, req) {
 
     con.getConnection(function (err, connection) {
         con.query(
-            `INSERT INTO customers(fullname,address,phone) VALUES (
+            `INSERT INTO customers(fullname,address,phone,email) VALUES (
                 '${req.body.fullname}',
                 '${req.body.address}',
-                '${req.body.phone}'
+                '${req.body.phone}',
+                '${req.body.email}'
             ) 
             `,
             function (error, rows, fields) {
