@@ -12,6 +12,8 @@ var transaction = require("./../controllers/transaction");
 var produksi = require("./../controllers/produksi");
 var akunting = require("./../controllers/akunting");
 var middle = require("./../controllers/middleware");
+var product_kaos = require("./../controllers/product_kaos");
+var product_papper = require("./../controllers/product_papper");
 
 router.get("/", middle.login_handle, (req, res) => {
     res.render("index.hbs", {
@@ -220,6 +222,16 @@ router.get("/akunting_select_credit", akunting.select_akunting_credit);
 router.get("/akunting_delete/:idakunting", akunting.delete_akunting);
 router.post("/akunting_update", akunting.update_akunting);
 router.post("/akunting_insert", akunting.insert_akunting);
+
+router.get("/product_kaos_select", product_kaos.select_kaos);
+router.get("/product_kaos_delete/:idproductkaos", product_kaos.delete_kaos);
+router.post("/product_kaos_update", product_kaos.update_kaos);
+router.post("/product_kaos_insert", product_kaos.insert_kaos);
+
+router.get("/product_papper_select", product_papper.select_papper);
+router.get("/product_papper_delete/:idproductpapper", product_papper.delete_papper);
+router.post("/product_papper_update", product_papper.update_papper);
+router.post("/product_papper_insert", product_papper.insert_papper);
 
 router.get("/payments", payment.select_payment);
 
