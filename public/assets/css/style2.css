@@ -619,7 +619,7 @@ a{
     cursor: pointer;
 }
 
-.kotak{
+.kotak, .kotakgambar{
     border: 1px solid #898989;
     float: left;
     margin-right: 8px;

@@ -169,6 +169,49 @@
                     <!-- Top Bar Start -->
                 </div>
                 <div class="main-pages" style="padding:24px 40px;">
+                    <!--modal print kode-->
+                    <div class="modal fade" id="modalprint" tabindex="-1" role="dialog" aria-labelledby="modalprint" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="margin:9.25rem auto;max-width: 348px;">
+                            <div class="modal-content" style="background-color: #FFFFFF;">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <img src="assets/images/logo2.png" style="width: 10vw; height:7.8vh">
+                                                <span class="ht6" style="margin-left: 8px;vertical-align: middle;font-weight: 600">| Print Kode</span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: 0.5px solid #6b6865;transition-duration: 0.2s;border-radius: 16px;padding: 0px 8px 8px 8px;margin-top:8px;">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2" style="">
+                                            <div class="">
+                                                <svg id="barcode"></svg>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top: -24px;padding: 0px 26px 0px 24px;">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div  id="idprintbarcode" class="ht82">TS00100S</div>
+                                                    <div class="ht82">Ukuran | <span id="ukuranprintbarcode">S</span></div>
+                                                </div>
+                                                <div class="col-md-6" style="text-align: right;">
+                                                    <div id="jenisprintbarcode" class="ht82">KAOS</div>
+                                                    <div id="hargaprintbarcode" class="ht82 color-red">Rp.45.000</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-4">
+                                            <button id="btn_printbarcode" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;"><i class="fa fa-print" style="margin-right: 8px;"></i>Print Kode</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--modal Edit Data-->
                     <div class="row">
                     <div id="stokbarang" class="col-md-8" style="">
                         <div class="row">
@@ -224,14 +267,14 @@
                                                         </div>
                                                         <div style="float: left;margin-top:11px">
                                                             <div id="tnamabarang" style="font-size: 16px;font-weight: 500;">Kaos Putih</div>
-                                                            <div id="tsizebarang" class="ht9 color-grey">Ukuran S</div>
+                                                            <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>S</span></div>
                                                         </div>
                                                     </td>
                                                     <td id="tharga" class="color-red">Rp45.000</td>
                                                     <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">50</span></td>
                                                     <td>
                                                         <div class="row">
-                                                            <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span class="statusind bgcolor-yellow" style="margin-right: 8px;">Print</span></div>
+                                                            <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
                                                             <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
                                                             <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
                                                         </div>
@@ -284,7 +327,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div id="inputkatunkaos" class="col-md-12 mt-3" style="">
+                                            <!--<div id="inputkatunkaos" class="col-md-12 mt-3" style="">
                                                 <div class="dropdown" style="font-weight: 600;">
                                                     <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihankatun" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
@@ -307,7 +350,7 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                             <div id="inputnamabarangkaos" class="col-md-12 mt-3" style="">
                                                     <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
                                                     <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Nama Barang" value="">
@@ -323,22 +366,9 @@
                                                     <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Harga Jual" value="">
                                                 
                                             </div>
-                                            <div id="inputwarnakaos" class="col-md-12 mt-3" style="">
-                                                <div class="row" style="padding: 0px 24px;">
-                                                    <div class="col-md-8">
-                                                        <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                        <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Warna" value="">
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button id="addnewdata" type="button" class="ht9 btn btn-outline-primary bgcolor-primary-linear-gradient" style="padding: 10px;border-radius: 8px;"><i class="fa-regular fa-regular fa-square-plus" style="font-size: 13px;"></i></button>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button id="addnewdata" type="button" class="ht9 btn bgcolor-yellow color-white" style="padding: 10px;border-radius: 8px;"><i class="fa fa-trash" style="font-size: 13px;"></i></button>
-                                                    </div>
-                                                </div>      
-                                            </div>
+                                            
                                             <div id="inputukurankaos" class="col-md-12 mt-3" style="">
-                                                <div class="row" style="padding: 0px 24px;">
+                                                <div class="row" style="padding: 0px 8px;">
                                                     <div class="col-md-8">
                                                         <div class="dropdown" style="font-weight: 600;">
                                                             <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihanukuran" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -348,6 +378,18 @@
                                                             </a>
 
                                                             <ul class="dropdown-menu isiukuran" aria-labelledby="pilihanukuran" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+                                                                <li data-value="assets/images/pos/tag.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                        <span class="ht9">XXXL</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li data-value="assets/images/pos/tag.png">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                        <span class="ht9">XXL</span>
+                                                                    </a>
+                                                                </li>
                                                                 <li data-value="assets/images/pos/tag.png">
                                                                     <a class="dropdown-item" href="#">
                                                                         <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
@@ -383,6 +425,40 @@
                                                     </div>
                                                 </div>      
                                             </div>
+
+                                            <div id="inputwarnakaos" class="col-md-12 mt-3" style="">
+                                                <div class="row" style="padding: 0px 8px;">
+                                                    <div class="col-md-6">
+                                                        <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                        <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="warna" class="form-control data1" id="warna" placeholder="Warna" value="" disabled>
+                                                    </div>
+                                                    <div class="col-md-2" style="padding: 4px 4px 4px 10px;">
+                                                        <div class="color-picker"></div>
+                                                        <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+                                                        <script src="assets/js/colorpick.js"></script>
+                                                    </div>
+                                                </div>      
+                                            </div>
+
+                                            <div id="kaosdepanbelakang" class="col-md-12 mt-3" style="">
+                                                <div class="row" style="padding: 0px 8px;">
+                                                    <div class="col-md-6">
+                                                        <div class="kotakgambar" style="margin: auto 10px;">
+                                                            <div id="penampungwarna" style="background-color: #FFF;">
+                                                                <img id="timage" src="assets/images/kaos/bajudepan1.png" style="height: 110px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="kotakgambar" style="margin: auto 10px;">
+                                                            <div id="penampungwarna2" style="background-color: #FFF;">
+                                                                <img id="timage2" src="assets/images/kaos/bajubelakang1.png" style="height: 110px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>      
+                                            </div>
+                                            
                                             <div id="inputjumlahkaos" class="col-md-12 ht82 mt-2" style="padding: 0px 20px;display:none;">
                                                 <div class="row">
                                                     <div class="col-md-2">
@@ -569,7 +645,8 @@
         $('#btambahstok').show("slow");
         $('#titleside').hide().html("Edit Stok").fadeIn(1000);
         $('#inputjumlahkaos').show("slow");
-        $('#inputkatunkaos, #inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').hide("slow");
+        //$('#inputkatunkaos, #inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').hide("slow");
+        $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').hide("slow");
         $('#inputjumlahkaos').show("slow");
     });
 
@@ -578,7 +655,8 @@
         $('#beditstok').show("slow");
         $('#titleside').hide().html("Tambah").fadeIn(1000);
         $('#inputjumlahkaos').hide("slow");
-        $('#inputkatunkaos, #inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').show("slow");
+        //$('#inputkatunkaos, #inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').show("slow");
+        $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').show("slow");
         $('#inputjumlahkaos').hide("slow");
     });
 
@@ -600,26 +678,218 @@
         var valueSelected = this.value;
         console.log(valueSelected);
         if(valueSelected == "Kertas"){
-            $('#tkode').html('PET 001');
-            $('#timage').attr('src','assets/images/pos/PETFilmA6.png');
-            $('#tnamabarang').html('PET Film');
-            $('#tisizebarang').html('A5');
-            $('#tharga').html('Rp.5.000');
-            $('#tstok').html('50');
+            getpapper();
             $('#detailstok').hide();
             $('#detailkertas').show("slow");
-        }else{
-            $('#tkode').html('TS00100S');
-            $('#timage').attr('src','assets/images/pos/baju.png');
-            $('#tnamabarang').html('PET Film');
-            $('#tisizebarang').html('A5');
-            $('#tharga').html('Rp.5.000');
-            $('#tstok').html('50');
+        }else if(valueSelected == "Kaos"){
+            getkaos();
             $('#detailkertas').hide();
-            $('#detailstok').show("slow");
-            
+            $('#detailstok').show("slow");         
+        }else{
+            console.log("select tidak diketahui");
         }
     });
+
+    getkaos();
+    function getkaos(){
+        $.ajax({
+            url: '/product_kaos_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var table = $('#dtstokbarang').DataTable();
+                table.destroy();
+                $("#dtstokbarang tbody").html('');
+                $.each(data.data,function(key,value){
+                    var str = "" + value.idproductkaos;
+                    var pad = "00000";
+                    var ans = pad.substring(0, pad.length - str.length) + str;
+                    var finalcode = "TS"+ans+"S";
+                    var myjenis = value.jenisbarang;
+                    const finaljenis = myjenis.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var warna = value.warna;
+                    const finalwarna = warna.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var size = value.size;
+                    const finalsize = size.toUpperCase();
+                    $("#dtstokbarang tbody").append(
+                        `
+                        <tr>
+                            <td id="${value.idproductkaos}">${finalcode}</td>
+                            <td>
+                                <div class="kotak" style="">
+                                    <img id="timage" src="assets/images/kaos/white1.png" style="height: 48px;">
+                                </div>
+                                <div style="float: left;margin-top:11px">
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljenis} ${finalwarna}</div>
+                                    <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize}</span></div>
+                                </div>
+                            </td>
+                            <td id="tharga" class="color-red">Rp.${value.hargajual}</td>
+                            <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
+                                    <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                    <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
+    $("#dtstokbarang").on('click','.printbarcode',function(){
+        RowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+        selectedid = $(RowSelector).children('td:first-child').text();
+        size = $("#tsizebarang").children('span').text();
+        namabarang = $("#tnamabarang").text();
+        hargabarang = $("#tharga").text();
+        var textbarcode = selectedid;
+        JsBarcode("#barcode",textbarcode);
+        $("#barcode").children('g').children('text').hide();
+        $("#idprintbarcode").html(textbarcode);
+        $("#ukuranprintbarcode").html(size);
+        $("#jenisprintbarcode").html(namabarang);
+        $("#hargaprintbarcode").html(hargabarang);
+        console.log(textbarcode);
+    });
+
+    $("#dtstokbarang").on('click','.delete',function(){
+        deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+        getkelas =  $("#tnamabarang").attr('class');
+        console.log(getkelas);
+        selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+        $.ajax({
+            url: '/product_kaos_delete/'+selectedid,
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                status = data['status']['code'];
+                if (status=='undefined'){
+                    alert("Data Berhasil Dihapus");
+                    $.each(data.data,function(key,value){
+                        var $datatable = $('#dtstokbarang').DataTable();
+                        $datatable.row(deletingRowSelector).remove().draw();
+                    });
+                }else{
+                    alert("Hapus terlebih dahulu data yang terhubung");
+                }
+            },complete:function(){
+                //$('#dtBasicExample').DataTable();
+                $('#dtstokbarang').dataTable().fnDestroy();
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+        
+    });
+
+    //getpapper();
+    function getpapper(){
+        $.ajax({
+            url: '/product_papper_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var table = $('#dtstokbarang').DataTable();
+                table.destroy();
+                $("#dtstokbarang tbody").html('');
+                $.each(data.data,function(key,value){
+                    var str2 = "" + value.idpaper;
+                    var pad2 = "0000";
+                    var ans2 = pad2.substring(0, pad2.length - str2.length) + str2;
+                    var finalcode2 = "PET"+ans2+"A";
+                    var size = value.jenis;
+                    const finalsize = size.toUpperCase();
+                    $("#dtstokbarang tbody").append(
+                        `
+                        <tr>
+                            <td id="${value.idpaper}">${finalcode2}</td>
+                            <td>
+                                <div class="kotak" style="">
+                                    <img id="timage" src="assets/images/pos/PETFilmA6.png" style="height: 48px;">
+                                </div>
+                                <div style="float: left;margin-top:11px">
+                                    <div id="tnamabarang" class="${value.name}" style="font-size: 16px;font-weight: 500;">${value.name}</div>
+                                    <div id="tsizebarang" class="ht9 color-grey"><span>${finalsize}</span></div>
+                                </div>
+                            </td>
+                            <td id="tharga" class="color-red">Rp.${value.price}</td>
+                            <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
+                                    <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                    <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
     $(".bstatus").click(function(){
         $(".bstatus").removeClass("bstatusactive");
         $(this).addClass("bstatusactive");
@@ -649,7 +919,7 @@
         $(".table tbody tr").children("td").removeClass("tdactivehover");
         $(this).children("td:first-child").addClass("tdactivehover");
     });
-    $(document).ready(function () {
+    /*$(document).ready(function () {
         $('#dtstokbarang').DataTable({
             dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
             pagingType: "simple",
@@ -658,7 +928,7 @@
                 [4, 10, 25, 'All'],
             ],
         });
-        $('.dataTables_length').addClass('bs-select');
+        $('.dataTables_length').addClass('bs-select');*/
 
         /*function gogo(){
             var all = $("#dtBasicExample_length");
@@ -678,7 +948,7 @@
         $(".table tbody").children("tr:first-child").children("td:first-child").addClass("tdactivehover");*/
         
         
-    });
+    //});
     $("div.list-item").hover(function(){
             $(this).children( "a" ).css("color", "#5BC9E1");
             $(this).children( "a" ).children(".link").addClass("activebutton");
@@ -765,3 +1035,4 @@
     });
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
