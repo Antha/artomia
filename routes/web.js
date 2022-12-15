@@ -11,9 +11,12 @@ var payment = require("./../controllers/payment");
 var transaction = require("./../controllers/transaction");
 var produksi = require("./../controllers/produksi");
 var akunting = require("./../controllers/akunting");
+var middle = require("./../controllers/middleware");
 
-router.get("/", (req, res) => {
-    res.render("index.hbs");
+router.get("/", middle.login_handle, (req, res) => {
+    res.render("index.hbs", {
+        username: req.session.username,
+    });
 });
 
 router.get("/login", (req, res) => {
@@ -21,33 +24,54 @@ router.get("/login", (req, res) => {
     res.render("login.hbs");
 });
 
-router.get("/keranjang", (req, res) => {
+router.post("/login_process", middle.login_process, (req, res) => {
+    res.redirect("/");
+});
+
+router.get("/logout_process", middle.login_process, (req, res) => {
+    req.session.destroy();
+    res.redirect("/login");
+});
+
+router.get("/keranjang", middle.login_handle, (req, res) => {
     console.log("req.session.cart");
     //console.log(req.session.cart);
-    res.render("keranjang.hbs");
+    res.render("keranjang.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/pos", (req, res) => {
-    res.render("pos.hbs");
+router.get("/pos", middle.login_handle, (req, res) => {
+    res.render("pos.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/kaos", (req, res) => {
-    res.render("pos_kaos.hbs");
+router.get("/kaos", middle.login_handle, (req, res) => {
+    res.render("pos_kaos.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/checkout", (req, res) => {
-    res.render("pos_checkout.hbs");
+router.get("/checkout", middle.login_handle, (req, res) => {
+    res.render("pos_checkout.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/transaksi", (req, res) => {
-    res.render("transaksi.hbs");
+router.get("/transaksi", middle.login_handle, (req, res) => {
+    res.render("transaksi.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/akunting", (req, res) => {
-    res.render("akunting.hbs");
+router.get("/akunting", middle.login_handle, (req, res) => {
+    res.render("akunting.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/keranjang_add", (req, res) => {
+router.get("/keranjang_add", middle.login_handle, (req, res) => {
     var cart = req.session.cart || [];
 
     cart.push({
@@ -67,7 +91,7 @@ router.get("/keranjang_add", (req, res) => {
     res.json(req.session.cart);
 });
 
-router.get("/keranjang_edit", (req, res) => {
+router.get("/keranjang_edit", middle.login_handle, (req, res) => {
     var cart = req.session.cart;
 
     cart[req.query.key]["item_amount"] = req.query.item_amount;
@@ -77,7 +101,7 @@ router.get("/keranjang_edit", (req, res) => {
     res.json(req.session.cart);
 });
 
-router.get("/keranjang_edit_checked", (req, res) => {
+router.get("/keranjang_edit_checked", middle.login_handle, (req, res) => {
     var cart = req.session.cart;
 
     cart[req.query.key]["checked"] = req.query.checked;
@@ -86,7 +110,7 @@ router.get("/keranjang_edit_checked", (req, res) => {
     res.json(req.session.cart);
 });
 
-router.get("/keranjang_delete", (req, res) => {
+router.get("/keranjang_delete", middle.login_handle, (req, res) => {
     var cart_new = [];
 
     for (var i = 0; i < req.session.cart.length; i++) {
@@ -99,7 +123,7 @@ router.get("/keranjang_delete", (req, res) => {
     res.json(req.session.cart);
 });
 
-router.get("/keranjang_keep_unchecked", (req, res) => {
+router.get("/keranjang_keep_unchecked", middle.login_handle, (req, res) => {
     var cart_new = [];
 
     for (var i = 0; i < req.session.cart.length; i++) {
@@ -112,40 +136,56 @@ router.get("/keranjang_keep_unchecked", (req, res) => {
     res.json(req.session.cart);
 });
 
-router.get("/keranjang_list", (req, res) => {
+router.get("/keranjang_list", middle.login_handle, (req, res) => {
     res.json(req.session.cart);
 });
 
-router.get("/pos", (req, res) => {
-    res.render("pos.hbs");
+router.get("/pos", middle.login_handle, (req, res) => {
+    res.render("pos.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/kaos", (req, res) => {
-    res.render("pos_kaos.hbs");
+router.get("/kaos", middle.login_handle, (req, res) => {
+    res.render("pos_kaos.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/checkout", (req, res) => {
-    res.render("pos_checkout.hbs");
+router.get("/checkout", middle.login_handle, (req, res) => {
+    res.render("pos_checkout.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/transaksi", (req, res) => {
-    res.render("transaksi.hbs");
+router.get("/transaksi", middle.login_handle, (req, res) => {
+    res.render("transaksi.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/akunting", (req, res) => {
-    res.render("akunting.hbs");
+router.get("/akunting", middle.login_handle, (req, res) => {
+    res.render("akunting.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/produksi", (req, res) => {
-    res.render("produksi.hbs");
+router.get("/produksi", middle.login_handle, (req, res) => {
+    res.render("produksi.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/datauser", (req, res) => {
-    res.render("datauser.hbs");
+router.get("/datauser", middle.login_handle, (req, res) => {
+    res.render("datauser.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get("/stok", (req, res) => {
-    res.render("stok.hbs");
+router.get("/stok", middle.login_handle, (req, res) => {
+    res.render("stok.hbs", {
+        username: req.session.username,
+    });
 });
 
 //Api

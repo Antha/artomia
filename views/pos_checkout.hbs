@@ -131,7 +131,7 @@
                         </ul>
                         <ul class="navbar-right d-flex list-inline float-right" style="color: white; margin:6px 10px 10px 10px;border-right: 2px solid white;">
                             <div style="margin-top:6px" id="username" class="color-grey">
-                                Fulan bin Fulan
+                               {{username}}
                             </div>
                         </ul>
                     </nav>
@@ -423,15 +423,15 @@
                                                             </a>
 
                                                             <ul class="dropdown-menu isibank" aria-labelledby="pilihanbankbutton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);width: 100%;">
-                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                <li data-id="1" data-value="assets/images/pos/bca_icon.png">
                                                                     <a class="dropdown-item" href="#">
                                                                         <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
-                                                                        <span class="ht82">Bank Central Asia2</span>
+                                                                        <span class="ht82">Bank Central Asia</span>
                                                                         <span style="padding: 0px 8px;">|</span>
                                                                         <span class="color-grey">Otomatis dicek</span>
                                                                     </a>
                                                                 </li>
-                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                <li data-id="2" data-value="assets/images/pos/bca_icon.png">
                                                                     <a class="dropdown-item" href="#">
                                                                         <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
                                                                         <span class="ht82">BNI</span>
@@ -439,7 +439,7 @@
                                                                         <span class="color-grey">Otomatis dicek</span>
                                                                     </a>
                                                                 </li>
-                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                <li data-id="3" data-value="assets/images/pos/bca_icon.png">
                                                                     <a class="dropdown-item" href="#">
                                                                         <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
                                                                         <span class="ht82">BRI</span>
@@ -463,7 +463,7 @@
                                                             </a>
 
                                                             <ul class="dropdown-menu isiewallet" aria-labelledby="pilihanewalletbutton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);width: 100%;">
-                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                <li data-id="5" data-value="assets/images/pos/bca_icon.png">
                                                                     <a class="dropdown-item" href="#">
                                                                         <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
                                                                         <span class="ht82">Link Aja</span>
@@ -471,7 +471,7 @@
                                                                         <span class="color-grey">Otomatis dicek</span>
                                                                     </a>
                                                                 </li>
-                                                                <li data-value="assets/images/pos/bca_icon.png">
+                                                                <li data-id="6" data-value="assets/images/pos/bca_icon.png">
                                                                     <a class="dropdown-item" href="#">
                                                                         <img src="assets/images/pos/bca_icon.png" style="width: 32px;margin-right: 13px;">
                                                                         <span class="ht82">Go Pay</span>
@@ -688,23 +688,30 @@
         if(getid=="tunai"){
             $("#bankchoice").hide("slow");
             $("#ewalletchoice").hide("slow");
+            payment_id = 4;
         }else if(getid=="trf"){
             $("#ewalletchoice").hide("slow");
             $("#bankchoice").show("slow");
+            payment_id = 1;
         }else{
             $("#bankchoice").hide("slow");
             $("#ewalletchoice").show("slow");
+            payment_id = 5;
         }
     });
+
+    var payment_id = 1;
 
     $(".isibank li").click(function(){
         var getlogo = $(this).data('value');
         $("#pilihanbankbutton").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;'>"+$(this).text()+"<span class='caret' style='padding-right: 46%;'></span>");
+        payment_id = $(this).data('id');
     });
 
     $(".isiewallet li").click(function(){
         var getlogo = $(this).data('value');
         $("#pilihanewalletbutton").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;'>"+$(this).text()+"<span class='caret' style='padding-right: 46%;'></span>");
+        payment_id = $(this).data('id');
     });
 
     $("div.list-item").hover(function(){
@@ -756,6 +763,9 @@
     });
 
     $("#bbayar").click(function(){
+        console.log("payment_id : "+payment_id);
+        //return false;
+
         var cust_prio = $(".buttonprioritasactive").text();
         var id_prio;
         var payment = $("#pilihanbankbutton").text();
@@ -781,7 +791,7 @@
                 customers_id : 1,
                 chasier_id : 1,
                 customer_priority_id : id_prio,
-                payment_id : 1
+                payment_id : payment_id
             },
             success: function(data){
                 var transaction_id = data.data.insertId ;
