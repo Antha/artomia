@@ -54,7 +54,9 @@ router.get("/kaos", middle.login_handle, (req, res) => {
 });
 
 router.get("/checkout", middle.login_handle, (req, res) => {
+    //console.log("req.session.chasier_id: " + req.session.chasier_id);
     res.render("pos_checkout.hbs", {
+        chasier_id: req.session.chasier_id,
         username: req.session.username,
     });
 });

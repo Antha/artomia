@@ -17,12 +17,19 @@ exports.login_process = function (req, res, next) {
     //console.log(req.body.username + " " + req.body.userpass);
 
     con.query("SELECT * FROM chasiers WHERE username = ? AND password = ?", [user, pass], function (error, results, fields) {
-        console.log(error);
+        //console.log(error);
 
         //Regular Accounts
         if (results.length > 0) {
             req.session.isLogin = true;
             req.session.username = user;
+
+            //console.log(rows);
+
+            results.forEach(function (element) {
+                req.session.chasier_id = element.idchasier;
+                console.log(" element.idchasier " + element.idchasier);
+            });
 
             next();
         } else {
