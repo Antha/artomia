@@ -300,7 +300,9 @@
                                                 </div>
                                             </div>
                                             <div id="img_product"  style="text-align: center;">
-                                                <img id="produkpos" src="assets/images/pos/Kaos1.png" style="height: 326px;width:326px;resize: both;">
+                                                <div id="tampungwarnabackground">
+                                                    <img id="produkpos" src="assets/images/kaos/bajudepan1.png" style="height: 326px;width:326px;resize: both;">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12 row mt-4" id="" style="text-align: center;">
@@ -334,11 +336,11 @@
                                                 <div class="col-md-6" id="" style="">
                                                     <div class="col-md-12 ht82">Ukuran</div>
                                                     <div class="col-md-12 ht82 mt-2" style="padding-left: 8px;">
-                                                        <button class="bukuran">S</button>
-                                                        <button class="bukuran activebukuran">M</button>
-                                                        <button class="bukuran">L</button>
-                                                        <button class="bukuran">XL</button>
-                                                        <button class="bukuran">XXL</button>
+                                                        <button id="s" class="bukuran" style="display: none;">S</button>
+                                                        <button id="m" class="bukuran" style="display: none;">M</button>
+                                                        <button id="l" class="bukuran" style="display: none;">L</button>
+                                                        <button id="xl" class="bukuran" style="display: none;">XL</button>
+                                                        <button id="xxl" class="bukuran" style="display: none;">XXL</button>
                                                     </div>
                                                     <div class="col-md-12 ht82" style="margin-top: 0.9rem;">Warna</div>
                                                     <div class="col-md-12 ht82 mt-2" style="padding-left: 8px;">
@@ -390,7 +392,7 @@
                                                 <div class="ht82">Jumlah</div>
                                                 <div class="ht82 mt-2" style="">
                                                     <button class="bjumlah_baju" id="min"><i class="fa-regular fa-square-minus"></i></button>
-                                                    <button class="bjumlah_baju2 ht82" id="nilai" style="pointer-events: none;">0</button>
+                                                    <button class="bjumlah_baju2 ht82" id="nilai" style="pointer-events: none;">1</button>
                                                     <button class="bjumlah_baju" id="plus"><i class="fa-regular fa-square-plus"></i></button>
                                                 </div>
                                             </div>
@@ -484,6 +486,133 @@
     const urlParams = new URLSearchParams(queryString);
     const idProducts = urlParams.get('product_id');
     var item_net_cost = 0;
+    
+    getcolorlist();
+    function getcolorlist(){
+        $.ajax({
+            url: '/product_kaos_select_warna',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                $("#titlebutton").html('');
+                $(".isiwarna").html('');
+                
+                $.each(data.data,function(key,value){
+                    var str3 = "" + value.idpaper;
+                    var uppercasefirsword= value.warna;
+                    const finaluppercase = uppercasefirsword.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    if (key==0)
+                    {
+                        $("#titlebutton").append(`
+                            <i data-value="${value.kode}" style="color:${value.kode};margin-right:8px;" class="fa-solid fa-square"></i><span>${finaluppercase}</span>
+                        `);
+                    }
+                    $(".isiwarna").append(`
+                        <li data-value="${value.warna}">
+                            <a class="dropdown-item" href="#">
+                                <i data-value="${value.kode}" style="color:${value.kode};margin-right:8px;" class="fa-solid fa-square"></i>
+                                <span>${finaluppercase}</span>
+                            </a>
+                        </li>
+                    `);
+                });
+            },complete:function(data){
+                $(".bukuran").removeClass("activebukuran");
+                var product_color_get = $("#titlebutton").children("span").text();
+                var tolowercasecolorname = product_color_get.toLowerCase();
+                console.log(tolowercasecolorname);
+                $.ajax({
+                    url: '/product_kaos_select_size/',
+                    type: 'POST',
+                    data: {warna:product_color_get},
+                    success: function(data){
+                        $.each(data.data,function(key,value){
+                            if(key == 0){
+                                $('#'+value.size).show().addClass("activebukuran");
+                            }else{
+                                $('#'+value.size).show();
+                            }
+                        });
+                    }
+                });
+                $(".isiwarna li").click(function(){
+                $(".bukuran").removeClass("activebukuran");
+                $(".bukuran").hide();
+                var colorval=$(this).children("a").children("i").data('value');
+                var colorval2=$(this).data('value');
+                //console.log(colorval);
+                //console.log(colorval2);
+                var jenisproduk=$('#produkpos').attr('class');
+                var tampungselect="";
+                var tampungselect2="";
+                switch(jenisproduk){
+                    case 'kaos':
+                    tampungselect = "assets/images/kaos/bajudepan1.png";
+                    $("#produkpos").attr('src',tampungselect);
+                    $("#tampungwarnabackground").css('background-color',colorval);
+                    //console.log(tampungselect);
+                    break;
+
+                    case 'sweater':
+                    color_id = 2;
+                    break;
+
+                    case 'tank-top':
+                    color_id = 3;
+                    break;
+
+                    case 'topi':
+                    color_id = 4;
+                    break;
+
+                    case 'totebag':
+                    color_id = 5;
+                    break;
+
+                    case 'polo-cap':
+                    color_id = 6;
+                    break;
+
+                    case 'panel-cap':
+                    color_id = 6;
+                    break;
+
+                    case 'trucker-cap':
+                    color_id = 6;
+                    break;
+                }
+                
+                $("#tampakbelakang").click(function(){
+                    tampungselect2 = "assets/images/kaos/bajubelakang1.png";
+                    $('#produkpos').attr('src',tampungselect2);
+                });
+
+                $("#tampakdepan").click(function(){
+                    $('#produkpos').attr('src',tampungselect);
+                });
+                
+                $("#titlebutton").html("<i data-value='"+$(this).text()+"' style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
+                $.ajax({
+                    url: '/product_kaos_select_size/',
+                    type: 'POST',
+                    data: {warna:colorval2},
+                    success: function(data){
+                        $.each(data.data,function(key,value){
+                            if(key == 0){
+                                $('#'+value.size).show().addClass("activebukuran");
+                            }else{
+                                $('#'+value.size).show();
+                            }
+                            
+                        });
+                    }
+                });
+            });
+            }
+        });
+    }
 
     $.ajax({
         url: '/papers/',
@@ -491,7 +620,7 @@
         data: {  },
         success: function(data){
             $.each(data.data,function(key,value){
-                 $("#bucketskertas").append(
+                $("#bucketskertas").append(
                     `<div class="col-md-6 mt-2">
                         <div class="card" style="padding: 8px 16px;">
                             <div class="row">
@@ -559,7 +688,7 @@
         $('#exampleModalCenter').modal('hide');
     });
 
-    var jumalahpesan = 0;
+    var jumalahpesan = 1;
     
     $("#plus").click(function(){
         jumalahpesan+=1;
@@ -588,68 +717,12 @@
         $(this).addClass("activebukuran");
     });
 
-    $(".isiwarna li").click(function(){
-        var colorval=$(this).children("a").children("i").data('value');
-        var colorval2=$(this).data('value');
-        //console.log(colorval);
-        //console.log(colorval2);
-        var jenisproduk=$('#produkpos').attr('class');
-        var tampungselect="";
-        var tampungselect2="";
-        switch(jenisproduk){
-            case 'kaos':
-            tampungselect = "assets/images/kaos/"+colorval2+"1.png";
-            $("#produkpos").attr('src',tampungselect);
-            //console.log(tampungselect);
-            break;
-
-            case 'sweater':
-            color_id = 2;
-            break;
-
-            case 'tank-top':
-            color_id = 3;
-            break;
-
-            case 'topi':
-            color_id = 4;
-            break;
-
-            case 'totebag':
-            color_id = 5;
-            break;
-
-            case 'polo-cap':
-            color_id = 6;
-            break;
-
-            case 'panel-cap':
-            color_id = 6;
-            break;
-
-            case 'trucker-cap':
-            color_id = 6;
-            break;
-        }
-        $("#tampakbelakang").click(function(){
-            tampungselect2 = "assets/images/kaos/"+colorval2+"2.png";
-            $('#produkpos').attr('src',tampungselect2);
-        });
-
-        $("#tampakdepan").click(function(){
-            $('#produkpos').attr('src',tampungselect);
-        });
-        
-        $("#titlebutton").html("<i data-value='"+$(this).text()+"' style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
-    });
-
-    
     $("#tampakbelakang").click(function(){
-        $('#produkpos').attr('src','assets/images/kaos/white1.png')
+        $('#produkpos').attr('src','assets/images/kaos/bajubelakang1.png')
     });
 
     $("#tampakdepan").click(function(){
-        $('#produkpos').attr('src','assets/images/kaos/white2.png')
+        $('#produkpos').attr('src','assets/images/kaos/bajudepan1.png')
     });
 
     $(".isikain li").click(function(){
@@ -740,17 +813,19 @@
         screenshot();
         return false;
     })
-
+    
     $.ajax({
         url: '/products/'+idProducts,
         type: 'get',
         data: {  },
         success: function(data){
             $.each(data.data,function(key,value){
-                $("#img_product").html(`<img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;">`)
+                $("#img_product").html(`<div id="tampungwarnabackground"><img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;"></div>`)
                 $("#data-product-name").html(value.name);
                 item_net_cost = value.price;
             });
+        },complete:function(){
+            
         }
     });
 

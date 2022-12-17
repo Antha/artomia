@@ -4,6 +4,9 @@ var mysql = require("mysql");
 var session = require("express-session");
 var path = require("path");
 const router = express.Router();
+const multer = require("multer");
+const fs = require("fs");
+const mkdirp = require("mkdirp");
 var product = require("./../controllers/product");
 var customer = require("./../controllers/customer");
 var chasier = require("./../controllers/chasier");
@@ -19,6 +22,39 @@ router.get("/", middle.login_handle, (req, res) => {
     res.render("index.hbs", {
         username: req.session.username,
     });
+});
+
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, "../public/assets/akunting/"),
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    },
+});
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 10000000, //give no. of bytes
+    },
+}).single("upload_bukti");
+
+router.post("/upload", function uploadFile(req, res) {
+    upload(req, res, err => {
+        if (err) {
+            //Send error msg
+            console.log(err);
+            res.send(err);
+        } else {
+            //send correct msg
+            //res.send()
+            res.send("Successful");
+            console.log("file uploaded succcessfully");
+        }
+    });
+});
+
+router.get("/", (req, res) => {
+    res.render("index.hbs");
 });
 
 router.get("/login", (req, res) => {
@@ -222,8 +258,11 @@ router.get("/akunting_select_credit", akunting.select_akunting_credit);
 router.get("/akunting_delete/:idakunting", akunting.delete_akunting);
 router.post("/akunting_update", akunting.update_akunting);
 router.post("/akunting_insert", akunting.insert_akunting);
+router.post("/upload");
 
 router.get("/product_kaos_select", product_kaos.select_kaos);
+router.get("/product_kaos_select_warna", product_kaos.select_warna_kaos);
+router.post("/product_kaos_select_size", product_kaos.select_size_kaos);
 router.get("/product_kaos_delete/:idproductkaos", product_kaos.delete_kaos);
 router.post("/product_kaos_update", product_kaos.update_kaos);
 router.post("/product_kaos_insert", product_kaos.insert_kaos);

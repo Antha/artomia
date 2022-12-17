@@ -162,6 +162,7 @@ function insert_akunting(callback, req) {
         );
     });
 }
+
 module.exports.insert_akunting = insert_akunting;
 module.exports.update_akunting = update_akunting;
 module.exports.select_akunting = select_akunting;
