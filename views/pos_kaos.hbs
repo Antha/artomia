@@ -92,7 +92,7 @@
                 </div>
                 <div class="main2" style="margin-bottom: 16px;">
                     <div class="list-item">
-                            <a href="#">
+                            <a href="/logout_process">
                                 <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
                                 </div>
                                 <div style="padding: 4px;float: left;">
@@ -186,7 +186,9 @@
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <div class="containerupload">
-                                                <input type="file" class="upload_hide" id="upload_costum" multiple>
+                                                <form id="uploadForms"  enctype="multipart/form-data">
+                                                    <input type="file" class="upload_hide" id="upload_costum" multiple>
+                                                </form>
                                                 <label for="upload_costum"  class="upload_label">
                                                     <div class="image">
                                                         <img src="" alt="" style="display:none;">
@@ -811,6 +813,22 @@
 
     $('#btn_next').click(function(){
         screenshot();
+        /*var data2 = new FormData($('#uploadForms')[0]);
+        console.log(data2);
+        $.ajax({
+            url:'/upload2',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            cache: false,
+            data: data2,
+            success: function(res){
+                alert(res);
+            },
+            error: function(){
+                alert('Error: In sending the request!');
+            }
+        });*/
         return false;
     })
     

@@ -144,7 +144,7 @@
                 </div>
                 <div class="main2" style="margin-bottom: 16px;">
                     <div class="list-item">
-                            <a href="#">
+                            <a href="/logout_process">
                                 <div style="float: left; width:6px;height:6vh; margin-right:32px;border-radius: 0px 8px 8px 0px;" class="link">
                                 </div>
                                 <div style="padding: 4px;float: left;">
@@ -795,6 +795,7 @@
                     ],
                     retrieve:true,
                     order:true,
+                    "bDestroy": true
                 });
                 $('.dataTables_length').addClass('bs-select');
                 
@@ -831,6 +832,7 @@
                 success:function(data){  
                     alert('succes');
                 },complete:function(){
+                    $('#dtakunting').dataTable().fnDestroy();
                     //location.reload();
                     getfirstakunting();
                 }
@@ -883,7 +885,7 @@
         }
         //console.log(addstrcategory);
         //console.log(nilaicategory);
-        /*$.ajax({
+        $.ajax({
             type:"POST",
             data:{
                 date:dateget,
@@ -896,11 +898,27 @@
             success:function(data){  
                 alert('succes');
             },complete:function(){
-                //location.reload();
+                var data2 = new FormData($('#uploadForm')[0]);
+                $.ajax({
+                    url:'/upload',
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: data2,
+                    success: function(res){
+                        alert(res);
+                    },
+                    error: function(){
+                        alert('Error: In sending the request!');
+                    }
+                });
+                $('#dtakunting').dataTable().fnDestroy();
                 getfirstakunting();
             }
-        });*/
-        var data2 = new FormData($('#uploadForm')[0]);
+        });
+        
+        /*var data2 = new FormData($('#uploadForm')[0]);
         $.ajax({
             url:'/upload',
             type: 'POST',
@@ -914,7 +932,7 @@
             error: function(){
                 alert('Error: In sending the request!');
             }
-        })
+        })*/
     });
     
     $("div.list-item").hover(function(){
