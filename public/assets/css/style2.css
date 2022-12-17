@@ -641,6 +641,11 @@ a{
 #logoimage{
     cursor: all-scroll;
 }
+
+#tampungwarnabackground{
+    width: 326px;
+    margin: 0px auto;
+}
 table.dataTable thead .sorting { background: url('/assets/images/icon_swap.png') no-repeat center right;background-size: 12px;}
 table.dataTable thead .sorting_asc { background: url('/assets/images/icon_asc.png') no-repeat center right;background-size: 12px;}
 table.dataTable thead .sorting_desc { background: url('/assets/images/icon_desc.png') no-repeat center right;background-size: 12px;}

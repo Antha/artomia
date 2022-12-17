@@ -17,6 +17,38 @@ exports.select_kaos = function (req, res) {
     }, req);
 };
 
+exports.select_warna_kaos = function (req, res) {
+    product_kaos.select_warna_kaos(function (status, data) {
+        var mydata = [];
+        var myjson;
+        var status;
+
+        myjson = {
+            status: status,
+            data: data.rows,
+        };
+        //console.log(myjson);
+        res.json(myjson);
+        res.end();
+    }, req);
+};
+
+exports.select_size_kaos = function (req, res) {
+    product_kaos.select_size_kaos(function (status, data) {
+        var mydata = [];
+        var myjson;
+        var status;
+
+        myjson = {
+            status: status,
+            data: data.rows,
+        };
+        //console.log(myjson);
+        res.json(myjson);
+        res.end();
+    }, req);
+};
+
 exports.delete_kaos = function (req, res) {
     product_kaos.delete_kaos(function (status, data) {
         var mydata = [];

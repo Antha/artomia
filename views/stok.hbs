@@ -224,7 +224,7 @@
                             <div class="col-xl-6 col-md-12 color-grey ht6 mt-1" style="text-align: right;">
                                 Menampilakn Data : 
                                 <label>
-                                    <select class="myselect2 ht8 mdi bgcolor-primary-linear-gradient" style="font-weight: 600;min-width: 100px;">
+                                    <select id="selectjenis" class="myselect2 ht8 mdi bgcolor-primary-linear-gradient" style="font-weight: 600;min-width: 100px;">
                                         <option style="color: #181717;" value="Kaos">Kaos</option>
                                         <option style="color: #181717;" value="Kertas">Kertas Pet</option>
                                     </select>
@@ -303,9 +303,9 @@
                                                 <button id="beditstok" type="button" class="ht9 btn btn-outline-secondary" style="height: 24px;border-radius: 8px;padding: 0px 16px;font-weight: 600;">Edit Stok</button>
                                                 <button id="btambahstok" type="button" class="ht9 btn btn-outline-secondary" style="height: 24px;border-radius: 8px;padding: 0px 16px;font-weight: 600;display:none;">Tambah Stok</button>
                                             </div>
-                                            <div id="inputjeniskaos" class="col-md-12 mt-3" style="">
+                                            <div id="inputjeniskaos" class="col-md-12 mt-2" style="">
                                                 <div id="namakaos" class="dropdown" style="font-weight: 600;">
-                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihannamakaos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle disabled" href="#" role="button" id="pilihannamakaos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
                                                         <span class="ht9">Kaos</span>
                                                         <span class="caret" style="padding-right: 56%;"></span>
@@ -315,59 +315,64 @@
                                                         <li data-value="assets/images/pos/tag.png">
                                                             <a class="dropdown-item" href="#">
                                                                 <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
-                                                                <span class="ht9">Kaos1</span>
+                                                                <span class="ht9">Kaos</span>
                                                             </a>
                                                         </li>
                                                         <li data-value="assets/images/pos/tag.png">
                                                             <a class="dropdown-item" href="#">
                                                                 <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
-                                                                <span class="ht9">Kaos2</span>
+                                                                <span class="ht9">Sweater</span>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <!--<div id="inputkatunkaos" class="col-md-12 mt-3" style="">
+                                            <div id="inputidkaosedit" class="col-md-12 mt-3" style="display:none;">
                                                 <div class="dropdown" style="font-weight: 600;">
-                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihankatun" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihanidkaos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
-                                                        <span class="ht9">Katun</span>
-                                                        <span class="caret" style="padding-right: 56%;"></span>
+                                                        <span class="ht9">TS00001S</span>
+                                                        <span class="caret" style="padding-right: 50%;"></span>
                                                     </a>
 
-                                                    <ul class="dropdown-menu isikatun" aria-labelledby="pilihankatun" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+                                                    <ul class="dropdown-menu isiidkaos" aria-labelledby="pilihanidkaos" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);max-height: 300px;overflow-y: auto;">
                                                         <li data-value="assets/images/pos/tag.png">
                                                             <a class="dropdown-item" href="#">
                                                                 <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
-                                                                <span class="ht9">Katun1</span>
+                                                                <span class="ht9">TS00002S</span>
                                                             </a>
                                                         </li>
                                                         <li data-value="assets/images/pos/tag.png">
                                                             <a class="dropdown-item" href="#">
                                                                 <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
-                                                                <span class="ht9">Katun2</span>
+                                                                <span class="ht9">TS00003S</span>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </div>
-                                            </div>-->
-                                            <div id="inputnamabarangkaos" class="col-md-12 mt-3" style="">
+                                            </div>
+                                            <div id="inputnamabarangkaos" class="col-md-12 mt-2" style="">
                                                     <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Nama Barang" value="">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namawarna" class="form-control data1" id="namawarna" placeholder="Nama Warna ex: Blue Sea" value="">
                                                 
                                             </div>
-                                            <div id="inputhargabelikaos" class="col-md-12 mt-3" style="">
+                                            <div id="inputhargabelikaos" class="col-md-12 mt-2" style="">
                                                     <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Harga Beli" value="">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="hargabeli" class="form-control data1" id="hargabeli" placeholder="Harga Beli" value="">
                                                 
                                             </div>
-                                            <div id="inputhargajualkaos" class="col-md-12 mt-3" style="">
+                                            <div id="inputhargajualkaos" class="col-md-12 mt-2" style="">
                                                     <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarang" class="form-control data1" id="namabarang" placeholder="Harga Jual" value="">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="hargajual" class="form-control data1" id="hargajual" placeholder="Harga Jual" value="">
                                                 
                                             </div>
                                             
-                                            <div id="inputukurankaos" class="col-md-12 mt-3" style="">
+                                            <div class="col-md-12 mt-2">
+                                                <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
+                                                <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="stokamount" class="form-control data1" id="stokamount" placeholder="Amount" value="">
+                                            </div>
+                                    
+                                            <div id="inputukurankaos" class="col-md-12 mt-2" style="">
                                                 <div class="row" style="padding: 0px 8px;">
                                                     <div class="col-md-8">
                                                         <div class="dropdown" style="font-weight: 600;">
@@ -430,7 +435,7 @@
                                                 <div class="row" style="padding: 0px 8px;">
                                                     <div class="col-md-6">
                                                         <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                        <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="warna" class="form-control data1" id="warna" placeholder="Warna" value="" disabled>
+                                                        <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="warna" class="form-control data1" id="warna" placeholder="#ffffff" value="#ffffff" disabled>
                                                     </div>
                                                     <div class="col-md-2" style="padding: 4px 4px 4px 10px;">
                                                         <div class="color-picker"></div>
@@ -465,7 +470,7 @@
                                                         <button class="bjumlahstok" id="minkaos"><i class="fa-regular fa-square-minus"></i></button>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <input style="text-align: center;font-size: 14px;font-size: 8pt;" type="text" name="jumlahstokkaos" class="form-control data1" id="jumlahstokkaos" placeholder="Jumlah Stok" value="">
+                                                        <input style="text-align: center;font-size: 14px;font-size: 8pt;" type="text" name="jumlahstokkaos" class="form-control data1" id="jumlahstokkaos" placeholder="Jumlah Stok Ditambahkan" value="">
                                                     </div>
                                                     <div class="col-md-2">
                                                         <button class="bjumlahstok" id="pluskaos"><i class="fa-regular fa-square-plus"></i></button>
@@ -473,7 +478,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mt-3">
-                                                <button data-toggle="modal" data-target="#modalstruk" id="bbayar" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Lanjut</button>
+                                                <button data-toggle="modal" id="addkaos" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Lanjut</button>
+                                                <button data-toggle="modal" id="tambahkaos" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;display: none;">Tambah Stok</button>
                                             </div>
                                         </div>
                                     </div>
@@ -500,7 +506,7 @@
                                             </div>
                                             <div id="inputkertas" class="col-md-12 mt-3" style="">
                                                 <div class="dropdown" style="font-weight: 600;">
-                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihancategorykertas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle disabled" href="#" role="button" id="pilihancategorykertas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
                                                         <span class="ht9">Kertas PET</span>
                                                         <span class="caret" style="padding-right: 56%;"></span>
@@ -522,7 +528,36 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            
+                                            <div id="inputidkertasedit" class="col-md-12 mt-3" style="display:none;">
+                                                <div class="dropdown" style="font-weight: 600;">
+                                                    <a style="color: black;background-color: #fff;width: 100%;text-align: left;padding:0px 4px;border-color: #ced4da;" class="ht8 btn btn-secondary dropdown-toggle" href="#" role="button" id="pilihanidkertas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                        <span class="ht9">PET0001A</span>
+                                                        <span class="caret" style="padding-right: 50%;"></span>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu isiidkertas" aria-labelledby="pilihanidkertas" x-placement="bottom-start" style="overflow: hidden; position: absolute; will-change: transform; width: 100%; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);max-height: 300px;overflow-y: auto;">
+                                                        <li data-value="assets/images/pos/tag.png">
+                                                            <a class="dropdown-item" href="#">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">PET0001A</span>
+                                                            </a>
+                                                        </li>
+                                                        <li data-value="assets/images/pos/tag.png">
+                                                            <a class="dropdown-item" href="#">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">PET0002A</span>
+                                                            </a>
+                                                        </li>
+                                                        <li data-value="assets/images/pos/tag.png">
+                                                            <a class="dropdown-item" href="#">
+                                                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                                                <span class="ht9">PET0003A</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                             <div id="inputnamakertas" class="col-md-12 mt-3" style="">
                                                     <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
                                                     <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="namabarangkertas" class="form-control data1" id="namabarangkertas" placeholder="Nama Barang" value="">
@@ -530,7 +565,7 @@
                                             </div>
                                             <div id="inputukurankertas" class="col-md-12 mt-3" style="">
                                                     <img src="assets/images/pos/tag.png" style="position: absolute;width: 16px;margin: 13px;">
-                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="ukurankertas" class="form-control data1" id="ukurankertas" placeholder="Ukuran" value="">
+                                                    <input style="padding-left: 48px;font-size: 14px;font-size: 8pt;" type="text" name="ukurankertas" class="form-control data1" id="ukurankertas" placeholder="Ukuran Width * Length ex: 20x30" value="">
                                                 
                                             </div>
                                             <div id="inputhargajualkertas" class="col-md-12 mt-3" style="">
@@ -568,7 +603,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mt-3">
-                                                <button data-toggle="modal" data-target="#modalstruk" id="bbayar" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Lanjut</button>
+                                                <button id="bbayar" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Lanjut</button>
+                                                <button id="tambahstokkertas" type="button" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;display:none;">Tambah Stok</button>
                                             </div>
                                         </div>
                                     </div>
@@ -619,7 +655,9 @@
 </html>
 {{> scripts}}
 <script>
-    
+    var jumlahstokkertas = 0;
+    var jumlahstok = 0;
+
     $(".isikertas li").click(function(){
         var getlogo = $(this).data('value');
         $("#pilihancategorykertas").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
@@ -635,40 +673,173 @@
         $("#pilihannamakaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
     });
 
-    $(".isikatun li").click(function(){
-        var getlogo = $(this).data('value');
-        $("#pilihankatun").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
-    });
+    
     
     $('#beditstok').click(function(){
+        $("#jumlahstokkaos").val(0);
+        jumlahstok=0;
         $(this).hide();
         $('#btambahstok').show("slow");
         $('#titleside').hide().html("Edit Stok").fadeIn(1000);
         $('#inputjumlahkaos').show("slow");
+        $('#tambahkaos').show("slow");
+        $.ajax({
+            url: '/product_kaos_select',
+            type: 'get',
+            data: {
+            },
+            success: function(data){
+                $(".isiidkaos").html('');
+                $.each(data.data,function(key,value){
+                    var str3 = "" + value.idproductkaos;
+                    var pad3 = "00000";
+                    var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                    var finalcode2 = "TS"+ans3+"S";
+                    
+                    $(".isiidkaos").append(`
+                        <li data-value="assets/images/pos/tag.png">
+                            <a class="dropdown-item" href="#">
+                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                <span id='${value.idproductkaos}' class="ht9">${finalcode2}</span>
+                            </a>
+                        </li>
+                    `);
+                });
+            },complete:function(data){
+                $(".isiidkaos li").click(function(){
+                    var getlogo = $(this).data('value');
+                    $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                });
+                $("#tambahkaos").click(function(){
+                    var addstok = $("#pilihanidkaos").children("span").html();
+                    addstokfinal = addstok.replace(/\s/g, '').toLowerCase();
+                    myid = addstokfinal.replace(/\D/g,'');
+                    getlastid = parseInt(myid, 10);
+                    var addstok = $("#jumlahstokkaos").val();
+                    if(addstok>=1){
+                        $.ajax({
+                            type:"POST",
+                            data:{
+                                idproductkaos:getlastid,
+                                amount:addstok,
+                            },
+                            url:"/product_kaos_update/",
+                            success:function(data){  
+                                //alert('succes');
+                            },complete:function(){
+                                //location.reload();
+                                getkaos();
+                                $('#jumlahstokkaos').val(0);
+                                jumlahstok=0;
+                            }
+                        });
+                    }else{
+                        alert("Nilai Stok Tambahan Harap Diisi");
+                    }
+                    
+                });
+            }
+        });
+        $('#inputidkaosedit').show("slow");
         //$('#inputkatunkaos, #inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').hide("slow");
-        $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').hide("slow");
+        $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').hide("slow");
         $('#inputjumlahkaos').show("slow");
     });
 
     $('#btambahstok').click(function(){
+        $("#jumlahstokkaos").val(0);
+        jumlahstok=0;
         $(this).hide();
         $('#beditstok').show("slow");
         $('#titleside').hide().html("Tambah").fadeIn(1000);
         $('#inputjumlahkaos').hide("slow");
+        $('#inputidkaosedit').hide("slow");
+        
         //$('#inputkatunkaos, #inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').show("slow");
-        $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').show("slow");
+        $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang,#addkaos').show("slow");
         $('#inputjumlahkaos').hide("slow");
+        $('#tambahkaos').hide("slow");
     });
 
     $('#beditstokkertas').click(function(){
+        $("#jumlahstokkertas").val(0);
+        jumlahstokkertas = 0;
         $(this).hide();
         $('#btambahstokkertas').show("slow");
+        $('#inputidkertasedit').show("slow");
+        $('#tambahstokkertas').show("slow");
+        $('#jumlahstokkertas').attr("placeholder","Jumlah Stok Ditambahkan");
+        $.ajax({
+            url: '/product_papper_select',
+            type: 'get',
+            data: {
+            },
+            success: function(data){
+                $(".isiidkertas").html('');
+                $.each(data.data,function(key,value){
+                    var str3 = "" + value.idpaper;
+                    var pad3 = "0000";
+                    var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                    var finalcode2 = "PET"+ans3+"A";
+                    
+                    $(".isiidkertas").append(`
+                        <li data-value="assets/images/pos/tag.png">
+                            <a class="dropdown-item" href="#">
+                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                <span id='${value.idpaper}' class="ht9">${finalcode2}</span>
+                            </a>
+                        </li>
+                    `);
+                });
+            },complete:function(data){
+                $(".isiidkertas li").click(function(){
+                    var getlogo = $(this).data('value');
+                    $("#pilihanidkertas").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                });
+                $("#tambahstokkertas").click(function(){
+                    var addstokkerta = $("#pilihanidkertas").children("span").html();
+                    addstokkertasfinal = addstokkerta.replace(/\s/g, '').toLowerCase();
+                    myidkertas = addstokkertasfinal.replace(/\D/g,'');
+                    getlastidkertas = parseInt(myidkertas, 10);
+                    var addstokkertas = $("#jumlahstokkertas").val();
+                    console.log(getlastidkertas);
+                    console.log(addstokkertas);
+                    if(addstokkertas>=1){
+                        $.ajax({
+                            type:"POST",
+                            data:{
+                                idpaper:getlastidkertas,
+                                amount:addstokkertas,
+                            },
+                            url:"/product_papper_update/",
+                            success:function(data){  
+                                alert('succes');
+                            },complete:function(){
+                                getpapper();
+                                $("#jumlahstokkertas").val(0);
+                                jumlahstokkertas = 0;
+                            }
+                        });
+                    }else{
+                        alert("Nilai Stok Tambahan Harap Diisi");
+                    }
+                    
+                });
+            }
+        });
         $('#titlekertas').hide().html("Edit Stok").fadeIn(1000);
+        $('#bbayar').hide("slow");
         $('#inputupload, #inputhargajualkertas, #inputukurankertas, #inputnamakertas').hide("slow");
     });
     $('#btambahstokkertas').click(function(){
+        $("#jumlahstokkertas").val(0);
+        jumlahstokkertas = 0;
         $(this).hide();
         $('#beditstokkertas').show("slow");
+        $('#inputidkertasedit').hide("slow");
+        $('#tambahstokkertas').hide("slow");
+        $('#bbayar').show("slow");
+        $('#jumlahstokkertas').attr("placeholder","Jumlah Stok");
         $('#titlekertas').hide().html("Tambah Stok Kertas").fadeIn(1000);
         $('#inputupload, #inputhargajualkertas, #inputukurankertas, #inputnamakertas').show("slow");
     });
@@ -676,7 +847,7 @@
     $('.myselect2').on('change', function (e) {
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
-        console.log(valueSelected);
+        //console.log(valueSelected);
         if(valueSelected == "Kertas"){
             getpapper();
             $('#detailstok').hide();
@@ -713,20 +884,26 @@
                     const finalwarna = warna.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
                     var size = value.size;
                     const finalsize = size.toUpperCase();
+                    var nilairupiah = value.hargajual;
+                    let finalrupiah = nilairupiah.toLocaleString("id-ID");
                     $("#dtstokbarang tbody").append(
                         `
                         <tr>
                             <td id="${value.idproductkaos}">${finalcode}</td>
                             <td>
-                                <div class="kotak" style="">
-                                    <img id="timage" src="assets/images/kaos/white1.png" style="height: 48px;">
+                                <div class="">
+                                    <div class="kotakgambar" style="margin: auto 10px;">
+                                        <div id="penampungwarna3" style="background-color: ${value.kode};">
+                                            <img id="timage" src="assets/images/kaos/bajudepan1.png" style="height: 48px;">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div style="float: left;margin-top:11px">
                                     <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljenis} ${finalwarna}</div>
                                     <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize}</span></div>
                                 </div>
                             </td>
-                            <td id="tharga" class="color-red">Rp.${value.hargajual}</td>
+                            <td id="tharga" class="color-red">Rp.${finalrupiah}</td>
                             <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
                             <td>
                                 <div class="row">
@@ -764,9 +941,9 @@
     $("#dtstokbarang").on('click','.printbarcode',function(){
         RowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
         selectedid = $(RowSelector).children('td:first-child').text();
-        size = $("#tsizebarang").children('span').text();
-        namabarang = $("#tnamabarang").text();
-        hargabarang = $("#tharga").text();
+        size = $(RowSelector).children('td').eq(1).children('div:last-child').children('div:last-child').children('span').text();
+        namabarang = $(RowSelector).children('td').eq(1).children('div:last-child').children('div:first-child').text();
+        hargabarang = $(RowSelector).children('td').eq(2).text();
         var textbarcode = selectedid;
         JsBarcode("#barcode",textbarcode);
         $("#barcode").children('g').children('text').hide();
@@ -778,50 +955,100 @@
     });
 
     $("#dtstokbarang").on('click','.delete',function(){
-        deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
-        getkelas =  $("#tnamabarang").attr('class');
-        console.log(getkelas);
-        selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
-        $.ajax({
-            url: '/product_kaos_delete/'+selectedid,
-            type: 'get',
-            data: {
+        var e = document.getElementById("selectjenis");
+        var value = e.value;
+        var text = e.options[e.selectedIndex].value;
+        console.log(text);
+        if(text == "Kertas"){
+            deletingRowSelectors = $(this).parent("div").parent("div").parent("td").parent("tr");
+            idproductpapper = $(deletingRowSelectors).children('td:first-child').attr('id');
+            $.ajax({
+                url: '/product_papper_delete/'+idproductpapper,
+                type: 'get',
+                data: {
 
-            },
-            success: function(data){
-                status = data['status']['code'];
-                if (status=='undefined'){
-                    alert("Data Berhasil Dihapus");
-                    $.each(data.data,function(key,value){
-                        var $datatable = $('#dtstokbarang').DataTable();
-                        $datatable.row(deletingRowSelector).remove().draw();
+                },
+                success: function(data){
+                    status = data['status']['code'];
+                    if (status=='undefined'){
+                        alert("Data Berhasil Dihapus");
+                        $.each(data.data,function(key,value){
+                            var $datatable = $('#dtstokbarang').DataTable();
+                            $datatable.row(deletingRowSelectors).remove().draw();
+                        });
+                    }else{
+                        alert("Hapus terlebih dahulu data yang terhubung");
+                    }
+                },complete:function(){
+                    $('#dtstokbarang').dataTable().fnDestroy();
+                    $('#dtstokbarang').DataTable({
+                        dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                        pagingType: "simple",
+                        lengthMenu: [
+                            [3, 10, 25, -1],
+                            [3, 10, 25, 'All'],
+                        ],
+                        retrieve:true,
+                        order:true,
                     });
-                }else{
-                    alert("Hapus terlebih dahulu data yang terhubung");
+                    $('.dataTables_length').addClass('bs-select');
+                    
+                    $("#dtstokbarang tbody tr").hover(function(){
+                        $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                        $(this).children("td:first-child").addClass("tdactivehover");
+                    });
                 }
-            },complete:function(){
-                //$('#dtBasicExample').DataTable();
-                $('#dtstokbarang').dataTable().fnDestroy();
-                $('#dtstokbarang').DataTable({
-                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
-                    pagingType: "simple",
-                    lengthMenu: [
-                        [3, 10, 25, -1],
-                        [3, 10, 25, 'All'],
-                    ],
-                    retrieve:true,
-                    order:true,
-                });
-                $('.dataTables_length').addClass('bs-select');
-                
-                $("#dtstokbarang tbody tr").hover(function(){
-                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
-                    $(this).children("td:first-child").addClass("tdactivehover");
-                });
-            }
-        });
+            });
+        }else if(text == "Kaos"){
+            deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+            getkelas =  $("#tnamabarang").attr('class');
+            console.log(getkelas);
+            selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+            $.ajax({
+                url: '/product_kaos_delete/'+selectedid,
+                type: 'get',
+                data: {
+
+                },
+                success: function(data){
+                    status = data['status']['code'];
+                    if (status=='undefined'){
+                        alert("Data Berhasil Dihapus");
+                        $.each(data.data,function(key,value){
+                            var $datatable = $('#dtstokbarang').DataTable();
+                            $datatable.row(deletingRowSelector).remove().draw();
+                        });
+                    }else{
+                        alert("Hapus terlebih dahulu data yang terhubung");
+                    }
+                },complete:function(){
+                    //$('#dtBasicExample').DataTable();
+                    $('#dtstokbarang').dataTable().fnDestroy();
+                    $('#dtstokbarang').DataTable({
+                        dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                        pagingType: "simple",
+                        lengthMenu: [
+                            [3, 10, 25, -1],
+                            [3, 10, 25, 'All'],
+                        ],
+                        retrieve:true,
+                        order:true,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    
+                    $("#dtstokbarang tbody tr").hover(function(){
+                        $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                        $(this).children("td:first-child").addClass("tdactivehover");
+                    });
+                }
+            });
+        }else{
+            console.log("select tidak diketahui");
+        }
         
     });
+
+
 
     //getpapper();
     function getpapper(){
@@ -890,6 +1117,85 @@
         });
     }
 
+    $("#addkaos").click(function(){
+        var getjenisadd = $("#pilihannamakaos").children("span").html();
+        var addsjenis = getjenisadd.replace(/\s/g, '').toLowerCase();
+        namawarna = $("#namawarna").val().toLowerCase();
+        hargabeli = $("#hargabeli").val();
+        hargajual = $("#hargajual").val();
+        stokamount = $("#stokamount").val();
+        var getukuran = $("#pilihanukuran").children("span").html();
+        var addsukuran = getukuran.replace(/\s/g, '').toLowerCase();
+        warna = $("#warna").val();
+        console.log(addsjenis);
+        console.log(namawarna);
+        console.log(hargabeli);
+        console.log(hargajual);
+        console.log(stokamount);
+        console.log(addsukuran);
+        console.log(warna);
+        $.ajax({
+            type:"POST",
+            data:{
+                kode:warna,
+                jenisbarang:addsjenis,
+                size:addsukuran,
+                amount:stokamount,
+                hargabeli:hargabeli,
+                hargajual:hargajual,
+                warna:namawarna,
+            },
+            url:"/product_kaos_insert/",
+            success:function(data){  
+                alert('succes');
+            },complete:function(){
+                $("#namawarna").val("");
+                $("#hargabeli").val("");
+                $("#hargajual").val("");
+                $("#stokamount").val("");
+                getkaos();
+            }
+        });
+    });
+
+    $("#bbayar").click(function(){
+        namabarangkertas = $("#namabarangkertas").val();
+        ukurankertas = $("#ukurankertas").val();
+        hargajualkertas = $("#hargajualkertas").val();
+        jumlahstokkertas = $("#jumlahstokkertas").val();
+        idpapper_category="1";
+        var array = ukurankertas.split("x",2);
+        var width = array[0];
+        var length = array[1];
+        console.log(width); 
+        console.log(length); 
+        console.log(namabarangkertas);
+        console.log(hargajualkertas);
+        console.log(jumlahstokkertas);
+        $.ajax({
+            type:"POST",
+            data:{
+                name:namabarangkertas,
+                price:hargajualkertas,
+                length:length,
+                width:width,
+                idpapper_category:idpapper_category,
+                amount:jumlahstokkertas,
+                jenis:ukurankertas,
+            },
+            url:"/product_papper_insert/",
+            success:function(data){  
+                alert('succes');
+            },complete:function(){
+                $("#namabarangkertas").val("");
+                $("#ukurankertas").val("");
+                $("#hargajualkertas").val("");
+                $("#jumlahstokkertas").val("");
+                getpapper();
+            }
+        });
+    });
+
     $(".bstatus").click(function(){
         $(".bstatus").removeClass("bstatusactive");
         $(this).addClass("bstatusactive");
@@ -919,36 +1225,7 @@
         $(".table tbody tr").children("td").removeClass("tdactivehover");
         $(this).children("td:first-child").addClass("tdactivehover");
     });
-    /*$(document).ready(function () {
-        $('#dtstokbarang').DataTable({
-            dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
-            pagingType: "simple",
-            lengthMenu: [
-                [4, 10, 25, -1],
-                [4, 10, 25, 'All'],
-            ],
-        });
-        $('.dataTables_length').addClass('bs-select');*/
-
-        /*function gogo(){
-            var all = $("#dtBasicExample_length");
-            var all3 = $('.dataTables_length label').children('select');
-            all3.css({"width": "10%", "border": "none"});
-            console.log(all3);
-            var allset = "<li>Row per page<li>"
-            $('.pagination li:first-child').after(allset);
-            $('.pagination li:last-child').before(all3);
-            $('.dataTables_length label').hide();
-        };
-        //gogo();
-
-        $(".page-link").click(function(){
-            gogo();
-        });
-        $(".table tbody").children("tr:first-child").children("td:first-child").addClass("tdactivehover");*/
-        
-        
-    //});
+    
     $("div.list-item").hover(function(){
             $(this).children( "a" ).css("color", "#5BC9E1");
             $(this).children( "a" ).children(".link").addClass("activebutton");
@@ -1004,7 +1281,7 @@
     })
 
     
-    var jumlahstok = 0;
+    
     $("#pluskaos").click(function(){
         jumlahstok+=1;
         $('#jumlahstokkaos').val(jumlahstok);
@@ -1019,7 +1296,7 @@
         
     });
 
-    var jumlahstokkertas = 0;
+    
     $("#plus").click(function(){
         jumlahstokkertas+=1;
         $('#jumlahstokkertas').val(jumlahstokkertas);
