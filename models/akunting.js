@@ -13,7 +13,7 @@ function select_akunting(callback, req) {
 
     con.getConnection(function (err, connection) {
         con.query(`
-            SELECT a.idaccounting as id ,  DATE_FORMAT(a.date,'%Y-%m-%d') date, a.nominal, a.description, b.name as accountingcategory , c.name as accountingmethod
+            SELECT a.idaccounting as id ,  DATE_FORMAT(a.date,'%Y-%m-%d') date, a.nominal, a.description, b.name as accountingcategory , c.name as accountingmethod,a.image
             FROM 
             accounting a
             left join
@@ -108,7 +108,7 @@ function delete_akunting(callback, req) {
     });
 }
 
-function update_akunting(callback, req) {
+/*function update_akunting(callback, req) {
     //var global.datax;
     var con = mysql.createPool({
         host: connect.host,
@@ -122,6 +122,61 @@ function update_akunting(callback, req) {
         con.query(
             `UPDATE accounting
             SET nominal = '${req.body.nominal}', description = '${req.body.description}'
+            WHERE idaccounting = ${req.body.idaccounting}`,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}*/
+
+/*function insert_akunting(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+    
+    con.getConnection(function (err, connection) {
+        con.query(
+            `INSERT INTO accounting
+            (date, nominal, description, accounting_method_id, accounting_category_id)
+            VALUES ('${req.body.date}', '${req.body.nominal}','${req.body.description}','${req.body.method}','${req.body.category}')
+            `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}*/
+
+function update_akunting(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+    
+    con.getConnection(function (err, connection) {
+        con.query(
+            `UPDATE accounting
+            SET nominal = '${req.body.nominaledit}', description = '${req.body.deskripsiedit}', image='${req.file.filename}'
             WHERE idaccounting = ${req.body.idaccounting}`,
             function (error, rows, fields) {
                 if (error) {
@@ -148,8 +203,8 @@ function insert_akunting(callback, req) {
     con.getConnection(function (err, connection) {
         con.query(
             `INSERT INTO accounting
-            (date, nominal, description, accounting_method_id, accounting_category_id)
-            VALUES ('${req.body.date}', '${req.body.nominal}','${req.body.description}','${req.body.method}','${req.body.category}')
+            (date, nominal, description, accounting_method_id, accounting_category_id, image)
+            VALUES ('${req.body.date}', '${req.body.nominal}','${req.body.deskripsi}','${req.body.inlineRadioOptionsadd}','${req.body.category}','${req.file.filename}')
             `,
             function (error, rows, fields) {
                 if (error) {

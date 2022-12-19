@@ -197,6 +197,7 @@
                             <div class="modal-content" style="background-color: #FFFFFF;">
                                 <div class="modal-body">
                                     <div class="container-fluid">
+                                        <form id="uploadForm"  enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-10">
                                                 <img src="assets/images/logo2.png" style="width: 10vw; height:7.8vh">
@@ -275,7 +276,7 @@
                                         </div>
                                         <div class="col-md-12 mt-2" style="">
                                             <div class="form-group">
-                                                <textarea style="font-size: 8pt;" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi"></textarea>
+                                                <textarea style="font-size: 8pt;" form="uploadForm" class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-2" style="">
@@ -292,9 +293,8 @@
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <div class="containerupload">
-                                                <form id="uploadForm"  enctype="multipart/form-data">
                                                     <input type="file" class="upload_hide" id="upload_bukti" name="upload_bukti" multiple="">
-                                                </form>
+                                                    <input type="text" class="" id="desk" name="desk" multiple="" value="desk">
                                                 <label for="upload_bukti" class="upload_label">
                                                     <div class="image">
                                                         <img src="" alt="" style="display:none;padding: 10px;width: 80%;">
@@ -312,6 +312,7 @@
                                         <div class="col-md-12 mt-3">
                                             <button id="adddata" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Tambah Data</button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -324,6 +325,7 @@
                             <div class="modal-content" style="background-color: #FFFFFF;">
                                 <div class="modal-body">
                                     <div class="container-fluid">
+                                        <form id="uploadFormEdit"  enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-10">
                                                 <img src="assets/images/logo2.png" style="width: 10vw; height:7.8vh">
@@ -337,7 +339,7 @@
                                         </div>
                                         <div class="col-md-12 mt-2" style="">
                                             <div class="form-group">
-                                                <textarea style="font-size: 8pt;" class="form-control" id="deskripsiedit" rows="3" placeholder="Deskripsi"></textarea>
+                                                <textarea form="uploadFormEdit" style="font-size: 8pt;" class="form-control" id="deskripsiedit" name="deskripsiedit" rows="3" placeholder="Deskripsi"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-2" style="display: none;">
@@ -354,7 +356,7 @@
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <div class="containerupload">
-                                                <input type="file" class="upload_hide" id="upload_bukti2" multiple="">
+                                                <input type="file" class="upload_hide" id="upload_bukti2" name="upload_bukti2" multiple="">
                                                 <label for="upload_bukti2" class="upload_label">
                                                     <div class="image">
                                                         <img src="" alt="" style="display:none;padding: 10px;width: 80%;">
@@ -362,7 +364,7 @@
                                                     <p class="drag_text drag_text2" style="font-size: 12px;font-weight: 600;">Masukan Bukti Kwitansi</p>
                                                     <p class="drag_text2">Seret File atau Pilih Gambar</p>
                                                     <i class="drag_text2 fa-regular fa-square-plus"></i>
-                                                    <p id="infoupload" class="" style="text-align: right;padding-right: 8px;display: none;">
+                                                    <p id="infoupload2" class="" style="text-align: right;padding-right: 8px;display: none;">
                                                         <img src="assets/images/pos/icon_upload.png" alt="" style="width: 16px;height: 16px;margin: 0px 6px 6px 0px">
                                                         Ganti Design
                                                     </p>
@@ -372,6 +374,7 @@
                                         <div class="col-md-12 mt-3">
                                             <button id="editdata" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Edit Data</button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -470,7 +473,7 @@
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <div class="containerupload">
-                                                <input type="file" class="upload_hide" id="upload_buktishow" multiple="">
+                                                <input type="file" class="upload_hide" id="upload_buktishow" disabled>
                                                 <label for="upload_buktishow" class="upload_label">
                                                     <div class="image">
                                                         <img src="assets/images/kwitansi.png" alt="" style="padding: 10px;width: 95%;">
@@ -728,6 +731,7 @@
                         <td>
                             <div id="${value.date}" style="font-weight: 600;">${value.date}</div>
                             <div class="ht9">${hari}</div>
+                            <div style="display:none;" class="ht9">${value.image}</div>
                         </td>
                         <td><i class="fa-solid fa-circle" style="margin-right: 4px;color:${color};font-size:9px;"></i>${value.accountingcategory}</td>
                         <td id="${value.nominal}" style="color: ${color};font-weight:600;">${logoplusmin}${finalrupiah}</td>
@@ -810,6 +814,7 @@
 
     $("#dtakunting").on('click','.showedit',function(){
         RowSelector = $(this).parent("td").parent("tr");
+        selectedimageedit = $(RowSelector).children('td').eq(1).children("div:last-child").text();
         selectedid = $(RowSelector).children('td:first-child').attr('id');
         selectednominal = $(RowSelector).children('td').eq(3).attr('id');
         selecteddescription = $(RowSelector).children('td').eq(5).children('span:first-child').attr('data-desc');
@@ -817,9 +822,39 @@
         $("#iduseredit").val(selectedid);
         $("#deskripsiedit").val(selecteddescription);
         $("#nominaledit").val(selectednominal);
-        
+        if(selectedimageedit!="null"){
+            $("#upload_bukti2").siblings("label").children("p").hide();
+            $("#upload_bukti2").siblings("label").children("i").hide();
+            $("#infoupload2").show();
+            $("#upload_bukti2").siblings("label").children("div:first-child").children("img").attr("src","assets/akunting/"+selectedimageedit).css("display","");
+        }else{
+            $("#upload_bukti2").siblings("label").children("div:first-child").children("img").css("display","none");
+            $("#upload_bukti2").siblings("label").children("p").show();
+            $("#upload_bukti2").siblings("label").children("i").show();
+            $("#infoupload2").hide();
+        }
+
         $("#editdata").click(function(){
-            updatedeskripsi = $("#deskripsiedit").val();
+            var dataedit = new FormData($('#uploadFormEdit')[0]);
+            dataedit.append("idaccounting", selectedid);
+            $.ajax({
+                url:'/akunting_update',
+                type: 'POST',
+                data: dataedit,
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function(res){
+                    alert("succes");
+                },
+                error: function(){
+                    alert('Error: In sending the request!');
+                },complete:function(){
+                    $('#dtakunting').dataTable().fnDestroy();
+                    getfirstakunting();
+                }
+            });
+            /*updatedeskripsi = $("#deskripsiedit").val();
             updatenominal = $("#nominaledit").val();
             $.ajax({
                 type:"POST",
@@ -836,7 +871,7 @@
                     //location.reload();
                     getfirstakunting();
                 }
-            });
+            });*/
         })
     });
 
@@ -846,12 +881,20 @@
         selectedkategori = $(RowSelector).children('td').eq(2).text();
         selecteddescriptionshow = $(RowSelector).children('td').eq(5).children('span:first-child').attr('data-desc');
         selectedtanggalshow = $(RowSelector).children('td').eq(1).children("div:first-child").attr('id');
+        selectedimage = $(RowSelector).children('td').eq(1).children("div:last-child").text();
         selectedmethod = $(RowSelector).children('td').eq(4).children("span:first-child").text();
         const mySentence = selectedkategori;
         const finalSentence = mySentence.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+        
+        
         $("#deskripsishow").val(selecteddescriptionshow);
         $("#nominalshow").val(selectednominalshow);
         $("#dateshow").val(selectedtanggalshow);
+        if(selectedimage!="null"){
+            $("#upload_buktishow").siblings("label").children("div").children("img").attr("src","assets/akunting/"+selectedimage).css("display","");
+        }else{
+            $("#upload_buktishow").siblings("label").children("div").children("img").attr("src","assets/akunting/"+selectedimage).css("display","none");
+        }
         $("#pilihancategoryshow").html(" <img src='assets/images/icon_category.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+finalSentence+"</span><span class='caret' style='padding-right: 30%;'></span>");
 
         if(selectedmethod=="debit"){
@@ -885,7 +928,7 @@
         }
         //console.log(addstrcategory);
         //console.log(nilaicategory);
-        $.ajax({
+        /*$.ajax({
             type:"POST",
             data:{
                 date:dateget,
@@ -899,6 +942,12 @@
                 alert('succes');
             },complete:function(){
                 var data2 = new FormData($('#uploadForm')[0]);
+                dates = document.getElementById("date");
+                files = document.getElementById("upload_bukti").files;
+                var data2 = new FormData();
+                data2.append("date",dates);
+                data2.append("file",files);
+
                 $.ajax({
                     url:'/upload',
                     type: 'POST',
@@ -916,23 +965,27 @@
                 $('#dtakunting').dataTable().fnDestroy();
                 getfirstakunting();
             }
-        });
+        });*/
         
-        /*var data2 = new FormData($('#uploadForm')[0]);
+        var data2 = new FormData($('#uploadForm')[0]);
+        data2.append("category", nilaicategory);
         $.ajax({
-            url:'/upload',
+            url:'/akunting_insert2',
             type: 'POST',
+            data: data2,
             contentType: false,
             processData: false,
             cache: false,
-            data: data2,
             success: function(res){
                 alert(res);
             },
             error: function(){
                 alert('Error: In sending the request!');
+            },complete:function(){
+                $('#dtakunting').dataTable().fnDestroy();
+                getfirstakunting();
             }
-        })*/
+        });
     });
     
     $("div.list-item").hover(function(){

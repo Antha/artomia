@@ -17,11 +17,29 @@ var akunting = require("./../controllers/akunting");
 var product_kaos = require("./../controllers/product_kaos");
 var product_papper = require("./../controllers/product_papper");
 var middle = require("./../controllers/middleware");
+const { v4: uuidv4 } = require('uuid');
+
 
 const storage = multer.diskStorage({
     destination: path.join(__dirname,'../public/assets/akunting/') ,
     filename: function(req, file, cb){
-        cb(null, file.originalname);
+        let extension = file.originalname.split('.').pop();
+        file.id = uuidv4() + '.' + extension;
+        cb(null, file.id);
+    }
+});
+
+const upload = multer({
+    storage: storage,
+});
+
+router.post("/akunting_insert2",upload.single('upload_bukti'), akunting.insert_akunting);
+/*const storage = multer.diskStorage({
+    destination: path.join(__dirname,'../public/assets/akunting/') ,
+    filename: function(req, file, cb){
+        let extension = file.originalname.split('.').pop();
+        file.id = uuidv4() + '.' + extension;
+        cb(null, file.id);
     }
 });
 
@@ -30,60 +48,35 @@ const upload = multer({
     limits: {
         fileSize: 10000000 //give no. of bytes
     },
+    // fileFilter: function(req, file, cb){
+    //     checkFileType(file, cb);
+    // }
 }).single('upload_bukti');
 
 router.post("/upload", function uploadFile(req, res) {
     upload(req, res, (err) =>{
+        const names = req.body.desk;
         if(err){
             //Send error msg
             console.log(err);
             res.send(err);
         }else{
+
             //send correct msg
             //res.send()
-            res.send('Successful');
+            res.send(names+' Successful '+req.file.filename);
             console.log('file uploaded succcessfully');
         }
     });
-});
+}, akunting.insert_akunting);*/
 
-const storage2 = multer.diskStorage({
-    destination: path.join(__dirname,'../public/assets/logo/') ,
-    filename: function(req, file, cb){
-        cb(null, file.originalname);
-    }
-});
 
-const upload2 = multer({
-    storage: storage2,
-    limits: {
-        fileSize: 10000000 //give no. of bytes
-    },
-}).single('upload_costum');
-
-router.post("/upload2", function uploadFile(req, res) {
-    upload2(req, res, (err) =>{
-        if(err){
-            //Send error msg
-            console.log(err);
-            res.send(err);
-        }else{
-            //send correct msg
-            //res.send()
-            res.send('Successful');
-            console.log('file uploaded succcessfully');
-        }
-    });
-});
 
 router.get('/',middle.login_handle, (req, res) => {
 	res.render('index.hbs', {
 		username: req.session.username
 	});
 });
-/*router.get("/", (req, res) => {
-    res.render("index.hbs");
-});*/
 
 router.get("/login", (req, res) => {
     req.session.destroy();
@@ -93,7 +86,6 @@ router.get("/login", (req, res) => {
 router.post('/login_process',middle.login_process,(req, res) => {
 	if(req.session.currentURL !== undefined && req.session.isLogin == true){
 		res.redirect(req.session.currentURL);
-        req.session.destroy();
 	}else{
 		res.redirect("/");
 	}
@@ -126,7 +118,8 @@ router.get('/kaos',middle.login_handle, (req, res) => {
 
 router.get('/checkout',middle.login_handle, (req, res) => {
 	res.render('pos_checkout.hbs', {
-		username: req.session.username
+		username: req.session.username,
+        chasier_id:  req.session.chasier_id
 	});
 });
 
@@ -258,7 +251,7 @@ router.get("/akunting_select", akunting.select_akunting);
 router.get("/akunting_select_debit", akunting.select_akunting_debit);
 router.get("/akunting_select_credit", akunting.select_akunting_credit);
 router.get("/akunting_delete/:idakunting", akunting.delete_akunting);
-router.post("/akunting_update", akunting.update_akunting);
+router.post("/akunting_update",upload.single('upload_bukti2'), akunting.update_akunting);
 router.post("/akunting_insert", akunting.insert_akunting);
 router.post("/upload");
 
