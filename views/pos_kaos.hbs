@@ -335,6 +335,10 @@
                                         </div>
                                         <div class="col-md-12 mt-3" style="">
                                             <div class="row">
+                                                <div class="col-md-12" id="" style="margin-bottom:10px">
+                                                    <div class="col-md-12 ht82">Harga</div>
+                                                    <div class="col-md-12" id="price_spec">Rp. 90000</div>
+                                                </div>
                                                 <div class="col-md-6" id="" style="">
                                                     <div class="col-md-12 ht82">Ukuran</div>
                                                     <div class="col-md-12 ht82 mt-2" style="padding-left: 8px;">
@@ -483,11 +487,13 @@
 <script>
     var paper_bucket = {};
     var product_color = $("#titlebutton").children("i").attr("data-value");
-
+    
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const idProducts = urlParams.get('product_id');
     var item_net_cost = 0;
+
+    var product_color_new = "";
     
     getcolorlist();
     function getcolorlist(){
@@ -523,6 +529,7 @@
             },complete:function(data){
                 $(".bukuran").removeClass("activebukuran");
                 var product_color_get = $("#titlebutton").children("span").text();
+                product_color_new = $("#titlebutton").children("span").text();
                 var tolowercasecolorname = product_color_get.toLowerCase();
                 console.log(tolowercasecolorname);
                 $.ajax({
@@ -539,82 +546,111 @@
                         });
                     }
                 });
+
                 $(".isiwarna li").click(function(){
-                $(".bukuran").removeClass("activebukuran");
-                $(".bukuran").hide();
-                var colorval=$(this).children("a").children("i").data('value');
-                var colorval2=$(this).data('value');
-                //console.log(colorval);
-                //console.log(colorval2);
-                var jenisproduk=$('#produkpos').attr('class');
-                var tampungselect="";
-                var tampungselect2="";
-                switch(jenisproduk){
-                    case 'kaos':
-                    tampungselect = "assets/images/kaos/bajudepan1.png";
-                    $("#produkpos").attr('src',tampungselect);
-                    $("#tampungwarnabackground").css('background-color',colorval);
-                    //console.log(tampungselect);
-                    break;
+                    $(".bukuran").removeClass("activebukuran");
+                    $(".bukuran").hide();
 
-                    case 'sweater':
-                    color_id = 2;
-                    break;
+                    var colorval=$(this).children("a").children("i").data('value');
+                    var colorval2=$(this).data('value');
+                    product_color_new = $(this).data('value');
 
-                    case 'tank-top':
-                    color_id = 3;
-                    break;
+                    //console.log("product_color_new >> "+product_color_new);
+                    //console.log(colorval);
+                    //console.log(colorval2);
+                    var jenisproduk=$('#produkpos').attr('class');
+                    var tampungselect="";
+                    var tampungselect2="";
+                    switch(jenisproduk){
+                        case 'kaos':
+                        tampungselect = "assets/images/kaos/bajudepan1.png";
+                        $("#produkpos").attr('src',tampungselect);
+                        $("#tampungwarnabackground").css('background-color',colorval);
+                        //console.log(tampungselect);
+                        break;
 
-                    case 'topi':
-                    color_id = 4;
-                    break;
+                        case 'sweater':
+                        color_id = 2;
+                        break;
 
-                    case 'totebag':
-                    color_id = 5;
-                    break;
+                        case 'tank-top':
+                        color_id = 3;
+                        break;
 
-                    case 'polo-cap':
-                    color_id = 6;
-                    break;
+                        case 'topi':
+                        color_id = 4;
+                        break;
 
-                    case 'panel-cap':
-                    color_id = 6;
-                    break;
+                        case 'totebag':
+                        color_id = 5;
+                        break;
 
-                    case 'trucker-cap':
-                    color_id = 6;
-                    break;
-                }
-                
-                $("#tampakbelakang").click(function(){
-                    tampungselect2 = "assets/images/kaos/bajubelakang1.png";
-                    $('#produkpos').attr('src',tampungselect2);
-                });
+                        case 'polo-cap':
+                        color_id = 6;
+                        break;
 
-                $("#tampakdepan").click(function(){
-                    $('#produkpos').attr('src',tampungselect);
-                });
-                
-                $("#titlebutton").html("<i data-value='"+$(this).text()+"' style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
-                $.ajax({
-                    url: '/product_kaos_select_size/',
-                    type: 'POST',
-                    data: {warna:colorval2},
-                    success: function(data){
-                        $.each(data.data,function(key,value){
-                            if(key == 0){
-                                $('#'+value.size).show().addClass("activebukuran");
-                            }else{
-                                $('#'+value.size).show();
-                            }
-                            
-                        });
+                        case 'panel-cap':
+                        color_id = 6;
+                        break;
+
+                        case 'trucker-cap':
+                        color_id = 6;
+                        break;
                     }
+                    
+                    $("#tampakbelakang").click(function(){
+                        tampungselect2 = "assets/images/kaos/bajubelakang1.png";
+                        $('#produkpos').attr('src',tampungselect2);
+                    });
+
+                    $("#tampakdepan").click(function(){
+                        $('#produkpos').attr('src',tampungselect);
+                    });
+                    
+                    $("#titlebutton").html("<i data-value='"+$(this).text()+"' style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
+                    
+                    $.ajax({
+                        url: '/product_kaos_select_size/',
+                        type: 'POST',
+                        data: {warna:colorval2},
+                        success: function(data){
+                            $.each(data.data,function(key,value){
+                                if(key == 0){
+                                    $('#'+value.size).show().addClass("activebukuran");
+                                }else{
+                                    $('#'+value.size).show();
+                                }
+                            });
+                        }
+                    });
+
+                   
                 });
-            });
             }
         });
     }
+
+     $('#btn_next').click(function(){
+        screenshot();
+        console.log(">>> product_color_new "+product_color_new);
+        /*var data2 = new FormData($('#uploadForms')[0]);
+        console.log(data2);
+        $.ajax({
+            url:'/upload2',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            cache: false,
+            data: data2,
+            success: function(res){
+                alert(res);
+            },
+            error: function(){
+                alert('Error: In sending the request!');
+            }
+        });*/
+        return false;
+    })
 
     $.ajax({
         url: '/papers/',
@@ -717,6 +753,19 @@
     $(".bukuran").click(function(){
         $(".bukuran").removeClass("activebukuran");
         $(this).addClass("activebukuran");
+
+        var product_size = $(".bukuran.activebukuran").text();
+
+        $.ajax({
+            url: '/product_kaos_select_price',
+            type: 'GET',
+            data: {warna:product_color_new, size: product_size},
+            success: function(data){
+                $.each(data.data,function(key,value){
+                    $("#price_spec").html("Rp. "+value.price)
+                });
+            }
+        });
     });
 
     $("#tampakbelakang").click(function(){
@@ -811,28 +860,7 @@
         })
     });
 
-    $('#btn_next').click(function(){
-        screenshot();
-        /*var data2 = new FormData($('#uploadForms')[0]);
-        console.log(data2);
-        $.ajax({
-            url:'/upload2',
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            cache: false,
-            data: data2,
-            success: function(res){
-                alert(res);
-            },
-            error: function(){
-                alert('Error: In sending the request!');
-            }
-        });*/
-        return false;
-    })
-    
-    $.ajax({
+     $.ajax({
         url: '/products/'+idProducts,
         type: 'get',
         data: {  },
@@ -872,9 +900,8 @@
                     var product_size = $(".bukuran.activebukuran").text();
                     var product_pic_logo = jsonParsed["product_pic_logo"];
 
-                    console.log("product_color");
-                    console.log(">>> "+product_color);
-                    
+                    // =  $(".isiwarna li").data("value");
+                    console.log(">>> product_color_new "+product_color_new);                  
                     //return false;
 
                     var paper_bucket_string = JSON.stringify(paper_bucket);
@@ -887,7 +914,7 @@
                         data: {
                             product_id: idProducts,
                             product_name: product_name,
-                            product_color: product_color,
+                            product_color: product_color_new,
                             product_size: product_size,
                             product_pic_logo: product_pic_logo,
                             item_net_cost:item_net_cost,

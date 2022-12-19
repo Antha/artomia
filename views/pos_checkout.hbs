@@ -905,6 +905,19 @@
                                     }
                                 });
 
+                                $.ajax({
+                                    url: '/product_kaos_update_amount',
+                                    type: 'post',
+                                    data: {
+                                        amount:value.item_amount,
+                                        size:value.product_size,
+                                        warna:value.product_color
+                                    },
+                                    success: function(data3){
+                                       
+                                    }
+                                });
+
                                 $("#transaction_history tbody").append(`
                                     <tr>
                                         <th scope="row">${value.product_name}</th>

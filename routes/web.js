@@ -5,7 +5,7 @@ var session = require("express-session");
 var path = require("path");
 const router = express.Router();
 const multer = require("multer");
-const fs = require('fs');
+const fs = require("fs");
 const mkdirp = require("mkdirp");
 var product = require("./../controllers/product");
 var customer = require("./../controllers/customer");
@@ -17,23 +17,22 @@ var akunting = require("./../controllers/akunting");
 var product_kaos = require("./../controllers/product_kaos");
 var product_papper = require("./../controllers/product_papper");
 var middle = require("./../controllers/middleware");
-const { v4: uuidv4 } = require('uuid');
-
+const {v4: uuidv4} = require("uuid");
 
 const storage = multer.diskStorage({
-    destination: path.join(__dirname,'../public/assets/akunting/') ,
-    filename: function(req, file, cb){
-        let extension = file.originalname.split('.').pop();
-        file.id = uuidv4() + '.' + extension;
+    destination: path.join(__dirname, "../public/assets/akunting/"),
+    filename: function (req, file, cb) {
+        let extension = file.originalname.split(".").pop();
+        file.id = uuidv4() + "." + extension;
         cb(null, file.id);
-    }
+    },
 });
 
 const upload = multer({
     storage: storage,
 });
 
-router.post("/akunting_insert2",upload.single('upload_bukti'), akunting.insert_akunting);
+router.post("/akunting_insert2", upload.single("upload_bukti"), akunting.insert_akunting);
 /*const storage = multer.diskStorage({
     destination: path.join(__dirname,'../public/assets/akunting/') ,
     filename: function(req, file, cb){
@@ -70,12 +69,10 @@ router.post("/upload", function uploadFile(req, res) {
     });
 }, akunting.insert_akunting);*/
 
-
-
-router.get('/',middle.login_handle, (req, res) => {
-	res.render('index.hbs', {
-		username: req.session.username
-	});
+router.get("/", middle.login_handle, (req, res) => {
+    res.render("index.hbs", {
+        username: req.session.username,
+    });
 });
 
 router.get("/login", (req, res) => {
@@ -83,19 +80,19 @@ router.get("/login", (req, res) => {
     res.render("login.hbs");
 });
 
-router.post('/login_process',middle.login_process,(req, res) => {
-	if(req.session.currentURL !== undefined && req.session.isLogin == true){
-		res.redirect(req.session.currentURL);
-	}else{
-		res.redirect("/");
-	}
+router.post("/login_process", middle.login_process, (req, res) => {
+    if (req.session.currentURL !== undefined && req.session.isLogin == true) {
+        res.redirect(req.session.currentURL);
+    } else {
+        res.redirect("/");
+    }
 });
 
-router.get('/logout_process', (req, res) => {
-	req.session.currentURL = undefined;
-	req.session.isLogin = false;
+router.get("/logout_process", (req, res) => {
+    req.session.currentURL = undefined;
+    req.session.isLogin = false;
     req.session.destroy();
-	res.redirect("/login");
+    res.redirect("/login");
 });
 
 router.get("/keranjang", (req, res) => {
@@ -104,37 +101,36 @@ router.get("/keranjang", (req, res) => {
     res.render("keranjang.hbs");
 });
 
-router.get('/pos',middle.login_handle, (req, res) => {
-	res.render('pos.hbs', {
-		username: req.session.username
-	});
+router.get("/pos", middle.login_handle, (req, res) => {
+    res.render("pos.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get('/kaos',middle.login_handle, (req, res) => {
-	res.render('pos_kaos.hbs', {
-		username: req.session.username
-	});
+router.get("/kaos", middle.login_handle, (req, res) => {
+    res.render("pos_kaos.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get('/checkout',middle.login_handle, (req, res) => {
-	res.render('pos_checkout.hbs', {
-		username: req.session.username,
-        chasier_id:  req.session.chasier_id
-	});
+router.get("/checkout", middle.login_handle, (req, res) => {
+    res.render("pos_checkout.hbs", {
+        username: req.session.username,
+        chasier_id: req.session.chasier_id,
+    });
 });
 
-router.get('/transaksi',middle.login_handle, (req, res) => {
-	res.render('transaksi.hbs', {
-		username: req.session.username
-	});
+router.get("/transaksi", middle.login_handle, (req, res) => {
+    res.render("transaksi.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get('/akunting',middle.login_handle, (req, res) => {
-	res.render('akunting.hbs', {
-		username: req.session.username
-	});
+router.get("/akunting", middle.login_handle, (req, res) => {
+    res.render("akunting.hbs", {
+        username: req.session.username,
+    });
 });
-
 
 router.get("/keranjang_add", (req, res) => {
     var cart = req.session.cart || [];
@@ -205,22 +201,22 @@ router.get("/keranjang_list", (req, res) => {
     res.json(req.session.cart);
 });
 
-router.get('/produksi',middle.login_handle, (req, res) => {
-	res.render('produksi.hbs', {
-		username: req.session.username
-	});
+router.get("/produksi", middle.login_handle, (req, res) => {
+    res.render("produksi.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get('/datauser',middle.login_handle, (req, res) => {
-	res.render('datauser.hbs', {
-		username: req.session.username
-	});
+router.get("/datauser", middle.login_handle, (req, res) => {
+    res.render("datauser.hbs", {
+        username: req.session.username,
+    });
 });
 
-router.get('/stok',middle.login_handle, (req, res) => {
-	res.render('stok.hbs', {
-		username: req.session.username
-	});
+router.get("/stok", middle.login_handle, (req, res) => {
+    res.render("stok.hbs", {
+        username: req.session.username,
+    });
 });
 
 //Api
@@ -251,17 +247,18 @@ router.get("/akunting_select", akunting.select_akunting);
 router.get("/akunting_select_debit", akunting.select_akunting_debit);
 router.get("/akunting_select_credit", akunting.select_akunting_credit);
 router.get("/akunting_delete/:idakunting", akunting.delete_akunting);
-router.post("/akunting_update",upload.single('upload_bukti2'), akunting.update_akunting);
+router.post("/akunting_update", upload.single("upload_bukti2"), akunting.update_akunting);
 router.post("/akunting_insert", akunting.insert_akunting);
 router.post("/upload");
 
-
 router.get("/product_kaos_select", product_kaos.select_kaos);
 router.get("/product_kaos_select_warna", product_kaos.select_warna_kaos);
+router.get("/product_kaos_select_price", product_kaos.select_price);
 router.post("/product_kaos_select_size", product_kaos.select_size_kaos);
 router.get("/product_kaos_delete/:idproductkaos", product_kaos.delete_kaos);
 router.post("/product_kaos_update", product_kaos.update_kaos);
 router.post("/product_kaos_insert", product_kaos.insert_kaos);
+router.post("/product_kaos_update_amount", product_kaos.update_amount);
 
 router.get("/product_papper_select", product_papper.select_papper);
 router.get("/product_papper_delete/:idproductpapper", product_papper.delete_papper);
