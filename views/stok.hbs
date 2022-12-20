@@ -226,6 +226,10 @@
                                 <label>
                                     <select id="selectjenis" class="myselect2 ht8 mdi bgcolor-primary-linear-gradient" style="font-weight: 600;min-width: 100px;">
                                         <option style="color: #181717;" value="Kaos">Kaos</option>
+                                        <option style="color: #181717;" value="Sweater">Sweater</option>
+                                        <option style="color: #181717;" value="Tanktop">Tanktop</option>
+                                        <option style="color: #181717;" value="Topi">Topi</option>
+                                        <option style="color: #181717;" value="Totebag">Totebag</option>
                                         <option style="color: #181717;" value="Kertas">Kertas Pet</option>
                                     </select>
                                 </label>
@@ -450,7 +454,7 @@
                                                     <div class="col-md-6">
                                                         <div class="kotakgambar" style="margin: auto 10px;">
                                                             <div id="penampungwarna" style="background-color: #FFF;">
-                                                                <img id="timage" src="assets/images/kaos/bajudepan1.png" style="height: 110px;">
+                                                                <img id="timage1" src="assets/images/kaos/bajudepan1.png" style="height: 110px;">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -676,6 +680,9 @@
     
     
     $('#beditstok').click(function(){
+        var e = document.getElementById("selectjenis");
+        var value = e.value;
+        var text = e.options[e.selectedIndex].value;
         $("#jumlahstokkaos").val(0);
         jumlahstok=0;
         $(this).hide();
@@ -683,67 +690,306 @@
         $('#titleside').hide().html("Edit Stok").fadeIn(1000);
         $('#inputjumlahkaos').show("slow");
         $('#tambahkaos').show("slow");
-        $.ajax({
-            url: '/product_kaos_select',
-            type: 'get',
-            data: {
-            },
-            success: function(data){
-                $(".isiidkaos").html('');
-                $.each(data.data,function(key,value){
-                    var str3 = "" + value.idproductkaos;
-                    var pad3 = "00000";
-                    var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
-                    var finalcode2 = "TS"+ans3+"S";
+        console.log(text);
+        if(text=="Kaos"){
+            $.ajax({
+                url: '/product_kaos_select',
+                type: 'get',
+                data: {
+                },
+                success: function(data){
+                    $(".isiidkaos").html('');
                     
-                    $(".isiidkaos").append(`
-                        <li data-value="assets/images/pos/tag.png">
-                            <a class="dropdown-item" href="#">
-                                <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
-                                <span id='${value.idproductkaos}' class="ht9">${finalcode2}</span>
-                            </a>
-                        </li>
-                    `);
-                });
-            },complete:function(data){
-                $(".isiidkaos li").click(function(){
-                    var getlogo = $(this).data('value');
-                    $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
-                });
-                $("#tambahkaos").click(function(){
-                    var addstok = $("#pilihanidkaos").children("span").html();
-                    addstokfinal = addstok.replace(/\s/g, '').toLowerCase();
-                    myid = addstokfinal.replace(/\D/g,'');
-                    getlastid = parseInt(myid, 10);
-                    var addstok = $("#jumlahstokkaos").val();
-                    if(addstok>=1){
-                        $.ajax({
-                            type:"POST",
-                            data:{
-                                idproductkaos:getlastid,
-                                amount:addstok,
-                            },
-                            url:"/product_kaos_update/",
-                            success:function(data){  
-                                //alert('succes');
-                            },complete:function(){
-                                //location.reload();
-                                getkaos();
-                                $('#jumlahstokkaos').val(0);
-                                jumlahstok=0;
-                            }
-                        });
-                    }else{
-                        alert("Nilai Stok Tambahan Harap Diisi");
-                    }
+                    $.each(data.data,function(key,value){
+                        
+                        var str3 = "" + value.idproductkaos;
+                        var pad3 = "00000";
+                        var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                        var finalcode2 = "TS"+ans3+"S";
+                        if (key==0)
+                        {
+                            $("#pilihanidkaos").html(
+                                "<img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span id="+value.idproductkaos+" class='ht9'>"+finalcode2+"</span><span class='caret' style='padding-right: 56%;'></span>"
+                            );
+                        }
+                        
+                        
+                        $(".isiidkaos").append(`
+                            <li data-value="assets/images/pos/tag.png">
+                                <a class="dropdown-item" href="#">
+                                    <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                    <span id='${value.idproductkaos}' class="ht9">${finalcode2}</span>
+                                </a>
+                            </li>
+                        `);
+                    });
+                },complete:function(data){
+                    $(".isiidkaos li").click(function(){
+                        var getlogo = $(this).data('value');
+                        $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                    });
+                }
+            });
+        }else if(text=="Sweater"){
+            $.ajax({
+                url: '/product_sweater_select',
+                type: 'get',
+                data: {
+                },
+                success: function(data){
+                    $(".isiidkaos").html('');
+                    $.each(data.data,function(key,value){
+                        
+                        var str3 = "" + value.idproductsweater;
+                        var pad3 = "00000";
+                        var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                        var finalcode2 = "SW"+ans3+"R";
+                        
+                        if (key==0)
+                        {
+                            $("#pilihanidkaos").html(
+                                "<img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span id="+value.idproductsweater+" class='ht9'>"+finalcode2+"</span><span class='caret' style='padding-right: 56%;'></span>"
+                            );
+                        }
+
+                        $(".isiidkaos").append(`
+                            <li data-value="assets/images/pos/tag.png">
+                                <a class="dropdown-item" href="#">
+                                    <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                    <span id='${value.idproductsweater}' class="ht9">${finalcode2}</span>
+                                </a>
+                            </li>
+                        `);
+                    });
+                },complete:function(data){
+                    $(".isiidkaos li").click(function(){
+                        var getlogo = $(this).data('value');
+                        $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                    });
+                }
+            });
+        }else if(text=="Tanktop"){
+            $.ajax({
+                url: '/product_tanktop_select',
+                type: 'get',
+                data: {
+                },
+                success: function(data){
+                    $(".isiidkaos").html('');
+                    $.each(data.data,function(key,value){
+                        
+                        var str3 = "" + value.idproducttanktop;
+                        var pad3 = "00000";
+                        var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                        var finalcode2 = "TK"+ans3+"P";
+                        
+                        if (key==0)
+                        {
+                            $("#pilihanidkaos").html(
+                                "<img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span id="+value.idproducttanktop+" class='ht9'>"+finalcode2+"</span><span class='caret' style='padding-right: 56%;'></span>"
+                            );
+                        }
+
+                        $(".isiidkaos").append(`
+                            <li data-value="assets/images/pos/tag.png">
+                                <a class="dropdown-item" href="#">
+                                    <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                    <span id='${value.idproducttanktop}' class="ht9">${finalcode2}</span>
+                                </a>
+                            </li>
+                        `);
+                    });
+                },complete:function(data){
+                    $(".isiidkaos li").click(function(){
+                        var getlogo = $(this).data('value');
+                        $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                    });
                     
-                });
-            }
-        });
+                }
+            });
+        }else if(text=="Topi"){
+            $.ajax({
+                url: '/product_topi_select',
+                type: 'get',
+                data: {
+                },
+                success: function(data){
+                    $(".isiidkaos").html('');
+                    $.each(data.data,function(key,value){
+                        
+                        var str3 = "" + value.idproducttopi;
+                        var pad3 = "00000";
+                        var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                        var finalcode2 = "TP"+ans3+"B";
+                        
+                        if (key==0)
+                        {
+                            $("#pilihanidkaos").html(
+                                "<img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span id="+value.idproducttopi+" class='ht9'>"+finalcode2+"</span><span class='caret' style='padding-right: 56%;'></span>"
+                            );
+                        }
+
+                        $(".isiidkaos").append(`
+                            <li data-value="assets/images/pos/tag.png">
+                                <a class="dropdown-item" href="#">
+                                    <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                    <span id='${value.idproducttopi}' class="ht9">${finalcode2}</span>
+                                </a>
+                            </li>
+                        `);
+                    });
+                },complete:function(data){
+                    $(".isiidkaos li").click(function(){
+                        var getlogo = $(this).data('value');
+                        $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                    });
+                }
+            });
+        }else if(text=="Totebag"){
+            $.ajax({
+                url: '/product_totebag_select',
+                type: 'get',
+                data: {
+                },
+                success: function(data){
+                    $(".isiidkaos").html('');
+                    $.each(data.data,function(key,value){
+                        
+                        var str3 = "" + value.idproducttotebag;
+                        var pad3 = "00000";
+                        var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                        var finalcode2 = "BA"+ans3+"G";
+                        
+                        if (key==0)
+                        {
+                            $("#pilihanidkaos").html(
+                                "<img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span id="+value.idproducttotebag+" class='ht9'>"+finalcode2+"</span><span class='caret' style='padding-right: 56%;'></span>"
+                            );
+                        }
+
+                        $(".isiidkaos").append(`
+                            <li data-value="assets/images/pos/tag.png">
+                                <a class="dropdown-item" href="#">
+                                    <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                    <span id='${value.idproducttotebag}' class="ht9">${finalcode2}</span>
+                                </a>
+                            </li>
+                        `);
+                    });
+                },complete:function(data){
+                    $(".isiidkaos li").click(function(){
+                        var getlogo = $(this).data('value');
+                        $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                    });
+                }
+            });
+        }else{
+            console.log("Jenis Tidak Ditemukan");
+        };
+        
         $('#inputidkaosedit').show("slow");
-        //$('#inputkatunkaos, #inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos').hide("slow");
         $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').hide("slow");
         $('#inputjumlahkaos').show("slow");
+    });
+    $("#tambahkaos").click(function(){
+        var eupdate = document.getElementById("selectjenis");
+        var textupdate = eupdate.options[eupdate.selectedIndex].value;
+        console.log("ini update"+textupdate);
+        var addstok = $("#pilihanidkaos").children("span").html();
+        addstokfinal = addstok.replace(/\s/g, '').toLowerCase();
+        myid = addstokfinal.replace(/\D/g,'');
+        getlastid = parseInt(myid, 10);
+        var addstok2 = $("#jumlahstokkaos").val();
+
+        if(addstok2>=1 && textupdate=="Kaos"){
+            console.log("id yang di pick"+getlastid);
+            $.ajax({
+                type:"POST",
+                data:{
+                    idproductkaos:getlastid,
+                    amount:addstok2,
+                },
+                url:"/product_kaos_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $('#jumlahstokkaos').val(0);
+                    jumlahstok=0;
+                    getkaos();
+                }
+            });
+        }else if(addstok2>=1 && textupdate=="Sweater"){
+            console.log("id yang di pick"+getlastid);
+            $.ajax({
+                type:"POST",
+                data:{
+                    idproductsweater:getlastid,
+                    amount:addstok2,
+                },
+                url:"/product_sweater_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $('#jumlahstokkaos').val(0);
+                    jumlahstok=0;
+                    getsweater();
+                }
+            });
+        }else if(addstok2>=1 && textupdate=="Tanktop"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    idproducttanktop:getlastid,
+                    amount:addstok2,
+                },
+                url:"/product_tanktop_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $('#jumlahstokkaos').val(0);
+                    jumlahstok=0;
+                    gettanktop();
+                }
+            });
+        }else if(addstok2>=1 && textupdate=="Topi"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    idproducttopi:getlastid,
+                    amount:addstok2,
+                },
+                url:"/product_topi_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $('#jumlahstokkaos').val(0);
+                    jumlahstok=0;
+                    gettopi();
+                    
+                }
+            });
+        }else if(addstok2>=1 && textupdate=="Totebag"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    idproducttotebag:getlastid,
+                    amount:addstok2,
+                },
+                url:"/product_totebag_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $('#jumlahstokkaos').val(0);
+                    jumlahstok=0;
+                    gettotebag();
+                    
+                }
+            });
+        }
+        else{
+            alert("Nilai Stok Kaos Tambahan Harap Diisi");
+        }
+        
     });
 
     $('#btambahstok').click(function(){
@@ -847,15 +1093,91 @@
     $('.myselect2').on('change', function (e) {
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
-        //console.log(valueSelected);
+        console.log(valueSelected);
         if(valueSelected == "Kertas"){
             getpapper();
             $('#detailstok').hide();
             $('#detailkertas').show("slow");
         }else if(valueSelected == "Kaos"){
             getkaos();
+            $("#pilihannamakaos").html(" <img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>Kaos</span><span class='caret' style='padding-right: 56%;'></span>");
+            $("#timage1").attr("src","assets/images/kaos/bajudepan1.png");
+            $("#timage2").attr("src","assets/images/kaos/bajubelakang1.png");
             $('#detailkertas').hide();
-            $('#detailstok').show("slow");         
+            $('#detailstok').show("slow");
+            
+            $('#beditstok').show("slow");
+            $('#btambahstok').hide("slow");
+            $('#titleside').show().html("Edit Stok").fadeIn(1000);
+            $('#inputjumlahkaos').hide("slow");
+            $('#tambahkaos').hide("slow");
+            $('#inputidkaosedit').hide("slow");
+            $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').show("slow");
+            $('#inputjumlahkaos').hide("slow");      
+        }else if(valueSelected == "Sweater"){
+            getsweater();
+            $("#pilihannamakaos").html(" <img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>Sweater</span><span class='caret' style='padding-right: 56%;'></span>");
+            $("#timage1").attr("src","assets/images/kaos/sweaterdepan.png");
+            $("#timage2").attr("src","assets/images/kaos/sweaterbelakang.png");
+            $('#detailkertas').hide();
+            $('#detailstok').show("slow");
+
+            $('#beditstok').show("slow");
+            $('#btambahstok').hide("slow");
+            $('#titleside').show().html("Edit Stok").fadeIn(1000);
+            $('#inputjumlahkaos').hide("slow");
+            $('#tambahkaos').hide("slow");
+            $('#inputidkaosedit').hide("slow");
+            $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').show("slow");
+            $('#inputjumlahkaos').hide("slow");           
+        }else if(valueSelected == "Tanktop"){
+            gettanktop();
+            $("#pilihannamakaos").html(" <img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>Tanktop</span><span class='caret' style='padding-right: 56%;'></span>");
+            $("#timage1").attr("src","assets/images/kaos/tanktopdepan.png");
+            $("#timage2").attr("src","assets/images/kaos/tanktopbelakang.png");
+            $('#detailkertas').hide();
+            $('#detailstok').show("slow");
+
+            $('#beditstok').show("slow");
+            $('#btambahstok').hide("slow");
+            $('#titleside').show().html("Edit Stok").fadeIn(1000);
+            $('#inputjumlahkaos').hide("slow");
+            $('#tambahkaos').hide("slow");
+            $('#inputidkaosedit').hide("slow");
+            $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').show("slow");
+            $('#inputjumlahkaos').hide("slow");           
+        }else if(valueSelected == "Topi"){
+            gettopi();
+            $("#pilihannamakaos").html(" <img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>Topi</span><span class='caret' style='padding-right: 56%;'></span>");
+            $("#timage1").attr("src","assets/images/kaos/topidepan.png");
+            $("#timage2").attr("src","assets/images/kaos/topibelakang.png");
+            $('#detailkertas').hide();
+            $('#detailstok').show("slow");
+
+            $('#beditstok').show("slow");
+            $('#btambahstok').hide("slow");
+            $('#titleside').show().html("Edit Stok").fadeIn(1000);
+            $('#inputjumlahkaos').hide("slow");
+            $('#tambahkaos').hide("slow");
+            $('#inputidkaosedit').hide("slow");
+            $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').show("slow");
+            $('#inputjumlahkaos').hide("slow");           
+        }else if(valueSelected == "Totebag"){
+            gettotebag();
+            $("#pilihannamakaos").html(" <img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>Totebag</span><span class='caret' style='padding-right: 56%;'></span>");
+            $("#timage1").attr("src","assets/images/kaos/totebag.png");
+            $("#timage2").attr("src","assets/images/kaos/totebag.png");
+            $('#detailkertas').hide();
+            $('#detailstok').show("slow");
+
+            $('#beditstok').show("slow");
+            $('#btambahstok').hide("slow");
+            $('#titleside').show().html("Edit Stok").fadeIn(1000);
+            $('#inputjumlahkaos').hide("slow");
+            $('#tambahkaos').hide("slow");
+            $('#inputidkaosedit').hide("slow");
+            $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').show("slow");
+            $('#inputjumlahkaos').hide("slow");           
         }else{
             console.log("select tidak diketahui");
         }
@@ -904,6 +1226,310 @@
                                 </div>
                             </td>
                             <td id="tharga" class="color-red">Rp.${finalrupiah}</td>
+                            <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
+                                    <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                    <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
+    function getsweater(){
+        $.ajax({
+            url: '/product_sweater_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var table = $('#dtstokbarang').DataTable();
+                table.destroy();
+                $("#dtstokbarang tbody").html('');
+                $.each(data.data,function(key,value){
+                    var str_sweater = "" + value.idproductsweater;
+                    var pad_sweater = "00000";
+                    var ans_sweater = pad_sweater.substring(0, pad_sweater.length - str_sweater.length) + str_sweater;
+                    var finalcode_sweater = "SW"+ans_sweater+"R";
+                    var myjenis_sweater = value.jenisbarang;
+                    const finaljeniss_sweater = myjenis_sweater.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var warna_sweater = value.warna;
+                    const finalwarna_sweater = warna_sweater.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var size_sweater = value.size;
+                    const finalsize_sweater = size_sweater.toUpperCase();
+                    var nilairupiah_sweater = value.hargajual;
+                    let finalrupiah_sweater = nilairupiah_sweater.toLocaleString("id-ID");
+                    $("#dtstokbarang tbody").append(
+                        `
+                        <tr>
+                            <td id="${value.idproductsweater}">${finalcode_sweater}</td>
+                            <td>
+                                <div class="">
+                                    <div class="kotakgambar" style="margin: auto 10px;">
+                                        <div id="penampungwarna3" style="background-color: ${value.kode};">
+                                            <img id="timage" src="assets/images/kaos/sweaterdepan.png" style="height: 48px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;margin-top:11px">
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljeniss_sweater} ${finalwarna_sweater}</div>
+                                    <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_sweater}</span></div>
+                                </div>
+                            </td>
+                            <td id="tharga" class="color-red">Rp.${finalrupiah_sweater}</td>
+                            <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
+                                    <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                    <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
+    function gettanktop(){
+        $.ajax({
+            url: '/product_tanktop_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var table = $('#dtstokbarang').DataTable();
+                table.destroy();
+                $("#dtstokbarang tbody").html('');
+                $.each(data.data,function(key,value){
+                    var str_tanktop = "" + value.idproducttanktop;
+                    var pad_tanktop = "00000";
+                    var ans_tanktop = pad_tanktop.substring(0, pad_tanktop.length - str_tanktop.length) + str_tanktop;
+                    var finalcode_tanktop = "TK"+ans_tanktop+"P";
+                    var myjenis_tanktop = value.jenisbarang;
+                    const finaljeniss_tanktop = myjenis_tanktop.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var warna_tanktop = value.warna;
+                    const finalwarna_tanktop = warna_tanktop.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var size_tanktop = value.size;
+                    const finalsize_tanktop = size_tanktop.toUpperCase();
+                    var nilairupiah_tanktop = value.hargajual;
+                    let finalrupiah_tanktop = nilairupiah_tanktop.toLocaleString("id-ID");
+                    $("#dtstokbarang tbody").append(
+                        `
+                        <tr>
+                            <td id="${value.idproducttanktop}">${finalcode_tanktop}</td>
+                            <td>
+                                <div class="">
+                                    <div class="kotakgambar" style="margin: auto 10px;">
+                                        <div id="penampungwarna3" style="background-color: ${value.kode};">
+                                            <img id="timage" src="assets/images/kaos/tanktopdepan.png" style="height: 48px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;margin-top:11px">
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljeniss_tanktop} ${finalwarna_tanktop}</div>
+                                    <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_tanktop}</span></div>
+                                </div>
+                            </td>
+                            <td id="tharga" class="color-red">Rp.${finalrupiah_tanktop}</td>
+                            <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
+                                    <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                    <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
+    function gettopi(){
+        $.ajax({
+            url: '/product_topi_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var table = $('#dtstokbarang').DataTable();
+                table.destroy();
+                $("#dtstokbarang tbody").html('');
+                $.each(data.data,function(key,value){
+                    var str_topi = "" + value.idproducttopi;
+                    var pad_topi = "00000";
+                    var ans_topi = pad_topi.substring(0, pad_topi.length - str_topi.length) + str_topi;
+                    var finalcode_topi = "TP"+ans_topi+"B";
+                    var myjenis_topi = value.jenisbarang;
+                    const finaljeniss_topi = myjenis_topi.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var warna_topi = value.warna;
+                    const finalwarna_topi = warna_topi.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var size_topi = value.size;
+                    const finalsize_topi = size_topi.toUpperCase();
+                    var nilairupiah_topi = value.hargajual;
+                    let finalrupiah_topi = nilairupiah_topi.toLocaleString("id-ID");
+                    $("#dtstokbarang tbody").append(
+                        `
+                        <tr>
+                            <td id="${value.idproducttopi}">${finalcode_topi}</td>
+                            <td>
+                                <div class="">
+                                    <div class="kotakgambar" style="margin: auto 10px;">
+                                        <div id="penampungwarna3" style="background-color: ${value.kode};">
+                                            <img id="timage" src="assets/images/kaos/topidepan.png" style="height: 48px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;margin-top:11px">
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljeniss_topi} ${finalwarna_topi}</div>
+                                    <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_topi}</span></div>
+                                </div>
+                            </td>
+                            <td id="tharga" class="color-red">Rp.${finalrupiah_topi}</td>
+                            <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
+                                    <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                    <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
+    function gettotebag(){
+        $.ajax({
+            url: '/product_totebag_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var table = $('#dtstokbarang').DataTable();
+                table.destroy();
+                $("#dtstokbarang tbody").html('');
+                $.each(data.data,function(key,value){
+                    var str_totebag = "" + value.idproducttotebag;
+                    var pad_totebag = "00000";
+                    var ans_totebag = pad_totebag.substring(0, pad_totebag.length - str_totebag.length) + str_totebag;
+                    var finalcode_totebag = "BA"+ans_totebag+"G";
+                    var myjenis_totebag = value.jenisbarang;
+                    const finaljeniss_totebag = myjenis_totebag.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var warna_totebag = value.warna;
+                    const finalwarna_totebag = warna_totebag.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var size_totebag = value.size;
+                    const finalsize_totebag = size_totebag.toUpperCase();
+                    var nilairupiah_totebag = value.hargajual;
+                    let finalrupiah_totebag = nilairupiah_totebag.toLocaleString("id-ID");
+                    $("#dtstokbarang tbody").append(
+                        `
+                        <tr>
+                            <td id="${value.idproducttotebag}">${finalcode_totebag}</td>
+                            <td>
+                                <div class="">
+                                    <div class="kotakgambar" style="margin: auto 10px;">
+                                        <div id="penampungwarna3" style="background-color: ${value.kode};">
+                                            <img id="timage" src="assets/images/kaos/totebag.png" style="height: 48px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;margin-top:11px">
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljeniss_totebag} ${finalwarna_totebag}</div>
+                                    <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_totebag}</span></div>
+                                </div>
+                            </td>
+                            <td id="tharga" class="color-red">Rp.${finalrupiah_totebag}</td>
                             <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
                             <td>
                                 <div class="row">
@@ -1042,6 +1668,178 @@
                     });
                 }
             });
+        }else if(text == "Sweater"){
+            deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+            getkelas =  $("#tnamabarang").attr('class');
+            console.log(getkelas);
+            selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+            $.ajax({
+                url: '/product_sweater_delete/'+selectedid,
+                type: 'get',
+                data: {
+
+                },
+                success: function(data){
+                    status = data['status']['code'];
+                    if (status=='undefined'){
+                        alert("Data Berhasil Dihapus");
+                        $.each(data.data,function(key,value){
+                            var $datatable = $('#dtstokbarang').DataTable();
+                            $datatable.row(deletingRowSelector).remove().draw();
+                        });
+                    }else{
+                        alert("Hapus terlebih dahulu data yang terhubung");
+                    }
+                },complete:function(){
+                    //$('#dtBasicExample').DataTable();
+                    $('#dtstokbarang').dataTable().fnDestroy();
+                    $('#dtstokbarang').DataTable({
+                        dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                        pagingType: "simple",
+                        lengthMenu: [
+                            [3, 10, 25, -1],
+                            [3, 10, 25, 'All'],
+                        ],
+                        retrieve:true,
+                        order:true,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    
+                    $("#dtstokbarang tbody tr").hover(function(){
+                        $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                        $(this).children("td:first-child").addClass("tdactivehover");
+                    });
+                }
+            });
+        }else if(text == "Tanktop"){
+            deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+            getkelas =  $("#tnamabarang").attr('class');
+            console.log(getkelas);
+            selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+            $.ajax({
+                url: '/product_tanktop_delete/'+selectedid,
+                type: 'get',
+                data: {
+
+                },
+                success: function(data){
+                    status = data['status']['code'];
+                    if (status=='undefined'){
+                        alert("Data Berhasil Dihapus");
+                        $.each(data.data,function(key,value){
+                            var $datatable = $('#dtstokbarang').DataTable();
+                            $datatable.row(deletingRowSelector).remove().draw();
+                        });
+                    }else{
+                        alert("Hapus terlebih dahulu data yang terhubung");
+                    }
+                },complete:function(){
+                    //$('#dtBasicExample').DataTable();
+                    $('#dtstokbarang').dataTable().fnDestroy();
+                    $('#dtstokbarang').DataTable({
+                        dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                        pagingType: "simple",
+                        lengthMenu: [
+                            [3, 10, 25, -1],
+                            [3, 10, 25, 'All'],
+                        ],
+                        retrieve:true,
+                        order:true,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    
+                    $("#dtstokbarang tbody tr").hover(function(){
+                        $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                        $(this).children("td:first-child").addClass("tdactivehover");
+                    });
+                }
+            });
+        }else if(text == "Topi"){
+            deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+            getkelas =  $("#tnamabarang").attr('class');
+            console.log(getkelas);
+            selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+            $.ajax({
+                url: '/product_topi_delete/'+selectedid,
+                type: 'get',
+                data: {
+
+                },
+                success: function(data){
+                    status = data['status']['code'];
+                    if (status=='undefined'){
+                        alert("Data Berhasil Dihapus");
+                        $.each(data.data,function(key,value){
+                            var $datatable = $('#dtstokbarang').DataTable();
+                            $datatable.row(deletingRowSelector).remove().draw();
+                        });
+                    }else{
+                        alert("Hapus terlebih dahulu data yang terhubung");
+                    }
+                },complete:function(){
+                    //$('#dtBasicExample').DataTable();
+                    $('#dtstokbarang').dataTable().fnDestroy();
+                    $('#dtstokbarang').DataTable({
+                        dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                        pagingType: "simple",
+                        lengthMenu: [
+                            [3, 10, 25, -1],
+                            [3, 10, 25, 'All'],
+                        ],
+                        retrieve:true,
+                        order:true,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    
+                    $("#dtstokbarang tbody tr").hover(function(){
+                        $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                        $(this).children("td:first-child").addClass("tdactivehover");
+                    });
+                }
+            });
+        }else if(text == "Totebag"){
+            deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+            getkelas =  $("#tnamabarang").attr('class');
+            console.log(getkelas);
+            selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+            $.ajax({
+                url: '/product_totebag_delete/'+selectedid,
+                type: 'get',
+                data: {
+
+                },
+                success: function(data){
+                    status = data['status']['code'];
+                    if (status=='undefined'){
+                        alert("Data Berhasil Dihapus");
+                        $.each(data.data,function(key,value){
+                            var $datatable = $('#dtstokbarang').DataTable();
+                            $datatable.row(deletingRowSelector).remove().draw();
+                        });
+                    }else{
+                        alert("Hapus terlebih dahulu data yang terhubung");
+                    }
+                },complete:function(){
+                    //$('#dtBasicExample').DataTable();
+                    $('#dtstokbarang').dataTable().fnDestroy();
+                    $('#dtstokbarang').DataTable({
+                        dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                        pagingType: "simple",
+                        lengthMenu: [
+                            [3, 10, 25, -1],
+                            [3, 10, 25, 'All'],
+                        ],
+                        retrieve:true,
+                        order:true,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    
+                    $("#dtstokbarang tbody tr").hover(function(){
+                        $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                        $(this).children("td:first-child").addClass("tdactivehover");
+                    });
+                }
+            });
         }else{
             console.log("select tidak diketahui");
         }
@@ -1118,7 +1916,7 @@
     }
 
     $("#addkaos").click(function(){
-        var getjenisadd = $("#pilihannamakaos").children("span").html();
+        var getjenisadd = $("#pilihannamakaos").children("span").text();
         var addsjenis = getjenisadd.replace(/\s/g, '').toLowerCase();
         namawarna = $("#namawarna").val().toLowerCase();
         hargabeli = $("#hargabeli").val();
@@ -1134,28 +1932,125 @@
         console.log(stokamount);
         console.log(addsukuran);
         console.log(warna);
-        $.ajax({
-            type:"POST",
-            data:{
-                kode:warna,
-                jenisbarang:addsjenis,
-                size:addsukuran,
-                amount:stokamount,
-                hargabeli:hargabeli,
-                hargajual:hargajual,
-                warna:namawarna,
-            },
-            url:"/product_kaos_insert/",
-            success:function(data){  
-                alert('succes');
-            },complete:function(){
-                $("#namawarna").val("");
-                $("#hargabeli").val("");
-                $("#hargajual").val("");
-                $("#stokamount").val("");
-                getkaos();
-            }
-        });
+        if(addsjenis=="kaos"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    kode:warna,
+                    jenisbarang:addsjenis,
+                    size:addsukuran,
+                    amount:stokamount,
+                    hargabeli:hargabeli,
+                    hargajual:hargajual,
+                    warna:namawarna,
+                },
+                url:"/product_kaos_insert/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $("#namawarna").val("");
+                    $("#hargabeli").val("");
+                    $("#hargajual").val("");
+                    $("#stokamount").val("");
+                    getkaos();
+                }
+            });
+        }else if(addsjenis=="sweater"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    kode:warna,
+                    jenisbarang:addsjenis,
+                    size:addsukuran,
+                    amount:stokamount,
+                    hargabeli:hargabeli,
+                    hargajual:hargajual,
+                    warna:namawarna,
+                },
+                url:"/product_sweater_insert/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $("#namawarna").val("");
+                    $("#hargabeli").val("");
+                    $("#hargajual").val("");
+                    $("#stokamount").val("");
+                    getsweater();
+                }
+            });
+        }else if(addsjenis=="tanktop"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    kode:warna,
+                    jenisbarang:addsjenis,
+                    size:addsukuran,
+                    amount:stokamount,
+                    hargabeli:hargabeli,
+                    hargajual:hargajual,
+                    warna:namawarna,
+                },
+                url:"/product_tanktop_insert/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $("#namawarna").val("");
+                    $("#hargabeli").val("");
+                    $("#hargajual").val("");
+                    $("#stokamount").val("");
+                    gettanktop();
+                }
+            });
+        }else if(addsjenis=="topi"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    kode:warna,
+                    jenisbarang:addsjenis,
+                    size:addsukuran,
+                    amount:stokamount,
+                    hargabeli:hargabeli,
+                    hargajual:hargajual,
+                    warna:namawarna,
+                },
+                url:"/product_topi_insert/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $("#namawarna").val("");
+                    $("#hargabeli").val("");
+                    $("#hargajual").val("");
+                    $("#stokamount").val("");
+                    gettopi();
+                }
+            });
+        }else if(addsjenis=="totebag"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    kode:warna,
+                    jenisbarang:addsjenis,
+                    size:addsukuran,
+                    amount:stokamount,
+                    hargabeli:hargabeli,
+                    hargajual:hargajual,
+                    warna:namawarna,
+                },
+                url:"/product_totebag_insert/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $("#namawarna").val("");
+                    $("#hargabeli").val("");
+                    $("#hargajual").val("");
+                    $("#stokamount").val("");
+                    gettotebag();
+                }
+            });
+        }else{
+            console.log("Jenis Tidak di temukan");
+        }
+        
     });
 
     $("#bbayar").click(function(){
