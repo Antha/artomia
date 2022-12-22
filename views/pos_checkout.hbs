@@ -799,8 +799,7 @@
                 customers_insertId =  data.data.insertId;
             }
         });
-        //console.log("customers_insertId : "+customers_insertId);
-        //return false;
+
         $.ajax({
             url: '/transaction',
             type: 'POST',
@@ -821,64 +820,12 @@
                         var totalPrice = 0;
                         $.each(data2,function(key,value){
                             if(value.checked == "true"){
-                                var color_id;
-                                var size_id;
-
-                                switch(value.product_color){
-                                    case 'Red Been':
-                                    color_id = 1;
-                                    break;
-
-                                    case 'Green':
-                                    color_id = 2;
-                                    break;
-
-                                    case 'Yellow':
-                                    color_id = 3;
-                                    break;
-
-                                    case 'Pink':
-                                    color_id = 4;
-                                    break;
-
-                                    case 'Blue':
-                                    color_id = 5;
-                                    break;
-
-                                    case 'White':
-                                    color_id = 6;
-                                    break;
-                                }
-
-                                switch(value.product_size){
-                                    case 'S':
-                                    size_id = 1;
-                                    break;
-
-                                    case 'M':
-                                    size_id = 2;
-                                    break;
-
-                                    case 'L':
-                                    size_id = 3;
-                                    break;
-
-                                    case 'XL':
-                                    size_id = 4;
-                                    break;
-
-                                    case 'XXL':
-                                    size_id = 5;
-                                    break;
-                                }
-
                                 $.ajax({
                                     url: '/transaction_item',
                                     type: 'post',
                                     data: {
                                         product_id:value.product_id,
-                                        product_color_id:color_id,
-                                        product_size_id:size_id,
+                                        product_spec_id:value.product_spec_id,
                                         transaction_id:transaction_id,
                                         amount: value.item_amount,
                                         pic:value.product_pic_logo

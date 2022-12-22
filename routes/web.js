@@ -137,6 +137,7 @@ router.get("/keranjang_add", (req, res) => {
 
     cart.push({
         product_id: req.query.product_id,
+        product_spec_id: req.query.product_spec_id,
         product_name: req.query.product_name,
         product_color: req.query.product_color,
         product_size: req.query.product_size,

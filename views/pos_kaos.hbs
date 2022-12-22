@@ -491,11 +491,13 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const idProducts = urlParams.get('product_id');
+    var product_spec_id;
     var item_net_cost = 0;
-
+    var jumalahpesan = 1;
     var product_color_new = "";
     
     getcolorlist();
+
     function getcolorlist(){
         $.ajax({
             url: '/product_kaos_select_warna',
@@ -544,6 +546,20 @@
                                 $('#'+value.size).show();
                             }
                         });
+                    },complete:function(){
+                        var product_size = $(".bukuran.activebukuran").text();
+                        $.ajax({
+                            url: '/product_kaos_select_price',
+                            type: 'GET',
+                            data: {warna:product_color_new, size: product_size},
+                            success: function(data){
+                                $.each(data.data,function(key,value){
+                                    item_net_cost = value.price;
+                                    product_spec_id = value.idproductkaos;
+                                    $("#price_spec").html("Rp. "+value.price)
+                                });
+                            }
+                        });  
                     }
                 });
 
@@ -621,16 +637,29 @@
                                     $('#'+value.size).show();
                                 }
                             });
+                        },
+                        complete(){
+                            var product_size = $(".bukuran.activebukuran").text();
+                            $.ajax({
+                                url: '/product_kaos_select_price',
+                                type: 'GET',
+                                data: {warna:product_color_new, size: product_size},
+                                success: function(data){
+                                    $.each(data.data,function(key,value){
+                                        product_spec_id = value.idproductkaos;
+                                        item_net_cost = value.price;
+                                        $("#price_spec").html("Rp. "+value.price)
+                                    });
+                                }
+                            });     
                         }
-                    });
-
-                   
+                    });         
                 });
             }
         });
     }
 
-     $('#btn_next').click(function(){
+    $('#btn_next').click(function(){
         screenshot();
         console.log(">>> product_color_new "+product_color_new);
         /*var data2 = new FormData($('#uploadForms')[0]);
@@ -725,8 +754,6 @@
 
         $('#exampleModalCenter').modal('hide');
     });
-
-    var jumalahpesan = 1;
     
     $("#plus").click(function(){
         jumalahpesan+=1;
@@ -762,6 +789,8 @@
             data: {warna:product_color_new, size: product_size},
             success: function(data){
                 $.each(data.data,function(key,value){
+                    product_spec_id = value.idproductkaos;
+                    item_net_cost = value.price;
                     $("#price_spec").html("Rp. "+value.price)
                 });
             }
@@ -860,7 +889,7 @@
         })
     });
 
-     $.ajax({
+    $.ajax({
         url: '/products/'+idProducts,
         type: 'get',
         data: {  },
@@ -868,7 +897,7 @@
             $.each(data.data,function(key,value){
                 $("#img_product").html(`<div id="tampungwarnabackground"><img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;"></div>`)
                 $("#data-product-name").html(value.name);
-                item_net_cost = value.price;
+                //item_net_cost = value.price;
             });
         },complete:function(){
             
@@ -913,6 +942,7 @@
                         type: 'get',
                         data: {
                             product_id: idProducts,
+                            product_spec_id:product_spec_id,
                             product_name: product_name,
                             product_color: product_color_new,
                             product_size: product_size,
@@ -1021,7 +1051,9 @@
     $('#perkecil').click(function(){
         minImg();
     });
+
     img = document.getElementById("logoimage");
+    
     // Function to increase image size
     function enlargeImg() {
     // Set image size to 1.5 times original
