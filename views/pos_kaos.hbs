@@ -499,8 +499,30 @@
     getcolorlist();
 
     function getcolorlist(){
+        //console.log("url_select_warna");
+
+        var url_select_warna ;
+        var url_select_size;
+        var url_select_price;
+
+        switch(idProducts){
+            case '1':
+            url_select_warna = '/product_kaos_select_warna';
+            url_select_size = '/product_kaos_select_size';
+            url_select_price = '/product_kaos_select_price'
+            break;
+
+            case '2':
+            url_select_warna = '/product_sweater_select_warna';
+            url_select_size = '/product_sweater_select_size';
+            url_select_price = '/product_sweater_select_price'
+            break;
+        }
+
+        //console.log("url_select_warna"+url_select_warna);
+
         $.ajax({
-            url: '/product_kaos_select_warna',
+            url: url_select_warna,
             type: 'get',
             data: {
 
@@ -535,7 +557,7 @@
                 var tolowercasecolorname = product_color_get.toLowerCase();
                 console.log(tolowercasecolorname);
                 $.ajax({
-                    url: '/product_kaos_select_size/',
+                    url: url_select_size,
                     type: 'POST',
                     data: {warna:product_color_get},
                     success: function(data){
@@ -549,7 +571,7 @@
                     },complete:function(){
                         var product_size = $(".bukuran.activebukuran").text();
                         $.ajax({
-                            url: '/product_kaos_select_price',
+                            url: url_select_price,
                             type: 'GET',
                             data: {warna:product_color_new, size: product_size},
                             success: function(data){
@@ -586,7 +608,9 @@
                         break;
 
                         case 'sweater':
-                        color_id = 2;
+                        tampungselect = "assets/images/kaos/sweaterdepan.png";
+                        $("#produkpos").attr('src',tampungselect);
+                        $("#tampungwarnabackground").css('background-color',colorval);
                         break;
 
                         case 'tank-top':
@@ -626,7 +650,7 @@
                     $("#titlebutton").html("<i data-value='"+$(this).text()+"' style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
                     
                     $.ajax({
-                        url: '/product_kaos_select_size/',
+                        url: url_select_size,
                         type: 'POST',
                         data: {warna:colorval2},
                         success: function(data){
@@ -641,7 +665,7 @@
                         complete(){
                             var product_size = $(".bukuran.activebukuran").text();
                             $.ajax({
-                                url: '/product_kaos_select_price',
+                                url: url_select_price,
                                 type: 'GET',
                                 data: {warna:product_color_new, size: product_size},
                                 success: function(data){
@@ -784,7 +808,7 @@
         var product_size = $(".bukuran.activebukuran").text();
 
         $.ajax({
-            url: '/product_kaos_select_price',
+            url: url_select_price,
             type: 'GET',
             data: {warna:product_color_new, size: product_size},
             success: function(data){
