@@ -16,6 +16,13 @@ var produksi = require("./../controllers/produksi");
 var akunting = require("./../controllers/akunting");
 var product_kaos = require("./../controllers/product_kaos");
 var product_papper = require("./../controllers/product_papper");
+var product_sweater = require("./../controllers/product_sweater");
+var product_tanktop = require("./../controllers/product_tanktop");
+var product_topi = require("./../controllers/product_topi");
+var product_totebag = require("./../controllers/product_totebag");
+var product_polocap = require("./../controllers/product_polocap");
+var product_panelcap = require("./../controllers/product_panelcap");
+var product_truckercap = require("./../controllers/product_truckercap");
 var middle = require("./../controllers/middleware");
 const {v4: uuidv4} = require("uuid");
 
@@ -260,6 +267,55 @@ router.get("/product_kaos_delete/:idproductkaos", product_kaos.delete_kaos);
 router.post("/product_kaos_update", product_kaos.update_kaos);
 router.post("/product_kaos_insert", product_kaos.insert_kaos);
 router.post("/product_kaos_update_amount", product_kaos.update_amount);
+
+router.get("/product_sweater_select", product_sweater.select_sweater);
+router.get("/product_sweater_select_warna", product_sweater.select_warna_sweater);
+router.post("/product_sweater_select_size", product_sweater.select_size_sweater);
+router.get("/product_sweater_delete/:idproductsweater", product_sweater.delete_sweater);
+router.post("/product_sweater_update", product_sweater.update_sweater);
+router.post("/product_sweater_insert", product_sweater.insert_sweater);
+
+router.get("/product_tanktop_select", product_tanktop.select_tanktop);
+router.get("/product_tanktop_select_warna", product_tanktop.select_warna_tanktop);
+router.post("/product_tanktop_select_size", product_tanktop.select_size_tanktop);
+router.get("/product_tanktop_delete/:idproducttanktop", product_tanktop.delete_tanktop);
+router.post("/product_tanktop_update", product_tanktop.update_tanktop);
+router.post("/product_tanktop_insert", product_tanktop.insert_tanktop);
+
+router.get("/product_topi_select", product_topi.select_topi);
+router.get("/product_topi_select_warna", product_topi.select_warna_topi);
+router.post("/product_topi_select_size", product_topi.select_size_topi);
+router.get("/product_topi_delete/:idproducttopi", product_topi.delete_topi);
+router.post("/product_topi_update", product_topi.update_topi);
+router.post("/product_topi_insert", product_topi.insert_topi);
+
+router.get("/product_totebag_select", product_totebag.select_totebag);
+router.get("/product_totebag_select_warna", product_totebag.select_warna_totebag);
+router.post("/product_totebag_select_size", product_totebag.select_size_totebag);
+router.get("/product_totebag_delete/:idproducttotebag", product_totebag.delete_totebag);
+router.post("/product_totebag_update", product_totebag.update_totebag);
+router.post("/product_totebag_insert", product_totebag.insert_totebag);
+
+router.get("/product_polocap_select", product_polocap.select_polocap);
+router.get("/product_polocap_select_warna", product_polocap.select_warna_polocap);
+router.post("/product_polocap_select_size", product_polocap.select_size_polocap);
+router.get("/product_polocap_delete/:idproductpolocap", product_polocap.delete_polocap);
+router.post("/product_polocap_update", product_polocap.update_polocap);
+router.post("/product_polocap_insert", product_polocap.insert_polocap);
+
+router.get("/product_panelcap_select", product_panelcap.select_panelcap);
+router.get("/product_panelcap_select_warna", product_panelcap.select_warna_panelcap);
+router.post("/product_panelcap_select_size", product_panelcap.select_size_panelcap);
+router.get("/product_panelcap_delete/:idproductpanelcap", product_panelcap.delete_panelcap);
+router.post("/product_panelcap_update", product_panelcap.update_panelcap);
+router.post("/product_panelcap_insert", product_panelcap.insert_panelcap);
+
+router.get("/product_truckercap_select", product_truckercap.select_truckercap);
+router.get("/product_truckercap_select_warna", product_truckercap.select_warna_truckercap);
+router.post("/product_truckercap_select_size", product_truckercap.select_size_truckercap);
+router.get("/product_truckercap_delete/:idproducttruckercap", product_truckercap.delete_truckercap);
+router.post("/product_truckercap_update", product_truckercap.update_truckercap);
+router.post("/product_truckercap_insert", product_truckercap.insert_truckercap);
 
 router.get("/product_papper_select", product_papper.select_papper);
 router.get("/product_papper_delete/:idproductpapper", product_papper.delete_papper);
