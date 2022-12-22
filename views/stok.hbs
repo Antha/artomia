@@ -229,6 +229,9 @@
                                         <option style="color: #181717;" value="Sweater">Sweater</option>
                                         <option style="color: #181717;" value="Tanktop">Tanktop</option>
                                         <option style="color: #181717;" value="Topi">Topi</option>
+                                        <option style="color: #181717;" value="Polocap">Polo Cap</option>
+                                        <option style="color: #181717;" value="Panelcap">Panel Cap</option>
+                                        <option style="color: #181717;" value="Truckercap">Trucker Cap</option>
                                         <option style="color: #181717;" value="Totebag">Totebag</option>
                                         <option style="color: #181717;" value="Kertas">Kertas Pet</option>
                                     </select>
@@ -270,7 +273,7 @@
                                                             <img id="timage" src="assets/images/pos/baju.png" style="height: 48px;">
                                                         </div>
                                                         <div style="float: left;margin-top:11px">
-                                                            <div id="tnamabarang" style="font-size: 16px;font-weight: 500;">Kaos Putih</div>
+                                                            <div id="tnamabarang" style="max-width:144px;font-size: 16px;font-weight: 500;">Kaos Putih</div>
                                                             <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>S</span></div>
                                                         </div>
                                                     </td>
@@ -883,6 +886,120 @@
                     });
                 }
             });
+        }else if(text=="Polocap"){
+            $.ajax({
+                url: '/product_polocap_select',
+                type: 'get',
+                data: {
+                },
+                success: function(data){
+                    $(".isiidkaos").html('');
+                    $.each(data.data,function(key,value){
+                        
+                        var str3 = "" + value.idproductpolocap;
+                        var pad3 = "00000";
+                        var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                        var finalcode2 = "PL"+ans3+"C";
+                        
+                        if (key==0)
+                        {
+                            $("#pilihanidkaos").html(
+                                "<img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span id="+value.idproductpolocap+" class='ht9'>"+finalcode2+"</span><span class='caret' style='padding-right: 56%;'></span>"
+                            );
+                        }
+
+                        $(".isiidkaos").append(`
+                            <li data-value="assets/images/pos/tag.png">
+                                <a class="dropdown-item" href="#">
+                                    <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                    <span id='${value.idproductpolocap}' class="ht9">${finalcode2}</span>
+                                </a>
+                            </li>
+                        `);
+                    });
+                },complete:function(data){
+                    $(".isiidkaos li").click(function(){
+                        var getlogo = $(this).data('value');
+                        $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                    });
+                }
+            });
+        }else if(text=="Panelcap"){
+            $.ajax({
+                url: '/product_panelcap_select',
+                type: 'get',
+                data: {
+                },
+                success: function(data){
+                    $(".isiidkaos").html('');
+                    $.each(data.data,function(key,value){
+                        
+                        var str3 = "" + value.idproductpanelcap;
+                        var pad3 = "00000";
+                        var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                        var finalcode2 = "NE"+ans3+"C";
+                        
+                        if (key==0)
+                        {
+                            $("#pilihanidkaos").html(
+                                "<img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span id="+value.idproductpanelcap+" class='ht9'>"+finalcode2+"</span><span class='caret' style='padding-right: 56%;'></span>"
+                            );
+                        }
+
+                        $(".isiidkaos").append(`
+                            <li data-value="assets/images/pos/tag.png">
+                                <a class="dropdown-item" href="#">
+                                    <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                    <span id='${value.idproductpanelcap}' class="ht9">${finalcode2}</span>
+                                </a>
+                            </li>
+                        `);
+                    });
+                },complete:function(data){
+                    $(".isiidkaos li").click(function(){
+                        var getlogo = $(this).data('value');
+                        $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                    });
+                }
+            });
+        }else if(text=="Truckercap"){
+            $.ajax({
+                url: '/product_truckercap_select',
+                type: 'get',
+                data: {
+                },
+                success: function(data){
+                    $(".isiidkaos").html('');
+                    $.each(data.data,function(key,value){
+                        
+                        var str3 = "" + value.idproducttruckercap;
+                        var pad3 = "00000";
+                        var ans3 = pad3.substring(0, pad3.length - str3.length) + str3;
+                        var finalcode2 = "TR"+ans3+"P";
+                        
+                        if (key==0)
+                        {
+                            $("#pilihanidkaos").html(
+                                "<img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span id="+value.idproducttruckercap+" class='ht9'>"+finalcode2+"</span><span class='caret' style='padding-right: 56%;'></span>"
+                            );
+                        }
+
+                        $(".isiidkaos").append(`
+                            <li data-value="assets/images/pos/tag.png">
+                                <a class="dropdown-item" href="#">
+                                    <img src="assets/images/pos/tag.png" style="width: 32px;margin-right: 13px;padding: 8px;">
+                                    <span id='${value.idproducttruckercap}' class="ht9">${finalcode2}</span>
+                                </a>
+                            </li>
+                        `);
+                    });
+                },complete:function(data){
+                    $(".isiidkaos li").click(function(){
+                        var getlogo = $(this).data('value');
+                        $("#pilihanidkaos").html(" <img src='"+getlogo+"' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>"+$(this).text()+"</span><span class='caret' style='padding-right: 56%;'></span>");
+                    });
+                }
+            });
         }else{
             console.log("Jenis Tidak Ditemukan");
         };
@@ -891,6 +1008,7 @@
         $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').hide("slow");
         $('#inputjumlahkaos').show("slow");
     });
+
     $("#tambahkaos").click(function(){
         var eupdate = document.getElementById("selectjenis");
         var textupdate = eupdate.options[eupdate.selectedIndex].value;
@@ -982,6 +1100,57 @@
                     $('#jumlahstokkaos').val(0);
                     jumlahstok=0;
                     gettotebag();
+                    
+                }
+            });
+        }else if(addstok2>=1 && textupdate=="Polocap"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    idproductpolocap:getlastid,
+                    amount:addstok2,
+                },
+                url:"/product_polocap_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $('#jumlahstokkaos').val(0);
+                    jumlahstok=0;
+                    getpolocap();
+                    
+                }
+            });
+        }else if(addstok2>=1 && textupdate=="Panelcap"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    idproductpanelcap:getlastid,
+                    amount:addstok2,
+                },
+                url:"/product_panelcap_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $('#jumlahstokkaos').val(0);
+                    jumlahstok=0;
+                    getpanelcap();
+                    
+                }
+            });
+        }else if(addstok2>=1 && textupdate=="Truckercap"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    idproducttruckercap:getlastid,
+                    amount:addstok2,
+                },
+                url:"/product_truckercap_update/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $('#jumlahstokkaos').val(0);
+                    jumlahstok=0;
+                    gettruckercap();
                     
                 }
             });
@@ -1178,6 +1347,54 @@
             $('#inputidkaosedit').hide("slow");
             $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').show("slow");
             $('#inputjumlahkaos').hide("slow");           
+        }else if(valueSelected == "Polocap"){
+            getpolocap();
+            $("#pilihannamakaos").html(" <img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>Polocap</span><span class='caret' style='padding-right: 56%;'></span>");
+            $("#timage1").attr("src","assets/images/kaos/topidepan.png");
+            $("#timage2").attr("src","assets/images/kaos/topibelakang.png");
+            $('#detailkertas').hide();
+            $('#detailstok').show("slow");
+
+            $('#beditstok').show("slow");
+            $('#btambahstok').hide("slow");
+            $('#titleside').show().html("Edit Stok").fadeIn(1000);
+            $('#inputjumlahkaos').hide("slow");
+            $('#tambahkaos').hide("slow");
+            $('#inputidkaosedit').hide("slow");
+            $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').show("slow");
+            $('#inputjumlahkaos').hide("slow");           
+        }else if(valueSelected == "Panelcap"){
+            getpanelcap();
+            $("#pilihannamakaos").html(" <img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>Panelcap</span><span class='caret' style='padding-right: 56%;'></span>");
+            $("#timage1").attr("src","assets/images/kaos/topidepan.png");
+            $("#timage2").attr("src","assets/images/kaos/topibelakang.png");
+            $('#detailkertas').hide();
+            $('#detailstok').show("slow");
+
+            $('#beditstok').show("slow");
+            $('#btambahstok').hide("slow");
+            $('#titleside').show().html("Edit Stok").fadeIn(1000);
+            $('#inputjumlahkaos').hide("slow");
+            $('#tambahkaos').hide("slow");
+            $('#inputidkaosedit').hide("slow");
+            $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').show("slow");
+            $('#inputjumlahkaos').hide("slow");           
+        }else if(valueSelected == "Truckercap"){
+            gettruckercap();
+            $("#pilihannamakaos").html(" <img src='assets/images/pos/tag.png' style='width: 32px;margin-right: 13px;padding: 8px;'><span class='ht9'>Truckercap</span><span class='caret' style='padding-right: 56%;'></span>");
+            $("#timage1").attr("src","assets/images/kaos/topidepan.png");
+            $("#timage2").attr("src","assets/images/kaos/topibelakang.png");
+            $('#detailkertas').hide();
+            $('#detailstok').show("slow");
+
+            $('#beditstok').show("slow");
+            $('#btambahstok').hide("slow");
+            $('#titleside').show().html("Edit Stok").fadeIn(1000);
+            $('#inputjumlahkaos').hide("slow");
+            $('#tambahkaos').hide("slow");
+            $('#inputidkaosedit').hide("slow");
+            $('#inputnamabarangkaos, #inputhargabelikaos, #inputhargajualkaos, #inputwarnakaos, #inputukurankaos, #stokamount, #kaosdepanbelakang, #addkaos').show("slow");
+            $('#inputjumlahkaos').hide("slow");           
         }else{
             console.log("select tidak diketahui");
         }
@@ -1221,7 +1438,7 @@
                                     </div>
                                 </div>
                                 <div style="float: left;margin-top:11px">
-                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljenis} ${finalwarna}</div>
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="max-width:144px;font-size: 16px;font-weight: 500;">${finaljenis} ${finalwarna}</div>
                                     <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize}</span></div>
                                 </div>
                             </td>
@@ -1297,7 +1514,7 @@
                                     </div>
                                 </div>
                                 <div style="float: left;margin-top:11px">
-                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljeniss_sweater} ${finalwarna_sweater}</div>
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="max-width:144px;font-size: 16px;font-weight: 500;">${finaljeniss_sweater} ${finalwarna_sweater}</div>
                                     <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_sweater}</span></div>
                                 </div>
                             </td>
@@ -1373,7 +1590,7 @@
                                     </div>
                                 </div>
                                 <div style="float: left;margin-top:11px">
-                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljeniss_tanktop} ${finalwarna_tanktop}</div>
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="max-width:144px;font-size: 16px;font-weight: 500;">${finaljeniss_tanktop} ${finalwarna_tanktop}</div>
                                     <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_tanktop}</span></div>
                                 </div>
                             </td>
@@ -1449,7 +1666,7 @@
                                     </div>
                                 </div>
                                 <div style="float: left;margin-top:11px">
-                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljeniss_topi} ${finalwarna_topi}</div>
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="max-width:144px;font-size: 16px;font-weight: 500;">${finaljeniss_topi} ${finalwarna_topi}</div>
                                     <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_topi}</span></div>
                                 </div>
                             </td>
@@ -1525,11 +1742,239 @@
                                     </div>
                                 </div>
                                 <div style="float: left;margin-top:11px">
-                                    <div id="tnamabarang" class="${value.jenisbarang}" style="font-size: 16px;font-weight: 500;">${finaljeniss_totebag} ${finalwarna_totebag}</div>
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="max-width:144px;font-size: 16px;font-weight: 500;">${finaljeniss_totebag} ${finalwarna_totebag}</div>
                                     <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_totebag}</span></div>
                                 </div>
                             </td>
                             <td id="tharga" class="color-red">Rp.${finalrupiah_totebag}</td>
+                            <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
+                                    <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                    <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
+    function getpolocap(){
+        $.ajax({
+            url: '/product_polocap_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var table = $('#dtstokbarang').DataTable();
+                table.destroy();
+                $("#dtstokbarang tbody").html('');
+                $.each(data.data,function(key,value){
+                    var str_polocap = "" + value.idproductpolocap;
+                    var pad_polocap = "00000";
+                    var ans_polocap = pad_polocap.substring(0, pad_polocap.length - str_polocap.length) + str_polocap;
+                    var finalcode_polocap = "PL"+ans_polocap+"C";
+                    var myjenis_polocap = value.jenisbarang;
+                    const finaljeniss_polocap = myjenis_polocap.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var warna_polocap = value.warna;
+                    const finalwarna_polocap = warna_polocap.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var size_polocap = value.size;
+                    const finalsize_polocap = size_polocap.toUpperCase();
+                    var nilairupiah_polocap = value.hargajual;
+                    let finalrupiah_polocap = nilairupiah_polocap.toLocaleString("id-ID");
+                    $("#dtstokbarang tbody").append(
+                        `
+                        <tr>
+                            <td id="${value.idproductpolocap}">${finalcode_polocap}</td>
+                            <td>
+                                <div class="">
+                                    <div class="kotakgambar" style="margin: auto 10px;">
+                                        <div id="penampungwarna3" style="background-color: ${value.kode};">
+                                            <img id="timage" src="assets/images/kaos/topidepan.png" style="height: 48px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;margin-top:11px">
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="max-width:144px;font-size: 16px;font-weight: 500;">${finaljeniss_polocap} ${finalwarna_polocap}</div>
+                                    <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_polocap}</span></div>
+                                </div>
+                            </td>
+                            <td id="tharga" class="color-red">Rp.${finalrupiah_polocap}</td>
+                            <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
+                                    <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                    <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
+    function getpanelcap(){
+        $.ajax({
+            url: '/product_panelcap_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var table = $('#dtstokbarang').DataTable();
+                table.destroy();
+                $("#dtstokbarang tbody").html('');
+                $.each(data.data,function(key,value){
+                    var str_panelcap = "" + value.idproductpanelcap;
+                    var pad_panelcap = "00000";
+                    var ans_panelcap = pad_panelcap.substring(0, pad_panelcap.length - str_panelcap.length) + str_panelcap;
+                    var finalcode_panelcap = "NE"+ans_panelcap+"C";
+                    var myjenis_panelcap = value.jenisbarang;
+                    const finaljeniss_panelcap = myjenis_panelcap.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var warna_panelcap = value.warna;
+                    const finalwarna_panelcap = warna_panelcap.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var size_panelcap = value.size;
+                    const finalsize_panelcap = size_panelcap.toUpperCase();
+                    var nilairupiah_panelcap = value.hargajual;
+                    let finalrupiah_panelcap = nilairupiah_panelcap.toLocaleString("id-ID");
+                    $("#dtstokbarang tbody").append(
+                        `
+                        <tr>
+                            <td id="${value.idproductpanelcap}">${finalcode_panelcap}</td>
+                            <td>
+                                <div class="">
+                                    <div class="kotakgambar" style="margin: auto 10px;">
+                                        <div id="penampungwarna3" style="background-color: ${value.kode};">
+                                            <img id="timage" src="assets/images/kaos/topidepan.png" style="height: 48px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;margin-top:11px">
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="max-width:144px;font-size: 16px;font-weight: 500;">${finaljeniss_panelcap} ${finalwarna_panelcap}</div>
+                                    <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_panelcap}</span></div>
+                                </div>
+                            </td>
+                            <td id="tharga" class="color-red">Rp.${finalrupiah_panelcap}</td>
+                            <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4" style="text-align: right;padding-left: 0px;padding-right: 0px;"><span id="buttonprint" data-toggle="modal" data-target="#modalprint" class="statusind bgcolor-yellow printbarcode" style="margin-right: 8px;cursor: pointer;">Print</span></div>
+                                    <div class="col-md-2" style="padding-left: 0px;"><span class="showdetail"><img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px"></span></div>
+                                    <div class="col-md-2"><span class="delete"><img src="assets/images/icon_delete.png" style="width: 20px;"></span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                    )
+                });
+            },complete:function(data){
+                $('#dtstokbarang').DataTable({
+                    dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                    pagingType: "simple",
+                    lengthMenu: [
+                        [3, 10, 25, -1],
+                        [3, 10, 25, 'All'],
+                    ],
+                    retrieve:true,
+                    order:true,
+                    "bDestroy": true
+                });
+                $('.dataTables_length').addClass('bs-select');
+                
+                $("#dtstokbarang tbody tr").hover(function(){
+                    $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                    $(this).children("td:first-child").addClass("tdactivehover");
+                });
+            }
+        });
+    }
+
+    function gettruckercap(){
+        $.ajax({
+            url: '/product_truckercap_select',
+            type: 'get',
+            data: {
+
+            },
+            success: function(data){
+                var table = $('#dtstokbarang').DataTable();
+                table.destroy();
+                $("#dtstokbarang tbody").html('');
+                $.each(data.data,function(key,value){
+                    var str_truckercap = "" + value.idproducttruckercap;
+                    var pad_truckercap = "00000";
+                    var ans_truckercap = pad_truckercap.substring(0, pad_truckercap.length - str_truckercap.length) + str_truckercap;
+                    var finalcode_truckercap = "TR"+ans_truckercap+"P";
+                    var myjenis_truckercap = value.jenisbarang;
+                    const finaljeniss_truckercap = myjenis_truckercap.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var warna_truckercap = value.warna;
+                    const finalwarna_truckercap = warna_truckercap.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+                    var size_truckercap = value.size;
+                    const finalsize_truckercap = size_truckercap.toUpperCase();
+                    var nilairupiah_truckercap = value.hargajual;
+                    let finalrupiah_truckercap = nilairupiah_truckercap.toLocaleString("id-ID");
+                    $("#dtstokbarang tbody").append(
+                        `
+                        <tr>
+                            <td id="${value.idproducttruckercap}">${finalcode_truckercap}</td>
+                            <td>
+                                <div class="">
+                                    <div class="kotakgambar" style="margin: auto 10px;">
+                                        <div id="penampungwarna3" style="background-color: ${value.kode};">
+                                            <img id="timage" src="assets/images/kaos/topidepan.png" style="height: 48px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;margin-top:11px">
+                                    <div id="tnamabarang" class="${value.jenisbarang}" style="max-width:144px;font-size: 16px;font-weight: 500;">${finaljeniss_truckercap} ${finalwarna_truckercap}</div>
+                                    <div id="tsizebarang" class="ht9 color-grey">Ukuran <span>${finalsize_truckercap}</span></div>
+                                </div>
+                            </td>
+                            <td id="tharga" class="color-red">Rp.${finalrupiah_truckercap}</td>
                             <td><i class="fa-solid fa-circle color-red" style="margin-right: 4px;font-size:9px;"></i><span id="tstok">${value.amount}</span></td>
                             <td>
                                 <div class="row">
@@ -1840,6 +2285,135 @@
                     });
                 }
             });
+        }else if(text == "Polocap"){
+            deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+            getkelas =  $("#tnamabarang").attr('class');
+            console.log(getkelas);
+            selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+            $.ajax({
+                url: '/product_polocap_delete/'+selectedid,
+                type: 'get',
+                data: {
+
+                },
+                success: function(data){
+                    status = data['status']['code'];
+                    if (status=='undefined'){
+                        alert("Data Berhasil Dihapus");
+                        $.each(data.data,function(key,value){
+                            var $datatable = $('#dtstokbarang').DataTable();
+                            $datatable.row(deletingRowSelector).remove().draw();
+                        });
+                    }else{
+                        alert("Hapus terlebih dahulu data yang terhubung");
+                    }
+                },complete:function(){
+                    //$('#dtBasicExample').DataTable();
+                    $('#dtstokbarang').dataTable().fnDestroy();
+                    $('#dtstokbarang').DataTable({
+                        dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                        pagingType: "simple",
+                        lengthMenu: [
+                            [3, 10, 25, -1],
+                            [3, 10, 25, 'All'],
+                        ],
+                        retrieve:true,
+                        order:true,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    
+                    $("#dtstokbarang tbody tr").hover(function(){
+                        $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                        $(this).children("td:first-child").addClass("tdactivehover");
+                    });
+                }
+            });
+        }else if(text == "Panelcap"){
+            deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+            getkelas =  $("#tnamabarang").attr('class');
+            console.log(getkelas);
+            selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+            $.ajax({
+                url: '/product_panelcap_delete/'+selectedid,
+                type: 'get',
+                data: {
+
+                },
+                success: function(data){
+                    status = data['status']['code'];
+                    if (status=='undefined'){
+                        alert("Data Berhasil Dihapus");
+                        $.each(data.data,function(key,value){
+                            var $datatable = $('#dtstokbarang').DataTable();
+                            $datatable.row(deletingRowSelector).remove().draw();
+                        });
+                    }else{
+                        alert("Hapus terlebih dahulu data yang terhubung");
+                    }
+                },complete:function(){
+                    //$('#dtBasicExample').DataTable();
+                    $('#dtstokbarang').dataTable().fnDestroy();
+                    $('#dtstokbarang').DataTable({
+                        dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                        pagingType: "simple",
+                        lengthMenu: [
+                            [3, 10, 25, -1],
+                            [3, 10, 25, 'All'],
+                        ],
+                        retrieve:true,
+                        order:true,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    
+                    $("#dtstokbarang tbody tr").hover(function(){
+                        $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                        $(this).children("td:first-child").addClass("tdactivehover");
+                    });
+                }
+            });
+        }else if(text == "Truckercap"){
+            deletingRowSelector = $(this).parent("div").parent("div").parent("td").parent("tr");
+            getkelas =  $("#tnamabarang").attr('class');
+            console.log(getkelas);
+            selectedid = $(deletingRowSelector).children('td:first-child').attr('id');
+            $.ajax({
+                url: '/product_truckercap_delete/'+selectedid,
+                type: 'get',
+                data: {
+
+                },
+                success: function(data){
+                    status = data['status']['code'];
+                    if (status=='undefined'){
+                        alert("Data Berhasil Dihapus");
+                        $.each(data.data,function(key,value){
+                            var $datatable = $('#dtstokbarang').DataTable();
+                            $datatable.row(deletingRowSelector).remove().draw();
+                        });
+                    }else{
+                        alert("Hapus terlebih dahulu data yang terhubung");
+                    }
+                },complete:function(){
+                    //$('#dtBasicExample').DataTable();
+                    $('#dtstokbarang').dataTable().fnDestroy();
+                    $('#dtstokbarang').DataTable({
+                        dom: '<"top">rt<"bottom"<"row"<"col-sm-3"l><"col-sm-6 text-center"p><"col-sm-3"i>>><"clear">',
+                        pagingType: "simple",
+                        lengthMenu: [
+                            [3, 10, 25, -1],
+                            [3, 10, 25, 'All'],
+                        ],
+                        retrieve:true,
+                        order:true,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    
+                    $("#dtstokbarang tbody tr").hover(function(){
+                        $("#dtstokbarang tbody tr").children("td").removeClass("tdactivehover");
+                        $(this).children("td:first-child").addClass("tdactivehover");
+                    });
+                }
+            });
         }else{
             console.log("select tidak diketahui");
         }
@@ -1876,7 +2450,7 @@
                                     <img id="timage" src="assets/images/pos/PETFilmA6.png" style="height: 48px;">
                                 </div>
                                 <div style="float: left;margin-top:11px">
-                                    <div id="tnamabarang" class="${value.name}" style="font-size: 16px;font-weight: 500;">${value.name}</div>
+                                    <div id="tnamabarang" class="${value.name}" style="max-width:144px; 16px;font-weight: 500;">${value.name}</div>
                                     <div id="tsizebarang" class="ht9 color-grey"><span>${finalsize}</span></div>
                                 </div>
                             </td>
@@ -2045,6 +2619,75 @@
                     $("#hargajual").val("");
                     $("#stokamount").val("");
                     gettotebag();
+                }
+            });
+        }else if(addsjenis=="polocap"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    kode:warna,
+                    jenisbarang:addsjenis,
+                    size:addsukuran,
+                    amount:stokamount,
+                    hargabeli:hargabeli,
+                    hargajual:hargajual,
+                    warna:namawarna,
+                },
+                url:"/product_polocap_insert/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $("#namawarna").val("");
+                    $("#hargabeli").val("");
+                    $("#hargajual").val("");
+                    $("#stokamount").val("");
+                    getpolocap();
+                }
+            });
+        }else if(addsjenis=="panelcap"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    kode:warna,
+                    jenisbarang:addsjenis,
+                    size:addsukuran,
+                    amount:stokamount,
+                    hargabeli:hargabeli,
+                    hargajual:hargajual,
+                    warna:namawarna,
+                },
+                url:"/product_panelcap_insert/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $("#namawarna").val("");
+                    $("#hargabeli").val("");
+                    $("#hargajual").val("");
+                    $("#stokamount").val("");
+                    getpanelcap();
+                }
+            });
+        }else if(addsjenis=="truckercap"){
+            $.ajax({
+                type:"POST",
+                data:{
+                    kode:warna,
+                    jenisbarang:addsjenis,
+                    size:addsukuran,
+                    amount:stokamount,
+                    hargabeli:hargabeli,
+                    hargajual:hargajual,
+                    warna:namawarna,
+                },
+                url:"/product_truckercap_insert/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    $("#namawarna").val("");
+                    $("#hargabeli").val("");
+                    $("#hargajual").val("");
+                    $("#stokamount").val("");
+                    gettruckercap();
                 }
             });
         }else{
