@@ -68,7 +68,7 @@ function select_price(callback, req) {
     con.getConnection(function (err, connection) {
         con.query(
             `
-            SELECT idproductkaos,hargajual price FROM \`product_kaos\`
+            SELECT idproductkaos product_id_spec,hargajual price FROM \`product_kaos\`
             WHERE size = '${req.query.size}' and warna = '${req.query.warna}'
         `,
             function (error, rows, fields) {
@@ -223,6 +223,7 @@ function insert_kaos(callback, req) {
         );
     });
 }
+
 module.exports.insert_kaos = insert_kaos;
 module.exports.update_kaos = update_kaos;
 module.exports.select_kaos = select_kaos;

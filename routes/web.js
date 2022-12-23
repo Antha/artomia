@@ -274,6 +274,8 @@ router.post("/product_sweater_select_size", product_sweater.select_size_sweater)
 router.get("/product_sweater_delete/:idproductsweater", product_sweater.delete_sweater);
 router.post("/product_sweater_update", product_sweater.update_sweater);
 router.post("/product_sweater_insert", product_sweater.insert_sweater);
+router.get("/product_sweater_select_price", product_sweater.select_price);
+router.post("/product_sweater_update_amount", product_sweater.update_amount);
 
 router.get("/product_tanktop_select", product_tanktop.select_tanktop);
 router.get("/product_tanktop_select_warna", product_tanktop.select_warna_tanktop);
@@ -281,6 +283,8 @@ router.post("/product_tanktop_select_size", product_tanktop.select_size_tanktop)
 router.get("/product_tanktop_delete/:idproducttanktop", product_tanktop.delete_tanktop);
 router.post("/product_tanktop_update", product_tanktop.update_tanktop);
 router.post("/product_tanktop_insert", product_tanktop.insert_tanktop);
+router.get("/product_tanktop_select_price", product_tanktop.select_price);
+router.post("/product_tanktop_update_amount", product_tanktop.update_amount);
 
 router.get("/product_topi_select", product_topi.select_topi);
 router.get("/product_topi_select_warna", product_topi.select_warna_topi);
@@ -288,6 +292,8 @@ router.post("/product_topi_select_size", product_topi.select_size_topi);
 router.get("/product_topi_delete/:idproducttopi", product_topi.delete_topi);
 router.post("/product_topi_update", product_topi.update_topi);
 router.post("/product_topi_insert", product_topi.insert_topi);
+router.get("/product_topi_select_price", product_topi.select_price);
+router.post("/product_topi_amount", product_topi.update_amount);
 
 router.get("/product_totebag_select", product_totebag.select_totebag);
 router.get("/product_totebag_select_warna", product_totebag.select_warna_totebag);

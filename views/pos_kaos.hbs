@@ -517,6 +517,18 @@
             url_select_size = '/product_sweater_select_size';
             url_select_price = '/product_sweater_select_price'
             break;
+
+            case '4':
+            url_select_warna = '/product_tanktop_select_warna';
+            url_select_size = '/product_tanktop_select_size';
+            url_select_price = '/product_tanktop_select_price'
+            break;
+
+            case '5':
+            url_select_warna = '/product_topi_select_warna';
+            url_select_size = '/product_topi_select_size';
+            url_select_price = '/product_topi_select_price'
+            break;
         }
 
         //console.log("url_select_warna"+url_select_warna);
@@ -555,7 +567,8 @@
                 var product_color_get = $("#titlebutton").children("span").text();
                 product_color_new = $("#titlebutton").children("span").text();
                 var tolowercasecolorname = product_color_get.toLowerCase();
-                console.log(tolowercasecolorname);
+                {{!-- console.log(tolowercasecolorname); --}}
+                
                 $.ajax({
                     url: url_select_size,
                     type: 'POST',
@@ -577,26 +590,59 @@
                             success: function(data){
                                 $.each(data.data,function(key,value){
                                     item_net_cost = value.price;
-                                    product_spec_id = value.idproductkaos;
+                                    product_spec_id = value.product_id_spec;
                                     $("#price_spec").html("Rp. "+value.price)
                                 });
                             }
                         });  
+
+                        //Change Product Look First Time
+                        var jenisproduk=$('#produkpos').attr('class');
+                        var colorval=$(".isiwarna li").children("a").children("i").data('value');
+                        switch(jenisproduk){    
+                            case 'kaos':
+                            tampungselect = "assets/images/kaos/bajudepan1.png";
+                            $("#produkpos").attr('src',tampungselect);
+                            $("#tampungwarnabackground").css('background-color',colorval);
+                            //console.log(tampungselect);
+                            break;
+
+                            case 'sweater':
+                            tampungselect = "assets/images/kaos/sweaterdepan.png";
+                            $("#produkpos").attr('src',tampungselect);
+                            $("#tampungwarnabackground").css('background-color',colorval);
+                            break;
+
+                            case 'tank-top':
+                            tampungselect = "assets/images/kaos/tanktopdepan.png";
+                            $("#produkpos").attr('src',tampungselect);
+                            $("#tampungwarnabackground").css('background-color',colorval);
+                            break;
+
+                            case 'topi':
+                            tampungselect = "assets/images/kaos/topidepan.png";
+                            $("#produkpos").attr('src',tampungselect);
+                            $("#tampungwarnabackground").css('background-color',colorval);
+                            break;
+                        }
                     }
                 });
+
+          
 
                 $(".isiwarna li").click(function(){
                     $(".bukuran").removeClass("activebukuran");
                     $(".bukuran").hide();
 
+                    var jenisproduk=$('#produkpos').attr('class');
                     var colorval=$(this).children("a").children("i").data('value');
                     var colorval2=$(this).data('value');
+
                     product_color_new = $(this).data('value');
 
                     //console.log("product_color_new >> "+product_color_new);
                     //console.log(colorval);
                     //console.log(colorval2);
-                    var jenisproduk=$('#produkpos').attr('class');
                     var tampungselect="";
                     var tampungselect2="";
                     switch(jenisproduk){
@@ -614,11 +660,15 @@
                         break;
 
                         case 'tank-top':
-                        color_id = 3;
+                        tampungselect = "assets/images/kaos/tanktopdepan.png";
+                        $("#produkpos").attr('src',tampungselect);
+                        $("#tampungwarnabackground").css('background-color',colorval);
                         break;
 
                         case 'topi':
-                        color_id = 4;
+                         tampungselect = "assets/images/kaos/topidepan.png";
+                        $("#produkpos").attr('src',tampungselect);
+                        $("#tampungwarnabackground").css('background-color',colorval);
                         break;
 
                         case 'totebag':
@@ -670,7 +720,7 @@
                                 data: {warna:product_color_new, size: product_size},
                                 success: function(data){
                                     $.each(data.data,function(key,value){
-                                        product_spec_id = value.idproductkaos;
+                                        product_spec_id = value.product_id_spec;
                                         item_net_cost = value.price;
                                         $("#price_spec").html("Rp. "+value.price)
                                     });
@@ -813,7 +863,7 @@
             data: {warna:product_color_new, size: product_size},
             success: function(data){
                 $.each(data.data,function(key,value){
-                    product_spec_id = value.idproductkaos;
+                    product_spec_id = value.product_id_spec;
                     item_net_cost = value.price;
                     $("#price_spec").html("Rp. "+value.price)
                 });
