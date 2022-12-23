@@ -852,8 +852,28 @@
                                     }
                                 });
 
+                                var url_amount;
+
+                                switch(value.product_id){
+                                    case 1 :
+                                    url_amount = '/product_kaos_update_amount';
+                                    break;
+
+                                    case 2 :
+                                    url_amount = '/product_sweater_update_amount';
+                                    break;
+
+                                    case 4 :
+                                    url_amount = '/product_tanktop_update_amount';
+                                    break;
+
+                                    case 5 :
+                                    url_amount = '/product_topi_update_amount';
+                                    break;
+                                }
+
                                 $.ajax({
-                                    url: '/product_kaos_update_amount',
+                                    url: url_amount,
                                     type: 'post',
                                     data: {
                                         amount:value.item_amount,

@@ -94,4 +94,32 @@ exports.insert_topi = function (req, res) {
     }, req);
 };
 
+exports.select_price = function (req, res) {
+    product_topi.select_price(function (status, data) {
+        var mydata = [];
+        var myjson;
+        var status;
+        myjson = {
+            status: status,
+            data: data.rows,
+        };
+        //console.log(myjson);
+        res.json(myjson);
+        res.end();
+    }, req);
+};
 
+exports.update_amount = function (req, res) {
+    product_topi.update_amount(function (status, data) {
+        var mydata = [];
+        var myjson;
+        var status;
+        myjson = {
+            status: status,
+            data: data.rows,
+        };
+        //console.log(myjson);
+        res.json(myjson);
+        res.end();
+    }, req);
+};

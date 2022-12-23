@@ -182,7 +182,7 @@ function select_price(callback, req) {
     con.getConnection(function (err, connection) {
         con.query(
             `
-            SELECT idproductkaos,hargajual price FROM \`product_sweater\`
+            SELECT idproductsweater product_id_spec,hargajual price FROM \`product_sweater\`
             WHERE size = '${req.query.size}' and warna = '${req.query.warna}'
         `,
             function (error, rows, fields) {
