@@ -191,7 +191,7 @@
                                             <div class="col-md-12 mt-3">
                                                 <div class="containerupload">
                                                     <label for="upload_costum"  class="upload_label">
-                                                        <div class="image">
+                                                        <div id="logodesign" class="image">
                                                             <a href="assets/images/gambar_logo.png" download><img src="assets/images/gambar_logo.png" alt="" style="max-height: 150px;;resize: both;"></a>
                                                         </div>
                                                         <p id="infoupload" class="" style="text-align: right;padding-right: 8px;">
@@ -297,7 +297,7 @@
                                                                     <img src="" style="">
                                                                 </div>
                                                             </div>
-                                                            <div style="text-align: center;">
+                                                            <div id="kaosnlogo" style="text-align: center;">
                                                                 <img src="assets/images/pos/Kaos1.png" style="height: 226px;width:226px;resize: both;">
                                                             </div>
                                                             <div data-toggle="modal" data-target="#modalupload" id="gambaruploadlogo" class="mt-5 mb-4" style="text-align: center;">
@@ -495,6 +495,7 @@
 </html>
 {{> scripts}}
 <script>
+   
     $(".bstatus").click(function(){
         $(".bstatus").removeClass("bstatusactive bstatusactive2 bstatusactive3");
         buttonstatus = $(this).attr('id');
@@ -593,7 +594,7 @@
                                 <div class="row">
                                     <div class="col-md-4" style="text-align: right;padding-left: 0px;"><span class="statusind ${classStatus}" style="margin-right: 8px;">${value.status}</span></div>
                                     <div class="col-md-2">
-                                        <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail" data-id="${value.idtransaction}" data-pic="${value.pic}" data-ukuran="${value.ukuran}" data-status="${value.status}" data-deskripsi="${value.deskripsi}">
+                                        <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail" data-id="${value.idtransaction}" data-pic="${value.pic}" data-ukuran="${value.size}" data-status="${value.status}" data-deskripsi="${value.deskripsi}" data-logo="${value.piclogo}">
                                             <img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px">
                                         </span>
                                     </div>
@@ -633,8 +634,9 @@
         selectedtanggal = $(RowSelector).children('td').eq(3).children('div:first-child').attr('id');
         selectedidtransaksi = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-id');
         selectedstatus = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-status');
-        selectedukuran = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-ukuran');
+        selectedukuran = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-ukuran').toUpperCase();
         selectedpic = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-pic');
+        selectedlogo = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-logo');
         selecteddeskripsi = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-deskripsi');
 
         $("#showidproduksi").html(selectedidproduksi);
@@ -643,6 +645,10 @@
         $("#showkasir").html(selectedkasir);
         $("#showtanggalpesan").html(selectedtanggal);
         $("#showukuran").html(selectedukuran);
+        $('#gambaruploadlogo').children('img').attr('src','assets/logopesanan/'+selectedlogo);
+        $('#logodesign').children('a').attr('href','assets/logopesanan/'+selectedlogo);
+        $('#logodesign').children('a').children('img').attr('src','assets/logopesanan/'+selectedlogo);
+        $('#kaosnlogo').children('img').attr('src','assets/uploads/'+selectedpic);
         if(selectedstatus=="selesai"){
             $(".bstatus").removeClass("bstatusactive bstatusactive2 bstatusactive3");
             $("#selesai").addClass("bstatusactive3");
@@ -794,5 +800,7 @@
         window.location.href='/kaos';
         return false;
     })
+
+    
 
 </script>

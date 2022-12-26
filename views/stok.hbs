@@ -2506,194 +2506,197 @@
         console.log(stokamount);
         console.log(addsukuran);
         console.log(warna);
-        if(addsjenis=="kaos"){
-            $.ajax({
-                type:"POST",
-                data:{
-                    kode:warna,
-                    jenisbarang:addsjenis,
-                    size:addsukuran,
-                    amount:stokamount,
-                    hargabeli:hargabeli,
-                    hargajual:hargajual,
-                    warna:namawarna,
-                },
-                url:"/product_kaos_insert/",
-                success:function(data){  
-                    alert('succes');
-                },complete:function(){
-                    $("#namawarna").val("");
-                    $("#hargabeli").val("");
-                    $("#hargajual").val("");
-                    $("#stokamount").val("");
-                    getkaos();
-                }
-            });
-        }else if(addsjenis=="sweater"){
-            $.ajax({
-                type:"POST",
-                data:{
-                    kode:warna,
-                    jenisbarang:addsjenis,
-                    size:addsukuran,
-                    amount:stokamount,
-                    hargabeli:hargabeli,
-                    hargajual:hargajual,
-                    warna:namawarna,
-                },
-                url:"/product_sweater_insert/",
-                success:function(data){  
-                    alert('succes');
-                },complete:function(){
-                    $("#namawarna").val("");
-                    $("#hargabeli").val("");
-                    $("#hargajual").val("");
-                    $("#stokamount").val("");
-                    getsweater();
-                }
-            });
-        }else if(addsjenis=="tanktop"){
-            $.ajax({
-                type:"POST",
-                data:{
-                    kode:warna,
-                    jenisbarang:addsjenis,
-                    size:addsukuran,
-                    amount:stokamount,
-                    hargabeli:hargabeli,
-                    hargajual:hargajual,
-                    warna:namawarna,
-                },
-                url:"/product_tanktop_insert/",
-                success:function(data){  
-                    alert('succes');
-                },complete:function(){
-                    $("#namawarna").val("");
-                    $("#hargabeli").val("");
-                    $("#hargajual").val("");
-                    $("#stokamount").val("");
-                    gettanktop();
-                }
-            });
-        }else if(addsjenis=="topi"){
-            $.ajax({
-                type:"POST",
-                data:{
-                    kode:warna,
-                    jenisbarang:addsjenis,
-                    size:addsukuran,
-                    amount:stokamount,
-                    hargabeli:hargabeli,
-                    hargajual:hargajual,
-                    warna:namawarna,
-                },
-                url:"/product_topi_insert/",
-                success:function(data){  
-                    alert('succes');
-                },complete:function(){
-                    $("#namawarna").val("");
-                    $("#hargabeli").val("");
-                    $("#hargajual").val("");
-                    $("#stokamount").val("");
-                    gettopi();
-                }
-            });
-        }else if(addsjenis=="totebag"){
-            $.ajax({
-                type:"POST",
-                data:{
-                    kode:warna,
-                    jenisbarang:addsjenis,
-                    size:addsukuran,
-                    amount:stokamount,
-                    hargabeli:hargabeli,
-                    hargajual:hargajual,
-                    warna:namawarna,
-                },
-                url:"/product_totebag_insert/",
-                success:function(data){  
-                    alert('succes');
-                },complete:function(){
-                    $("#namawarna").val("");
-                    $("#hargabeli").val("");
-                    $("#hargajual").val("");
-                    $("#stokamount").val("");
-                    gettotebag();
-                }
-            });
-        }else if(addsjenis=="polocap"){
-            $.ajax({
-                type:"POST",
-                data:{
-                    kode:warna,
-                    jenisbarang:addsjenis,
-                    size:addsukuran,
-                    amount:stokamount,
-                    hargabeli:hargabeli,
-                    hargajual:hargajual,
-                    warna:namawarna,
-                },
-                url:"/product_polocap_insert/",
-                success:function(data){  
-                    alert('succes');
-                },complete:function(){
-                    $("#namawarna").val("");
-                    $("#hargabeli").val("");
-                    $("#hargajual").val("");
-                    $("#stokamount").val("");
-                    getpolocap();
-                }
-            });
-        }else if(addsjenis=="panelcap"){
-            $.ajax({
-                type:"POST",
-                data:{
-                    kode:warna,
-                    jenisbarang:addsjenis,
-                    size:addsukuran,
-                    amount:stokamount,
-                    hargabeli:hargabeli,
-                    hargajual:hargajual,
-                    warna:namawarna,
-                },
-                url:"/product_panelcap_insert/",
-                success:function(data){  
-                    alert('succes');
-                },complete:function(){
-                    $("#namawarna").val("");
-                    $("#hargabeli").val("");
-                    $("#hargajual").val("");
-                    $("#stokamount").val("");
-                    getpanelcap();
-                }
-            });
-        }else if(addsjenis=="truckercap"){
-            $.ajax({
-                type:"POST",
-                data:{
-                    kode:warna,
-                    jenisbarang:addsjenis,
-                    size:addsukuran,
-                    amount:stokamount,
-                    hargabeli:hargabeli,
-                    hargajual:hargajual,
-                    warna:namawarna,
-                },
-                url:"/product_truckercap_insert/",
-                success:function(data){  
-                    alert('succes');
-                },complete:function(){
-                    $("#namawarna").val("");
-                    $("#hargabeli").val("");
-                    $("#hargajual").val("");
-                    $("#stokamount").val("");
-                    gettruckercap();
-                }
-            });
+        if(stokamount == "" ||hargabeli == ""||hargajual == ""||namawarna == ""){
+            alert("Pastikan Seluruh Field Terisi");
         }else{
-            console.log("Jenis Tidak di temukan");
+            if(addsjenis=="kaos"){
+                $.ajax({
+                    type:"POST",
+                    data:{
+                        kode:warna,
+                        jenisbarang:addsjenis,
+                        size:addsukuran,
+                        amount:stokamount,
+                        hargabeli:hargabeli,
+                        hargajual:hargajual,
+                        warna:namawarna,
+                    },
+                    url:"/product_kaos_insert/",
+                    success:function(data){  
+                        alert('succes');
+                    },complete:function(){
+                        $("#namawarna").val("");
+                        $("#hargabeli").val("");
+                        $("#hargajual").val("");
+                        $("#stokamount").val("");
+                        getkaos();
+                    }
+                });
+            }else if(addsjenis=="sweater"){
+                $.ajax({
+                    type:"POST",
+                    data:{
+                        kode:warna,
+                        jenisbarang:addsjenis,
+                        size:addsukuran,
+                        amount:stokamount,
+                        hargabeli:hargabeli,
+                        hargajual:hargajual,
+                        warna:namawarna,
+                    },
+                    url:"/product_sweater_insert/",
+                    success:function(data){  
+                        alert('succes');
+                    },complete:function(){
+                        $("#namawarna").val("");
+                        $("#hargabeli").val("");
+                        $("#hargajual").val("");
+                        $("#stokamount").val("");
+                        getsweater();
+                    }
+                });
+            }else if(addsjenis=="tanktop"){
+                $.ajax({
+                    type:"POST",
+                    data:{
+                        kode:warna,
+                        jenisbarang:addsjenis,
+                        size:addsukuran,
+                        amount:stokamount,
+                        hargabeli:hargabeli,
+                        hargajual:hargajual,
+                        warna:namawarna,
+                    },
+                    url:"/product_tanktop_insert/",
+                    success:function(data){  
+                        alert('succes');
+                    },complete:function(){
+                        $("#namawarna").val("");
+                        $("#hargabeli").val("");
+                        $("#hargajual").val("");
+                        $("#stokamount").val("");
+                        gettanktop();
+                    }
+                });
+            }else if(addsjenis=="topi"){
+                $.ajax({
+                    type:"POST",
+                    data:{
+                        kode:warna,
+                        jenisbarang:addsjenis,
+                        size:addsukuran,
+                        amount:stokamount,
+                        hargabeli:hargabeli,
+                        hargajual:hargajual,
+                        warna:namawarna,
+                    },
+                    url:"/product_topi_insert/",
+                    success:function(data){  
+                        alert('succes');
+                    },complete:function(){
+                        $("#namawarna").val("");
+                        $("#hargabeli").val("");
+                        $("#hargajual").val("");
+                        $("#stokamount").val("");
+                        gettopi();
+                    }
+                });
+            }else if(addsjenis=="totebag"){
+                $.ajax({
+                    type:"POST",
+                    data:{
+                        kode:warna,
+                        jenisbarang:addsjenis,
+                        size:addsukuran,
+                        amount:stokamount,
+                        hargabeli:hargabeli,
+                        hargajual:hargajual,
+                        warna:namawarna,
+                    },
+                    url:"/product_totebag_insert/",
+                    success:function(data){  
+                        alert('succes');
+                    },complete:function(){
+                        $("#namawarna").val("");
+                        $("#hargabeli").val("");
+                        $("#hargajual").val("");
+                        $("#stokamount").val("");
+                        gettotebag();
+                    }
+                });
+            }else if(addsjenis=="polocap"){
+                $.ajax({
+                    type:"POST",
+                    data:{
+                        kode:warna,
+                        jenisbarang:addsjenis,
+                        size:addsukuran,
+                        amount:stokamount,
+                        hargabeli:hargabeli,
+                        hargajual:hargajual,
+                        warna:namawarna,
+                    },
+                    url:"/product_polocap_insert/",
+                    success:function(data){  
+                        alert('succes');
+                    },complete:function(){
+                        $("#namawarna").val("");
+                        $("#hargabeli").val("");
+                        $("#hargajual").val("");
+                        $("#stokamount").val("");
+                        getpolocap();
+                    }
+                });
+            }else if(addsjenis=="panelcap"){
+                $.ajax({
+                    type:"POST",
+                    data:{
+                        kode:warna,
+                        jenisbarang:addsjenis,
+                        size:addsukuran,
+                        amount:stokamount,
+                        hargabeli:hargabeli,
+                        hargajual:hargajual,
+                        warna:namawarna,
+                    },
+                    url:"/product_panelcap_insert/",
+                    success:function(data){  
+                        alert('succes');
+                    },complete:function(){
+                        $("#namawarna").val("");
+                        $("#hargabeli").val("");
+                        $("#hargajual").val("");
+                        $("#stokamount").val("");
+                        getpanelcap();
+                    }
+                });
+            }else if(addsjenis=="truckercap"){
+                $.ajax({
+                    type:"POST",
+                    data:{
+                        kode:warna,
+                        jenisbarang:addsjenis,
+                        size:addsukuran,
+                        amount:stokamount,
+                        hargabeli:hargabeli,
+                        hargajual:hargajual,
+                        warna:namawarna,
+                    },
+                    url:"/product_truckercap_insert/",
+                    success:function(data){  
+                        alert('succes');
+                    },complete:function(){
+                        $("#namawarna").val("");
+                        $("#hargabeli").val("");
+                        $("#hargajual").val("");
+                        $("#stokamount").val("");
+                        gettruckercap();
+                    }
+                });
+            }else{
+                console.log("Jenis Tidak di temukan");
+            }
         }
-        
     });
 
     $("#bbayar").click(function(){
@@ -2847,6 +2850,38 @@
             
         }
         
+    });
+
+    (function($) {
+        $.fn.inputFilter = function(callback, errMsg) {
+            return this.on("input keydown keyup mousedown mouseup select contextmenu drop focusout", function(e) {
+            if (callback(this.value)) {
+                // Accepted value
+                if (["keydown","mousedown","focusout"].indexOf(e.type) >= 0){
+                $(this).removeClass("input-error");
+                this.setCustomValidity("");
+                }
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+                // Rejected value - restore the previous one
+                $(this).addClass("input-error");
+                this.setCustomValidity(errMsg);
+                this.reportValidity();
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+                // Rejected value - nothing to restore
+                this.value = "";
+            }
+            });
+        };
+    }(jQuery));
+    $(document).ready(function() {
+        $("#hargabeli, #hargajual, #stokamount").inputFilter(function(value) {
+            return /^\d*$/.test(value);    // Allow digits only, using a RegExp
+        },"Only digits allowed");
     });
 
 </script>

@@ -35,46 +35,27 @@ const storage = multer.diskStorage({
     },
 });
 
+const storagelogo = multer.diskStorage({
+    destination: path.join(__dirname, "../public/assets/logopesanan/"),
+    filename: function (req, file, cb) {
+        let extension = file.originalname.split(".").pop();
+        file.id = uuidv4() + "." + extension;
+        cb(null, file.id);
+    },
+});
+
 const upload = multer({
     storage: storage,
+});
+
+const uploadlogo = multer({
+    storage: storagelogo,
 });
 
 router.post("/akunting_insert2", upload.single("upload_bukti"), akunting.insert_akunting);
-/*const storage = multer.diskStorage({
-    destination: path.join(__dirname,'../public/assets/akunting/') ,
-    filename: function(req, file, cb){
-        let extension = file.originalname.split('.').pop();
-        file.id = uuidv4() + '.' + extension;
-        cb(null, file.id);
-    }
+router.post("/logoinsert", uploadlogo.single("upload_costum"),(req,res)=>{
+    res.send(req.file.filename);
 });
-
-const upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 10000000 //give no. of bytes
-    },
-    // fileFilter: function(req, file, cb){
-    //     checkFileType(file, cb);
-    // }
-}).single('upload_bukti');
-
-router.post("/upload", function uploadFile(req, res) {
-    upload(req, res, (err) =>{
-        const names = req.body.desk;
-        if(err){
-            //Send error msg
-            console.log(err);
-            res.send(err);
-        }else{
-
-            //send correct msg
-            //res.send()
-            res.send(names+' Successful '+req.file.filename);
-            console.log('file uploaded succcessfully');
-        }
-    });
-}, akunting.insert_akunting);*/
 
 router.get("/", middle.login_handle, (req, res) => {
     res.render("index.hbs", {
@@ -153,6 +134,7 @@ router.get("/keranjang_add", (req, res) => {
         item_amount: req.query.item_amount,
         item_total_cost: parseInt(req.query.item_total_cost),
         paper_bucket: req.query.paper_bucket,
+        logo_mentahan: req.query.logo,
         checked: "true",
     });
 

@@ -13,7 +13,8 @@ function select_produksi(callback, req) {
 
     con.getConnection(function (err, connection) {
         con.query(`
-            SELECT distinct(a.idtransaction_item) as idtransactionitem , a.pic, d.fullname as pelanggan , e.name as kasir , DATE_FORMAT(c.datetime,'%Y-%m-%d %H:%i:%s') datetime, f.name as ukuran, a.status , a.deskripsi, c.idtransaction
+            Select z.*,i.jenisbarang,i.size from 
+            (SELECT distinct(a.idtransaction_item) as idtransactionitem , a.pic,a.piclogo,a.product_id,a.product_spec_id, d.fullname as pelanggan , e.name as kasir , DATE_FORMAT(c.datetime,'%Y-%m-%d %H:%i:%s') datetime, CASE WHEN a.status IS Null THEN "progress" ELSE a.status end as status , a.deskripsi, c.idtransaction
             from transaction_item a
             Left JOIN transactions c
             ON a.transaction_id = c.idtransaction
@@ -21,12 +22,27 @@ function select_produksi(callback, req) {
             ON c.customer_id = d.id
             left join chasiers e
             ON c.chasier_id = e.idchasier
-            left join product_size f
-            ON a.product_size_id = f.idproduct_size
             left join transaction_item_paper g
             ON a.idtransaction_item = g.transaction_item_id
             left join paper h
-            ON g.paper_id = h.idpaper
+            ON g.paper_id = h.idpaper)Z
+            left join (
+            Select *, '1' AS product_id from product_kaos
+            Union 
+            Select *, '2' as product_id from product_sweater
+            union
+            Select *, '4' AS product_id from product_tanktop
+            Union 
+            Select *, '5' as product_id from product_topi
+            Union 
+            Select *, '6' as product_id from product_totebag
+            union
+            Select *, '7' as product_id from product_polocap
+            Union 
+            Select *, '8' AS product_id from product_panelcap
+            Union 
+            Select *, '9' as product_id from product_truckercap)i
+            ON Z.product_id = i.product_id and Z.product_spec_id = i.idproductkaos
         `, function (error, rows, fields) {
             if (error) {
                 callback(error, {rows: rows, fields: fields});

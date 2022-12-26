@@ -388,7 +388,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-2">
-                                            <button id="badddata" type="button" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Tambah Data</button>
+                                            <button id="badddata" type="submit" data-dismiss="modal" class="ht8 btn btn-outline-primary bgcolor-primary-linear-gradient" style="width: 100%;">Tambah Data</button>
                                         </div>
                                     </div>
                                 </div>
@@ -788,30 +788,41 @@
         }
         addemail = $("#emailuseradd").val();
         addpassword = $("#passworduseradd").val();
+
+        if(addname||addusername||addalamat||addemail||addpassword == ""||null){
+            /*$(document).ready(function() {
+                $("#lebar, #tinggi").inputFilter(function(value) {
+                    return /^\d*$/.test(value);    // Allow digits only, using a RegExp
+                },"Only digits allowed");
+            });*/
+            alert("Pastikan Seluruh Field Terisi");
+        }else{
+            $.ajax({
+                type:"POST",
+                data:{
+                    nameuser:addname,
+                    usernameuser:addusername,
+                    passworduser:addpassword,
+                    alamatuser:addalamat,
+                    categoryuser:finaladdcategory,
+                    emailuser:addemail,
+                },
+                url:"/chasiers_insert/",
+                success:function(data){  
+                    alert('succes');
+                },complete:function(){
+                    //location.reload();
+                    getfirst();
+                }
+            });
+        }
         /*console.log(addname);
         console.log(addusername);
         console.log(addalamat);
         console.log(finaladdcategory);
         console.log(addemail);
         console.log(addpassword);*/
-        $.ajax({
-            type:"POST",
-            data:{
-                nameuser:addname,
-                usernameuser:addusername,
-                passworduser:addpassword,
-                alamatuser:addalamat,
-                categoryuser:finaladdcategory,
-                emailuser:addemail,
-            },
-            url:"/chasiers_insert/",
-            success:function(data){  
-                alert('succes');
-            },complete:function(){
-                //location.reload();
-                getfirst();
-            }
-        });
+        
     });
 
     /*

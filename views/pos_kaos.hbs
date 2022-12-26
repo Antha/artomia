@@ -187,8 +187,8 @@
                                         <div class="col-md-12 mt-3">
                                             <div class="containerupload">
                                                 <form id="uploadForms"  enctype="multipart/form-data">
-                                                    <input type="file" class="upload_hide" id="upload_costum" multiple>
-                                                </form>
+                                                    <input type="file" class="upload_hide" id="upload_costum" name="upload_costum" multiple>
+                                                
                                                 <label for="upload_costum"  class="upload_label">
                                                     <div class="image">
                                                         <img src="" alt="" style="display:none;">
@@ -201,6 +201,7 @@
                                                         Ganti Design
                                                     </p>
                                                 </label>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -1010,33 +1011,86 @@
                     var paper_bucket_string = JSON.stringify(paper_bucket);
                     //console.log(paper_bucket);
                     //console.log(paper_bucket_string);
-                    
-                    $.ajax({
-                        url: '/keranjang_add',
-                        type: 'get',
-                        data: {
-                            product_id: idProducts,
-                            product_spec_id:product_spec_id,
-                            product_name: product_name,
-                            product_color: product_color_new,
-                            product_size: product_size,
-                            product_pic_logo: product_pic_logo,
-                            item_net_cost:item_net_cost,
-                            item_amount:jumalahpesan,
-                            item_total_cost:item_net_cost * jumalahpesan,
-                            paper_bucket:paper_bucket
-                        },
-                        success: function(data){
-                            console.log('Upload successfully');
-                            if(isRedirect){
-                                window.location.href='/keranjang';
+                    var data2 = new FormData($('#uploadForms')[0]);
+                    data2.append("category", product_color_new);
+                    for (var pair of data2.entries()) {
+                        console.log(pair[0]+ ', ' + pair[1]); 
+                    }
+
+                    if( document.getElementById("upload_costum").files.length == 0 ){
+                        $.ajax({
+                            url: '/keranjang_add',
+                            type: 'get',
+                            data: {
+                                product_id: idProducts,
+                                product_spec_id:product_spec_id,
+                                product_name: product_name,
+                                product_color: product_color_new,
+                                product_size: product_size,
+                                product_pic_logo: product_pic_logo,
+                                item_net_cost:item_net_cost,
+                                item_amount:jumalahpesan,
+                                item_total_cost:item_net_cost * jumalahpesan,
+                                paper_bucket:paper_bucket,
+                                logo_mentahan:"",
+                            },
+                            success: function(data){
+                                console.log('Upload successfully');
+                                if(isRedirect){
+                                    window.location.href='/keranjang';
+                                }
                             }
-                        }
-                     });
+                        });
+                    }else{
+                        $.ajax({
+                            url:'/logoinsert',
+                            type: 'POST',
+                            data: data2,
+                            contentType: false,
+                            processData: false,
+                            cache: false,
+                            success: function(res){
+                                alert(res);
+                            },
+                            error: function(){
+                                alert('Error: In sending the request logo file!');
+                            },complete:function(res){
+                                var logofilename= res.responseText;
+                                console.log(typeof(logofilename));
+                                console.log(logofilename);
+                                $.ajax({
+                                    url: '/keranjang_add',
+                                    type: 'get',
+                                    data: {
+                                        product_id: idProducts,
+                                        product_spec_id:product_spec_id,
+                                        product_name: product_name,
+                                        product_color: product_color_new,
+                                        product_size: product_size,
+                                        product_pic_logo: product_pic_logo,
+                                        item_net_cost:item_net_cost,
+                                        item_amount:jumalahpesan,
+                                        item_total_cost:item_net_cost * jumalahpesan,
+                                        paper_bucket:paper_bucket,
+                                        logo:logofilename,
+                                    },
+                                    success: function(data){
+                                        console.log('Upload successfully');
+                                        if(isRedirect){
+                                            window.location.href='/keranjang';
+                                        }
+                                    }
+                                });
+                            },
+                        });
+                    }
+                    
+                    
                     /*console.log("Product Name : "+$("#data-product-name").text());
                     console.log("Color :"+$("#titlebutton").text());
                     console.log("Size :"+$(".bukuran.activebukuran").text());*/
                     //window.location.href='/keranjang';
+                    
                 }
             });
         });  
