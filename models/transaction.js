@@ -142,25 +142,41 @@ function select_transaction_item(callback, req) {
     con.getConnection(function (err, connection) {
         con.getConnection(function (err, connection) {
             con.query(
-                `select 
-                T.\`idtransaction_item\`,
-                P.name product_name,
-                PC.name color,
-                PZ.name size,
-                \`transaction_id\`,
-                \`amount\`
-                from 
-                \`transaction_item\` T 
-                JOIN \`product_kaos\` P
-                ON T.product_id = P.\`idproductskaos\`
-                JOIN
-                \`product_color\` PC
-                ON T.product_color_id = PC.\`idproduct_color\`
-                JOIN
-                \`product_size\` PZ
-                ON T.product_size_id = PZ.\`idproduct_size\`
-                ${option}
-                `,
+                `
+                SELECT 
+                    T.\`idtransaction_item\`,
+                    P.jenisbarang product_name,
+                    P.warna color,
+                    P.size size,
+                    \`transaction_id\`,
+                    T.\`amount\`
+                    FROM 
+                    \`transaction_item\` T 
+                    JOIN 
+                    (
+                        SELECT *,1 AS product_id,\`idproductkaos\` AS product_spec_id FROM \`product_kaos\`
+                        UNION
+                        SELECT *,8 AS product_id,\`idproductpanelcap\` AS product_spec_id  FROM \`product_panelcap\`
+                        UNION
+                        SELECT *,7 AS product_id,\`idproductpolocap\` AS product_spec_id  FROM \`product_polocap\`
+                        UNION
+                        SELECT *,2 AS product_id,\`idproductsweater\` AS product_spec_id  FROM \`product_sweater\`
+                        UNION
+                        SELECT *,4 AS product_id,\`idproducttanktop\` AS product_spec_id FROM \`product_tanktop\`
+                        UNION
+                        SELECT *,5 AS product_id,\`idproducttopi\` AS product_spec_id FROM \`product_topi\`
+                        UNION
+                        SELECT *,6 AS product_id,\`idproducttotebag\` AS product_spec_id FROM \`product_totebag\`
+                        UNION
+                        SELECT *,9 AS product_id,\`idproducttruckercap\` AS product_spec_id FROM \`product_truckercap\`
+                    )P
+                            
+                            ON 
+                            T.product_spec_id = P.\`product_spec_id\`
+                    AND                
+                    T.product_id = P.\`product_id\`
+                    where 1 ${option}
+               `,
                 function (error, rows, fields) {
                     if (error) {
                         callback(error, {rows: rows, fields: fields});
