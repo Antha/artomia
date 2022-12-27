@@ -1024,7 +1024,9 @@
                             item_net_cost:item_net_cost,
                             item_amount:jumalahpesan,
                             item_total_cost:item_net_cost * jumalahpesan,
-                            paper_bucket:paper_bucket
+                            paper_bucket:paper_bucket,
+                            p_width:$("#lebar").val(),
+                            p_height:$("#tinggi").val(),
                         },
                         success: function(data){
                             console.log('Upload successfully');
