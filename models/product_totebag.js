@@ -12,16 +12,19 @@ function select_totebag(callback, req) {
     });
 
     con.getConnection(function (err, connection) {
-        con.query(`
+        con.query(
+            `
             SELECT * FROM \`product_totebag\`
-        `, function (error, rows, fields) {
-            if (error) {
-                callback(error, {rows: rows, fields: fields});
-            } else {
-                callback("success", {rows: rows, fields: fields});
+        `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
             }
-            con.end();
-        });
+        );
     });
 }
 
@@ -36,16 +39,19 @@ function select_warna_totebag(callback, req) {
     });
 
     con.getConnection(function (err, connection) {
-        con.query(`
+        con.query(
+            `
             SELECT DISTINCT warna as warna ,kode FROM \`product_totebag\` where amount >=0;
-        `, function (error, rows, fields) {
-            if (error) {
-                callback(error, {rows: rows, fields: fields});
-            } else {
-                callback("success", {rows: rows, fields: fields});
+        `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
             }
-            con.end();
-        });
+        );
     });
 }
 
@@ -65,16 +71,19 @@ function select_size_totebag(callback, req) {
     }
 
     con.getConnection(function (err, connection) {
-        con.query(`
+        con.query(
+            `
             SELECT size FROM \`product_totebag\` ${option} and amount >=0;;
-        `, function (error, rows, fields) {
-            if (error) {
-                callback(error, {rows: rows, fields: fields});
-            } else {
-                callback("success", {rows: rows, fields: fields});
+        `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
             }
-            con.end();
-        });
+        );
     });
 }
 
@@ -114,7 +123,7 @@ function update_totebag(callback, req) {
         database: connect.database,
         port: connect.port,
     });
-    
+
     con.getConnection(function (err, connection) {
         con.query(
             `UPDATE product_totebag
@@ -141,7 +150,7 @@ function insert_totebag(callback, req) {
         database: connect.database,
         port: connect.port,
     });
-    
+
     con.getConnection(function (err, connection) {
         con.query(
             `INSERT INTO product_totebag
@@ -159,6 +168,62 @@ function insert_totebag(callback, req) {
         );
     });
 }
+
+function select_price(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    con.getConnection(function (err, connection) {
+        con.query(
+            `
+            SELECT idproducttotebag product_id_spec,hargajual price FROM \`product_totebag\`
+            WHERE size = '${req.query.size}' and warna = '${req.query.warna}'
+        `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}
+
+function update_amount(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    con.getConnection(function (err, connection) {
+        con.query(
+            `UPDATE product_totebag
+            SET amount = amount-'${req.body.amount}'
+            WHERE size = '${req.body.size}' and warna = '${req.body.warna}' `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}
+
 module.exports.insert_totebag = insert_totebag;
 module.exports.update_totebag = update_totebag;
 module.exports.select_totebag = select_totebag;
@@ -166,3 +231,6 @@ module.exports.delete_totebag = delete_totebag;
 
 module.exports.select_size_totebag = select_size_totebag;
 module.exports.select_warna_totebag = select_warna_totebag;
+
+module.exports.update_amount = update_amount;
+module.exports.select_price = select_price;

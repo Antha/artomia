@@ -104,12 +104,15 @@ function insert_transaction_item(callback, req) {
 
     con.getConnection(function (err, connection) {
         con.query(
-            `INSERT INTO transaction_item(product_id,product_spec_id,transaction_id,amount,pic) VALUES (
+            `INSERT INTO transaction_item(product_id,product_spec_id,transaction_id,amount,pic,piclogo,p_height,p_width) VALUES (
                 '${req.body.product_id}',
                 '${req.body.product_spec_id}',
                 '${req.body.transaction_id}',
                 '${req.body.amount}',
-                '${req.body.pic}'
+                '${req.body.pic}',
+                '${req.body.logo}',
+                '${req.body.height}',
+                '${req.body.width}'
             ) 
             `,
             function (error, rows, fields) {
@@ -170,9 +173,8 @@ function select_transaction_item(callback, req) {
                         UNION
                         SELECT *,9 AS product_id,\`idproducttruckercap\` AS product_spec_id FROM \`product_truckercap\`
                     )P
-                            
-                            ON 
-                            T.product_spec_id = P.\`product_spec_id\`
+                    ON 
+                    T.product_spec_id = P.\`product_spec_id\`
                     AND                
                     T.product_id = P.\`product_id\`
                     where 1 ${option}
@@ -220,8 +222,88 @@ function insert_transaction_item_paper(callback, req) {
     });
 }
 
+function select_price(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    con.getConnection(function (err, connection) {
+        con.query(
+            `
+            SELECT idproducttotebag product_id_spec,hargajual price FROM \`product_totebag\`
+            WHERE size = '${req.query.size}' and warna = '${req.query.warna}'
+        `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}
+
+function update_amount(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    con.getConnection(function (err, connection) {
+        con.query(
+            `UPDATE product_totebag
+            SET amount = amount-'${req.body.amount}'
+            WHERE size = '${req.body.size}' and warna = '${req.body.warna}' `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}
+
+function select_total_transaction(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    con.getConnection(function (err, connection) {
+        con.query(` SELECT count(*) _count FROM transactions`, function (error, rows, fields) {
+            if (error) {
+                callback(error, {rows: rows, fields: fields});
+            } else {
+                callback("success", {rows: rows, fields: fields});
+            }
+            con.end();
+        });
+    });
+}
+
 module.exports.insert_transaction = insert_transaction;
 module.exports.select_transaction = select_transaction;
 module.exports.insert_transaction_item = insert_transaction_item;
 module.exports.select_transaction_item = select_transaction_item;
 module.exports.insert_transaction_item_paper = insert_transaction_item_paper;
+module.exports.select_price = select_price;
+module.exports.update_amount = update_amount;
+module.exports.select_total_transaction = select_total_transaction;

@@ -212,7 +212,7 @@
                                                 <div class="col-md-12" style="padding: 0px 50px">
                                                     <div class="row">
                                                         <div class="col-md-6 form-check">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptionsadd" id="inlineRadio1" value="1">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptionsadd" id="inlineRadio1" value="1" checked>
                                                             <label class="form-check-label ht9" for="inlineRadio1">Debit / Pemasukan</label>
                                                         </div>
                                                         <div class="col-md-6 form-check">
@@ -294,7 +294,7 @@
                                         <div class="col-md-12 mt-3">
                                             <div class="containerupload">
                                                     <input type="file" class="upload_hide" id="upload_bukti" name="upload_bukti" multiple="">
-                                                    <input type="text" class="" id="desk" name="desk" multiple="" value="desk">
+                                                    <input type="text" class="" id="desk" name="desk" multiple="" value="desk" style="display: none;">
                                                 <label for="upload_bukti" class="upload_label">
                                                     <div class="image">
                                                         <img src="" alt="" style="display:none;padding: 10px;width: 80%;">
@@ -754,7 +754,7 @@
                         [3, 10, 25, 'All'],
                     ],
                     retrieve:true,
-                    order:true,
+                    ordering:true,
                     "bDestroy": true
                 });
                 $('.dataTables_length').addClass('bs-select');
@@ -798,7 +798,7 @@
                         [3, 10, 25, 'All'],
                     ],
                     retrieve:true,
-                    order:true,
+                    ordering:true,
                     "bDestroy": true
                 });
                 $('.dataTables_length').addClass('bs-select');
@@ -926,66 +926,38 @@
         }else{
             nilaicategory = '5';
         }
-        //console.log(addstrcategory);
-        //console.log(nilaicategory);
-        /*$.ajax({
-            type:"POST",
-            data:{
-                date:dateget,
-                nominal:nominalget,
-                description:deskripsi,
-                method:getdebitcredit,
-                category:nilaicategory,
-            },
-            url:"/akunting_insert/",
-            success:function(data){  
-                alert('succes');
-            },complete:function(){
-                var data2 = new FormData($('#uploadForm')[0]);
-                dates = document.getElementById("date");
-                files = document.getElementById("upload_bukti").files;
-                var data2 = new FormData();
-                data2.append("date",dates);
-                data2.append("file",files);
 
-                $.ajax({
-                    url:'/upload',
-                    type: 'POST',
-                    contentType: false,
-                    processData: false,
-                    cache: false,
-                    data: data2,
-                    success: function(res){
-                        alert(res);
-                    },
-                    error: function(){
-                        alert('Error: In sending the request!');
-                    }
-                });
-                $('#dtakunting').dataTable().fnDestroy();
-                getfirstakunting();
-            }
-        });*/
+        if(dateget==""||nominalget==""||deskripsi==""){
+            alert("Lengkapi Data Pada Form");
+        }else{
+            var data2 = new FormData($('#uploadForm')[0]);
+            data2.append("category", nilaicategory);
+            $.ajax({
+                url:'/akunting_insert2',
+                type: 'POST',
+                data: data2,
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function(res){
+                    //alert(res);
+                    alert("Data Berhasil di Tambah "+res);
+                },
+                error: function(){
+                    alert('Error: In sending the request!');
+                },complete:function(){
+                    $('#dtakunting').dataTable().fnDestroy();
+                    getfirstakunting();
+                    $("#adddata").closest('form').find("input[type=text],input[type=date],input[type=file], textarea").val("");
+                    $('.image > img').css('src','');
+                    $('.image > img').css('display','none');
+                    $('#infoupload').css('display','none');
+                    $('.drag_text2').css('display','');
+                    
+                }
+            });
+        }
         
-        var data2 = new FormData($('#uploadForm')[0]);
-        data2.append("category", nilaicategory);
-        $.ajax({
-            url:'/akunting_insert2',
-            type: 'POST',
-            data: data2,
-            contentType: false,
-            processData: false,
-            cache: false,
-            success: function(res){
-                alert(res);
-            },
-            error: function(){
-                alert('Error: In sending the request!');
-            },complete:function(){
-                $('#dtakunting').dataTable().fnDestroy();
-                getfirstakunting();
-            }
-        });
     });
     
     $("div.list-item").hover(function(){
@@ -1067,5 +1039,39 @@
             $('.imagelogo div > img').fadeIn('fast').attr('src',tmppath);
         });
     });
+
+    (function($) {
+        $.fn.inputFilter = function(callback, errMsg) {
+            return this.on("input keydown keyup mousedown mouseup select contextmenu drop focusout", function(e) {
+            if (callback(this.value)) {
+                // Accepted value
+                if (["keydown","mousedown","focusout"].indexOf(e.type) >= 0){
+                $(this).removeClass("input-error");
+                this.setCustomValidity("");
+                }
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+                // Rejected value - restore the previous one
+                $(this).addClass("input-error");
+                this.setCustomValidity(errMsg);
+                this.reportValidity();
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+                // Rejected value - nothing to restore
+                this.value = "";
+            }
+            });
+        };
+    }(jQuery));
+
+    $(document).ready(function() {
+        $("#nominal, #nominaledit").inputFilter(function(value) {
+            return /^\d*$/.test(value);    // Allow digits only, using a RegExp
+        },"Only digits allowed");
+    });
+
 
 </script>

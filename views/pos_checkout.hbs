@@ -828,7 +828,10 @@
                                         product_spec_id:value.product_spec_id,
                                         transaction_id:transaction_id,
                                         amount: value.item_amount,
-                                        pic:value.product_pic_logo
+                                        pic:value.product_pic_logo,
+                                        logo:value.logo_mentahan,
+                                        height:value.p_height,
+                                        width:value.p_width
                                     },
                                     success: function(data3){
                                         var transaction_item_id = data3.data.insertId;
@@ -869,6 +872,22 @@
 
                                     case 5 :
                                     url_amount = '/product_topi_update_amount';
+                                    break;
+
+                                    case 6 :
+                                    url_amount = '/product_totebag_update_amount';
+                                    break;
+
+                                    case 7 :
+                                    url_amount = '/product_polocap_update_amount';
+                                    break;
+
+                                    case 8 :
+                                    url_amount = '/product_panelcap_update_amount';
+                                    break;
+
+                                    case 9 :
+                                    url_amount = '/product_truckercap_update_amount';
                                     break;
                                 }
 

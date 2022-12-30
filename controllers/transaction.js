@@ -80,3 +80,19 @@ exports.insert_transaction_item_paper = function (req, res) {
         res.end();
     }, req);
 };
+
+exports.select_total_transaction = function (req, res) {
+    transaction.select_total_transaction(function (status, data) {
+        var mydata = [];
+        var myjson;
+        var status;
+
+        myjson = {
+            status: status,
+            data: data.rows,
+        };
+        //console.log(myjson);
+        res.json(myjson);
+        res.end();
+    }, req);
+};

@@ -35,46 +35,27 @@ const storage = multer.diskStorage({
     },
 });
 
+const storagelogo = multer.diskStorage({
+    destination: path.join(__dirname, "../public/assets/logopesanan/"),
+    filename: function (req, file, cb) {
+        let extension = file.originalname.split(".").pop();
+        file.id = uuidv4() + "." + extension;
+        cb(null, file.id);
+    },
+});
+
 const upload = multer({
     storage: storage,
+});
+
+const uploadlogo = multer({
+    storage: storagelogo,
 });
 
 router.post("/akunting_insert2", upload.single("upload_bukti"), akunting.insert_akunting);
-/*const storage = multer.diskStorage({
-    destination: path.join(__dirname,'../public/assets/akunting/') ,
-    filename: function(req, file, cb){
-        let extension = file.originalname.split('.').pop();
-        file.id = uuidv4() + '.' + extension;
-        cb(null, file.id);
-    }
+router.post("/logoinsert", uploadlogo.single("upload_costum"), (req, res) => {
+    res.send(req.file.filename);
 });
-
-const upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 10000000 //give no. of bytes
-    },
-    // fileFilter: function(req, file, cb){
-    //     checkFileType(file, cb);
-    // }
-}).single('upload_bukti');
-
-router.post("/upload", function uploadFile(req, res) {
-    upload(req, res, (err) =>{
-        const names = req.body.desk;
-        if(err){
-            //Send error msg
-            console.log(err);
-            res.send(err);
-        }else{
-
-            //send correct msg
-            //res.send()
-            res.send(names+' Successful '+req.file.filename);
-            console.log('file uploaded succcessfully');
-        }
-    });
-}, akunting.insert_akunting);*/
 
 router.get("/", middle.login_handle, (req, res) => {
     res.render("index.hbs", {
@@ -153,6 +134,9 @@ router.get("/keranjang_add", (req, res) => {
         item_amount: req.query.item_amount,
         item_total_cost: parseInt(req.query.item_total_cost),
         paper_bucket: req.query.paper_bucket,
+        logo_mentahan: req.query.logo,
+        p_height: req.query.p_height,
+        p_width: req.query.p_width,
         checked: "true",
     });
 
@@ -235,6 +219,9 @@ router.get("/product_size", product.select_all_product_size);
 router.get("/product_color", product.select_all_product_color);
 router.get("/product_variant", product.select_all_product_variant);
 router.get("/product_arm_length", product.select_all_product_arm_length);
+router.get("/product_total_stok", product.select_total_stok);
+
+router.get("/products_union", product.select_product_union);
 
 router.get("/papers", product.select_paper);
 
@@ -293,7 +280,7 @@ router.get("/product_topi_delete/:idproducttopi", product_topi.delete_topi);
 router.post("/product_topi_update", product_topi.update_topi);
 router.post("/product_topi_insert", product_topi.insert_topi);
 router.get("/product_topi_select_price", product_topi.select_price);
-router.post("/product_topi_amount", product_topi.update_amount);
+router.post("/product_topi_update_amount", product_topi.update_amount);
 
 router.get("/product_totebag_select", product_totebag.select_totebag);
 router.get("/product_totebag_select_warna", product_totebag.select_warna_totebag);
@@ -301,6 +288,8 @@ router.post("/product_totebag_select_size", product_totebag.select_size_totebag)
 router.get("/product_totebag_delete/:idproducttotebag", product_totebag.delete_totebag);
 router.post("/product_totebag_update", product_totebag.update_totebag);
 router.post("/product_totebag_insert", product_totebag.insert_totebag);
+router.get("/product_totebag_select_price", product_totebag.select_price);
+router.post("/product_totebag_update_amount", product_totebag.update_amount);
 
 router.get("/product_polocap_select", product_polocap.select_polocap);
 router.get("/product_polocap_select_warna", product_polocap.select_warna_polocap);
@@ -308,6 +297,8 @@ router.post("/product_polocap_select_size", product_polocap.select_size_polocap)
 router.get("/product_polocap_delete/:idproductpolocap", product_polocap.delete_polocap);
 router.post("/product_polocap_update", product_polocap.update_polocap);
 router.post("/product_polocap_insert", product_polocap.insert_polocap);
+router.get("/product_polocap_select_price", product_polocap.select_price);
+router.post("/product_polocap_update_amount", product_polocap.update_amount);
 
 router.get("/product_panelcap_select", product_panelcap.select_panelcap);
 router.get("/product_panelcap_select_warna", product_panelcap.select_warna_panelcap);
@@ -315,6 +306,8 @@ router.post("/product_panelcap_select_size", product_panelcap.select_size_panelc
 router.get("/product_panelcap_delete/:idproductpanelcap", product_panelcap.delete_panelcap);
 router.post("/product_panelcap_update", product_panelcap.update_panelcap);
 router.post("/product_panelcap_insert", product_panelcap.insert_panelcap);
+router.get("/product_panelcap_select_price", product_panelcap.select_price);
+router.post("/product_panelcap_update_amount", product_panelcap.update_amount);
 
 router.get("/product_truckercap_select", product_truckercap.select_truckercap);
 router.get("/product_truckercap_select_warna", product_truckercap.select_warna_truckercap);
@@ -322,6 +315,8 @@ router.post("/product_truckercap_select_size", product_truckercap.select_size_tr
 router.get("/product_truckercap_delete/:idproducttruckercap", product_truckercap.delete_truckercap);
 router.post("/product_truckercap_update", product_truckercap.update_truckercap);
 router.post("/product_truckercap_insert", product_truckercap.insert_truckercap);
+router.get("/product_truckercap_select_price", product_truckercap.select_price);
+router.post("/product_truckercap_update_amount", product_truckercap.update_amount);
 
 router.get("/product_papper_select", product_papper.select_papper);
 router.get("/product_papper_delete/:idproductpapper", product_papper.delete_papper);
@@ -337,5 +332,6 @@ router.post("/transaction_item", transaction.insert_transaction_item);
 router.get("/transaction_item", transaction.select_transaction_item);
 router.get("/transaction_item/:idTransaction", transaction.select_transaction_item);
 router.post("/transaction_item_paper", transaction.insert_transaction_item_paper);
+router.get("/transaction_total", transaction.select_total_transaction);
 
 module.exports = router;

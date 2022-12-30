@@ -12,16 +12,19 @@ function select_polocap(callback, req) {
     });
 
     con.getConnection(function (err, connection) {
-        con.query(`
+        con.query(
+            `
             SELECT * FROM \`product_polocap\`
-        `, function (error, rows, fields) {
-            if (error) {
-                callback(error, {rows: rows, fields: fields});
-            } else {
-                callback("success", {rows: rows, fields: fields});
+        `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
             }
-            con.end();
-        });
+        );
     });
 }
 
@@ -36,16 +39,19 @@ function select_warna_polocap(callback, req) {
     });
 
     con.getConnection(function (err, connection) {
-        con.query(`
+        con.query(
+            `
             SELECT DISTINCT warna as warna ,kode FROM \`product_polocap\` where amount >=0;
-        `, function (error, rows, fields) {
-            if (error) {
-                callback(error, {rows: rows, fields: fields});
-            } else {
-                callback("success", {rows: rows, fields: fields});
+        `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
             }
-            con.end();
-        });
+        );
     });
 }
 
@@ -65,16 +71,19 @@ function select_size_polocap(callback, req) {
     }
 
     con.getConnection(function (err, connection) {
-        con.query(`
+        con.query(
+            `
             SELECT size FROM \`product_polocap\` ${option} and amount >=0;;
-        `, function (error, rows, fields) {
-            if (error) {
-                callback(error, {rows: rows, fields: fields});
-            } else {
-                callback("success", {rows: rows, fields: fields});
+        `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
             }
-            con.end();
-        });
+        );
     });
 }
 
@@ -114,7 +123,7 @@ function update_polocap(callback, req) {
         database: connect.database,
         port: connect.port,
     });
-    
+
     con.getConnection(function (err, connection) {
         con.query(
             `UPDATE product_polocap
@@ -141,7 +150,7 @@ function insert_polocap(callback, req) {
         database: connect.database,
         port: connect.port,
     });
-    
+
     con.getConnection(function (err, connection) {
         con.query(
             `INSERT INTO product_polocap
@@ -159,6 +168,62 @@ function insert_polocap(callback, req) {
         );
     });
 }
+
+function select_price(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    con.getConnection(function (err, connection) {
+        con.query(
+            `
+            SELECT idproductpolocap product_id_spec,hargajual price FROM \`product_polocap\`
+            WHERE size = '${req.query.size}' and warna = '${req.query.warna}'
+        `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}
+
+function update_amount(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    con.getConnection(function (err, connection) {
+        con.query(
+            `UPDATE product_polocap
+            SET amount = amount-'${req.body.amount}'
+            WHERE size = '${req.body.size}' and warna = '${req.body.warna}' `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}
+
 module.exports.insert_polocap = insert_polocap;
 module.exports.update_polocap = update_polocap;
 module.exports.select_polocap = select_polocap;
@@ -166,3 +231,6 @@ module.exports.delete_polocap = delete_polocap;
 
 module.exports.select_size_polocap = select_size_polocap;
 module.exports.select_warna_polocap = select_warna_polocap;
+
+module.exports.select_price = select_price;
+module.exports.update_amount = update_amount;

@@ -286,7 +286,6 @@
                         <div class="col-xl-4 col-md-12">
                             <div class="card mini-stat position-relative" style="">
                                 <div class="card-body" style="">
-                                    
                                     <div class="">
                                         <div class="col-md-3 p-0" style="float: left;">
                                             <img src='assets/images/Icon_Total_Transaksi.png' style='width: 48px; height:48px;margin-left:8px;'>
@@ -295,7 +294,7 @@
                                             <div class="ht7 color-black"style="">
                                                 Total Transaksi
                                             </div>
-                                            <div class="ht6 color-black"style="font-weight:bold">
+                                            <div id="transaction_total" class="ht6 color-black"style="font-weight:bold">
                                                 4.502
                                             </div>
                                         </div>
@@ -329,7 +328,7 @@
                                                 Stok
                                             </div>
                                             <div class="ht6 color-black"style="font-weight:bold">
-                                                4.502 <span class="ht9">Pcs</span>
+                                                <span id="total_stock">4.502</span> <span class="ht9">Pcs</span>
                                             </div>
                                         </div>
                                         <div class="col-md-12 progress-bars" style="padding:0;" data-label=". . .">
@@ -418,40 +417,37 @@
 {{> scripts}}
 <script>
     $("div.list-item").hover(function(){
-            $(this).children( "a" ).css("color", "#5BC9E1");
-            $(this).children( "a" ).children(".link").addClass("activebutton");
+        $(this).children( "a" ).css("color", "#5BC9E1");
+        $(this).children( "a" ).children(".link").addClass("activebutton");
+        $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+        $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+
+        $(".list-item").click(function(){
+            console.log("tidur");
+            $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
+            $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+            $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
+            $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
+            $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
+            $(".link").removeClass("activebuttonon");
+            $(this).children( "a" ).children(".link").addClass("activebuttonon");
+            $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
+        });
+        $("#foo").attr("src", "bar2.jpg");
+
+    }, function(){
+        $(this).children( "a" ).css("color", "#595552");
+        $(this).children( "a" ).children(".link").removeClass("activebutton");
+        if ($(this).children( "a" ).children("div").children("img:nth-child(2)").hasClass("activebuttonimage")){
             $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
             $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
-
-            $(".list-item").click(function(){
-                console.log("tidur");
-                $(".list-item").children( "a" ).children("div").children("img:first-child").css("display","");
-                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
-                $(".list-item").children( "a" ).children("div").children("img:nth-child(2)").removeClass("activebuttonimage");
-                $(".list-item").children( "a" ).children("div").children(".description").removeClass("activebutton2");
-                $(this).children( "a" ).children("div").children(".description").addClass("activebutton2");
-                $(".link").removeClass("activebuttonon");
-                $(this).children( "a" ).children(".link").addClass("activebuttonon");
-                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
-                $(this).children( "a" ).children("div").children("img:nth-child(2)").addClass("activebuttonimage");
-                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
-            });
-            $("#foo").attr("src", "bar2.jpg");
-
-        }, function(){
-            $(this).children( "a" ).css("color", "#595552");
-            $(this).children( "a" ).children(".link").removeClass("activebutton");
-            if ($(this).children( "a" ).children("div").children("img:nth-child(2)").hasClass("activebuttonimage")){
-                $(this).children( "a" ).children("div").children("img:first-child").css("display","none");
-                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","");
-            } else {
-                $(this).children( "a" ).children("div").children("img:first-child").css("display","");
-                $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
-            }
-            
+        } else {
+            $(this).children( "a" ).children("div").children("img:first-child").css("display","");
+            $(this).children( "a" ).children("div").children("img:nth-child(2)").css("display","none");
+        }
     });
-
-    
 
     $("#buttonminimize").click(function() {
         document.getElementById('sidebar').classList.toggle("hidesidebar");
@@ -463,6 +459,24 @@
         }else{
             $(".sidebar .header .list-item").html("<img src='assets/images/logo2.png' style='width: 13vw; height:10vh'>");
             $("#buttonminimize").html("<img src='assets/images/nav/Button.png' class='icon' style='width: 40px;height: 40px;'>");
+        }
+    });
+
+    $.ajax({
+        url: "/transaction_total",
+        type: 'GET',
+        data: {},
+        success: function(data){
+            $("#transaction_total").html(data.data[0]["_count"]);
+        }
+    });
+
+    $.ajax({
+        url: "/product_total_stok",
+        type: 'GET',
+        data: {},
+        success: function(data){
+            $("#total_stock").html(data.data[0]["amount"]);
         }
     });
 
@@ -572,104 +586,111 @@
     });
 
     //PIE CHART
-    Highcharts.chart('grafik2', {
-        chart: {
-            type: 'variablepie'
-        },
-        title: {
-            text: ''
-        },
-        tooltip: {
-            headerFormat: '',
-            pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>'+
-                'Jumlah: <b>{point.y}</b><br/>'
-                /*'Population density (people per square km): <b>{point.z}</b><br/>'*/
-        },
-        credits: {
-            enabled: false,
-        },
-        plotOptions: {
-            variablepie: {
-                borderColor: null,
-                dataLabels: {
-                    enabled: false,
-                    connectorWidth: 0
+    $.ajax({
+        url: "/papers",
+        type: 'GET',
+        data: {},
+        success: function(data){
+            var data_series = [];
+            $.each(data.data,function(key,value){
+               data_series.push({
+                    name: value.name,
+                    y: value.amount,
+                    z: 92
+                });
+            });
+
+            Highcharts.chart('grafik2', {
+                chart: {
+                    type: 'variablepie'
                 },
-            },
-        },
-        series: [{
-            showInLegend: true,
-            minPointSize: 10,
-            innerSize: '20%',
-            zMin: 0,
-            name: 'countries',
-            data: [{
-                name: 'PET FIlem A4',
-                y: 3,
-                z: 92,
-                color: '#EF9D9C',
-            }, {
-                name: 'PET FIlem A3',
-                y: 2,
-                z: 119,
-                color: '#F6C785',
-            }, {
-                name: 'PET FIlem A5 Corp',
-                y: 1,
-                z: 235,
-                color: '#5BC9E1',
-            }]
-        }]
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>'+
+                        'Jumlah: <b>{point.y}</b><br/>'
+                        /*'Population density (people per square km): <b>{point.z}</b><br/>'*/
+                },
+                credits: {
+                    enabled: false,
+                },
+                plotOptions: {
+                    variablepie: {
+                        borderColor: null,
+                        dataLabels: {
+                            enabled: false,
+                            connectorWidth: 0
+                        },
+                    },
+                },
+                series: [{
+                    showInLegend: true,
+                    minPointSize: 10,
+                    innerSize: '20%',
+                    zMin: 0,
+                    name: 'countries',
+                    data: data_series
+                }]
+            });
+        }
+    });
+    
+
+    $.ajax({
+        url: "/products_union",
+        type: 'GET',
+        data: {},
+        success: function(data){
+            var data_series = [];
+            $.each(data.data,function(key,value){
+               data_series.push({
+                    name: value.name,
+                    y: value.amount,
+                    z: 92
+                });
+            });
+
+            console.log(data_series);
+
+            Highcharts.chart('grafik3', {
+                chart: {
+                    type: 'variablepie'
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>'+
+                        'Jumlah: <b>{point.y}</b><br/>'
+                        /*'Population density (people per square km): <b>{point.z}</b><br/>'*/
+                },
+                credits: {
+                    enabled: false,
+                },
+                plotOptions: {
+                    variablepie: {
+                        borderColor: null,
+                        dataLabels: {
+                            enabled: false,
+                            connectorWidth: 0
+                        },
+                    },
+                },
+                series: [{
+                    showInLegend: true,
+                    minPointSize: 10,
+                    innerSize: '20%',
+                    zMin: 0,
+                    name: 'products',
+                    data: data_series
+                }]
+            });
+        }
     });
 
-    Highcharts.chart('grafik3', {
-        chart: {
-            type: 'variablepie'
-        },
-        title: {
-            text: ''
-        },
-        tooltip: {
-            headerFormat: '',
-            pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>'+
-                'Jumlah: <b>{point.y}</b><br/>'
-                /*'Population density (people per square km): <b>{point.z}</b><br/>'*/
-        },
-        credits: {
-            enabled: false,
-        },
-        plotOptions: {
-            variablepie: {
-                borderColor: null,
-                dataLabels: {
-                    enabled: false,
-                    connectorWidth: 0
-                },
-            },
-        },
-        series: [{
-            showInLegend: true,
-            minPointSize: 10,
-            innerSize: '20%',
-            zMin: 0,
-            name: 'countries',
-            data: [{
-                name: 'PET FIlem A4',
-                y: 3,
-                z: 92,
-                color: '#EF9D9C',
-            }, {
-                name: 'PET FIlem A3',
-                y: 2,
-                z: 119,
-                color: '#F6C785',
-            }, {
-                name: 'PET FIlem A5 Corp',
-                y: 1,
-                z: 235,
-                color: '#5BC9E1',
-            }]
-        }]
-    });
+   
 
 </script>
