@@ -183,23 +183,41 @@
                                         <div class="col-md-12 mt-2">
                                             <span id="titlemodalletakdesain" class="ht6" style="vertical-align: middle;font-weight: 600">Depan Tengah</span>
                                         </div>
-                                        <div class="col-md-12 mt-3">
+                                        <div class="col-md-6 mt-3">
                                             <div class="containerupload">
-                                                <form id="uploadForms"  enctype="multipart/form-data">
-                                                    <input type="file" class="upload_hide" id="upload_costum" name="upload_costum" multiple>
-                                                
-                                                <label for="upload_costum"  class="upload_label">
-                                                    <div class="image">
-                                                        <img src="" alt="" style="display:none;">
-                                                    </div>
-                                                    <p class="drag_text drag_text2 ht4">Masukan Gambar Design</p>
-                                                    <p class="drag_text2">Seret File atau Pilih Gambar</p>
-                                                    <i class="drag_text2 fa-regular fa-square-plus"></i>
-                                                    <p id="infoupload" class="" style="text-align: right;padding-right: 8px;display: none;">
-                                                        <img src="assets/images/pos/icon_upload.png" alt="" style="width: 16px;height: 16px;margin: 0px 6px 6px 0px">
-                                                        Ganti Design
-                                                    </p>
-                                                </label>
+                                                <form id="uploadForms_f"  enctype="multipart/form-data">
+                                                    <input type="file" class="upload_hide" id="upload_costum_f" name="upload_costum" multiple>
+                                                    <label for="upload_costum"  class="upload_label">
+                                                        <div class="image_f">
+                                                            <img src="" alt="" style="display:none;">
+                                                        </div>
+                                                        <p class="drag_text drag_text2_f ht4">Masukan Gambar Logo Depan</p>
+                                                        <p class="drag_text2_f">Seret File atau Pilih Gambar</p>
+                                                        <i class="drag_text2_f fa-regular fa-square-plus"></i>
+                                                        <p id="infoupload_f" class="" style="text-align: right;padding-right: 8px;display: none;">
+                                                            <img src="assets/images/pos/icon_upload.png" alt="" style="width: 16px;height: 16px;margin: 0px 6px 6px 0px">
+                                                            Ganti Design
+                                                        </p>
+                                                    </label>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <div class="containerupload">
+                                                <form id="uploadForms_b"  enctype="multipart/form-data">
+                                                    <input type="file" class="upload_hide" id="upload_costum_b" name="upload_costum" multiple>
+                                                    <label for="upload_costum"  class="upload_label">
+                                                        <div class="image_b">
+                                                            <img src="" alt="" style="display:none;">
+                                                        </div>
+                                                        <p class="drag_text drag_text2_b ht4">Masukan Gambar Logo Belakang</p>
+                                                        <p class="drag_text2_b">Seret File atau Pilih Gambar</p>
+                                                        <i class="drag_text2_b fa-regular fa-square-plus"></i>
+                                                        <p id="infoupload_b" class="" style="text-align: right;padding-right: 8px;display: none;">
+                                                            <img src="assets/images/pos/icon_upload.png" alt="" style="width: 16px;height: 16px;margin: 0px 6px 6px 0px">
+                                                            Ganti Design
+                                                        </p>
+                                                    </label>
                                                 </form>
                                             </div>
                                         </div>
@@ -277,36 +295,51 @@
                                 <div class="card-body" style="">
                                     <div class="">
                                         <div class="col-md-12 row" style="">
-                                                <div class="col-md-6 ht4 color-black" id="titlekaos" style="font-weight:bold;">
-                                                    <i class="mdi mdi-tag-outline m-r-5" style="font-size: 13pt;margin-right: 8px;"></i> <span id="data-product-name">Kaos Red Been</span>
-                                                </div>
-                                                <div class="col-md-6 ht6 color-black" id="" style="text-align:right;">
-                                                    <label>
-                                                        <select class="myselect ht8" style="font-weight: 600;">
-                                                            <option disabled selected value> Ganti Produk </option>
-                                                            <option value="0">Kaos A</option>
-                                                            <option value="0">Kaos B</option>
-                                                            <option value="0">Kaos C</option>
-                                                            <option value="0">Kaos D</option>
-                                                            <option value="0">Kaos E</option>
-                                                            <option value="0">Kaos F</option>
-                                                        </select>
-                                                    </label>
-                                                </div>
+                                            <div class="col-md-6 ht4 color-black" id="titlekaos" style="font-weight:bold;">
+                                                <i class="mdi mdi-tag-outline m-r-5" style="font-size: 13pt;margin-right: 8px;"></i> <span id="data-product-name">Kaos Red Been</span>
+                                            </div>
+                                            <div class="col-md-6 ht6 color-black" id="" style="text-align:right;">
+                                                <label>
+                                                    <select class="myselect ht8" style="font-weight: 600;">
+                                                        <option disabled selected value> Ganti Produk </option>
+                                                        <option value="0">Kaos A</option>
+                                                        <option value="0">Kaos B</option>
+                                                        <option value="0">Kaos C</option>
+                                                        <option value="0">Kaos D</option>
+                                                        <option value="0">Kaos E</option>
+                                                        <option value="0">Kaos F</option>
+                                                    </select>
+                                                </label>
+                                            </div>
                                         </div>
                                         
                                         <div class="col-md-12 mt-4" id="clothes_with_logo" style="">
-                                            <div class="imagelogo" style="display: none;overflow: hidden;">
-                                                <div id="penampung">
-                                                    <img id="logoimage" src="" style="position: absolute;">
+                                            <div class="col-md-12">
+                                                <div class="imagelogo_f" style="display: none;overflow: hidden;">
+                                                    <div id="penampung">
+                                                        <img id="logoimage_f" src="" style="position: absolute;">
+                                                    </div>
+                                                </div>
+                                                <div id="img_product_f"  style="text-align: center;">
+                                                    <div id="tampungwarnabackground">
+                                                        <img id="produkpos" src="assets/images/kaos/bajudepan1.png" style="height: 326px;width:326px;resize: both;">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div id="img_product"  style="text-align: center;">
-                                                <div id="tampungwarnabackground">
-                                                    <img id="produkpos" src="assets/images/kaos/bajudepan1.png" style="height: 326px;width:326px;resize: both;">
+                                            <div class="col-md-12">
+                                                <div class="imagelogo_b" style="display: none;overflow: hidden;">
+                                                    <div id="penampung">
+                                                        <img id="logoimage_b" src="" style="position: absolute;">
+                                                    </div>
+                                                </div>
+                                                <div id="img_product_b"  style="text-align: center;">
+                                                    <div id="tampungwarnabackground">
+                                                        <img id="produkpos" src="assets/images/kaos/bajubelakang1.png" style="height: 326px;width:326px;resize: both;">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col-md-12 row mt-4" id="" style="text-align: center;">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-5" style="margin-left: 8px;">
@@ -623,56 +656,7 @@
                         //Change Product Look First Time
                         var jenisproduk=$('#produkpos').attr('class');
                         var colorval=$(".isiwarna li").children("a").children("i").data('value');
-                        switch(jenisproduk){    
-                            case 'kaos':
-                            tampungselect = "assets/images/kaos/bajudepan1.png";
-                            $("#produkpos").attr('src',tampungselect);
-                            $("#tampungwarnabackground").css('background-color',colorval);
-                            //console.log(tampungselect);
-                            break;
-
-                            case 'sweater':
-                            tampungselect = "assets/images/kaos/sweaterdepan.png";
-                            $("#produkpos").attr('src',tampungselect);
-                            $("#tampungwarnabackground").css('background-color',colorval);
-                            break;
-
-                            case 'tank-top':
-                            tampungselect = "assets/images/kaos/tanktopdepan.png";
-                            $("#produkpos").attr('src',tampungselect);
-                            $("#tampungwarnabackground").css('background-color',colorval);
-                            break;
-
-                            case 'topi':
-                            tampungselect = "assets/images/kaos/topidepan.png";
-                            $("#produkpos").attr('src',tampungselect);
-                            $("#tampungwarnabackground").css('background-color',colorval);
-                            break;
-
-                            case 'totebag':
-                            tampungselect = "assets/images/kaos/totebag.png";
-                            $("#produkpos").attr('src',tampungselect);
-                            $("#tampungwarnabackground").css('background-color',colorval);
-                            break;
-
-                            case 'polo-cap':
-                            //tampungselect = "assets/images/kaos/totebag.png";
-                            //$("#produkpos").attr('src',tampungselect);
-                            $("#tampungwarnabackground").css('background-color',colorval);
-                            break;
-
-                            case 'panel-cap':
-                            //tampungselect = "assets/images/kaos/totebag.png";
-                            //$("#produkpos").attr('src',tampungselect);
-                            $("#tampungwarnabackground").css('background-color',colorval);
-                            break;
-
-                            case 'trucker-cap':
-                            //tampungselect = "assets/images/kaos/totebag.png";
-                            //$("#produkpos").attr('src',tampungselect);
-                            $("#tampungwarnabackground").css('background-color',colorval);
-                            break;
-                        }
+                        $("div #tampungwarnabackground").css('background-color',colorval);
                     }
                 });
 
@@ -686,71 +670,15 @@
 
                     product_color_new = $(this).data('value');
 
-                    //console.log("product_color_new >> "+product_color_new);
-                    //console.log(colorval);
-                    //console.log(colorval2);
-                    var tampungselect="";
-                    var tampungselect2="";
-                    switch(jenisproduk){
-                        case 'kaos':
-                        tampungselect = "assets/images/kaos/bajudepan1.png";
-                        tampungselect2 = "assets/images/kaos/bajubelakang1.png";
-                        $("#produkpos").attr('src',tampungselect);
-                        $("#tampungwarnabackground").css('background-color',colorval);
-                        //console.log(tampungselect);
-                        break;
-
-                        case 'sweater':
-                        tampungselect = "assets/images/kaos/sweaterdepan.png";
-                        tampungselect2 = "assets/images/kaos/sweaterbelakang.png";
-                        $("#produkpos").attr('src',tampungselect);
-                        $("#tampungwarnabackground").css('background-color',colorval);
-                        break;
-
-                        case 'tank-top':
-                        tampungselect = "assets/images/kaos/tanktopdepan.png";
-                        tampungselect2 = "assets/images/kaos/tanktopbelakang.png";
-                        $("#produkpos").attr('src',tampungselect);
-                        $("#tampungwarnabackground").css('background-color',colorval);
-                        break;
-
-                        case 'topi':
-                        tampungselect = "assets/images/kaos/topidepan.png";
-                        tampungselect2 = "assets/images/kaos/topibelakang.png";
-                        $("#produkpos").attr('src',tampungselect);
-                        $("#tampungwarnabackground").css('background-color',colorval);
-                        break;
-
-                        case 'totebag':
-                        tampungselect = "assets/images/kaos/totebag.png";
-                        $("#produkpos").attr('src',tampungselect);
-                        $("#tampungwarnabackground").css('background-color',colorval);
-                        break;
-
-                        case 'polo-cap':
-                        //tampungselect = "assets/images/kaos/totebag.png";
-                        //$("#produkpos").attr('src',tampungselect);
-                        $("#tampungwarnabackground").css('background-color',colorval);
-                        break;
-
-                        case 'panel-cap':
-                          //tampungselect = "assets/images/kaos/totebag.png";
-                        //$("#produkpos").attr('src',tampungselect);
-                        $("#tampungwarnabackground").css('background-color',colorval);
-                        break;
-
-                        case 'trucker-cap':
-                        $("#tampungwarnabackground").css('background-color',colorval);
-                        break;
-                    }
+                    $("div #tampungwarnabackground").css('background-color',colorval);
                     
-                    $("#tampakbelakang").click(function(){
+                    /*$("#tampakbelakang").click(function(){
                         $('#produkpos').attr('src',tampungselect2);
                     });
 
                     $("#tampakdepan").click(function(){
                         $('#produkpos').attr('src',tampungselect);
-                    });
+                    });*/
                     
                     $("#titlebutton").html("<i data-value='"+$(this).text()+"' style='color:"+colorval+";margin-right:8px;' class='fa-solid fa-square'></i>"+$(this).text()+'<span class="caret"></span>');
                     
@@ -791,15 +719,15 @@
     $('#btn_next').click(function(){
         screenshot();
         console.log(">>> product_color_new "+product_color_new);
-        /*var data2 = new FormData($('#uploadForms')[0]);
-        console.log(data2);
+        /*var data_f = new FormData($('#uploadForms')[0]);
+        console.log(data_f);
         $.ajax({
             url:'/upload2',
             type: 'POST',
             contentType: false,
             processData: false,
             cache: false,
-            data: data2,
+            data: data_f,
             success: function(res){
                 alert(res);
             },
@@ -932,17 +860,31 @@
         $("#jeniskertasdropdown").html($(this).text());
     });
 
-    $('#upload_costum').change(function(event) {
-        let tmppath = URL.createObjectURL(event.target.files[0])
-        $('.image > img').fadeIn('fast').attr('src',tmppath);
-        $('.image > img').css('display','');
-        $('#infoupload').css('display','');
-        $('.drag_text2').css('display','none');
+    let tmppath_f;
+    let tmppath_b;
+    
+    $('#upload_costum_f').change(function(event) {
+        tmppath_f = URL.createObjectURL(event.target.files[0])
+        $('.image_f > img').fadeIn('fast').attr('src',tmppath_f);
+        $('.image_f > img').css('display','');
+        $('#infoupload_f').css('display','');
+        $('.drag_text2_f').css('display','none');
+    });
 
-        $('#buploadgambar').click(function() {
-            $('.imagelogo').show();
-            $('.imagelogo div > img').fadeIn('fast').attr('src',tmppath);
-        });
+    $('#upload_costum_b').change(function(event) {
+        tmppath_b = URL.createObjectURL(event.target.files[0])
+        $('.image_b > img').fadeIn('fast').attr('src',tmppath_b);
+        $('.image_b > img').css('display','');
+        $('#infoupload_b').css('display','');
+        $('.drag_text2_b').css('display','none');
+    });
+
+    $('div').on("click","#buploadgambar",function() {
+        $('.imagelogo_b').show();
+        $('.imagelogo_b div > img').fadeIn('fast').attr('src',tmppath_b);
+
+        $('.imagelogo_f').show();
+        $('.imagelogo_f div > img').fadeIn('fast').attr('src',tmppath_f);
     });
     
     $("div.list-item").hover(function(){
@@ -1017,7 +959,8 @@
         data: {  },
         success: function(data){
             $.each(data.data,function(key,value){
-                $("#img_product").html(`<div id="tampungwarnabackground"><img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;"></div>`)
+                $("#img_product_f").html(`<div id="tampungwarnabackground"><img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;"></div>`);
+                $("#img_product_b").html(`<div id="tampungwarnabackground"><img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;"></div>`);
                 $("#data-product-name").html(value.name);
                 //item_net_cost = value.price;
             });
@@ -1031,30 +974,42 @@
                 case 'kaos':
                 tampungselect = "assets/images/kaos/bajudepan1.png";
                 tampungselect2 = "assets/images/kaos/bajubelakang1.png";
-                $("#produkpos").attr('src',tampungselect);
-                $("#tampungwarnabackground").css('background-color',colorval);
+                $("#img_product_f #produkpos").attr('src',tampungselect);
+                $("#img_product_b #produkpos").attr('src',tampungselect2);
+
+                $("#tampungwarnabackground #img_product_f").css('background-color',colorval);
+                $("#tampungwarnabackground #img_product_b").css('background-color',colorval);
                 //console.log(tampungselect);
                 break;
 
                 case 'sweater':
                 tampungselect = "assets/images/kaos/sweaterdepan.png";
                 tampungselect2 = "assets/images/kaos/sweaterbelakang.png";
-                $("#produkpos").attr('src',tampungselect);
-                $("#tampungwarnabackground").css('background-color',colorval);
+                $("#img_product_f #produkpos").attr('src',tampungselect);
+                $("#img_product_b #produkpos").attr('src',tampungselect2);
+
+                $("#tampungwarnabackground #img_product_f").css('background-color',colorval);
+                $("#tampungwarnabackground #img_product_b").css('background-color',colorval);
                 break;
 
                 case 'tank-top':
                 tampungselect = "assets/images/kaos/tanktopdepan.png";
                 tampungselect2 = "assets/images/kaos/tanktopbelakang.png";
-                $("#produkpos").attr('src',tampungselect);
-                $("#tampungwarnabackground").css('background-color',colorval);
+                $("#img_product_f #produkpos").attr('src',tampungselect);
+                $("#img_product_b #produkpos").attr('src',tampungselect2);
+
+                $("#tampungwarnabackground #img_product_f").css('background-color',colorval);
+                $("#tampungwarnabackground #img_product_b").css('background-color',colorval);
                 break;
 
                 case 'topi':
                 tampungselect = "assets/images/kaos/topidepan.png";
                 tampungselect2 = "assets/images/kaos/topibelakang.png";
-                $("#produkpos").attr('src',tampungselect);
-                $("#tampungwarnabackground").css('background-color',colorval);
+                $("#img_product_f #produkpos").attr('src',tampungselect);
+                $("#img_product_b #produkpos").attr('src',tampungselect2);
+
+                $("#tampungwarnabackground #img_product_f").css('background-color',colorval);
+                $("#tampungwarnabackground #img_product_b").css('background-color',colorval);
                 break;
 
                 case 'totebag':
@@ -1070,12 +1025,14 @@
                 break;
 
                 case 'panel-cap':
-                    //tampungselect = "assets/images/kaos/totebag.png";
+                //tampungselect = "assets/images/kaos/totebag.png";
                 //$("#produkpos").attr('src',tampungselect);
                 $("#tampungwarnabackground").css('background-color',colorval);
                 break;
 
                 case 'trucker-cap':
+                //tampungselect = "assets/images/kaos/totebag.png";
+                //$("#produkpos").attr('src',tampungselect);
                 $("#tampungwarnabackground").css('background-color',colorval);
                 break;
             }
@@ -1105,7 +1062,7 @@
                 url: artomia_server_url+'/artomia_cap.php',
                 type: 'post',
                 data: {image: base64URL},
-                success: function(data){
+                success: async function(data){
                     var jsonParsed = JSON.parse(data);
                     console.log('Upload successfully');
                     console.log(jsonParsed["product_pic_logo"]);
@@ -1116,49 +1073,28 @@
                     var product_pic_logo = jsonParsed["product_pic_logo"];
 
                     // =  $(".isiwarna li").data("value");
-                    console.log(">>> product_color_new "+product_color_new);                  
+                    //console.log(">>> product_color_new "+product_color_new);                  
                     //return false;
 
                     var paper_bucket_string = JSON.stringify(paper_bucket);
                     //console.log(paper_bucket);
                     //console.log(paper_bucket_string);
-                    var data2 = new FormData($('#uploadForms')[0]);
-                    data2.append("category", product_color_new);
-                    for (var pair of data2.entries()) {
+                    var data_f = new FormData($('#uploadForms_f')[0]);
+                    var data_b = new FormData($('#uploadForms_b')[0]);
+                    var logofilename_f, logofilename_b;
+                    data_f.append("category", product_color_new);
+                    data_b.append("category", product_color_new);
+                    
+                    
+                    for (var pair of data_f.entries()) {
                         console.log(pair[0]+ ', ' + pair[1]); 
                     }
 
-                    if( document.getElementById("upload_costum").files.length == 0 ){
-                        $.ajax({
-                            url: '/keranjang_add',
-                            type: 'get',
-                            data: {
-                                product_id: idProducts,
-                                product_spec_id:product_spec_id,
-                                product_name: product_name,
-                                product_color: product_color_new,
-                                product_size: product_size,
-                                product_pic_logo: product_pic_logo,
-                                item_net_cost:item_net_cost,
-                                item_amount:jumalahpesan,
-                                item_total_cost:item_net_cost * jumalahpesan,
-                                paper_bucket:paper_bucket,
-                                logo_mentahan:"",
-                                p_width:$("#ulebar").val(),
-                                p_height:$("#utinggi").val()
-                            },
-                            success: function(data){
-                                console.log('Upload successfully');
-                                if(isRedirect){
-                                    window.location.href='/keranjang';
-                                }
-                            }
-                        });
-                    }else{
-                        $.ajax({
+                    if( document.getElementById("upload_costum_f").files.length != 0 ){
+                        await $.ajax({
                             url:'/logoinsert',
                             type: 'POST',
-                            data: data2,
+                            data: data_f,
                             contentType: false,
                             processData: false,
                             cache: false,
@@ -1168,37 +1104,59 @@
                             error: function(){
                                 alert('Error: In sending the request logo file!');
                             },complete:function(res){
-                                var logofilename= res.responseText;
-                                console.log(typeof(logofilename));
-                                console.log(logofilename);
-                                $.ajax({
-                                    url: '/keranjang_add',
-                                    type: 'get',
-                                    data: {
-                                        product_id: idProducts,
-                                        product_spec_id:product_spec_id,
-                                        product_name: product_name,
-                                        product_color: product_color_new,
-                                        product_size: product_size,
-                                        product_pic_logo: product_pic_logo,
-                                        item_net_cost:item_net_cost,
-                                        item_amount:jumalahpesan,
-                                        item_total_cost:item_net_cost * jumalahpesan,
-                                        paper_bucket:paper_bucket,
-                                        logo:logofilename,
-                                        p_width:$("#ulebar").val(),
-                                        p_height:$("#utinggi").val()
-                                    },
-                                    success: function(data){
-                                        console.log('Upload successfully');
-                                        if(isRedirect){
-                                            window.location.href='/keranjang';
-                                        }
-                                    }
-                                });
+                                logofilename_f = res.responseText;
                             },
                         });
                     }
+
+                    if( document.getElementById("upload_costum_b").files.length != 0 ){
+                         await $.ajax({
+                            url:'/logoinsert',
+                            type: 'POST',
+                            data: data_b,
+                            contentType: false,
+                            processData: false,
+                            cache: false,
+                            success: function(res){
+                                alert(res);
+                            },
+                            error: function(){
+                                alert('Error: In sending the request logo file!');
+                            },complete:function(res){
+                                logofilename_b = res.responseText;
+                            },
+                        });
+                    }
+
+                    console.log("logofilename_f : "+logofilename_f);
+                    console.log("logofilename_b : "+logofilename_b);
+
+                    $.ajax({
+                        url: '/keranjang_add',
+                        type: 'get',
+                        data: {
+                            product_id: idProducts,
+                            product_spec_id:product_spec_id,
+                            product_name: product_name,
+                            product_color: product_color_new,
+                            product_size: product_size,
+                            product_pic_logo: product_pic_logo,
+                            item_net_cost:item_net_cost,
+                            item_amount:jumalahpesan,
+                            item_total_cost:item_net_cost * jumalahpesan,
+                            paper_bucket:paper_bucket,
+                            logo_f:logofilename_f,
+                            logo_b:logofilename_b,
+                            p_width:$("#ulebar").val(),
+                            p_height:$("#utinggi").val()
+                        },
+                        success: function(data){
+                            console.log('Upload successfully');
+                            if(isRedirect){
+                                window.location.href='/keranjang';
+                            }
+                        }
+                    });
                     
                     
                     /*console.log("Product Name : "+$("#data-product-name").text());
@@ -1243,7 +1201,8 @@
         },"Only digits allowed");
     });
     //Number value only
-    dragElement(document.getElementById("logoimage"));
+    dragElement(document.getElementById("logoimage_f"));
+    dragElement(document.getElementById("logoimage_b"));
     function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         if (document.getElementById(elmnt.id)) {
@@ -1295,7 +1254,7 @@
         minImg();
     });
 
-    img = document.getElementById("logoimage");
+    img = document.getElementById("logoimage_f");
     
     // Function to increase image size
     function enlargeImg() {
