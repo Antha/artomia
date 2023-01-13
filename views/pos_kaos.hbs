@@ -314,7 +314,7 @@
                                         </div>
                                         
                                         <div class="col-md-12 mt-4" id="clothes_with_logo" style="">
-                                            <div class="col-md-12">
+                                            <div class="col-md-12" id="clothes_with_logo_f">
                                                 <div class="imagelogo_f" style="display: none;overflow: hidden;">
                                                     <div id="penampung">
                                                         <img id="logoimage_f" src="" style="position: absolute;">
@@ -326,7 +326,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-12" id="clothes_with_logo_b">
                                                 <div class="imagelogo_b" style="display: none;overflow: hidden;">
                                                     <div id="penampung">
                                                         <img id="logoimage_b" src="" style="position: absolute;">
@@ -1067,9 +1067,11 @@
     //console.log(product_color);
     function screenshot(isRedirect = true){
         //var pic_id = $("#clothes_with_logo");
-        html2canvas(document.getElementById("clothes_with_logo"),{background: '#fff'}).then(function(canvas) {
-            document.getElementById("clothes_with_logo").appendChild(canvas);
+        var product_pic_logo_f;
+        var product_pic_logo_b;
 
+        html2canvas(document.getElementById("clothes_with_logo_f"),{background: '#fff'}).then(function(canvas) {
+            document.getElementById("clothes_with_logo_f").appendChild(canvas);
             // Get base64URL
             var base64URL = canvas.toDataURL('image/jpeg').replace('image/jpeg', 'image/octet-stream');
 
@@ -1080,109 +1082,127 @@
                 data: {image: base64URL},
                 success: async function(data){
                     var jsonParsed = JSON.parse(data);
-                    console.log('Upload successfully');
-                    console.log(jsonParsed["product_pic_logo"]);
+                    product_pic_logo_f = jsonParsed["product_pic_logo"];              
+                
+                    html2canvas(document.getElementById("clothes_with_logo_b"),{background: '#fff'}).then(function(canvas) {
+                        document.getElementById("clothes_with_logo_b").appendChild(canvas);
+                        // Get base64URL
+                        var base64URL = canvas.toDataURL('image/jpeg').replace('image/jpeg', 'image/octet-stream');
 
-                    var product_name = $("#data-product-name").text();
-                    var product_color = $("#titlebutton").children("i").attr("data-value");
-                    var product_size = $(".bukuran.activebukuran").text();
-                    var product_pic_logo = jsonParsed["product_pic_logo"];
+                        // AJAX request
+                        $.ajax({
+                            url: artomia_server_url+'/artomia_cap.php',
+                            type: 'post',
+                            data: {image: base64URL},
+                            success: async function(data){
+                                var jsonParsed = JSON.parse(data);
+                                product_pic_logo_b = jsonParsed["product_pic_logo"];    
 
-                    // =  $(".isiwarna li").data("value");
-                    //console.log(">>> product_color_new "+product_color_new);                  
-                    //return false;
+                                
+                                console.log("product_pic_logo_f : "+product_pic_logo_f);
+                                console.log("product_pic_logo_b : "+product_pic_logo_b);
 
-                    var paper_bucket_string = JSON.stringify(paper_bucket);
-                    //console.log(paper_bucket);
-                    //console.log(paper_bucket_string);
-                    var data_f = new FormData($('#uploadForms_f')[0]);
-                    var data_b = new FormData($('#uploadForms_b')[0]);
-                    var logofilename_f, logofilename_b;
-                    data_f.append("category", product_color_new);
-                    data_b.append("category", product_color_new);
-                    
-                    
-                    for (var pair of data_f.entries()) {
-                        console.log(pair[0]+ ', ' + pair[1]); 
-                    }
+                                //return false;
 
-                    if( document.getElementById("upload_costum_f").files.length != 0 ){
-                        await $.ajax({
-                            url:'/logoinsert',
-                            type: 'POST',
-                            data: data_f,
-                            contentType: false,
-                            processData: false,
-                            cache: false,
-                            success: function(res){
-                                alert(res);
-                            },
-                            error: function(){
-                                alert('Error: In sending the request logo file!');
-                            },complete:function(res){
-                                logofilename_f = res.responseText;
-                            },
-                        });
-                    }
+                                var product_name = $("#data-product-name").text();
+                                var product_color = $("#titlebutton").children("i").attr("data-value");
+                                var product_size = $(".bukuran.activebukuran").text();
+                                var product_pic_logo = jsonParsed["product_pic_logo"];
 
-                    if( document.getElementById("upload_costum_b").files.length != 0 ){
-                         await $.ajax({
-                            url:'/logoinsert',
-                            type: 'POST',
-                            data: data_b,
-                            contentType: false,
-                            processData: false,
-                            cache: false,
-                            success: function(res){
-                                alert(res);
-                            },
-                            error: function(){
-                                alert('Error: In sending the request logo file!');
-                            },complete:function(res){
-                                logofilename_b = res.responseText;
-                            },
-                        });
-                    }
+                                // =  $(".isiwarna li").data("value");
+                                //console.log(">>> product_color_new "+product_color_new);                  
+                                //return false;
 
-                    console.log("logofilename_f : "+logofilename_f);
-                    console.log("logofilename_b : "+logofilename_b);
+                                var paper_bucket_string = JSON.stringify(paper_bucket);
+                                //console.log(paper_bucket);
+                                //console.log(paper_bucket_string);
+                                var data_f = new FormData($('#uploadForms_f')[0]);
+                                var data_b = new FormData($('#uploadForms_b')[0]);
+                                var logofilename_f, logofilename_b;
+                                data_f.append("category", product_color_new);
+                                data_b.append("category", product_color_new);
+                                
+                                
+                                for (var pair of data_f.entries()) {
+                                    console.log(pair[0]+ ', ' + pair[1]); 
+                                }
 
-                    $.ajax({
-                        url: '/keranjang_add',
-                        type: 'get',
-                        data: {
-                            product_id: idProducts,
-                            product_spec_id:product_spec_id,
-                            product_name: product_name,
-                            product_color: product_color_new,
-                            product_size: product_size,
-                            product_pic_logo: product_pic_logo,
-                            item_net_cost:item_net_cost,
-                            item_amount:jumalahpesan,
-                            item_total_cost:item_net_cost * jumalahpesan,
-                            paper_bucket:paper_bucket,
-                            logo_f:logofilename_f,
-                            logo_b:logofilename_b,
-                            p_width:$("#ulebar").val(),
-                            p_height:$("#utinggi").val()
-                        },
-                        success: function(data){
-                            console.log('Upload successfully');
-                            if(isRedirect){
-                                window.location.href='/keranjang';
+                                if( document.getElementById("upload_costum_f").files.length != 0 ){
+                                    await $.ajax({
+                                        url:'/logoinsert',
+                                        type: 'POST',
+                                        data: data_f,
+                                        contentType: false,
+                                        processData: false,
+                                        cache: false,
+                                        success: function(res){
+                                            alert(res);
+                                        },
+                                        error: function(){
+                                            alert('Error: In sending the request logo file!');
+                                        },complete:function(res){
+                                            logofilename_f = res.responseText;
+                                        },
+                                    });
+                                }
+
+                                if( document.getElementById("upload_costum_b").files.length != 0 ){
+                                        await $.ajax({
+                                        url:'/logoinsert',
+                                        type: 'POST',
+                                        data: data_b,
+                                        contentType: false,
+                                        processData: false,
+                                        cache: false,
+                                        success: function(res){
+                                            alert(res);
+                                        },
+                                        error: function(){
+                                            alert('Error: In sending the request logo file!');
+                                        },complete:function(res){
+                                            logofilename_b = res.responseText;
+                                        },
+                                    });
+                                }
+
+                                console.log("logofilename_f : "+logofilename_f);
+                                console.log("logofilename_b : "+logofilename_b);
+
+                                $.ajax({
+                                    url: '/keranjang_add',
+                                    type: 'get',
+                                    data: {
+                                        product_id: idProducts,
+                                        product_spec_id:product_spec_id,
+                                        product_name: product_name,
+                                        product_color: product_color_new,
+                                        product_size: product_size,
+                                        product_pic_logo_f: product_pic_logo_f,
+                                        product_pic_logo_b: product_pic_logo_b,
+                                        item_net_cost:item_net_cost,
+                                        item_amount:jumalahpesan,
+                                        item_total_cost:item_net_cost * jumalahpesan,
+                                        paper_bucket:paper_bucket,
+                                        logo_f:logofilename_f,
+                                        logo_b:logofilename_b,
+                                        p_width:$("#ulebar").val(),
+                                        p_height:$("#utinggi").val()
+                                    },
+                                    success: function(data){
+                                        console.log('Upload successfully');
+                                        if(isRedirect){
+                                            window.location.href='/keranjang';
+                                        }
+                                    }
+                                });                 
                             }
-                        }
-                    });
-                    
-                    
-                    /*console.log("Product Name : "+$("#data-product-name").text());
-                    console.log("Color :"+$("#titlebutton").text());
-                    console.log("Size :"+$(".bukuran.activebukuran").text());*/
-                    //window.location.href='/keranjang';
-                    
+                        });
+                    });  
                 }
             });
         });  
+
+       
     }
     //Number value only
     (function($) {
