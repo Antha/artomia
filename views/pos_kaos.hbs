@@ -880,11 +880,15 @@
     });
 
     $('div').on("click","#buploadgambar",function() {
-        $('.imagelogo_b').show();
-        $('.imagelogo_b div > img').fadeIn('fast').attr('src',tmppath_b);
+        if(document.getElementById("upload_costum_b").files.length != 0 ){
+            $('.imagelogo_b').show();
+            $('.imagelogo_b div > img').fadeIn('fast').attr('src',tmppath_b);
+        }
 
-        $('.imagelogo_f').show();
-        $('.imagelogo_f div > img').fadeIn('fast').attr('src',tmppath_f);
+        if(document.getElementById("upload_costum_f").files.length != 0 ){
+            $('.imagelogo_f').show();
+            $('.imagelogo_f div > img').fadeIn('fast').attr('src',tmppath_f);
+        }
     });
     
     $("div.list-item").hover(function(){
@@ -1074,10 +1078,19 @@
             document.getElementById("clothes_with_logo_f").appendChild(canvas);
             // Get base64URL
             var base64URL = canvas.toDataURL('image/jpeg').replace('image/jpeg', 'image/octet-stream');
+            var del_f = true, del_b = true;
+
+            if(document.getElementById("upload_costum_f").files.length != 0 ){
+                del_f = false;
+            }
+
+            if(document.getElementById("upload_costum_b").files.length != 0 ){
+                del_b = false;
+            }
 
             // AJAX request
             $.ajax({
-                url: artomia_server_url+'/artomia_cap.php',
+                url: artomia_server_url+'/artomia_cap.php?del_status='+del_f,
                 type: 'post',
                 data: {image: base64URL},
                 success: async function(data){
@@ -1091,19 +1104,17 @@
 
                         // AJAX request
                         $.ajax({
-                            url: artomia_server_url+'/artomia_cap.php',
+                            url: artomia_server_url+'/artomia_cap.php?del_status='+del_b,
                             type: 'post',
-                            data: {image: base64URL},
+                            data: {image: base64URL, status_del: del_b},
                             success: async function(data){
                                 var jsonParsed = JSON.parse(data);
                                 product_pic_logo_b = jsonParsed["product_pic_logo"];    
-
                                 
                                 console.log("product_pic_logo_f : "+product_pic_logo_f);
                                 console.log("product_pic_logo_b : "+product_pic_logo_b);
 
                                 //return false;
-
                                 var product_name = $("#data-product-name").text();
                                 var product_color = $("#titlebutton").children("i").attr("data-value");
                                 var product_size = $(".bukuran.activebukuran").text();
@@ -1136,7 +1147,7 @@
                                         processData: false,
                                         cache: false,
                                         success: function(res){
-                                            alert(res);
+                                            //alert(res);
                                         },
                                         error: function(){
                                             alert('Error: In sending the request logo file!');
@@ -1155,7 +1166,7 @@
                                         processData: false,
                                         cache: false,
                                         success: function(res){
-                                            alert(res);
+                                            //alert(res);
                                         },
                                         error: function(){
                                             alert('Error: In sending the request logo file!');
@@ -1167,6 +1178,8 @@
 
                                 console.log("logofilename_f : "+logofilename_f);
                                 console.log("logofilename_b : "+logofilename_b);
+
+                                //return false;
 
                                 $.ajax({
                                     url: '/keranjang_add',
