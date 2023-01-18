@@ -288,7 +288,7 @@
                                             </button>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-6">
                                                 <div class="card-body" style="border: solid 1px #c9c9c9;">
                                                     <div class="">
                                                         <div class="col-md-12 mt-4" id="clothes_with_logo" style="">
@@ -297,17 +297,28 @@
                                                                     <img src="" style="">
                                                                 </div>
                                                             </div>
-                                                            <div id="kaosnlogo" style="text-align: center;">
-                                                                <img src="assets/images/pos/Kaos1.png" style="height: 226px;width:226px;resize: both;">
+                                                            <div class="row">
+                                                                <div class="col-xl-6" id="kaosnlogo" style="text-align: center;">
+                                                                    <img src="assets/images/noimage.png" style="height: 200px;resize: both;">
+                                                                </div>
+                                                                <div class="col-xl-6" id="kaosnlogo2" style="text-align: center;">
+                                                                    <img src="assets/images/noimage.png" style="height: 200px;resize: both;">
+                                                                </div>
                                                             </div>
-                                                            <div data-toggle="modal" data-target="#modalupload" id="gambaruploadlogo" class="mt-5 mb-4" style="text-align: center;">
-                                                                <img src="assets/images/gambar_logo.png" style="max-height: 100px;;resize: both;">
+                                                            <div class="row">
+                                                                <div data-toggle="modal" data-target="#modalupload" id="gambaruploadlogo" class="col-xl-6 mt-5 mb-4" style="text-align: center;">
+                                                                    <img src="assets/images/noimage.png" style="max-height: 100px;;resize: both;">
+                                                                </div>
+                                                                <div data-toggle="modal" data-target="#modalupload" id="gambaruploadlogo2" class="col-xl-6 mt-5 mb-4" style="text-align: center;">
+                                                                    <img src="assets/images/noimage.png" style="max-height: 100px;;resize: both;">
+                                                                </div>
                                                             </div>
+                                                            
                                                         </div>
                                                     </div>          
                                                 </div>
                                             </div>
-                                            <div class="col-md-7">
+                                            <div class="col-md-6">
                                                 <div class="card-body" style="padding-top: 4px;">
                                                     <div class="col-md-12" id="detail" style="">
                                                         <div class="row">
@@ -593,7 +604,7 @@
                                 <div class="row">
                                     <div class="col-md-4" style="text-align: right;padding-left: 0px;"><span class="statusind ${classStatus}" style="margin-right: 8px;">${value.status}</span></div>
                                     <div class="col-md-2">
-                                        <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail" data-id="${value.idtransaction}" data-pic="${value.pic}" data-ukuran="${value.size}" data-status="${value.status}" data-deskripsi="${value.deskripsi}" data-logo="${value.piclogo}">
+                                        <span data-toggle="modal" data-target="#modaldetailtransaksi" class="showdetail" data-id="${value.idtransaction}" data-pic="${value.pic}" data-pic2="${value.pic2}" data-ukuran="${value.size}" data-status="${value.status}" data-deskripsi="${value.deskripsi}" data-logo="${value.piclogo}" data-logo2="${value.piclogo2}">
                                             <img src="assets/images/icon_show.png" style="width: 20px;margin: 0px 0px 0px 8px">
                                         </span>
                                     </div>
@@ -635,8 +646,36 @@
         selectedstatus = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-status');
         selectedukuran = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-ukuran').toUpperCase();
         selectedpic = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-pic');
+        selectedpic2 = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-pic2');
         selectedlogo = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-logo');
+        selectedlogo2 = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-logo2');
         selecteddeskripsi = $(RowSelector).children('td').eq(4).children('div:first-child').children('div').eq(1).children('span').attr('data-deskripsi');
+        
+        if(selectedlogo == "undefined" || selectedlogo == "null" ){
+            selectedlogo = "noimage.png"
+        }
+        if(selectedpic == "undefined" || selectedpic == "null" ){
+            selectedpic = "noimage.png"
+        }
+
+        if(selectedlogo2 == "undefined" || selectedlogo2 == "null" ){
+            selectedlogo2 = "noimage.png"
+        }else{
+        }
+
+        if(selectedpic2 == "undefined" || selectedpic2 == "null" ){
+            selectedpic2 = "noimage.png";
+            $('#kaosnlogo').removeClass().addClass("col-xl-12");
+            $('#kaosnlogo2').hide();
+            $('#gambaruploadlogo').removeClass("col-xl-6").addClass("col-xl-12");
+            $('#gambaruploadlogo2').hide();
+        }else{
+            $('#kaosnlogo').removeClass().addClass("col-xl-6");
+            $('#kaosnlogo2').show();
+            $('#gambaruploadlogo').removeClass("col-xl-12").addClass("col-xl-6");
+            $('#gambaruploadlogo2').show();
+        }
+
 
         $("#showidproduksi").html(selectedidproduksi);
         $("#showidtransaksi").html(selectedidtransaksi);
@@ -645,9 +684,11 @@
         $("#showtanggalpesan").html(selectedtanggal);
         $("#showukuran").html(selectedukuran);
         $('#gambaruploadlogo').children('img').attr('src','assets/logopesanan/'+selectedlogo);
+        $('#gambaruploadlogo2').children('img').attr('src','assets/logopesanan/'+selectedlogo2);
         $('#logodesign').children('a').attr('href','assets/logopesanan/'+selectedlogo);
         $('#logodesign').children('a').children('img').attr('src','assets/logopesanan/'+selectedlogo);
         $('#kaosnlogo').children('img').attr('src','assets/uploads/'+selectedpic);
+        $('#kaosnlogo2').children('img').attr('src','assets/uploads/'+selectedpic2);
         if(selectedstatus=="selesai"){
             $(".bstatus").removeClass("bstatusactive bstatusactive2 bstatusactive3");
             $("#selesai").addClass("bstatusactive3");
