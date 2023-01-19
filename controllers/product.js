@@ -110,7 +110,7 @@ exports.select_paper = function (req, res) {
         //console.log(myjson);
         res.json(myjson);
         res.end();
-    });
+    }, req);
 };
 
 exports.select_product_union = function (req, res) {
