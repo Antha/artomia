@@ -313,7 +313,7 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="col-md-12 mt-4" id="clothes_with_logo" style="">
+                                        <div class="col-md-12 mt-4" id="clothes_with_logo" style="height:350px">
                                             <div class="col-md-12" id="clothes_with_logo_f">
                                                 <div class="imagelogo_f" style="display: none;overflow: hidden;">
                                                     <div id="penampung">
@@ -326,7 +326,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12" id="clothes_with_logo_b">
+                                            <div class="col-md-12" id="clothes_with_logo_b" style="top:-1000px">
                                                 <div class="imagelogo_b" style="display: none;overflow: hidden;">
                                                     <div id="penampung">
                                                         <img id="logoimage_b" src="" style="position: absolute;">
@@ -524,12 +524,14 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const idProducts = urlParams.get('product_id');
+
     var product_spec_id;
     var item_net_cost = 0;
     var jumalahpesan = 1;
     var product_color_new = "";
     
     getcolorlist();
+    getPaper();
 
     function getcolorlist(){
         //console.log("url_select_warna");
@@ -738,35 +740,38 @@
         return false;
     })
 
-    $.ajax({
-        url: '/papers/',
-        type: 'get',
-        data: {  },
-        success: function(data){
-            $.each(data.data,function(key,value){
-                $("#bucketskertas").append(
-                    `<div class="col-md-6 mt-2">
-                        <div class="card" style="padding: 8px 16px;">
-                            <div class="row">
-                                <div class="col-md-2" style="margin-right: 8px;">
-                                    <img src="assets/images/pos/PETFilmA6.png" style="width: 57px; height:48px">
-                                </div>
-                                <div class="col-md-6">
-                                    <div id="namapet" class="ht82 mt-1">${value.name}</div>
-                                    <div id="hargapet" class="ht62 color-red">Rp. ${value.price}</div>
-                                </div>
-                                <div class="col-md-3" style="text-align: right;padding-top: 8px;">
-                                    <i id="minmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
-                                    <b id="nilaijeniskertas" class="cnilaibarang" style="font-size: 20px; margin:0px 8px;">0</b>
-                                    <i id="plusmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
+    function getPaper(){
+        $("#bucketskertas").html("");
+        $.ajax({
+            url: '/papers/',
+            type: 'get',
+            data: { lebar:$("#lebar").val() , tinggi: $("#tinggi").val() },
+            success: function(data){
+                $.each(data.data,function(key,value){
+                    $("#bucketskertas").append(
+                        `<div class="col-md-6 mt-2">
+                            <div class="card" style="padding: 8px 16px;">
+                                <div class="row">
+                                    <div class="col-md-2" style="margin-right: 8px;">
+                                        <img src="assets/images/pos/PETFilmA6.png" style="width: 57px; height:48px">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="namapet" class="ht82 mt-1">${value.name}</div>
+                                        <div id="hargapet" class="ht62 color-red">Rp. ${value.price}</div>
+                                    </div>
+                                    <div class="col-md-3" style="text-align: right;padding-top: 8px;">
+                                        <i id="minmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
+                                        <b id="nilaijeniskertas" class="cnilaibarang" style="font-size: 20px; margin:0px 8px;">0</b>
+                                        <i id="plusmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>`);
-            });
-        }
-    });
-    
+                        </div>`);
+                });
+            }
+        });
+    }
+
     $("#bucketskertas").on('click','.cplusbarang',function(){
         var nilaipenampung = $(this).siblings('.cnilaibarang').text();
         var nilai = parseInt(nilaipenampung);
@@ -824,7 +829,6 @@
         }else{
             
         }
-        
     });
 
     $(".bletakdesign").click(function(){
@@ -880,6 +884,17 @@
     });
 
     $('div').on("click","#buploadgambar",function() {
+        if($("#ulebar").val() == 0 || $("#utinggi").val() == 0 || $("#ulebar").val() == "" || $("#utinggi").val() == ""){
+            Swal.fire({
+                title: 'Info',
+                text: "Fill Lebar & Tinggi",
+                icon: 'info',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6'
+            })
+            return false;
+        }
+
         if(document.getElementById("upload_costum_b").files.length != 0 ){
             $('.imagelogo_b').show();
             $('.imagelogo_b div > img').fadeIn('fast').attr('src',tmppath_b);
@@ -1058,11 +1073,15 @@
             }
 
             $("#tampakbelakang").click(function(){
-                $('#produkpos').attr('src',tampungselect2)
+                $("#clothes_with_logo_b").css("top","-320px");
+                $("#clothes_with_logo_f").css("top","-1000px");
+                //$('#produkpos').attr('src',tampungselect2)
             });
 
             $("#tampakdepan").click(function(){
-                $('#produkpos').attr('src',tampungselect)
+                //$('#produkpos').attr('src',tampungselect)
+                $("#clothes_with_logo_b").css("top","-1000px");
+                $("#clothes_with_logo_f").css("top","0px");
             });
         }
     });
@@ -1248,10 +1267,17 @@
         $("#lebar, #tinggi").inputFilter(function(value) {
             return /^\d*$/.test(value);    // Allow digits only, using a RegExp
         },"Only digits allowed");
+
+        $("#lebar, #tinggi").keyup(function(){
+            if($("#lebar").val() !== "" && $("#tinggi").val() !== ""){
+                getPaper();
+            }
+        })
     });
     //Number value only
     dragElement(document.getElementById("logoimage_f"));
     dragElement(document.getElementById("logoimage_b"));
+
     function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         if (document.getElementById(elmnt.id)) {

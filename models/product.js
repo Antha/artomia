@@ -1,3 +1,4 @@
+const req = require("express/lib/request");
 var mysql = require("mysql");
 const connect = require("../config/conn");
 
@@ -156,7 +157,7 @@ function select_all_product_arm_length(callback) {
 }
 
 // table product arm length
-function select_paper(callback) {
+function select_paper(callback, req) {
     //var global.datax;
     var con = mysql.createPool({
         host: connect.host,
@@ -166,8 +167,14 @@ function select_paper(callback) {
         port: connect.port,
     });
 
+    var options = "";
+
+    if (req.query.lebar && req.query.tinggi) {
+        options = ` AND WIDTH >= ${req.query.lebar} AND LENGTH >= ${req.query.tinggi} `;
+    }
+
     con.getConnection(function (err, connection) {
-        con.query(`SELECT * FROM paper`, function (error, rows, fields) {
+        con.query(`SELECT * FROM paper WHERE 1 ` + options, function (error, rows, fields) {
             if (error) {
                 callback(error, {rows: rows, fields: fields});
             } else {
