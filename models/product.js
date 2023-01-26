@@ -169,7 +169,10 @@ function select_paper(callback, req) {
 
     var options = "",
         options_f = "''",
-        options_b = "''";
+        options_b = "''",
+        str_query = ""
+        ;
+
     var limit = 0;
 
     if (req.query.lebar_f > 0 && req.query.tinggi_f > 0) {
@@ -186,8 +189,14 @@ function select_paper(callback, req) {
         limit = 1;
     }
 
+    if(req.query.mode_all){
+        str_query = `SELECT * FROM paper WHERE 1`;
+    }else{
+        str_query = `SELECT * FROM paper WHERE 1 AND ( ${options_f} OR ${options_b} ) ORDER BY WIDTH ASC,LENGTH ASC LIMIT ${limit}`;
+    }
+   
     con.getConnection(function (err, connection) {
-        con.query(`SELECT * FROM paper WHERE 1 AND ( ${options_f} OR ${options_b} ) ORDER BY WIDTH ASC,LENGTH ASC LIMIT ${limit}`, function (error, rows, fields) {
+        con.query(str_query, function (error, rows, fields) {
             if (error) {
                 callback(error, {rows: rows, fields: fields});
             } else {

@@ -589,7 +589,7 @@
     $.ajax({
         url: "/papers",
         type: 'GET',
-        data: {},
+        data: {mode_all:true},
         success: function(data){
             var data_series = [];
             $.each(data.data,function(key,value){
