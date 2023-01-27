@@ -33,6 +33,22 @@ exports.select_transaction = function (req, res) {
     }, req);
 };
 
+exports.select_growth_transaction_plus = function (req, res) {
+    transaction.select_growth_transaction_plus(function (status, data) {
+        var mydata = [];
+        var myjson;
+        var status;
+
+        myjson = {
+            status: status,
+            data: data.rows[0],
+        };
+        //console.log(myjson);
+        res.json(myjson);
+        res.end();
+    }, req);
+};
+
 exports.insert_transaction_item = function (req, res) {
     transaction.insert_transaction_item(function (status, data) {
         var mydata = [];

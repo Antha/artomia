@@ -361,14 +361,14 @@
                                                 Pendapatan Harian
                                             </div>
                                             <div class="ht7 color-black"style="">
-                                                45 transaksi
+                                                <span id="count_t_in_day" ></span> transaksi
                                             </div>
                                         </div>
                                         <div class="col-md-12 ht6 color-black" style="font-weight: 600; text-align: center;">
-                                            Rp450.000 <span class="ht9 color-blue">+16%</span>
+                                            Rp. <span id="sum_t_in_day"></span> <span class="ht9 color-blue"><span id="growth_t"></span> %
                                         </div>
                                         <div class="col-md-12 ht9 mt-1 color-blue" style="font-weight: 600; text-align: center;">
-                                            <i class="mdi mdi-arrow-up" style="font-size: 0.8rem;margin:4px;"></i>Rp400.000
+                                            <i class="mdi mdi-arrow-up" style="font-size: 0.8rem;margin:4px;"></i>Rp. <span id="sum_t_bef_day"></span>
                                         </div>
                                     </div>          
                                 </div>
@@ -477,6 +477,19 @@
         data: {},
         success: function(data){
             $("#total_stock").html(data.data[0]["amount"]);
+        }
+    });
+
+    $.ajax({
+        url: "/growth_transaction_plus",
+        type: 'GET',
+        data: {},
+        success: function(data){
+            $("#count_t_in_day").html(data.data.T_COUNT_CURRENT);
+            $("#sum_t_in_day").html(data.data.T_CURRENT);
+            $("#sum_t_bef_day").html(data.data.T_BEFORE);
+            $("#growth_t").html(data.data.GROWTH > 0 ? "+":"");
+            $("#growth_t").append(data.data.GROWTH);
         }
     });
 
