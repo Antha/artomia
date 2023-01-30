@@ -92,6 +92,82 @@ function select_transaction(callback, req) {
     });
 }
 
+function select_growth_transaction_plus(callback, req) {
+    //var global.datax;
+    var con = mysql.createPool({
+        host: connect.host,
+        user: connect.user,
+        password: connect.password,
+        database: connect.database,
+        port: connect.port,
+    });
+
+    var option = ``;
+
+    con.getConnection(function (err, connection) {
+        con.query(
+            ` 
+                SELECT
+                *,
+                ROUND((T_CURRENT/T_BEFORE - 1) * 100,2) GROWTH
+                
+                FROM
+                (
+                    SELECT
+                    COUNT(CASE WHEN DATE(DATETIME) = (SELECT DATE(MAX(DATETIME)) FROM \`transactions\` ) THEN 1 END) AS T_COUNT_CURRENT,
+                    SUM(CASE WHEN DATE(DATETIME) = (SELECT DATE(MAX(DATETIME)) FROM \`transactions\` ) THEN total_price END) AS T_CURRENT,
+                    SUM(CASE WHEN DATE(DATETIME) = (SELECT DISTINCT DATE(DATETIME) FROM \`transactions\` ORDER BY DATE(DATETIME) DESC LIMIT 1 OFFSET 1 ) THEN total_price END) AS T_BEFORE
+                    FROM
+                    (
+                        SELECT 
+                        \`transaction_id\`,
+                        T.\`amount\`,
+                        p.hargajual,
+                        T.\`amount\` * p.hargajual total_price,
+                        TS.datetime
+                        FROM 
+                        \`transaction_item\` T 
+                        JOIN 
+                        (
+                        SELECT *,1 AS product_id,\`idproductkaos\` AS product_spec_id FROM \`product_kaos\`
+                        UNION
+                        SELECT *,8 AS product_id,\`idproductpanelcap\` AS product_spec_id  FROM \`product_panelcap\`
+                        UNION
+                        SELECT *,7 AS product_id,\`idproductpolocap\` AS product_spec_id  FROM \`product_polocap\`
+                        UNION
+                        SELECT *,2 AS product_id,\`idproductsweater\` AS product_spec_id  FROM \`product_sweater\`
+                        UNION
+                        SELECT *,4 AS product_id,\`idproducttanktop\` AS product_spec_id FROM \`product_tanktop\`
+                        UNION
+                        SELECT *,5 AS product_id,\`idproducttopi\` AS product_spec_id FROM \`product_topi\`
+                        UNION
+                        SELECT *,6 AS product_id,\`idproducttotebag\` AS product_spec_id FROM \`product_totebag\`
+                        UNION
+                        SELECT *,9 AS product_id,\`idproducttruckercap\` AS product_spec_id FROM \`product_truckercap\`
+                        )P
+                        ON 
+                        T.product_spec_id = P.\`product_spec_id\`
+                        AND                
+                        T.product_id = P.\`product_id\`
+                        JOIN
+                        \`transactions\` TS
+                        ON 
+                        T.\`transaction_id\` = TS.\`idtransaction\`
+                    ) AS MASTER
+                ) AS CALC_1
+            `,
+            function (error, rows, fields) {
+                if (error) {
+                    callback(error, {rows: rows, fields: fields});
+                } else {
+                    callback("success", {rows: rows, fields: fields});
+                }
+                con.end();
+            }
+        );
+    });
+}
+
 function insert_transaction_item(callback, req) {
     //var global.datax;
     var con = mysql.createPool({
@@ -303,6 +379,7 @@ function select_total_transaction(callback, req) {
 
 module.exports.insert_transaction = insert_transaction;
 module.exports.select_transaction = select_transaction;
+module.exports.select_growth_transaction_plus = select_growth_transaction_plus;
 module.exports.insert_transaction_item = insert_transaction_item;
 module.exports.select_transaction_item = select_transaction_item;
 module.exports.insert_transaction_item_paper = insert_transaction_item_paper;

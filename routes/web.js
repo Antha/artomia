@@ -329,6 +329,7 @@ router.get("/payments", payment.select_payment);
 
 router.post("/transaction", transaction.insert_transaction);
 router.get("/transactions", transaction.select_transaction);
+router.get("/growth_transaction_plus", transaction.select_growth_transaction_plus);
 router.get("/transaction/:idTransaction", transaction.select_transaction);
 router.post("/transaction_item", transaction.insert_transaction_item);
 router.get("/transaction_item", transaction.select_transaction_item);

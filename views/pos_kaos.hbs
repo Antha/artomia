@@ -226,13 +226,17 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <img src="assets/images/pos/icon_horizontal_maximize.png" style="position: absolute;width: 16px;margin: 8px;">
-                                                <input style="height:2rem !important;padding-left: 48px;font-size: 14px;" type="text" name="lebar" class="form-control" id="ulebar" placeholder="Lebar" value="0" required>
+                                                <input style="height:2rem !important;padding-left: 48px;font-size: 14px;" type="text" name="lebar" class="form-control" id="ulebar" placeholder="Lebar" value="0" required/>
+                                                <img src="assets/images/pos/icon_vertical_maximize.png" style="position: absolute;width: 16px;margin: 8px;">
+                                                <input style="height:2rem !important;padding-left: 48px;font-size: 14px;" type="text" name="tinggi" class="form-control" id="utinggi" placeholder="Tinggi" value="0" required />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <img src="assets/images/pos/icon_horizontal_maximize.png" style="position: absolute;width: 16px;margin: 8px;">
+                                                <input style="height:2rem !important;padding-left: 48px;font-size: 14px;" type="text" name="tinggi" class="form-control" id="ulebar2" placeholder="Tinggi" value="0" required />
                                                 <img src="assets/images/pos/icon_vertical_maximize.png" style="position: absolute;width: 16px;margin: 8px;">
-                                                <input style="height:2rem !important;padding-left: 48px;font-size: 14px;" type="text" name="tinggi" class="form-control" id="utinggi" placeholder="Tinggi" value="0" required>
+                                                <input style="height:2rem !important;padding-left: 48px;font-size: 14px;" type="text" name="tinggi" class="form-control" id="utinggi2" placeholder="Tinggi" value="0" required />
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -529,16 +533,16 @@
     var item_net_cost = 0;
     var jumalahpesan = 1;
     var product_color_new = "";
-    
+
+    var url_select_warna ;
+    var url_select_size;
+    var url_select_price;
+
     getcolorlist();
-    getPaper();
+    //getPaper();
 
     function getcolorlist(){
         //console.log("url_select_warna");
-
-        var url_select_warna ;
-        var url_select_size;
-        var url_select_price;
 
         switch(idProducts){
             case '1':
@@ -740,38 +744,6 @@
         return false;
     })
 
-    function getPaper(){
-        $("#bucketskertas").html("");
-        $.ajax({
-            url: '/papers/',
-            type: 'get',
-            data: { lebar:$("#lebar").val() , tinggi: $("#tinggi").val() },
-            success: function(data){
-                $.each(data.data,function(key,value){
-                    $("#bucketskertas").append(
-                        `<div class="col-md-6 mt-2">
-                            <div class="card" style="padding: 8px 16px;">
-                                <div class="row">
-                                    <div class="col-md-2" style="margin-right: 8px;">
-                                        <img src="assets/images/pos/PETFilmA6.png" style="width: 57px; height:48px">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div id="namapet" class="ht82 mt-1">${value.name}</div>
-                                        <div id="hargapet" class="ht62 color-red">Rp. ${value.price}</div>
-                                    </div>
-                                    <div class="col-md-3" style="text-align: right;padding-top: 8px;">
-                                        <i id="minmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
-                                        <b id="nilaijeniskertas" class="cnilaibarang" style="font-size: 20px; margin:0px 8px;">0</b>
-                                        <i id="plusmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`);
-                });
-            }
-        });
-    }
-
     $("#bucketskertas").on('click','.cplusbarang',function(){
         var nilaipenampung = $(this).siblings('.cnilaibarang').text();
         var nilai = parseInt(nilaipenampung);
@@ -793,27 +765,9 @@
     });
 
     $("#btn_add_paper").click(function(){
-        console.log("paper_bucket");
-        console.log(paper_bucket);
-
-        $("#kertasdipilih").html("[Custom]");
-
-        for(var key in paper_bucket) {
-            var value = paper_bucket[key];
-            //record = objectVar[key];
-            //console.log("value");
-            $("#kertasdipilih").append(value.name+" x "+value.nilai+" & ");
-        }
-
-        /*$.each(paper_bucket,function(key,value){  
-            console.log("value");
-            //console.log(value);
-            //$("#kertasdipilih").append(value.name+" x "+value.nilai+" & ");
-        });*/
-
-        var divtext = $("#kertasdipilih").text();
-        $("#kertasdipilih").html(divtext.slice(0,-2));
-
+        {{!-- console.log("paper_bucket");
+        console.log(paper_bucket); --}}
+        addPaper();
         $('#exampleModalCenter').modal('hide');
     });
     
@@ -884,15 +838,30 @@
     });
 
     $('div').on("click","#buploadgambar",function() {
-        if($("#ulebar").val() == 0 || $("#utinggi").val() == 0 || $("#ulebar").val() == "" || $("#utinggi").val() == ""){
-            Swal.fire({
-                title: 'Info',
-                text: "Fill Lebar & Tinggi",
-                icon: 'info',
-                showCancelButton: false,
-                confirmButtonColor: '#3085d6'
-            })
-            return false;
+        if(document.getElementById("upload_costum_f").files.length != 0){
+            if($("#ulebar").val() == 0 || $("#utinggi").val() == 0 || $("#ulebar").val() == "" || $("#utinggi").val() == ""){
+                Swal.fire({
+                    title: 'Info',
+                    text: "Fill Lebar & Tinggi Untuk Bagian Depan",
+                    icon: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6'
+                })
+                return false;
+            }
+        }
+
+        if(document.getElementById("upload_costum_b").files.length != 0){
+            if($("#ulebar2").val() == 0 || $("#utinggi2").val() == 0 || $("#ulebar").val() == "" || $("#utinggi").val() == ""){
+                Swal.fire({
+                    title: 'Info',
+                    text: "Fill Lebar & Tinggi Untuk Bagian Belakang",
+                    icon: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6'
+                })
+                return false;
+            }
         }
 
         if(document.getElementById("upload_costum_b").files.length != 0 ){
@@ -904,6 +873,8 @@
             $('.imagelogo_f').show();
             $('.imagelogo_f div > img').fadeIn('fast').attr('src',tmppath_f);
         }
+
+        getPaper($("#ulebar").val(),$("#utinggi").val(),$("#ulebar2").val(),$("#utinggi2").val() );
     });
     
     $("div.list-item").hover(function(){
@@ -1270,7 +1241,7 @@
 
         $("#lebar, #tinggi").keyup(function(){
             if($("#lebar").val() !== "" && $("#tinggi").val() !== ""){
-                getPaper();
+                getPaper($("#lebar").val(),$("#tinggi").val() );
             }
         })
     });
@@ -1318,6 +1289,73 @@
             document.onmousemove = null;
         }
     };
+
+    function addPaper(){
+        $("#kertasdipilih").html("[Custom]");
+        for(var key in paper_bucket) {
+            var value = paper_bucket[key];
+            //record = objectVar[key];
+            //console.log("value");
+            $("#kertasdipilih").append(value.name+" x "+value.nilai+" & ");
+        }
+
+        /*$.each(paper_bucket,function(key,value){  
+            console.log("value");
+            //console.log(value);
+            //$("#kertasdipilih").append(value.name+" x "+value.nilai+" & ");
+        });*/
+
+        var divtext = $("#kertasdipilih").text();
+        $("#kertasdipilih").html(divtext.slice(0,-2));
+    }
+
+    function getPaper(lebar_f,tinggi_f,lebar_b,tinggi_b){
+        var content = "";
+        var nilai;
+        paper_bucket = {};
+
+        if((lebar_f == lebar_b) && (tinggi_f == tinggi_b)){
+            nilai = 2;
+        }else{
+            nilai = 1;
+        }
+
+        $.ajax({
+            url: '/papers/',
+            type: 'get',
+            data: { lebar_f,tinggi_f,lebar_b,tinggi_b},
+            beforeSend:function(){
+                //$("#bucketskertas").html("");
+            },
+            success: function(data){
+                $.each(data.data,function(key,value){
+                    content +=  `<div class="col-md-6 mt-2">
+                            <div class="card" style="padding: 8px 16px;">
+                                <div class="row">
+                                    <div class="col-md-2" style="margin-right: 8px;">
+                                        <img src="assets/images/pos/PETFilmA6.png" style="width: 57px; height:48px">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="namapet" class="ht82 mt-1">${value.name}</div>
+                                        <div id="hargapet" class="ht62 color-red">Rp. ${value.price}</div>
+                                    </div>
+                                    <div class="col-md-3" style="text-align: right;padding-top: 8px;">
+                                        <i id="minmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
+                                        <b id="nilaijeniskertas" class="cnilaibarang" style="font-size: 20px; margin:0px 8px;">${nilai}</b>
+                                        <i id="plusmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+
+                    paper_bucket["id_"+key] = {id:value.idpaper,nilai:nilai,name:value.name,price:value.price};    
+                });
+
+                $("#bucketskertas").html(content);
+                addPaper();
+            }
+        });
+    }
 
     $('#perbesar').click(function(){
         enlargeImg();

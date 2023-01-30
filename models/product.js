@@ -167,19 +167,42 @@ function select_paper(callback, req) {
         port: connect.port,
     });
 
-    var options = "";
+    var options = "",
+        options_f = "''",
+        options_b = "''",
+        str_query = ""
+        ;
 
-    if (req.query.lebar && req.query.tinggi) {
-        options = ` AND WIDTH >= ${req.query.lebar} AND LENGTH >= ${req.query.tinggi} `;
+    var limit = 0;
+
+    if (req.query.lebar_f > 0 && req.query.tinggi_f > 0) {
+        options_f = ` (WIDTH >= ${req.query.lebar_f} AND LENGTH >= ${req.query.tinggi_f})`;
+        limit++;
     }
 
+    if (req.query.lebar_b > 0 && req.query.tinggi_b > 0) {
+        options_b = ` (WIDTH >= ${req.query.lebar_b} AND LENGTH >= ${req.query.tinggi_b})`;
+        limit++;
+    }
+
+    if ((req.query.lebar_f == req.query.lebar_b) && (req.query.tinggi_f == req.query.tinggi_b)) {
+        limit = 1;
+    }
+
+    if(req.query.mode_all){
+        str_query = `SELECT * FROM paper WHERE 1`;
+    }else{
+        str_query = `SELECT * FROM paper WHERE 1 AND ( ${options_f} OR ${options_b} ) ORDER BY WIDTH ASC,LENGTH ASC LIMIT ${limit}`;
+    }
+   
     con.getConnection(function (err, connection) {
-        con.query(`SELECT * FROM paper WHERE 1 ` + options, function (error, rows, fields) {
+        con.query(str_query, function (error, rows, fields) {
             if (error) {
                 callback(error, {rows: rows, fields: fields});
             } else {
                 callback("success", {rows: rows, fields: fields});
             }
+            console.log(this.sql);
             con.end();
         });
     });
