@@ -15,7 +15,7 @@ function select_produksi(callback, req) {
         con.query(
             `
             Select z.*,i.jenisbarang,i.size from 
-            (SELECT distinct(a.idtransaction_item) as idtransactionitem , a.pic,a.piclogo_f AS piclogo,a.product_id,a.product_spec_id, d.fullname as pelanggan , e.name as kasir , DATE_FORMAT(c.datetime,'%Y-%m-%d %H:%i:%s') datetime, CASE WHEN a.status IS Null THEN "progress" ELSE a.status end as status , a.deskripsi, c.idtransaction
+            (SELECT distinct(a.idtransaction_item) as idtransactionitem , a.pic_f AS pic, a.pic_b AS pic2, a.piclogo_f AS piclogo, a.piclogo_b AS piclogo2, a.product_id,a.product_spec_id, d.fullname as pelanggan , e.name as kasir , DATE_FORMAT(c.datetime,'%Y-%m-%d %H:%i:%s') datetime, CASE WHEN a.status IS Null THEN "progress" ELSE a.status end as status , a.deskripsi, c.idtransaction
             from transaction_item a
             Left JOIN transactions c
             ON a.transaction_id = c.idtransaction

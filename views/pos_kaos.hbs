@@ -949,8 +949,8 @@
         data: {  },
         success: function(data){
             $.each(data.data,function(key,value){
-                $("#img_product_f").html(`<div id="tampungwarnabackground"><img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;"></div>`);
-                $("#img_product_b").html(`<div id="tampungwarnabackground"><img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:326px;resize: both;"></div>`);
+                $("#img_product_f").html(`<div id="tampungwarnabackground"><img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:auto;resize: both;"></div>`);
+                $("#img_product_b").html(`<div id="tampungwarnabackground"><img id="produkpos" class="${value.class}" src="assets/images/pos/${value.pic}" style="height: 326px;width:auto;resize: both;"></div>`);
                 $("#data-product-name").html(value.name);
                 //item_net_cost = value.price;
             });
@@ -1044,7 +1044,7 @@
             }
 
             $("#tampakbelakang").click(function(){
-                $("#clothes_with_logo_b").css("top","-320px");
+                $("#clothes_with_logo_b").css("top","-326px");
                 $("#clothes_with_logo_f").css("top","-1000px");
                 //$('#produkpos').attr('src',tampungselect2)
             });
