@@ -168,33 +168,21 @@ function select_paper(callback, req) {
     });
 
     var options = "",
-        options_f = "''",
-        options_b = "''",
-        str_query = ""
-        ;
-
+        str_query = "";
+        
     var limit = 0;
 
-    if (req.query.lebar_f > 0 && req.query.tinggi_f > 0) {
-        options_f = ` (WIDTH >= ${req.query.lebar_f} AND LENGTH >= ${req.query.tinggi_f})`;
+    if (req.query.lebar > 0 && req.query.tinggi > 0) {
+        options = ` AND WIDTH >= ${req.query.lebar} AND LENGTH >= ${req.query.tinggi}`;
         limit++;
     }
 
-    if (req.query.lebar_b > 0 && req.query.tinggi_b > 0) {
-        options_b = ` (WIDTH >= ${req.query.lebar_b} AND LENGTH >= ${req.query.tinggi_b})`;
-        limit++;
-    }
-
-    if ((req.query.lebar_f == req.query.lebar_b) && (req.query.tinggi_f == req.query.tinggi_b)) {
-        limit = 1;
-    }
-
-    if(req.query.mode_all){
+    if (req.query.mode_all) {
         str_query = `SELECT * FROM paper WHERE 1`;
-    }else{
-        str_query = `SELECT * FROM paper WHERE 1 AND ( ${options_f} OR ${options_b} ) ORDER BY WIDTH ASC,LENGTH ASC LIMIT ${limit}`;
+    } else {
+        str_query = `SELECT * FROM paper WHERE 1 ${options} ORDER BY WIDTH ASC,LENGTH ASC LIMIT 1`;
     }
-   
+
     con.getConnection(function (err, connection) {
         con.query(str_query, function (error, rows, fields) {
             if (error) {

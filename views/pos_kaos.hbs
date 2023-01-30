@@ -1309,9 +1309,10 @@
         $("#kertasdipilih").html(divtext.slice(0,-2));
     }
 
-    function getPaper(lebar_f,tinggi_f,lebar_b,tinggi_b){
+    async function getPaper(lebar_f,tinggi_f,lebar_b,tinggi_b){
         var content = "";
         var nilai;
+        var keyg=0;
         paper_bucket = {};
 
         if((lebar_f == lebar_b) && (tinggi_f == tinggi_b)){
@@ -1320,10 +1321,10 @@
             nilai = 1;
         }
 
-        $.ajax({
+        await $.ajax({
             url: '/papers/',
             type: 'get',
-            data: { lebar_f,tinggi_f,lebar_b,tinggi_b},
+            data: { lebar:lebar_f,tinggi:tinggi_f},
             beforeSend:function(){
                 //$("#bucketskertas").html("");
             },
@@ -1340,21 +1341,58 @@
                                         <div id="hargapet" class="ht62 color-red">Rp. ${value.price}</div>
                                     </div>
                                     <div class="col-md-3" style="text-align: right;padding-top: 8px;">
-                                        <i id="minmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
+                                        <i id="minmodal" data-name="${value.name}" data-price="${value.price}" data-index="${keyg}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
                                         <b id="nilaijeniskertas" class="cnilaibarang" style="font-size: 20px; margin:0px 8px;">${nilai}</b>
-                                        <i id="plusmodal" data-name="${value.name}" data-price="${value.price}" data-index="${key}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
+                                        <i id="plusmodal" data-name="${value.name}" data-price="${value.price}" data-index="${keyg}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>`;
 
-                    paper_bucket["id_"+key] = {id:value.idpaper,nilai:nilai,name:value.name,price:value.price};    
+                    paper_bucket["id_"+keyg] = {id:value.idpaper,nilai:nilai,name:value.name,price:value.price};    
+                    keyg++;
                 });
-
-                $("#bucketskertas").html(content);
-                addPaper();
             }
         });
+
+        if(!((lebar_f == lebar_b) && (tinggi_f == tinggi_b))){
+            await $.ajax({
+                url: '/papers/',
+                type: 'get',
+                data: { lebar:lebar_b,tinggi:tinggi_b},
+                beforeSend:function(){
+                    //$("#bucketskertas").html("");
+                },
+                success: function(data){
+                    $.each(data.data,function(key,value){
+                        content +=  `<div class="col-md-6 mt-2">
+                                <div class="card" style="padding: 8px 16px;">
+                                    <div class="row">
+                                        <div class="col-md-2" style="margin-right: 8px;">
+                                            <img src="assets/images/pos/PETFilmA6.png" style="width: 57px; height:48px">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="namapet" class="ht82 mt-1">${value.name}</div>
+                                            <div id="hargapet" class="ht62 color-red">Rp. ${value.price}</div>
+                                        </div>
+                                        <div class="col-md-3" style="text-align: right;padding-top: 8px;">
+                                            <i id="minmodal" data-name="${value.name}" data-price="${value.price}" data-index="${keyg}" data-id="${value.idpaper}" class="cminbarang fa-regular fa-square-minus" style="font-size: 20px;cursor: pointer;"></i>
+                                            <b id="nilaijeniskertas" class="cnilaibarang" style="font-size: 20px; margin:0px 8px;">${nilai}</b>
+                                            <i id="plusmodal" data-name="${value.name}" data-price="${value.price}" data-index="${keyg}" data-id="${value.idpaper}" class="cplusbarang fa-regular fa-square-plus" style="font-size: 20px;cursor: pointer;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+
+                        paper_bucket["id_"+keyg] = {id:value.idpaper,nilai:nilai,name:value.name,price:value.price};    
+                        keyg++;
+                    });
+                }
+            });
+        }
+        
+        $("#bucketskertas").html(content);
+        addPaper();
     }
 
     $('#perbesar').click(function(){
